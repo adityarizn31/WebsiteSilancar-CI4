@@ -1,0 +1,379 @@
+* {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  background-color: #890b0c;
+  flex-direction: row;
+}
+
+.logonav {
+  width: 40%;
+  padding-left: 5%;
+}
+
+.sampul {
+  width: 100%;
+  background-color: #C65958;
+  
+}
+
+.inovasi {
+  width: 100%;
+  background-color: #C65958;
+}
+
+body {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.table > tbody > tr > * {
+  vertical-align: middle;
+}
+
+.footer {
+  width: 100%;
+  background-color: #890b0c;
+  
+}
+
+.sampulwelcome {
+  padding-top: 20px;
+}
+
+.logo {
+  width: 250px;
+}
+
+.logofooter {
+  width: 100%;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+.waktu {
+  padding-left: 10px;
+}
+
+.hari {
+  padding-left: 10px;
+}
+
+.infofooter {
+  padding-top: 21px;
+}
+
+.boxsosmed {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.sosmed {
+  width: 25px;
+  height: 25px;
+}
+
+.boxbox {
+  padding-left: 5px;
+}
+
+.boxinsosmed {
+  padding-left: 5px;
+}
+
+.table > tbody > tr > * {
+  vertical-align: middle;
+}
+
+/* Tentang/Struktur Organisasi */
+.fotovisimisi {
+  width: 100%;
+}
+
+.sampulorganisasi {
+  width: 100%;
+  background-color: antiquewhite;
+  padding: 10px;
+}
+
+.organisasi {
+  padding: 20px;
+  width: 200px;
+}
+
+.sampulsilancar {
+  width: 50%;
+}
+
+.pelayanan {
+  padding-left: 8%;
+}
+
+.kartupelayanan {
+  padding: 2%;
+  margin: 2%;
+  width: 18rem;
+  border-color: grey;
+  box-shadow: inset;
+}
+
+.errorpage {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 2%;
+}
+
+.judulpersyaratansilancar {
+  padding: 1.5%;
+}
+
+.persyaratansilancar {
+  background-color: #eaa2a2;  
+}
+
+
+
+/* Admin */
+li {
+  list-style: none;
+  margin: 20px 0 20px 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.sidebar {
+  width: 250px;
+  height: 100%;
+  position: fixed;
+  margin-left: -300px;
+  transition: 0.4s;
+}
+
+.active-main-content {
+  margin-left: 250px;
+}
+
+.active-sidebar {
+  margin-left: 0;
+}
+
+#main-content {
+  transition: 0.4s;
+}
+
+.sidebaricon {
+  width: 10%;
+  height: 10%;
+}
+
+.sampulnengah {
+  width: 50px;
+  height: 50px;
+  /* Center vertically and horizontally */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.foto_berita {
+  width: 50%;
+  height: 40%;
+}
+
+.foto_inovasi {
+  width: 55%;
+  height: 50%;
+}
+
+.detail-berita {
+  width: 70%;
+}
+
+.textarea {
+  max-width: 100%;
+}
+
+.foto_admin {
+  width: 50%;
+  height: 50%;
+}
+
+.fotopersyaratan {
+  width: 50%;
+}
+
+.foto_pelayanan {
+  width: 50%;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 2%;
+  
+}
+
+.grid-container2 {
+  display: grid;
+  grid-template-columns: 4% 4% 4%;
+  padding: 1%;
+}
+
+/* .grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+} */
+
+.pelayananrow {
+  padding-left: 4%;
+}
+
+
+
+/* Bagian Responsive Ukuran Tablet*/
+@media screen and (max-width: 768px) {
+  header.navbar-container {
+    flex-direction: column;
+  }
+
+  header.navbar-container .nav-list ul {
+    flex-wrap: wrap;
+    column-gap: 0.5rem;
+  }
+
+  .berita {
+    width: 45%;
+    container: 2%;
+    display: flex;
+    flex-basis: 30%;
+  }
+
+  main {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  main.content {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  main .content .content-description p {
+    font-size: 1rem;
+  }
+
+  main.content .content-image {
+    order: -1;
+  }
+}
+
+/* Hamburger Menu */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  height: 20px;
+  justify-content: space-between;
+  position: relative;
+}
+
+.menu-toggle input {
+  position: absolute;
+  width: 40px;
+  height: 28px;
+  left: -5px;
+  top: -3px;
+  opacity: 0;
+  z-index: 2;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  border-radius: 3px;
+  transition: all 1s;
+}
+
+.menu-toggle {
+  display: flex;
+}
+
+/* Hamburger Animation  */
+.menu-toggle span:nth-child(2) {
+  transform-origin: 0 0;
+}
+
+.menu-toggle span:nth-child(4) {
+  transform-origin: 0 100%;
+}
+
+.menu-toggle input:checked ~ span:nth-child(2) {
+  background-color: white;
+  transform: rotate(45deg);
+}
+
+.menu-toggle input:checked ~ span:nth-child(3) {
+  transform: scale(0);
+}
+
+.menu-toggle input:checked ~ span:nth-child(4) {
+  background-color: white;
+  transform: rotate(-45deg);
+}
+
+/* Ukuran Mobile */
+@media screen and (max-width: 576px) {
+  .navbar {
+    flex-direction: column;
+  }
+
+  .logonav {
+    width: 45%;
+  }
+
+  .sampulsilancar {
+    width: 100%;
+    
+  }
+
+  .berita {    
+    margin-left: 28%;
+  }
+
+  .pelayanan {
+    display: grid;
+    width: 100%;
+    padding-left: 10%;
+  }
+
+  .fotovisimisi {
+    width: 100%;
+  }
+
+  .judulpersyaratansilancar {
+    padding: 10px;
+    font-size: large;
+  }
+
+  .judulsilancar {
+    font-size: medium;
+  }
+
+  .fotopersyaratan {
+    width: 90%;
+  }
+
+  .pelayananrow {
+    padding-right: 5%;
+  }
+}
