@@ -12,6 +12,7 @@ use App\Models\PersyaratansilancarModel;
 
 use App\Models\Pendaftaran_kk_Model;
 use App\Models\Pendaftaran_kia_Model;
+use App\Models\Pendaftaran_kkperceraian_Model;
 use App\Models\Pendaftaran_suratperpindahan_Model;
 use App\Models\Pendaftaran_suratperpindahanluar_Model;
 
@@ -23,24 +24,6 @@ use App\Models\Pendaftaran_pelayanandata_Model;
 
 use App\Models\Perbaikan_data_Model;
 use App\Models\Pengaduan_update_Model;
-
-// Halaman Pelayanan
-
-use App\Models\PelayananModel;
-
-use App\Models\Pelayanan_kk_Model;
-use App\Models\Pelayanan_kia_Model;
-use App\Models\Pelayanan_suratperpindahan_Model;
-use App\Models\Pelayanan_suratperpindahanluar_Model;
-
-use App\Models\Pelayanan_aktakelahiran_Model;
-use App\Models\Pelayanan_aktakematian_Model;
-use App\Models\Pelayanan_keabsahanakla_Model;
-
-use App\Models\Pelayanan_pelayanandata_Model;
-
-use App\Models\Pelayanan_perbaikandata_Model;
-use App\Models\Pelayanan_pengaduanupdate_Model;
 
 class DeleteAdmin extends BaseController
 {
@@ -55,6 +38,7 @@ class DeleteAdmin extends BaseController
 
   protected $kkModel;
   protected $kiaModel;
+  protected $kkperceraianModel;
   protected $suratperpindahanModel;
   protected $suratperpindahanluarModel;
 
@@ -66,25 +50,6 @@ class DeleteAdmin extends BaseController
 
   protected $perbaikandataModel;
   protected $pengaduanupdateModel;
-
-  // Halaman Pelayanan
-
-  protected $pelayananModel;
-
-  protected $pelkkModel;
-  protected $pelkiaModel;
-  protected $pelsuratperpindahanModel;
-  protected $pelsuratperpindahanluarModel;
-
-  protected $pelaktakelahiranModel;
-  protected $pelaktakematianModel;
-  protected $pelkeabsahanaklaModel;
-
-  protected $pelpelayanandataModel;
-
-  protected $pelperbaikandataModel;
-  protected $pelpengaduanupdateModel;
-
 
   public function __construct()
   {
@@ -188,5 +153,225 @@ class DeleteAdmin extends BaseController
     $this->persyaratansilancarModel->delete($id);
     session()->setFlashdata('pesan', 'Data Persyaratan Si Lancar berhasil dihapus !!');
     return redirect()->to('admin/persyaratansilancar_admin');
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // Digunakan untuk menghapus sementara data KK
+  public function tandaiSelesaiKK($id)
+  {
+    $this->kkModel->delete($id);
+    return redirect()->to('/Admin/pendaftaran_kk_admin');
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // Digunakan untuk menghapus sementara KIA
+  public function tandaiSelesaiKIA($id = null)
+  {
+    $this->kiaModel->delete($id);
+    return redirect()->to('/Admin/pendaftaran_kia_admin');
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // Digunakan untuk menghapus sementara data KK Perceraian
+  public function tandaiSelesaiKKPerceraian($id = null)
+  {
+    $this->kkperceraianModel->delete($id);
+    return redirect()->to('/Admin/pendaftaran_kkperceraian_admin');
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // Digunakan untuk menghapus sementara data Surat Perpindahan
+  public function tandaiSelesaiSuratPerpindahan($id = null)
+  {
+    $this->suratperpindahanModel->delete($id);
+    return redirect()->to('/Admin/pendaftaran_suratperpindahan_admin');
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // Digunakan untuk menghapus sementara data Surat Perpindahan Luar
+  public function tandaiSelesaiSuratPerpindahanLuar($id = null)
+  {
+    $this->suratperpindahanluarModel->delete($id);
+    return redirect()->to('/Admin/pendaftaran_suratperpindahanluar_admin');
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // Digunakan untuk menghapus sementara data Akta Kelahiran
+  public function tandaiSelesaiAktaKelahiran($id = null)
+  {
+    $this->aktakelahiranModel->delete($id);
+    return redirect()->to('/Admin/pendaftaran_aktakelahiran_admin');
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // Digunakan untuk menghapus sementara data Akta Kematian
+  public function tandaiSelesaiAktaKematian($id = null)
+  {
+    $this->aktakematianModel->delete($id);
+    return redirect()->to('/Admin/pendaftaran_aktakematian_admin');
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // Digunakan untuk menghapus sementara data Keabsahan Akta Kelahiran
+  public function tandaiSelesaiKeabsahanAkla($id = null)
+  {
+    $this->keabsahanaklaModel->delete($id);
+    return redirect()->to('/Admin/pendaftaran_keabsahanakla_admin');
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // Digunakan untuk menghapus sementara data Pelayanan Data
+  public function tandaiSelesaiPelayananData($id = null)
+  {
+    $this->pelayanandataModel->delete($id);
+    return redirect()->to('/Admin/pendaftaran_pelayanandata_admin');
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // Digunakan untuk menghapus sementara data Perbaikan Data
+  public function tandaiSelesaiPerbaikanData($id = null)
+  {
+    $this->perbaikandataModel->delete($id);
+    return redirect()->to('/Admin/perbaikan_data_admin');
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // Digunakan untuk menghapus sementara data Pengaduan Update
+  public function tandaiSelesaiPengaduanUpdate($id = null)
+  {
+    $this->pengaduanupdateModel->delete($id);
+    return redirect()->to('/Admin/pendaftaran_pengaduanupdate_admin');
   }
 }

@@ -518,14 +518,14 @@ class DetailAdmin extends BaseController
   {
     $this->pelayanandataModel->updateStatus($namaPemohonPelayananPemanfaatanData, 'Selesai');
     session()->setFlashdata('pesan', 'Pendaftaran Telah Selesai di Verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftaranpelayanandata_admin', $namaPemohonPelayananPemanfaatanData);
+    return redirect()->to('/DetailAdmin/detail_pendaftaranpelayananpemanfaatandata_admin/' . $namaPemohonPelayananPemanfaatanData);
   }
 
   public function belumSelesaiPelayananPemanfaatanData($namaPemohonPelayananPemanfaatanData)
   {
     $this->pelayanandataModel->updateStatus($namaPemohonPelayananPemanfaatanData, 'Belum Selesai');
     session()->setFlashdata('pesan', 'Pendaftaran Telah Gagal di Verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftaranpelayanandata_admin/' . $namaPemohonPelayananPemanfaatanData);
+    return redirect()->to('/DetailAdmin/detail_pendaftaranpelayananpemanfaatandata_admin/' . $namaPemohonPelayananPemanfaatanData);
   }
 
 

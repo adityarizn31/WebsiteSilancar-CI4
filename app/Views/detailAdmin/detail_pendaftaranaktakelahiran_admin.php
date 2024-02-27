@@ -40,8 +40,21 @@
     <div class="col-sm-12 col-md-12" style="padding: 20px;">
       <div class="card card-outline card-primary">
 
-        <div class="card-header">
-          <div class="card-title"> Data Pemohon </div>
+        <div class="card-header py-3">
+
+          <div class="d-sm-inline align-items-center justify-content-between mb-2">
+            <div class="card-title fw-semibold"> Data Pemohon </div>
+          </div>
+
+          <div class="d-grip gap-2 d-md-flex justify-content-md-end">
+
+            <form action="<?= base_url('DeleteAdmin/tandaiSelesaiAktaKelahiran/' . $pendaftaran_aktakelahiran['id']); ?>" method="post" class="d-inline">
+              <?= csrf_field(); ?>
+              <button class="btn btn-danger btn-sm">Tandai Selesai</button>
+            </form>
+
+          </div>
+
         </div>
 
         <div class="card-body">

@@ -40,8 +40,21 @@ v<?= $this->extend('layout/templateadmin'); ?>
     <div class="col-sm-12 col-md-12" style="padding: 10px;">
       <div class="card card-outline card-primary">
 
-        <div class="card-header">
-          <div class="card-title fw-semibold"> Data Pemohon </div>
+        <div class="card-header py-3">
+
+          <div class="d-sm-inline align-items-center justify-content-between mb-2">
+            <div class="card-title fw-semibold"> Data Pemohon </div>
+          </div>
+
+          <div class="d-grip gap-2 d-md-flex justify-content-md-end">
+
+            <form action="<?= base_url('DeleteAdmin/tandaiSelesaiPelayananData/' . $pendaftaran_pelayanandata['id']); ?>" method="post" class="d-inline">
+              <?= csrf_field(); ?>
+              <button class="btn btn-danger btn-sm">Tandai Selesai</button>
+            </form>
+
+          </div>
+
         </div>
 
         <div class="card-body">
@@ -81,11 +94,11 @@ v<?= $this->extend('layout/templateadmin'); ?>
 
           <div class="grid-container2 align-items-center justify-content-center">
             <div class="div">
-              <a href="<?= base_url('/DetailAdmin/selesaiPelayananData/' . $pendaftaran_pelayanandata['namapemohon']) ?>" class="btn btn-success" data-popup="tooltip" data-placement="top" title="Selesai"><i class="bi bi-check-square" aria-hidden="true"></i></a>
+              <a href="<?= base_url('/DetailAdmin/selesaiPelayananPemanfaatanData/' . $pendaftaran_pelayanandata['namapemohon']) ?>" class="btn btn-success" data-popup="tooltip" data-placement="top" title="Selesai"><i class="bi bi-check-square" aria-hidden="true"></i></a>
             </div>
 
             <div class="div">
-              <a href="<?= base_url('/DetailAdmin/belumSelesaiPelayananData/' . $pendaftaran_pelayanandata['namapemohon']) ?>" class="btn btn-danger" data-popup="tooltip" data-placement="top" title="Tidak Selesai"><i class="bi bi-x-square" aria-hidden="true"></i></a>
+              <a href="<?= base_url('/DetailAdmin/belumSelesaiPelayananPemanfaatanData/' . $pendaftaran_pelayanandata['namapemohon']) ?>" class="btn btn-danger" data-popup="tooltip" data-placement="top" title="Tidak Selesai"><i class="bi bi-x-square" aria-hidden="true"></i></a>
             </div>
           </div>
 

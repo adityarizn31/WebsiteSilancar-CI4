@@ -14,7 +14,8 @@
 
       <div class="d-sm-flex align-items-center justify-content-between mb-2">
         <h4 class="m-0 font-weight-bold text-primary">Data Pendaftaran Surat Perpindahan Majalengka Menuju Luar</h4>
-        <a href="<?= base_url('ExportExcel/export_pendaftaransuratperpindahan') ?>" method="POST" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mt-2"><i class="fas fa-download fa-sm text-white-50"></i> Downloads Data</a>
+        <!-- <a href="<?= base_url('ExportExcel/export_pendaftaransuratperpindahan') ?>" method="POST" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mt-2"><i class="fas fa-download fa-sm text-white-50"></i> Download Data </a> -->
+        <a href="<?= base_url(); ?>" method="POST" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mt-2"><i></i> Data Selesai Proses </a>
       </div>
 
       <?php if (session()->getFlashdata('pesan')) : ?>
