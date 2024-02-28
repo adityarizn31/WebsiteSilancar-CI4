@@ -62,7 +62,7 @@
         </div>
 
         <div class="d-grid gap-2 col-6 mx-auto">
-          <button type="submit" class="btn btn-primary">Ubah Inovasi</button>
+          <button type="submit" class="btn btn-primary btn-sm">Ubah Inovasi</button>
         </div>
 
 

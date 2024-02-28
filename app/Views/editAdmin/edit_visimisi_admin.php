@@ -39,7 +39,7 @@
         </div>
 
         <div class="d-grid gap-2 col-6 mx-auto">
-          <button type="submit" value="submit" name="submit" id="submit" class="btn btn-primary">Ubah Foto Visi Misi</button>
+          <button type="submit" value="submit" name="submit" id="submit" class="btn btn-primary btn-sm">Ubah Foto Visi Misi</button>
         </div>
 
       </form>

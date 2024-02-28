@@ -62,7 +62,7 @@
               <td><?= $b['keteranganberita']; ?></td>
               <!-- <td>Jumlah Data <?= count($berita) ?></td> -->
               <td>
-                <a href="/DetailAdmin/detail_berita_admin/<?= $b['judulberita']; ?>" class="btn btn-success">Detail</a>
+                <a href="/DetailAdmin/detail_berita_admin/<?= $b['judulberita']; ?>" class="btn btn-success btn-sm">Detail</a>
               </td>
             </tr>
           <?php endforeach; ?>

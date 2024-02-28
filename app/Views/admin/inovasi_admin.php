@@ -18,7 +18,7 @@
         <h6 class="m-0 font-weight-bold text-primary">Inovasi Disdukcapil Majalengka</h6>
 
         <!-- Methode Create untuk Menampilkan Form Insert Data -->
-        <a href="/createAdmin/create_inovasi_admin/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Tambah Inovasi</a>
+        <a href="/createAdmin/create_inovasi_admin/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Tambah Inovasi </a>
 
       </div>
 
@@ -62,7 +62,7 @@
               <td><?= $inov['judulinovasi']; ?></td>
               <td><?= $inov['keteranganinovasi']; ?></td>
               <td>
-                <a href="/detailAdmin/detail_inovasi_admin/<?= $inov['judulinovasi']; ?>" class="btn btn-success">Detail</a>
+                <a href="/detailAdmin/detail_inovasi_admin/<?= $inov['judulinovasi']; ?>" class="btn btn-success btn-sm">Detail</a>
               </td>
             </tr>
           <?php endforeach; ?>

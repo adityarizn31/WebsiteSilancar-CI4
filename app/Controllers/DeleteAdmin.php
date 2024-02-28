@@ -209,6 +209,19 @@ class DeleteAdmin extends BaseController
     return redirect()->to('/Admin/pendaftaran_kia_admin');
   }
 
+  public function dataSelesaiKIA()
+  {
+    $currentPageKIA = $this->request->getVar('page_pendaftaran_kia') ? $this->request->getVar('page_pendaftaran_kia') : 1;
+
+    $data = [
+      'title' => 'Data Selesai KIA || Admin Disdukcapil',
+      'pendaftaran_kia' => $this->kiaModel->onlyDeleted()->findAll(),
+      'pager' => $this->kiaModel->pager,
+      'currentPage' => $currentPageKIA,
+    ];
+    return view('admin/dataKIA', $data);
+  }
+
 
 
 
@@ -227,6 +240,19 @@ class DeleteAdmin extends BaseController
   {
     $this->kkperceraianModel->delete($id);
     return redirect()->to('/Admin/pendaftaran_kkperceraian_admin');
+  }
+
+  public function dataSelesaiKKPerceraian()
+  {
+    $currentPageKKPerceraian =  $this->request->getVar('page_pendaftaran_kkperceraian') ? $this->request->getVar('page_pendaftaran_kkperceraian') : 1;
+
+    $data = [
+      'title' => 'Data Selesai KK Perceraian || Admin Disdukcapil',
+      'pendaftaran_kk_perceraian' => $this->kkperceraianModel->onlyDeleted()->findAll(),
+      'pager' => $this->kkperceraianModel->pager,
+      'currentPage' => $currentPageKKPerceraian
+    ];
+    return view('admin/dataKKPerceraian', $data);
   }
 
 
@@ -249,6 +275,20 @@ class DeleteAdmin extends BaseController
     return redirect()->to('/Admin/pendaftaran_suratperpindahan_admin');
   }
 
+  public function dataSelesaiSuratPerpindahan()
+  {
+    $currentPageSuratPerpindahan =  $this->request->getVar('page_pendaftaran_suratperpindahan') ? $this->request->getVar('page_pendaftaran_suratperpindahan') : 1;
+
+    $data = [
+      'title' => 'Data Selesai Surat Perpindahan || Admin Disdukcapil',
+      'pendaftaran_suratperpindahan' => $this->suratperpindahanModel->onlyDeleted()->findAll(),
+      'pager' => $this->suratperpindahanModel->pager,
+      'currentPage' => $currentPageSuratPerpindahan
+    ];
+    return view('admin/dataSuratPerpindahan', $data);
+  }
+
+
 
 
 
@@ -267,6 +307,19 @@ class DeleteAdmin extends BaseController
   {
     $this->suratperpindahanluarModel->delete($id);
     return redirect()->to('/Admin/pendaftaran_suratperpindahanluar_admin');
+  }
+
+  public function dataSelesaiSuratPerpindahanLuar()
+  {
+    $currentPageSuratPerpindahanLuar =  $this->request->getVar('page_pendaftaran_suratperpindahanluar') ? $this->request->getVar('page_pendaftaran_suratperpindahanluar') : 1;
+
+    $data = [
+      'title' => 'Data Selesai Surat Perpindahan Luar || Admin Disdukcapil',
+      'pendaftaran_suratperpindahanluar ' => $this->suratperpindahanluarModel->onlyDeleted()->findAll(),
+      'pager' => $this->suratperpindahanluarModel->pager,
+      'currentPage' => $currentPageSuratPerpindahanLuar
+    ];
+    return view('admin/dataSuratPerpindahanLuar', $data);
   }
 
 
@@ -289,6 +342,19 @@ class DeleteAdmin extends BaseController
     return redirect()->to('/Admin/pendaftaran_aktakelahiran_admin');
   }
 
+  public function dataSelesaiAktaKelahiran()
+  {
+    $currentPageAktaKelahiran =  $this->request->getVar('page_pendaftaran_aktakelahiran') ? $this->request->getVar('page_pendaftaran_aktakelahiran') : 1;
+
+    $data = [
+      'title' => 'Data Selesai Akta Kelahiran || Admin Disdukcapil',
+      'pendaftaran_aktakelahiran' => $this->aktakelahiranModel->onlyDeleted()->findAll(),
+      'pager' => $this->aktakelahiranModel->pager,
+      'currentPage' => $currentPageAktaKelahiran
+    ];
+    return view('admin/dataAktaKelahiran', $data);
+  }
+
 
 
 
@@ -307,6 +373,19 @@ class DeleteAdmin extends BaseController
   {
     $this->aktakematianModel->delete($id);
     return redirect()->to('/Admin/pendaftaran_aktakematian_admin');
+  }
+
+  public function dataSelesaiAktaKematian()
+  {
+    $currentPageAktaKematian =  $this->request->getVar('page_pendaftaran_aktakematian') ? $this->request->getVar('page_pendaftaran_aktakematian') : 1;
+
+    $data = [
+      'title' => 'Data Selesai Akta Kematian || Admin Disdukcapil',
+      'pendaftaran_aktakematian' => $this->aktakematianModel->onlyDeleted()->findAll(),
+      'pager' => $this->aktakematianModel->pager,
+      'currentPage' => $currentPageAktaKematian
+    ];
+    return view('admin/dataAktaKelahiran', $data);
   }
 
 
@@ -329,6 +408,19 @@ class DeleteAdmin extends BaseController
     return redirect()->to('/Admin/pendaftaran_keabsahanakla_admin');
   }
 
+  public function dataSelesaiKeabsahanAkla()
+  {
+    $currentPageAktaKeabsahanAkla =  $this->request->getVar('page_pendaftaran_keabsahanakla') ? $this->request->getVar('page_pendaftaran_keabsahanakla') : 1;
+
+    $data = [
+      'title' => 'Data Selesai Keabsahan Akla || Admin Disdukcapil',
+      'pendaftaran_keabsahanakla' => $this->keabsahanaklaModel->onlyDeleted()->findAll(),
+      'pager' => $this->keabsahanaklaModel->pager,
+      'currentPage' => $currentPageAktaKeabsahanAkla
+    ];
+    return view('admin/dataKeabsahanAkla', $data);
+  }
+
 
 
 
@@ -347,6 +439,19 @@ class DeleteAdmin extends BaseController
   {
     $this->pelayanandataModel->delete($id);
     return redirect()->to('/Admin/pendaftaran_pelayanandata_admin');
+  }
+
+  public function dataSelesaiPelayananData()
+  {
+    $currentPagePelayananData =  $this->request->getVar('page_pendaftaran_pelayanandata') ? $this->request->getVar('page_pendaftaran_pelayanandata') : 1;
+
+    $data = [
+      'title' => 'Data Selesai Pelayanan Data || Admin Disdukcapil',
+      'pendaftaran_pelayanandata' => $this->pelayanandataModel->onlyDeleted()->findAll(),
+      'pager' => $this->pelayanandataModel->pager,
+      'currentPage' => $currentPagePelayananData
+    ];
+    return view('admin/dataAktaKelahiran', $data);
   }
 
 
@@ -369,6 +474,19 @@ class DeleteAdmin extends BaseController
     return redirect()->to('/Admin/perbaikan_data_admin');
   }
 
+  public function dataSelesaiPerbaikanData()
+  {
+    $currentPagePerbaikanData =  $this->request->getVar('page_pendaftaran_perbaikandata') ? $this->request->getVar('page_pendaftaran_perbaikandata') : 1;
+
+    $data = [
+      'title' => 'Data Selesai Perbaikan Data || Admin Disdukcapil',
+      'pendaftaran_perbaikandata' => $this->perbaikandataModel->onlyDeleted()->findAll(),
+      'pager' => $this->perbaikandataModel->pager,
+      'currentPage' => $currentPagePerbaikanData
+    ];
+    return view('admin/dataPerbaikanData', $data);
+  }
+
 
 
 
@@ -387,5 +505,18 @@ class DeleteAdmin extends BaseController
   {
     $this->pengaduanupdateModel->delete($id);
     return redirect()->to('/Admin/pendaftaran_pengaduanupdate_admin');
+  }
+
+  public function dataSelesaiPengaduanUpdate()
+  {
+    $currentPagePengaduanUpdate =  $this->request->getVar('page_pendaftaran_pengaduanupdate') ? $this->request->getVar('page_pendaftaran_pengaduanupdate') : 1;
+
+    $data = [
+      'title' => 'Data Selesai Pengaduan Update || Admin Disdukcapil',
+      'pendaftaran_pengaduanupdate' => $this->pengaduanupdateModel->onlyDeleted()->findAll(),
+      'pager' => $this->pengaduanupdateModel->pager,
+      'currentPage' => $currentPagePengaduanUpdate
+    ];
+    return view('admin/dataPengaduanUpdate', $data);
   }
 }

@@ -14,7 +14,7 @@
     <div class="container">
 
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Tambah Inovasi Admin</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Tambah Inovasi Admin </h6>
       </div>
 
       <form action="/createadmin/saveInovasi" method="post" enctype="multipart/form-data">
@@ -60,7 +60,7 @@
         </div>
 
         <div class="d-grid gap-2 col-6 mx-auto">
-          <button type="submit" class="btn btn-primary">Tambah Inovasi</button>
+          <button type="submit" class="btn btn-primary ">Tambah Inovasi</button>
         </div>
 
       </form>
