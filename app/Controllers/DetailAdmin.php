@@ -51,24 +51,6 @@ class DetailAdmin extends BaseController
   protected $perbaikandataModel;
   protected $pengaduanupdateModel;
 
-  // Halaman Pelayanan
-
-  protected $pelayananModel;
-
-  protected $pelkkModel;
-  protected $pelkiaModel;
-  protected $pelsuratperpindahanModel;
-  protected $pelsuratperpindahanluarModel;
-
-  protected $pelaktakelahiranModel;
-  protected $pelaktakematianModel;
-  protected $pelkeabsahanaklaModel;
-
-  protected $pelpelayanandataModel;
-
-  protected $pelperbaikandataModel;
-  protected $pelpengaduanupdateModel;
-
   public function __construct()
   {
     $this->adminModel = new AdminModel();
@@ -600,23 +582,5 @@ class DetailAdmin extends BaseController
     $this->pengaduanupdateModel->updateStatus($namaPemohonPengaduan, 'Belum Selesai');
     session()->setFlashdata('pesan', 'Pendaftaran telah gagal di verifikasi !!');
     return redirect()->to('/DetailAdmin/detail_pendaftaranpengaduanupdate_admin/' . $namaPemohonPengaduan);
-  }
-
-
-
-
-
-
-
-
-
-  // Halaman Detail Pelayanan Kartu Keluarga
-  public function detail_pelayanankk_admin($judulPelayanan)
-  {
-    $data = [
-      'title' => 'Detail Pelayanan KK || Admin Disdukcapil Majalengka',
-      'pelayanan_kk' => $this->pelkkModel->getDataPelayananKK($judulPelayanan)
-    ];
-    return view('detailAdmin/detail_pelayanankk_admin', $data);
   }
 }

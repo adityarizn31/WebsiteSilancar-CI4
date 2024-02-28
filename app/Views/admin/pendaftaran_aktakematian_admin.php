@@ -89,7 +89,7 @@
                 ?>
               </td>
               <td>
-                <a href="/DetailAdmin/detail_pendaftaranaktakematian_admin/<?= $kema['namapemohon']; ?>" class="btn btn-success">Detail</a>
+                <a href="/DetailAdmin/detail_pendaftaranaktakematian_admin/<?= $kema['namapemohon']; ?>" class="btn btn-success btn-sm">Detail</a>
               </td>
             </tr>
           <?php endforeach; ?>

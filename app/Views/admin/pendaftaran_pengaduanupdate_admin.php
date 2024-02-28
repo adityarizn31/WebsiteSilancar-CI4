@@ -88,7 +88,7 @@
                 ?>
               </td>
               <td>
-                <a href="/DetailAdmin/detail_pendaftaranpengaduanupdate_admin/<?= $ngadu['namapemohon']; ?>" class="btn btn-success">Detail</a>
+                <a href="/DetailAdmin/detail_pendaftaranpengaduanupdate_admin/<?= $ngadu['namapemohon']; ?>" class="btn btn-success btn-sm">Detail</a>
               </td>
             </tr>
           <?php endforeach; ?>

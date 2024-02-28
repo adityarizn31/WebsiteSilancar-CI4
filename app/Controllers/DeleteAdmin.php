@@ -63,6 +63,7 @@ class DeleteAdmin extends BaseController
 
     $this->kkModel = new Pendaftaran_kk_Model();
     $this->kiaModel = new Pendaftaran_kia_Model();
+    $this->kkperceraianModel = new Pendaftaran_kkperceraian_Model();
     $this->suratperpindahanModel = new Pendaftaran_suratperpindahan_Model();
     $this->suratperpindahanluarModel = new Pendaftaran_suratperpindahanluar_Model();
 
@@ -174,6 +175,19 @@ class DeleteAdmin extends BaseController
   {
     $this->kkModel->delete($id);
     return redirect()->to('/Admin/pendaftaran_kk_admin');
+  }
+
+  public function dataSelesaiKK()
+  {
+    $currentPageKK =  $this->request->getVar('page_pendaftaran_kk') ? $this->request->getVar('page_pendaftaran_kk') : 1;
+
+    $data = [
+      'title' => 'Data Selesai KK || Admin Disdukcapil',
+      'pendaftaran_kk' => $this->kkModel->onlyDeleted()->findAll(),
+      'pager' => $this->kkModel->pager,
+      'currentPage' => $currentPageKK
+    ];
+    return view('admin/dataKK', $data);
   }
 
 

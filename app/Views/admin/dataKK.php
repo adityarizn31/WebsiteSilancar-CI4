@@ -13,9 +13,12 @@
     <div class="card-header py-3">
 
       <div class="d-sm-flex align-items-center justify-content-between mb-2">
-        <h4 class="m-0 font-weight-bold text-primary">Data Pendaftaran KK Perceraian</h4>
-        <!-- <a href="<?= base_url('ExportExcel/export_pendaftarankkperceraian') ?>" method="POST" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mt-2"><i class="fas fa-download fa-sm text-white-50"></i> Download Data </a> -->
-        <a href="<?= base_url(); ?>" method="POST" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mt-2"><i></i> Data Selesai Proses </a>
+        <h4 class="m-0 font-weight-bold text-primary">Data Pendaftaran Selesai Permohonan Kartu Keluarga Baru</h4>
+        <a href="<?= base_url('ExportExcel/export_pendaftarankk'); ?>" method="POST" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mt-2"><i class="fas fa-download fa-sm text-white-50"></i> Download Data </a>
+      </div>
+
+      <div class="d-sm-flex align-items justify-content-end mb-2">
+
       </div>
 
       <?php if (session()->getFlashdata('pesan')) : ?>
@@ -43,8 +46,8 @@
 
       <?php
       // Custom sorting function based on the 'created_at' field
-      usort($pendaftaran_kk_perceraian, function ($a, $b) {
-        return strtotime($b['created_at']) - strtotime($a['created_at']);
+      usort($pendaftaran_kk, function ($a, $b) {
+        return strtotime($b['deleted_at']) - strtotime($a['deleted_at']);
       });
       ?>
 
@@ -65,17 +68,17 @@
 
         <tbody>
           <?php $i = 1 + (10 * ($currentPage - 1)); ?>
-          <?php foreach ($pendaftaran_kk_perceraian as $kkper) : ?>
+          <?php foreach ($pendaftaran_kk as $kk) : ?>
             <tr>
               <th scope="row"><?= $i++; ?></th>
-              <td><?= $kkper['namapemohon']; ?></td>
-              <td><?= $kkper['emailpemohon']; ?></td>
-              <td><?= $kkper['nomorpemohon']; ?></td>
-              <td>Pendaftaran KK Perceraian</td>
-              <td><?= $kkper['created_at']; ?></td>
+              <td><?= $kk['namapemohon']; ?></td>
+              <td><?= $kk['emailpemohon']; ?></td>
+              <td><?= $kk['nomorpemohon']; ?></td>
+              <td>Pendaftaran KK</td>
+              <td><?= $kk['deleted_at']; ?></td>
               <td>
                 <?php
-                switch ($kkper['status']) {
+                switch ($kk['status']) {
                   case 'Selesai':
                     echo '<span class="badge rounded-pill bg-success">Terverifikasi</span>';
                     break;
@@ -89,14 +92,13 @@
                 ?>
               </td>
               <td>
-                <a href="/DetailAdmin/detail_pendaftarankkperceraian_admin/<?= $kkper['namapemohon']; ?>" class="btn btn-success btn-sm">Detail</a>
               </td>
             </tr>
           <?php endforeach; ?>
         </tbody>
 
       </table>
-      <?= $pager->links('pendaftaran_kkperceraian', 'kkperceraian_pagination'); ?>
+
     </div>
   </div>
 

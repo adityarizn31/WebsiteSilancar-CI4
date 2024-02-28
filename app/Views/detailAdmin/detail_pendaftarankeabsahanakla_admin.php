@@ -48,11 +48,74 @@
 
           <div class="d-grip gap-2 d-md-flex justify-content-md-end">
 
-            <form action="<?= base_url('DeleteAdmin/tandaiSelesaiKeabsahanAkla/' . $pendaftaran_keabsahanakla['id']); ?>" method="post" class="d-inline">
-              <?= csrf_field(); ?>
-              <button class="btn btn-danger btn-sm">Tandai Selesai</button>
-            </form>
+            <?php if ($pendaftaran_keabsahanakla['status'] === 'Belum di Proses') : ?>
+              <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalUbahStatus">
+                Verifikasi Pendaftaran
+              </button>
+            <?php elseif ($pendaftaran_keabsahanakla['status'] === 'Selesai' || $pendaftaran_keabsahanakla['status'] === 'Belum Selesai') : ?>
+              <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalVerifikasiPendaftaran">
+                Tandai Selesai
+              </button>
+            <?php endif; ?>
 
+            <div class="modal fade" id="modalUbahStatus" tabindex="-1" aria-labelledby="modalUbahStatusLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalUbahStatusLabel"> Verifikasi Pendaftaran </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+
+                  <div class="modal-body">
+
+                    <p>Mohon untuk memverifikasi status Pendaftaran atas nama <b><?= $pendaftaran_keabsahanakla['namapemohon']; ?></b> terlebih dahulu </p>
+
+                    <div class="align-items-center justify-content-center">
+
+                      <a href="<?= base_url('/DetailAdmin/selesaiKeabsahanAkla/' . $pendaftaran_keabsahanakla['namapemohon']) ?>" class="btn btn-outline-success" data-popup="tooltip" data-placement="top" title="Selesai"><i class="bi bi-check-square" aria-hidden="true"></i> Verifikasi </a>
+
+                      <a href="<?= base_url('/DetailAdmin/belumSelesaiKeabsahanAkla/' . $pendaftaran_keabsahanakla['namapemohon']) ?>" class="btn btn-outline-danger" data-popup="tooltip" data-placement="top" title="Tidak Selesai"><i class="bi bi-x-square" aria-hidden="true"></i> Gagal Verifikasi </a>
+
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="modal fade" id="modalVerifikasiPendaftaran" tabindex="-1" aria-labelledby="modalVerifikasiPendaftaranLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modalVerifikasiPendaftaranLabel">Verifikasi Pendaftaran</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                  <p>Pendaftaran atas nama <b><?= $pendaftaran_keabsahanakla['namapemohon']; ?></b> Apakah sudah Selesai ?? </p>
+                </div>
+
+                <div class="modal-footer">
+
+                  <div class="d-sm-flex align-items-center justify-content-end">
+
+                    <button type="button" class="btn btn-secondary btn-sm mx-2" data-bs-dismiss="modal">Batal</button>
+
+                    <form action="<?= base_url('DeleteAdmin/tandaiSelesaiKeabsahanAkla/' . $pendaftaran_keabsahanakla['id']); ?>" method="post" class="d-inline">
+                      <?= csrf_field(); ?>
+                      <button class="btn btn-danger btn-sm">Tandai Selesai</button>
+                    </form>
+
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
           </div>
 
         </div>

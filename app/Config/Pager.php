@@ -26,8 +26,8 @@ class Pager extends BaseConfig
         'default_head'   => 'CodeIgniter\Pager\Views\default_head',
 
         'kk_pagination' => 'App\Views\Pagers\kk_pagination',
-        'kkperceraian_pagination' => 'App\Views\Pagers\kkperceraian_pagination',
         'kia_pagination' => 'App\Views\Pagers\kia_pagination',
+        'kkperceraian_pagination' => 'App\Views\Pagers\kkperceraian_pagination',
         'suratperpindahan_pagination' => 'App\Views\Pagers\suratperpindahan_pagination',
         'suratperpindahanluar_pagination' => 'App\Views\Pagers\suratperpindahanluar_pagination',
 

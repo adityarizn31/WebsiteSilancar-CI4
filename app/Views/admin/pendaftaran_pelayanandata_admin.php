@@ -81,7 +81,7 @@
                   ?>
                 </td>
                 <td>
-                  <a href="/DetailAdmin/detail_pendaftaranpelayananpemanfaatandata_admin/<?= $peldat['namapemohon']; ?>" class="btn btn-success">Detail</a>
+                  <a href="/DetailAdmin/detail_pendaftaranpelayananpemanfaatandata_admin/<?= $peldat['namapemohon']; ?>" class="btn btn-success btn-sm">Detail</a>
                 </td>
               </tr>
             <?php endforeach; ?>
