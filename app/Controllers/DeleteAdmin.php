@@ -464,7 +464,7 @@ class DeleteAdmin extends BaseController
       'pager' => $this->aktakematianModel->pager,
       'currentPage' => $currentPageAktaKematian
     ];
-    return view('admin/dataAktaKelahiran', $data);
+    return view('admin/dataAktaKematian', $data);
   }
 
   public function deletePermanentAktaKematian($id = null)
@@ -654,11 +654,13 @@ class DeleteAdmin extends BaseController
   public function deletePermanentPengaduanUpdate($id = null)
   {
     if ($id != null) {
-      $this->pengaduanupdateModel->delete($id);
-      return redirect()->to('admin/dataPengaduanUpdate');
+      $this->pengaduanupdateModel->delete($id, true);
+      session()->setFlashdata('pesan', 'Pendaftaran Permohonan Pengaduan Update telah dihapus !!');
+      return redirect()->to('/DeleteAdmin/dataSelesaiPengaduanUpdate');
     } else {
       $this->pengaduanupdateModel->purgeDeleted();
-      return redirect()->to('admin/dataPengaduanUpdate');
+      session()->setFlashdata('pesan', 'Pendaftaran Permohonan Pengaduan Update telah dihapus !!');
+      return redirect()->to('/DeleteAdmin/dataSelesaiPengaduanUpdate');
     }
   }
 }

@@ -14,8 +14,7 @@
 
         <div class="d-sm-flex align-items-center justify-content-between mb-2">
           <h4 class="m-0 font-weight-bold text-primary">Data Pendaftaran Pelayanan Data Inovasi Antar Lembaga</h4>
-          <!-- <a href="<?= base_url('ExportExcel/export_pendaftaranpengaduanupdate') ?>" method="POST" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mt-2"><i class="fas fa-download fa-sm text-white-50"></i> Download Data </a> -->
-          <a href="<?= base_url('/DeleteAdmin/dataSelesaiPengaduanUpdate'); ?>" method="POST" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mt-2"><i></i> Data Selesai Proses </a>
+          <a href="<?= base_url('/DeleteAdmin/dataSelesaiPelayananData'); ?>" method="POST" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mt-2"><i></i> Data Selesai Proses </a>
         </div>
 
         <?php if (session()->getFlashdata('pesan')) : ?>
