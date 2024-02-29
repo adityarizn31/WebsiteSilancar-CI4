@@ -54,7 +54,33 @@ $routes->get('/detailadmin/edit_inovasi_admin/(:segment)', 'EditUpdateAdmin::edi
 $routes->delete('detailadmin/detail_inovasi_admin/(:num)', 'DeleteAdmin::deleteInovasi/$1');
 $routes->get('detailadmin/inovasi_admin/(:any)', 'DetailAdmin::detail_inovasi_admin/$1');
 
-$routes->get('admin/dataKK', 'DeleteAdmin::dataSelesaiKK');
+// Routes untuk Halaman Admin
+// Dengan parameter menghapus berdasarkan ID
+// Tanpa Parameter menghapus data keseluruhan
+$routes->delete('admin/dataKK/(:any)', 'DeleteAdmin::deletePermanentKK/$1');
+$routes->delete('admin/dataKK', 'DeleteAdmin::deletePermanentKK');
+$routes->delete('admin/dataKIA/(:any)', 'DeleteAdmin::deletePermanentKIA/$1');
+$routes->delete('admin/dataKIA', 'DeleteAdmin::deletePermanentKIA');
+$routes->delete('admin/dataKKPerceraian/(:any)', 'DeleteAdmin::deletePermanentKKPerceraian/$1');
+$routes->delete('admin/dataKKPerceraian', 'DeleteAdmin::deletePermanentKKPerceraian');
+$routes->delete('admin/dataSuratPerpindahan/(:any)', 'DeleteAdmin::deletePermanentSuratPerpindahan/$1');
+$routes->delete('admin/dataSuratPerpindahan', 'DeleteAdmin::deletePermanentSuratPerpindahan');
+$routes->delete('admin/dataSuratPerpindahanLuar/(:any)', 'DeleteAdmin::deletePermanentSuratPerpindahanLuar/$1');
+$routes->delete('admin/dataSuratPerpindahanLuar', 'DeleteAdmin::deletePermanentSuratPerpindahanLuar');
+$routes->delete('admin/dataSuratAktaKelahiran/(:any)', 'DeleteAdmin::deletePermanentSuratAktaKelahiran/$1');
+$routes->delete('admin/dataSuratAktaKelahiran', 'DeleteAdmin::deletePermanentSuratAktaKelahiran');
+$routes->delete('admin/dataSuratAktaKematian/(:any)', 'DeleteAdmin::deletePermanentSuratAktaKematian/$1');
+$routes->delete('admin/dataSuratAktaKematian', 'DeleteAdmin::deletePermanentSuratAktaKematian');
+$routes->delete('admin/dataSuratKeabsahanAkla/(:any)', 'DeleteAdmin::deletePermanentSuratKeabsahanAkla/$1');
+$routes->delete('admin/dataSuratKeabsahanAkla', 'DeleteAdmin::deletePermanentSuratKeabsahanAkla');
+$routes->delete('admin/dataSuratPelayananData/(:any)', 'DeleteAdmin::deletePermanentSuratPelayananData/$1');
+$routes->delete('admin/dataSuratPelayananData', 'DeleteAdmin::deletePermanentSuratPelayananData');
+$routes->delete('admin/dataSuratPerbaikanData/(:any)', 'DeleteAdmin::deletePermanentSuratPerbaikanData/$1');
+$routes->delete('admin/dataSuratPerbaikanData', 'DeleteAdmin::deletePermanentSuratPerbaikanData');
+$routes->delete('admin/dataSuratPengaduanUpdate/(:any)', 'DeleteAdmin::deletePermanentSuratPengaduanUpdate/$1');
+$routes->delete('admin/dataSuratPengaduanUpdate', 'DeleteAdmin::deletePermanentSuratPengaduanUpdate');
+
+
 
 
 

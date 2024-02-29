@@ -171,7 +171,7 @@ class DeleteAdmin extends BaseController
 
 
   // Digunakan untuk menghapus sementara data KK
-  public function tandaiSelesaiKK($id)
+  public function tandaiSelesaiKK($id = null)
   {
     $this->kkModel->delete($id);
     return redirect()->to('/Admin/pendaftaran_kk_admin');
@@ -188,6 +188,19 @@ class DeleteAdmin extends BaseController
       'currentPage' => $currentPageKK
     ];
     return view('admin/dataKK', $data);
+  }
+
+  public function deletePermanentKK($id = null)
+  {
+    if ($id != null) {
+      $this->kkModel->delete($id, true);
+      session()->setFlashdata('pesan', 'Pendaftaran Permohonan Kartu keluarga telah dihapus !!');
+      return redirect()->to('/DeleteAdmin/dataSelesaiKK');
+    } else {
+      $this->kkModel->purgeDeleted();
+      session()->setFlashdata('pesan', 'Pendaftaran Permohonan Kartu keluarga telah dihapus !!');
+      return redirect()->to('/DeleteAdmin/dataSelesaiKK');
+    }
   }
 
 
@@ -220,6 +233,19 @@ class DeleteAdmin extends BaseController
       'currentPage' => $currentPageKIA,
     ];
     return view('admin/dataKIA', $data);
+  }
+
+  public function deletePermanentKIA($id = null)
+  {
+    if ($id = null) {
+      $this->kiaModel->delete($id, true);
+      session()->setFlashdata('pesan', 'Pendaftaran Permohonan Kartu Identitas Anak telah dihapus !!');
+      return redirect()->to('/DeleteAdmin/dataSelesaiKIA');
+    } else {
+      $this->kiaModel->purgeDeleted();
+      session()->setFlashdata('pesan', 'Pendaftaran Permohonan Kartu Identitas Anak telah dihapus !!');
+      return redirect()->to('/DeleteAdmin/dataSelesaiKIA');
+    }
   }
 
 
@@ -255,6 +281,20 @@ class DeleteAdmin extends BaseController
     return view('admin/dataKKPerceraian', $data);
   }
 
+  public function deletePermanentKKPerceraian($id = null)
+  {
+    if ($id != null) {
+      $this->kkperceraianModel->delete($id, true);
+      session()->setFlashdata('pesan', 'Pendaftaran Permohonan Kartu Keluarga Perceraian telah dihapus !!');
+      return redirect()->to('/DeleteAdmin/dataSelesaiKKPerceraian');
+    } else {
+      $this->kkperceraianModel->purgeDeleted();
+      session()->setFlashdata('pesan', 'Pendaftaran Permohonan Kartu Keluarga Perceraian telah dihapus !!');
+      return redirect()->to('/DeleteAdmin/dataSelesaiKKPerceraian');
+    }
+  }
+
+
 
 
 
@@ -286,6 +326,19 @@ class DeleteAdmin extends BaseController
       'currentPage' => $currentPageSuratPerpindahan
     ];
     return view('admin/dataSuratPerpindahan', $data);
+  }
+
+  public function deletePermanentSuratPerpindahan($id = null)
+  {
+    if ($id != null) {
+      $this->suratperpindahanModel->delete($id, true);
+      session()->setFlashdata('pesan', 'Pendaftaran Permohonan Surat Perpindahan telah dihapus !!');
+      return redirect()->to('/DeleteAdmin/dataSelesaiSuratPerpindahan');
+    } else {
+      $this->suratperpindahanModel->purgeDeleted();
+      session()->setFlashdata('pesan', 'Pendaftaran Permohonan Surat Perpindahan telah dihapus !!');
+      return redirect()->to('/DeleteAdmin/dataSelesaiSuratPerpindahan');
+    }
   }
 
 
@@ -322,6 +375,19 @@ class DeleteAdmin extends BaseController
     return view('admin/dataSuratPerpindahanLuar', $data);
   }
 
+  public function deletePermanentSuratPerpindahanLuar($id = null)
+  {
+    if ($id != null) {
+      $this->suratperpindahanluarModel->delete($id, true);
+      session()->setFlashdata('pesan', 'Pendaftaran Permohonan Surat Perpindahan Luar telah dihapus !!');
+      return redirect()->to('/DeleteAdmin/dataSelesaiSuratPerpindahanLuar');
+    } else {
+      $this->suratperpindahanluarModel->purgeDeleted();
+      session()->setFlashdata('pesan', 'Pendaftaran Permohonan Surat Perpindahan Luar telah dihapus !!');
+      return redirect()->to('/DeleteAdmin/dataSelesaiSuratPerpindahanLuar');
+    }
+  }
+
 
 
 
@@ -353,6 +419,19 @@ class DeleteAdmin extends BaseController
       'currentPage' => $currentPageAktaKelahiran
     ];
     return view('admin/dataAktaKelahiran', $data);
+  }
+
+  public function deletePermanentAktaKelahiran($id = null)
+  {
+    if ($id != null) {
+      $this->aktakelahiranModel->delete($id, true);
+      session()->setFlashdata('pesan', 'Pendaftaran Permohonan Akta Kelahiran telah dihapus !!');
+      return redirect()->to('/DeleteAdmin/dataSelesaiAktaKelahiran');
+    } else {
+      $this->aktakelahiranModel->purgeDeleted();
+      session()->setFlashdata('pesan', 'Pendaftaran Permohonan Akta Kelahiran telah dihapus !!');
+      return redirect()->to('/DeleteAdmin/dataSelesaiAktaKelahiran');
+    }
   }
 
 
@@ -388,6 +467,19 @@ class DeleteAdmin extends BaseController
     return view('admin/dataAktaKelahiran', $data);
   }
 
+  public function deletePermanentAktaKematian($id = null)
+  {
+    if ($id != null) {
+      $this->aktakematianModel->delete($id, true);
+      session()->setFlashdata('pesan', 'Pendaftaran Permohonan Akta Kematian telah dihapus !!');
+      return redirect()->to('/DeleteAdmin/dataSelesaiAktaKematian');
+    } else {
+      $this->aktakematianModel->purgeDeleted();
+      session()->setFlashdata('pesan', 'Pendaftaran Permohonan Akta Kematian telah dihapus !!');
+      return redirect()->to('/DeleteAdmin/dataSelesaiAktaKematian');
+    }
+  }
+
 
 
 
@@ -421,6 +513,19 @@ class DeleteAdmin extends BaseController
     return view('admin/dataKeabsahanAkla', $data);
   }
 
+  public function deletePermanentKeabsahanAkla($id = null)
+  {
+    if ($id != null) {
+      $this->keabsahanaklaModel->delete($id, true);
+      session()->setFlashdata('pesan', 'Pendaftaran Permohonan Keabsahan Akla telah dihapus !!');
+      return redirect()->to('/DeleteAdmin/dataSelesaiKeabsahanAkla');
+    } else {
+      $this->keabsahanaklaModel->purgeDeleted();
+      session()->setFlashdata('pesan', 'Pendaftaran Permohonan Keabsahan Akla telah dihapus !!');
+      return redirect()->to('/DeleteAdmin/dataSelesaiKeabsahanAkla');
+    }
+  }
+
 
 
 
@@ -451,7 +556,20 @@ class DeleteAdmin extends BaseController
       'pager' => $this->pelayanandataModel->pager,
       'currentPage' => $currentPagePelayananData
     ];
-    return view('admin/dataAktaKelahiran', $data);
+    return view('admin/dataPelayananData', $data);
+  }
+
+  public function deletePermanentPelayananData($id = null)
+  {
+    if ($id != null) {
+      $this->pelayanandataModel->delete($id, true);
+      session()->setFlashdata('pesan', 'Pendaftaran Permohonan Pelayanan Data telah dihapus !!');
+      return redirect()->to('/DeleteAdmin/dataSelesaiPelayananData');
+    } else {
+      $this->pelayanandataModel->purgeDeleted();
+      session()->setFlashdata('pesan', 'Pendaftaran Permohonan Pelayanan Data telah dihapus !!');
+      return redirect()->to('/DeleteAdmin/dataSelesaiPelayananData');
+    }
   }
 
 
@@ -487,6 +605,19 @@ class DeleteAdmin extends BaseController
     return view('admin/dataPerbaikanData', $data);
   }
 
+  public function deletePermanentPerbaikanData($id = null)
+  {
+    if ($id != null) {
+      $this->perbaikandataModel->delete($id, true);
+      session()->setFlashdata('pesan', 'Pendaftaran Permohonan Perbaikan Data telah dihapus !!');
+      return redirect()->to('/DeleteAdmin/dataSelesaiPerbaikanData');
+    } else {
+      $this->perbaikandataModel->purgeDeleted();
+      session()->setFlashdata('pesan', 'Pendaftaran Permohonan Perbaikan Data telah dihapus !!');
+      return redirect()->to('/DeleteAdmin/dataSelesaiPerbaikanData');
+    }
+  }
+
 
 
 
@@ -518,5 +649,16 @@ class DeleteAdmin extends BaseController
       'currentPage' => $currentPagePengaduanUpdate
     ];
     return view('admin/dataPengaduanUpdate', $data);
+  }
+
+  public function deletePermanentPengaduanUpdate($id = null)
+  {
+    if ($id != null) {
+      $this->pengaduanupdateModel->delete($id);
+      return redirect()->to('admin/dataPengaduanUpdate');
+    } else {
+      $this->pengaduanupdateModel->purgeDeleted();
+      return redirect()->to('admin/dataPengaduanUpdate');
+    }
   }
 }

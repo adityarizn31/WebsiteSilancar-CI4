@@ -13,8 +13,8 @@
     <div class="card-header py-3">
 
       <div class="d-sm-flex align-items-center justify-content-between mb-2">
-        <h4 class="m-0 font-weight-bold text-primary">Data Pendaftaran Selesai Permohonan Kartu Keluarga Baru</h4>
-        <a href="<?= base_url('ExportExcel/export_pendaftarankk'); ?>" method="POST" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mt-2"><i class="fas fa-download fa-sm text-white-50"></i> Download Data </a>
+        <h4 class="m-0 font-weight-bold text-primary">Data Pendaftaran Selesai Permohonan Surat Perpindahan</h4>
+        <a href="<?= base_url('ExportExcel/export_pendaftaransuratperpindahan'); ?>" method="POST" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mt-2"><i class="fas fa-download fa-sm text-white-50"></i> Download Data </a>
       </div>
 
       <div class="d-sm-flex align-items justify-content-end mb-2">
@@ -27,7 +27,7 @@
         $pesan = session()->getFlashdata('pesan');
 
         // Jika status = Selesai
-        if ($pesan == 'Pendaftaran Permohonan Kartu keluarga telah dihapus !!') {
+        if ($pesan == 'Pendaftaran Permohonan Surat Perpindahan telah dihapus !!') {
           $class = 'alert-success';
         } else {
           $class = 'alert-danger';
@@ -46,7 +46,7 @@
 
       <?php
       // Custom sorting function based on the 'created_at' field
-      usort($pendaftaran_kk, function ($a, $b) {
+      usort($pendaftaran_suratperpindahan, function ($a, $b) {
         return strtotime($b['deleted_at']) - strtotime($a['deleted_at']);
       });
       ?>
@@ -68,17 +68,17 @@
 
         <tbody>
           <?php $i = 1 + (10 * ($currentPage - 1)); ?>
-          <?php foreach ($pendaftaran_kk as $kk) : ?>
+          <?php foreach ($pendaftaran_suratperpindahan as $suratperpindahan) : ?>
             <tr>
               <th scope="row"><?= $i++; ?></th>
-              <td><?= $kk['namapemohon']; ?></td>
-              <td><?= $kk['emailpemohon']; ?></td>
-              <td><?= $kk['nomorpemohon']; ?></td>
-              <td>Pendaftaran KK</td>
-              <td><?= $kk['deleted_at']; ?></td>
+              <td><?= $suratperpindahan['namapemohon']; ?></td>
+              <td><?= $suratperpindahan['emailpemohon']; ?></td>
+              <td><?= $suratperpindahan['nomorpemohon']; ?></td>
+              <td>Pendaftaran Surat Perpindahan</td>
+              <td><?= $suratperpindahan['deleted_at']; ?></td>
               <td>
                 <?php
-                switch ($kk['status']) {
+                switch ($suratperpindahan['status']) {
                   case 'Selesai':
                     echo '<span class="badge rounded-pill bg-success">Terverifikasi</span>';
                     break;
@@ -92,23 +92,23 @@
                 ?>
               </td>
               <td>
-                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalHapus<?= $kk['id']; ?>">
+                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalHapus<?= $suratperpindahan['id']; ?>">
                   Hapus
                 </button>
 
-                <div class="modal fade" id="modalHapus<?= $kk['id']; ?>" tabindex="-1" aria-labelledby="modalHapusLabel" aria-hidden="true">
+                <div class="modal fade" id="modalHapus<?= $suratperpindahan['id']; ?>" tabindex="-1" aria-labelledby="modalHapusLabel" aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="modalHapusLabel">Hapus Data KK</h5>
+                        <h5 class="modal-title" id="modalHapusLabel">Hapus Data Surat Perpindahan</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        Apakah Anda yakin ingin menghapus data KK dengan nama pemohon <strong><?= $kk['namapemohon']; ?></strong>?
+                        Apakah Anda yakin ingin menghapus data Surat Perpindahan dengan nama pemohon <strong><?= $suratperpindahan['namapemohon']; ?></strong>?
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                        <form action="<?= base_url('DeleteAdmin/deletePermanentKK/' . $kk['id']); ?>" method="post">
+                        <form action="<?= base_url('DeleteAdmin/deletePermanentSuratPerpindahan/' . $suratperpindahan['id']); ?>" method="post">
                           <?= csrf_field(); ?>
                           <button type="submit" class="btn btn-danger">Hapus</button>
                         </form>

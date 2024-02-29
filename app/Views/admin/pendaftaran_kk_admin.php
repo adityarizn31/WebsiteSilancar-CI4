@@ -13,7 +13,7 @@
     <div class="card-header py-3">
 
       <div class="d-sm-flex aslign-items-center justify-content-between mb-2">
-        <h4 class="m-0 font-weight-bold text-primary">Data Pendaftaran Kartu Keluarga Baru</h4>
+        <h4 class="m-0 font-weight-bold text-primary">Data Pendaftaran Permohonan Kartu Keluarga Baru</h4>
         <a href="<?= base_url('/DeleteAdmin/dataSelesaiKK'); ?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mt-2"><i></i> Data Selesai Proses </a>
       </div>
 
