@@ -119,14 +119,16 @@ if ($hariSekarang >= 1 && $hariSekarang <= 7 && $jamSekarang >= 5 && $jamSekaran
           </div>
         </div>
 
+
         <!-- Form Berkas Perbaikan -->
         <div class="row">
           <div class="mb-3">
             <label for="berkasperbaikan" class="form-label fw-semibold"> Berkas Perbaikan </label>
-            <input type="file" name="berkasperbaikan[]" id="berkasperbaikan" multiple required class="form-control <?= (session('errors.berkasperbaikan')) ? 'is-invalid' : ''; ?>" value="<?= old('berkasperbaikan'); ?>">
+            <input type="file" name="berkasperbaikan[]" id="berkasperbaikan" multiple class="form-control <?= (session('errors.berkasperbaikan')) ? 'is-invalid' : ''; ?>" value="<?= old('berkasperbaikan'); ?>">
             <div class="invalid-feedback">
-              <?= session('errors.berkasperbaikan') ?>
+              <?= session('errors.berkasperbaikan'); ?>
             </div>
+            <?= session()->getFlashdata('error'); ?>
           </div>
         </div>
 

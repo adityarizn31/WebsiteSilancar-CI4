@@ -1344,8 +1344,7 @@ class PelayananSilancar extends BaseController
   // Validasi Form Perbaikan Data
   public function savePerbaikanData()
   {
-    $validate = $this->validate([
-
+    $rule = [
       // Form Nama Pemohon
       'namapemohon' => [
         'rules' => 'required[perbaikan_data.namapemohon]',
@@ -1389,83 +1388,61 @@ class PelayananSilancar extends BaseController
           'required' => 'Penjelasan Perbaikan Harus Diisi !!'
         ],
       ],
-      // Berkas Perbaikan 1
+      // Berkas Perbaikan
       'berkasperbaikan' => [
-        'rules' => 'max_size[berkasperbaikan,2048]|mime_in[berkasperbaikan,application/pdf]|ext_in[berkasperbaikan,pdf]',
+        'rules' => 'uploaded[berkasperbaikan.0]|max_size[berkasperbaikan,2048]|mime_in[berkasperbaikan,application/pdf]|ext_in[berkasperbaikan,pdf]',
         'errors' => [
+          'uploaded' => 'Minimal Anda harus mengupload 1 File',
           'max_size' => 'File Berkas Perbaikan 1 terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format Berkas Perbaikan 1 Harus PDF !!',
           'ext_in' => 'Format Berkas Perbaikan 1 Harus PDF !!'
         ],
       ],
-    ]);
+    ];
 
-    if (!$validate) {
+    if (!$this->validate($rule)) {
       return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
 
-    // Berkas Perbaikan 1
-    // $berkasPerbaikan = $this->request->getFiles('berkasperbaikan');
-    // $namaBerkasPerbaikan1 = $berkasPerbaikan->getName();
-    // $berkasPerbaikan->move('pelayanan/perbaikan_data', $namaBerkasPerbaikan1);    
+    $berkasperbaikan = $this->request->getFileMultiple('berkasperbaikan');
+    $jmlberkas = count($berkasperbaikan);
 
-    // if ($this->request->getFileMultiple('berkasperbaikan')) {
-    //   $berkasperbaikan = $this->request->getFileMultiple('berkasperbaikan');
+    if ($jmlberkas > 3) {
+      session()->setFlashdata('error', '<span class="text-danger">Anda hanya boleh mengupload 3 file maksimal</span>');
+      return redirect()->to('/PelayananSilancar/pendaftaranPerbaikanData/');
+    }
 
-    //   foreach ($berkasperbaikan as $berkas) {
-    //     if ($berkas->isValid() && !$berkas->hasMoved()) {
-    //       $namaBerkas = $berkas->getName();
-    //       $berkas->move(WRITEPATH . 'pelayanan/perbaikan_data', $namaBerkas);
-    //       $data = [
-    //         'berkasperbaikan' => $berkas->getName()
-    //       ];
-    //     }
-    //   }
-    // }
+    foreach ($berkasperbaikan as $i => $berkas) {
+      if ($berkas->isValid() && !$berkas->hasMoved()) {
+        $files[$i] = $berkas->getRandomName();
+        $berkas->move('pelayanan/perbaikan_data', $files[$i]);
+      }
+    }
 
-    // $berkasperbaikan = $this->request->getFiles();
+    $berkasperbaikan_dua = (array_key_exists(1, $files) ? $files[1] : null);
+    $berkasperbaikan_tiga = (array_key_exists(2, $files) ? $files[2] : null);
+    $berkasperbaikan_empat = (array_key_exists(3, $files) ? $files[3] : null);
+    $berkasperbaikan_lima = (array_key_exists(4, $files) ? $files[4] : null);
 
-    // foreach ($berkasperbaikan['berkasperbaikan'] as $berkas) {
-    //   if ($berkas->isValid() && !$berkas->hasMoved()) {
-    //     $namaBerkas = $berkas->getName();
-    //     $berkas->move("pelayanan/perbaikan_data", $namaBerkas);
-
-    //     $dataBerkas = [
-    //       'namapemohon' => $this->request->getVar('namapemohon'),
-    //       'emailpemohon' => $this->request->getVar('emailpemohon'),
-    //       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
-    //       'alamatpemohon' => $this->request->getVar('alamatpemohon'),
-    //       'judulperbaikan' => $this->request->getVar('judulperbaikan'),
-    //       'berkasperbaikan' => $namaBerkas,
-    //       'penjelasanperbaikan' => $this->request->getVar('penjelasanperbaikan')
-    //     ];
-
-    //     $this->perbaikandataModel->save($dataBerkas);
-    //   }
-    // }
-
-    // $berkasperbaikan = $this->request->getFiles('berkasperbaikan');
-
-    // foreach ($berkasperbaikan as $berkas) {
-    //   if ($berkas->isValid() && !$berkas->hasMoved()) {
-    //     $newName = $berkas->getRandomName();
-    //     $berkas->move(WRITEPATH . 'uploads', $newName);
-
-    //     $this->perbaikandataModel->save([
-    //       'namapemohon' => $this->request->getVar('namapemohon'),
-    //       'emailpemohon' => $this->request->getVar('emailpemohon'),
-    //       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
-    //       'alamatpemohon' => $this->request->getVar('alamatpemohon'),
-    //       'judulperbaikan' => $this->request->getVar('judulperbaikan'),
-    //       'berkasperbaikan' => json_encode([$newName, $newName2]), // replace $newName2 with the name of the second file
-    //       'penjelasanperbaikan' => $this->request->getVar('penjelasanperbaikan')
-    //     ]);
-    //   }
-    // }
+    $this->perbaikandataModel->save([
+      'namapemohon' => $this->request->getVar('namapemohon'),
+      'emailpemohon' => $this->request->getVar('emailpemohon'),
+      'nomorpemohon' => $this->request->getVar('nomorpemohon'),
+      'alamatpemohon' => $this->request->getVar('alamatpemohon'),
+      'judulperbaikan' => $this->request->getVar('judulperbaikan'),
+      'berkasperbaikan_satu' => $files[0],
+      'berkasperbaikan_dua' => $berkasperbaikan_dua,
+      'berkasperbaikan_tiga' => $berkasperbaikan_tiga,
+      'berkasperbaikan_empat' => $berkasperbaikan_empat,
+      'berkasperbaikan_lima' => $berkasperbaikan_lima,
+      'penjelasanperbaikan' => $this->request->getVar('penjelasanperbaikan')
+    ]);
 
     session()->setFlashdata('pesan', 'Selamat pendaftaran permohonan Perbaikan Data anda telah berhasil !!');
     return redirect()->to('/PelayananSilancar/pendaftaranPerbaikanData/');
   }
+
+
 
 
 

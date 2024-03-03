@@ -9,7 +9,7 @@ class Perbaikan_data_Model extends Model
   protected $table = 'perbaikan_data';
   protected $useTimeStamps = true;
   protected $useSoftDeletes = true;
-  protected $allowedFields = ['namapemohon', 'emailpemohon', 'nomorpemohon', 'alamatpemohon', 'judulperbaikan', 'berkasperbaikan', 'penjelasanperbaikan', 'status'];
+  protected $allowedFields = ['namapemohon', 'emailpemohon', 'nomorpemohon', 'alamatpemohon', 'judulperbaikan', 'berkasperbaikan_satu', 'berkasperbaikan_dua', 'berkasperbaikan_tiga', 'berkasperbaikan_empat', 'berkasperbaikan_lima', 'penjelasanperbaikan', 'status'];
 
   public function getPerbaikanData($nama = false)
   {
