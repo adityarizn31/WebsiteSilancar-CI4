@@ -27,7 +27,7 @@
         $pesan = session()->getFlashdata('pesan');
 
         // Jika status = Selesai
-        if ($pesan == 'Pendaftaran Permohonan Kartu keluarga telah dihapus !!') {
+        if ($pesan == 'Pendaftaran Permohonan Kartu Identitas Anak telah dihapus !!') {
           $class = 'alert-success';
         } else {
           $class = 'alert-danger';

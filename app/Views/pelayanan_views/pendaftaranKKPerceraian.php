@@ -56,13 +56,18 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <!-- Keamanan -->
           <?= csrf_field(); ?>
 
+          <?php $validation = \Config\Services::validation(); ?>
+          <?php if (session()->has('validation')) : ?>
+            <?php $validation = session('validation'); ?>
+          <?php endif; ?>
+
           <!-- Form Nama Pemohon -->
           <div class="row">
             <div class="mb-3">
               <label for="namapemohon" class="form-label fw-semibold"> Nama Pemohon </label>
-              <input type="text" class="form-control <?= ($validation->hasError('namapemohon')) ? 'is-invalid' : ''; ?>" name="namapemohon" id="namapemohon" autofocus value="<?= old('namapemohon'); ?>">
+              <input type="text" name="namapemohon" id="namapemohon" class="form-control <?= (session('errors.namapemohon')) ? 'is-invalid' : null ?>" autofocus value="<?= old('namapemohon'); ?>">
               <div class="invalid-feedback">
-                <?= $validation->getError('namapemohon') ?>
+                <?= session('errors.namapemohon') ?>
               </div>
             </div>
           </div>
@@ -71,9 +76,9 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <div class="row">
             <div class="mb-3">
               <label for="emailpemohon" class="form-label fw-semibold"> Email Pemohon </label>
-              <input type="text" class="form-control <?= ($validation->hasError('emailpemohon')) ? 'is-invalid' : ''; ?>" name="emailpemohon" id="emailpemohon" value="<?= old('emailpemohon'); ?>">
+              <input type="text" name="emailpemohon" id="emailpemohon" class="form-control <?= (session('errors.emailpemohon')) ? 'is-invalid' : null ?>" autofocus value="<?= old('emailpemohon'); ?>">
               <div class="invalid-feedback">
-                <?= $validation->getError('emailpemohon'); ?>
+                <?= session('errors.emailpemohon') ?>
               </div>
             </div>
           </div>
@@ -81,10 +86,10 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <!-- Form Nomor Pemohon -->
           <div class="row">
             <div class="mb-3">
-              <label for="nomorpemohon" class="form-label fw-semibold"> Nomor Whatsapp </label>
-              <input type="text" class="form-control <?= ($validation->hasError('nomorpemohon')) ? 'is-invalid' : ''; ?>" name="nomorpemohon" id="nomorpemohon" value="<?= old('nomorpemohon'); ?>">
+              <label for="nomorpemohon" class="form-label fw-semibold"> Email Pemohon </label>
+              <input type="text" name="nomorpemohon" id="nomorpemohon" class="form-control <?= (session('errors.nomorpemohon')) ? 'is-invalid' : null ?>" autofocus value="<?= old('nomorpemohon'); ?>">
               <div class="invalid-feedback">
-                <?= $validation->getError('nomorpemohon'); ?>
+                <?= session('errors.nomorpemohon') ?>
               </div>
             </div>
           </div>
@@ -92,11 +97,10 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <!-- Form Alamat Pemohon -->
           <div class="row">
             <div class="mb-3">
-              <label for="alamatpemohon" class="form-label fw-semibold"> Alamat Pemohon </label>
-              <br>
-              <textarea class="form-control text-area <?= ($validation->hasError('alamatpemohon')) ? 'is-invalid' : ''; ?>" name="alamatpemohon" id="alamatpemohon" value="<?= old('alamatpemohon'); ?>"></textarea>
+              <label for="alamatpemohon" class="form-label fw-semibold"> Email Pemohon </label>
+              <input type="text" name="alamatpemohon" id="alamatpemohon" class="form-control <?= (session('errors.alamatpemohon')) ? 'is-invalid' : null ?>" autofocus value="<?= old('alamatpemohon'); ?>">
               <div class="invalid-feedback">
-                <?= $validation->getError('alamatpemohon'); ?>
+                <?= session('errors.alamatpemohon') ?>
               </div>
             </div>
           </div>
@@ -106,21 +110,21 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <!-- Berkas Kartu Keluarga Lama -->
           <div class="row">
             <div class="mb-3">
-              <label for="kartukeluargalama" class="form-label fw-semibold"> Berkas Kartu Keluarga Lama </label>
-              <input type="file" class="form-control <?= ($validation->hasError('kartukeluargalama')) ? 'is-invalid' : ''; ?>" name="kartukeluargalama" id="kartukeluargalama" value="<?= old('kartukeluargalama'); ?>">
+              <label for="kartukeluargalama" class="form-label fw-semibold"> Berkas Akta Kelahiran </label>
+              <input type="file" name="kartukeluargalama" id="kartukeluargalama" class="form-control <?= (session('errors.kartukeluargalama')) ? 'is-invalid' : ''; ?>" value="<?= old('kartukeluargalama'); ?>">
               <div class="invalid-feedback">
-                <?= $validation->getError('kartukeluargalama'); ?>
+                <?= session('errors.kartukeluargalama') ?>
               </div>
             </div>
           </div>
 
-          <!-- Form KK Suami -->
+          <!-- Form Akta Perceraian -->
           <div class="row">
             <div class="mb-3">
-              <label for="aktaperceraian" class="form-label fw-semibold"> Berkas Akta Perceraian </label>
-              <input type="file" class="form-control <?= ($validation->hasError('aktaperceraian')) ? 'is-invalid' : ''; ?>" name="aktaperceraian" id="aktaperceraian" value="<?= old('aktaperceraian'); ?>">
+              <label for="aktaperceraian" class="form-label fw-semibold"> Berkas Akta Kelahiran </label>
+              <input type="file" name="aktaperceraian" id="aktaperceraian" class="form-control <?= (session('errors.aktaperceraian')) ? 'is-invalid' : ''; ?>" value="<?= old('aktaperceraian'); ?>">
               <div class="invalid-feedback">
-                <?= $validation->getError('aktaperceraian'); ?>
+                <?= session('errors.aktaperceraian') ?>
               </div>
             </div>
           </div>

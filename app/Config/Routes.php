@@ -31,7 +31,13 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+
+// adityarizkiawann@gmail.com  
+// Sadilcantik05!
+
 $routes->get('/', 'Beranda::index');
+
+$routes->post('pelayanan_views/pendaftaranKK', 'PelayananSilancar::pendaftaranKK');
 
 // Routes untuk Halaman Admin
 $routes->get('admin/data_admin/(:segment)', 'CreateAdmin::create_akun_admin/$1');

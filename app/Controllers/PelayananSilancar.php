@@ -17,8 +17,6 @@ use App\Models\Pendaftaran_pelayanandata_Model;
 use App\Models\Perbaikan_data_Model;
 use App\Models\Pengaduan_update_Model;
 
-
-
 class PelayananSilancar extends BaseController
 {
   protected $kkModel;
@@ -87,7 +85,7 @@ class PelayananSilancar extends BaseController
   // Validasi Pendaftaran KK
   public function saveKK()
   {
-    if (!$this->validate([
+    $validate = $this->validate([
 
       // Form Nama Pemohon
       'namapemohon' => [
@@ -169,8 +167,10 @@ class PelayananSilancar extends BaseController
         ]
       ]
 
-    ])) {
-      return redirect()->to(base_url() . '/PelayananSilancar/pendaftaranKK/')->withInput();
+    ]);
+
+    if (!$validate) {
+      return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
 
     // Berkas Formulir Desa
@@ -214,6 +214,123 @@ class PelayananSilancar extends BaseController
   }
 
 
+  // Si Lancar 1  
+  // Menampilkan Form Pendaftaran KIA
+  public function pendaftaranKIA()
+  {
+    helper(['form']);
+    $data = [
+      'title' => 'Pendaftaran KIA || Disdukcapil Majalengka',
+      'validation' => \Config\Services::validation()
+    ];
+    return view('pelayanan_views/pendaftaranKIA', $data);
+  }
+
+  // Validasi Pendaftaran KIA
+  public function saveKIA()
+  {
+
+    $validate = $this->validate([
+
+      //Form Nama Pemohon
+      'namapemohon' => [
+        'rules' => 'required',
+        'errors' => [
+          'required' => 'Nama Pemohon Harus diisi !!'
+        ],
+      ],
+      //Form Email Pemohon
+      'emailpemohon' => [
+        'rules' => 'required[pendaftaran_kia.emailpemohon]|valid_email',
+        'errors' => [
+          'required' => 'Email Pemohon Harus Diisi !!',
+          'valid_email' => 'Mohon cek kembali email anda, gunakan @ agar valid !!'
+        ],
+      ],
+      //Form Nomor Pemohon
+      'nomorpemohon' => [
+        'rules' => 'required[pendaftaran_kia.nomorpemohon]',
+        'errors' => [
+          'required' => 'Nomor Pemohon Harus Diisi !!'
+        ],
+      ],
+      //Form Alamat Pemohon
+      'alamatpemohon' => [
+        'rules' => 'required[pendaftaran_kia.alamatpemohon]',
+        'errors' => [
+          'required' => 'Alamat Pemohon Harus Diisi !!'
+        ],
+      ],
+      // Berkas Akta Kelahiran
+      'aktakelahiran' => [
+        'rules' => 'uploaded[aktakelahiran]|max_size[aktakelahiran,2048]|mime_in[aktakelahiran,application/pdf]|ext_in[aktakelahiran,pdf]',
+        'errors' => [
+          'uploaded' => 'Akta Kelahiran Harus Diisi !!',
+          'max_size' => 'File Akta Kelahiran terlalu besar, Kompress terlebih dahulu !!',
+          'mime_in' => 'Format File Harus PDF !!',
+          'ext_in' => ''
+        ],
+      ],
+      // Berkas Kartu Keluarga
+      'kartukeluarga' => [
+        'rules' => 'uploaded[kartukeluarga]|max_size[kartukeluarga,2048]|mime_in[kartukeluarga,application/pdf]|ext_in[kartukeluarga,pdf]',
+        'errors' => [
+          'uploaded' => 'Kartu Keluarga Harus Diisi !!',
+          'max_size' => 'File Kartu Keluarga terlalu besar, Kompress terlebih dahulu !!',
+          'mime_in' => 'Format File Harus PDF !!',
+          'ext_in' => ''
+        ],
+      ],
+      // Pas Foto
+      'pasfoto' => [
+        'rules' => 'max_size[pasfoto,2048]|is_image[pasfoto]|mime_in[pasfoto,image/jpg,image/jpeg,image/png]',
+        'errors' => [
+          'max_size' => 'Ukuran Gambar terlalu besar !!',
+          'is_image' => 'Yang anda pilih bukan gambar !!',
+          'mime_in' => 'Mohon File yang di inputkan berformat JPG, JPEG atau PNG'
+        ],
+      ],
+    ]);
+
+    if (!$validate) {
+      return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+    }
+
+    // Berkas Akta Kelahiran
+    $berkasAktaKelahiran_KIA = $this->request->getFile('aktakelahiran');
+    $namaAktaKelahiran_KIA = $berkasAktaKelahiran_KIA->getName();
+    $berkasAktaKelahiran_KIA->move('pelayanan/kia', $namaAktaKelahiran_KIA);
+
+    // Berkas Kartu Keluarga
+    $berkasKartuKeluarga_KIA = $this->request->getFile('kartukeluarga');
+    $namaKartuKeluarga_KIA = $berkasKartuKeluarga_KIA->getName();
+    $berkasKartuKeluarga_KIA->move('pelayanan/kia', $namaKartuKeluarga_KIA);
+
+    // Cara Memanggil Gambar
+    $filePasFoto = $this->request->getFile('pasfoto');
+    if ($filePasFoto->getError() == 4) {
+      $namaPasFoto_KIA = 'user.PNG';
+    } else {
+      // Generate nama foto anak random
+      $namaPasFoto_KIA = $filePasFoto->getRandomName();
+      // Memindahkan File Gambar ke Folder Pelayanan / KIA
+      $filePasFoto->move('pelayanan/kia', $namaPasFoto_KIA);
+    }
+
+    $this->kiaModel->save([
+      'namapemohon' => $this->request->getVar('namapemohon'),
+      'emailpemohon' => $this->request->getVar('emailpemohon'),
+      'nomorpemohon' => $this->request->getVar('nomorpemohon'),
+      'alamatpemohon' => $this->request->getVar('alamatpemohon'),
+      'aktakelahiran' => $namaAktaKelahiran_KIA,
+      'kartukeluarga' => $namaKartuKeluarga_KIA,
+      'pasfoto' => $namaPasFoto_KIA
+    ]);
+    session()->setFlashdata('pesan', 'Selamat pendaftaran permohonan Kartu Identitas Anak Anda telah berhasil !!');
+    return redirect()->to('/PelayananSilancar/pendaftaranKIA');
+  }
+
+
 
 
 
@@ -232,14 +349,13 @@ class PelayananSilancar extends BaseController
 
   public function saveKKPerceraian()
   {
-    if (!$this->validate([
-
+    $validate = $this->validate([
       // Form Nama Pemohon
       'namapemohon' => [
         'rules' => 'required[pendaftaran_kk.namapemohon]',
         'errors' => [
           'required' => 'Nama Pemohon Harus Diisi !!'
-        ]
+        ],
       ],
       // Form Email Pemohon
       'emailpemohon' => [
@@ -247,21 +363,21 @@ class PelayananSilancar extends BaseController
         'errors' => [
           'required' => 'Email Pemohon Harus Diisi !!',
           'valid_email' => 'Mohon cek kembali email anda, gunakan @ agar valid !!'
-        ]
+        ],
       ],
       // Form Nomor Pemohon
       'nomorpemohon' => [
         'rules' => 'required[pendaftaran_kk.nomorpemohon]',
         'errors' => [
           'required' => 'Nomor Pemohon Harus Diisi !!'
-        ]
+        ],
       ],
       // Form Alamat Pemohon
       'alamatpemohon' => [
         'rules' => 'required[pendaftaran_kk.alamatpemohon]',
         'errors' => [
           'required' => 'Alamat Pemohon Harus Diisi !!'
-        ]
+        ],
       ],
       // Berkas Kartu Keluarga Lama
       'kartukeluargalama' => [
@@ -271,7 +387,7 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File Kartu Keluarga Lama terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format Kartu Keluarga Lama Harus PDF !!',
           'ext_in' => 'Format Kartu Keluarga Lama Harus PDF !!'
-        ]
+        ],
       ],
       // Berkas Akta Perceraian
       'aktaperceraian' => [
@@ -281,10 +397,12 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File Akta Perceraian terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format Akta Perceraian Harus PDF !!',
           'ext_in' => 'Format Akta Perceraian Harus PDF !!'
-        ]
+        ],
       ],
-    ])) {
-      return redirect()->to(base_url() . '/PelayananSilancar/pendaftaranKKPerceraian/')->withInput();
+    ]);
+
+    if (!$validate) {
+      return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
 
     // Berkas Kartu Keluarga Lama
@@ -314,120 +432,7 @@ class PelayananSilancar extends BaseController
 
 
 
-  // Si Lancar 1  
-  // Menampilkan Form Pendaftaran KIA
-  public function pendaftaranKIA()
-  {
-    helper(['form']);
-    $data = [
-      'title' => 'Pendaftaran KIA || Disdukcapil Majalengka',
-      'validation' => \Config\Services::validation()
-    ];
-    return view('pelayanan_views/pendaftaranKIA', $data);
-  }
 
-  // Validasi Pendaftaran KIA
-  public function saveKIA()
-  {
-    if (!$this->validate([
-
-      //Form Nama Pemohon
-      'namapemohon' => [
-        'rules' => 'required[pendaftaran_kia.namapemohon]',
-        'errors' => [
-          'required' => 'Nama Pemohon Harus Diisi !!'
-        ]
-      ],
-      //Form Email Pemohon
-      'emailpemohon' => [
-        'rules' => 'required[pendaftaran_kia.emailpemohon]|valid_email',
-        'errors' => [
-          'required' => 'Email Pemohon Harus Diisi !!',
-          'valid_email' => 'Mohon cek kembali email anda, gunakan @ agar valid !!'
-        ]
-      ],
-      //Form Nomor Pemohon
-      'nomorpemohon' => [
-        'rules' => 'required[pendaftaran_kia.nomorpemohon]',
-        'errors' => [
-          'required' => 'Nomor Pemohon Harus Diisi !!'
-        ]
-      ],
-      //Form Alamat Pemohon
-      'alamatpemohon' => [
-        'rules' => 'required[pendaftaran_kia.alamatpemohon]',
-        'errors' => [
-          'required' => 'Alamat Pemohon Harus Diisi !!'
-        ]
-      ],
-      // Berkas Akta Kelahiran
-      'aktakelahiran' => [
-        'rules' => 'uploaded[aktakelahiran]|max_size[aktakelahiran,2048]|mime_in[aktakelahiran,application/pdf]|ext_in[aktakelahiran,pdf]',
-        'errors' => [
-          'uploaded' => 'Akta Kelahiran Harus Diisi !!',
-          'max_size' => 'File Akta Kelahiran terlalu besar, Kompress terlebih dahulu !!',
-          'mime_in' => 'Format File Harus PDF !!',
-          'ext_in' => ''
-        ]
-      ],
-      // Berkas Kartu Keluarga
-      'kartukeluarga' => [
-        'rules' => 'uploaded[kartukeluarga]|max_size[kartukeluarga,2048]|mime_in[kartukeluarga,application/pdf]|ext_in[kartukeluarga,pdf]',
-        'errors' => [
-          'uploaded' => 'Kartu Keluarga Harus Diisi !!',
-          'max_size' => 'File Kartu Keluarga terlalu besar, Kompress terlebih dahulu !!',
-          'mime_in' => 'Format File Harus PDF !!',
-          'ext_in' => ''
-        ]
-      ],
-      // Pas Foto
-      'pasfoto' => [
-        'rules' => 'max_size[pasfoto,2048]|is_image[pasfoto]|mime_in[pasfoto,image/jpg,image/jpeg,image/png]',
-        'errors' => [
-          'max_size' => 'Ukuran Gambar terlalu besar !!',
-          'is_image' => 'Yang anda pilih bukan gambar !!',
-          'mime_in' => 'Mohon File yang di inputkan berformat JPG, JPEG atau PNG'
-        ]
-      ]
-
-    ])) {
-      return redirect()->to(base_url() . '/PelayananSilancar/pendaftaranKIA/')->withInput();
-    }
-
-    // Berkas Akta Kelahiran
-    $berkasAktaKelahiran_KIA = $this->request->getFile('aktakelahiran');
-    $namaAktaKelahiran_KIA = $berkasAktaKelahiran_KIA->getName();
-    $berkasAktaKelahiran_KIA->move('pelayanan/kia', $namaAktaKelahiran_KIA);
-
-    // Berkas Kartu Keluarga
-    $berkasKartuKeluarga_KIA = $this->request->getFile('kartukeluarga');
-    $namaKartuKeluarga_KIA = $berkasKartuKeluarga_KIA->getName();
-    $berkasKartuKeluarga_KIA->move('pelayanan/kia', $namaKartuKeluarga_KIA);
-
-    // Cara Memanggil Gambar
-    $filePasFoto = $this->request->getFile('pasfoto');
-    if ($filePasFoto->getError() == 4) {
-      $namaPasFoto_KIA = 'user.PNG';
-    } else {
-      // Generate nama foto anak random
-      $namaPasFoto_KIA = $filePasFoto->getRandomName();
-      // Memindahkan File Gambar ke Folder Pelayanan / KIA
-      $filePasFoto->move('pelayanan/kia', $namaPasFoto_KIA);
-    }
-
-
-    $this->kiaModel->save([
-      'namapemohon' => $this->request->getVar('namapemohon'),
-      'emailpemohon' => $this->request->getVar('emailpemohon'),
-      'nomorpemohon' => $this->request->getVar('nomorpemohon'),
-      'alamatpemohon' => $this->request->getVar('alamatpemohon'),
-      'aktakelahiran' => $namaAktaKelahiran_KIA,
-      'kartukeluarga' => $namaKartuKeluarga_KIA,
-      'pasfoto' => $namaPasFoto_KIA
-    ]);
-    session()->setFlashdata('pesan', 'Selamat pendaftaran permohonan Kartu Identitas Anak Anda telah berhasil !!');
-    return redirect()->to('/PelayananSilancar/pendaftaranKIA');
-  }
 
 
 
@@ -458,14 +463,14 @@ class PelayananSilancar extends BaseController
   public function saveSuratPindah()
   {
 
-    if (!$this->validate([
+    $validate = $this->validate([
 
       //Form Nama Pemohon
       'namapemohon' => [
         'rules' => 'required[pendaftaran_suratperpindahan.namapemohon]',
         'errors' => [
           'required' => 'Nama Pemohon Harus Diisi !!'
-        ]
+        ],
       ],
       //Form Email Pemohon
       'emailpemohon' => [
@@ -473,21 +478,21 @@ class PelayananSilancar extends BaseController
         'errors' => [
           'required' => 'Email Pemohon Harus Diisi !!',
           'valid_email' => 'Mohon cek kembali email anda, gunakan @ agar valid !!'
-        ]
+        ],
       ],
       //Form Nomor Pemohon
       'nomorpemohon' => [
         'rules' => 'required[pendaftaran_suratperpindahan.nomorpemohon]',
         'errors' => [
           'required' => 'Nomor Pemohon Harus Diisi !!'
-        ]
+        ],
       ],
       //Form Alamat Pemohon
       'alamatpemohon' => [
         'rules' => 'required[pendaftaran_suratperpindahan.alamatpemohon]',
         'errors' => [
           'required' => 'Alamat Pemohon Harus Diisi !!'
-        ]
+        ],
       ],
       // Berkas Form Perpindahan
       'formperpindahan' => [
@@ -497,7 +502,7 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File anda terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format Perpindahan Harus PDF !!',
           'ext_in' => 'Format Perpindahan Harus PDF !!'
-        ]
+        ],
       ],
       // Berkas Kartu Keluarga
       'kartukeluarga' => [
@@ -507,7 +512,7 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File anda terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format Kartu Keluarga Harus PDF !!',
           'ext_in' => 'Format Kartu Keluarga Harus PDF !!'
-        ]
+        ],
       ],
       // Berkas Buku Nikah
       'bukunikah' => [
@@ -517,7 +522,7 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File anda terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format File Harus PDF !!',
           'ext_in' => 'Format File Harus PDF !!'
-        ]
+        ],
       ],
       // Berkas KTP Suami
       'ktpsuami' => [
@@ -527,7 +532,7 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File anda terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format KTP Suami Harus PDF !!',
           'ext_in' => 'Format KTP Suami Harus PDF !!'
-        ]
+        ],
       ],
       // Berkas KTP Istri
       'ktpistri' => [
@@ -537,11 +542,13 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File anda terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format KTP Istri Harus PDF !!',
           'ext_in' => 'Format KTP Istri Harus PDF !!'
-        ]
-      ]
+        ],
+      ],
 
-    ])) {
-      return redirect()->to(base_url() . '/PelayananSilancar/pendaftaranSuratPerpindahan/')->withInput();
+    ]);
+
+    if (!$validate) {
+      return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
 
     // Berkas Form Perpindahan
@@ -607,14 +614,14 @@ class PelayananSilancar extends BaseController
   public function saveSuratPindahLuar()
   {
 
-    if (!$this->validate([
+    $validate = $this->validate([
 
       //Form Nama Pemohon
       'namapemohon' => [
         'rules' => 'required[pendaftaran_suratperpindahanluar.namapemohon]',
         'errors' => [
           'required' => 'Nama Pemohon Harus Diisi !!'
-        ]
+        ],
       ],
       //Form Email Pemohon
       'emailpemohon' => [
@@ -622,21 +629,21 @@ class PelayananSilancar extends BaseController
         'errors' => [
           'required' => 'Email Pemohon Harus Diisi !!',
           'valid_email' => 'Mohon cek kembali email anda, gunakan @ agar valid !!'
-        ]
+        ],
       ],
       //Form Nomor Pemohon
       'nomorpemohon' => [
         'rules' => 'required[pendaftaran_suratperpindahanluar.nomorpemohon]',
         'errors' => [
           'required' => 'Nomor Pemohon Harus Diisi !!'
-        ]
+        ],
       ],
       //Form Alamat Pemohon
       'alamatpemohon' => [
         'rules' => 'required[pendaftaran_suratperpindahanluar.alamatpemohon]',
         'errors' => [
           'required' => 'Alamat Pemohon Harus Diisi !!'
-        ]
+        ],
       ],
       // Berkas SKPWNI
       'skpwni' => [
@@ -646,7 +653,7 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File SKPWNI terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format SKPWNI Harus PDF !!',
           'ext_in' => 'Format SKPWNI Harus PDF !!'
-        ]
+        ],
       ],
       // Berkas KTP
       'kartutandapenduduk' => [
@@ -656,11 +663,13 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File KTP terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format KTP Harus PDF !!',
           'ext_in' => 'Format KTP Harus PDF !!'
-        ]
-      ]
+        ],
+      ],
 
-    ])) {
-      return redirect()->to(base_url() . '/PelayananSilancar/pendaftaranSuratPerpindahanLuar/')->withInput();
+    ]);
+
+    if (!$validate) {
+      return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
 
     // Berkas SKPWNI
@@ -707,14 +716,14 @@ class PelayananSilancar extends BaseController
   public function saveAktaKelahiran()
   {
 
-    if (!$this->validate([
+    $validate = $this->validate([
 
       // Form Nama Pemohon
       'namapemohon' => [
         'rules' => 'required[pendaftaran_aktakelahiran.namapemohon]',
         'errors' => [
           'required' => 'Nama Pemohon Harus Diisi !!'
-        ]
+        ],
       ],
       // Form Email Pemohon
       'emailpemohon' => [
@@ -722,21 +731,21 @@ class PelayananSilancar extends BaseController
         'errors' => [
           'required' => 'Email Pemohon Harus Diisi !!',
           'valid_email' => 'Mohon cek kembali email anda, gunakan @ agar valid !!'
-        ]
+        ],
       ],
       // Form Nomor Pemohon
       'nomorpemohon' => [
         'rules' => 'required[pendaftaran_aktakelahiran.nomorpemohon]',
         'errors' => [
           'required' => 'Nomor Pemohon Harus Diisi !!'
-        ]
+        ],
       ],
       // Form Alamat Pemohon
       'alamatpemohon' => [
         'rules' => 'required[pendaftaran_aktakelahiran.alamatpemohon]',
         'errors' => [
           'required' => 'Alamat Pemohon Harus Diisi !!'
-        ]
+        ],
       ],
       // Berkas F2.01 Akta
       'formulirf201akta' => [
@@ -746,7 +755,7 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File anda terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format F201 Akta Kelahiran Harus PDF !!',
           'ext_in' => 'Format F201 Akta Kelahiran Harus PDF !!'
-        ]
+        ],
       ],
       // Berkas Surat Keterangan Lahir
       'suratketeranganlahir' => [
@@ -756,7 +765,7 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File anda terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format Surat Keterangan Lahir Harus PDF !!',
           'ext_in' => ''
-        ]
+        ],
       ],
       // Berkas Kartu Keluarga
       'kartukeluarga' => [
@@ -766,7 +775,7 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File anda terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format Kartu Keluarga Harus PDF !!',
           'ext_in' => ''
-        ]
+        ],
       ],
       // Berkas Buku Nikah
       'bukunikah' => [
@@ -776,7 +785,7 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File Buku Nikah terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format Buku Nikah Harus PDF !!',
           'ext_in' => 'Format Buku Nikah Harus PDF !!'
-        ]
+        ],
       ],
       // Berkas KTP Ayah
       'ktpayah' => [
@@ -786,7 +795,7 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File anda terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format KTP Ayah Harus PDF !!',
           'ext_in' => 'Format KTP Ayah Harus PDF !!'
-        ]
+        ],
       ],
       // Berkas KTP Ibu
       'ktpibu' => [
@@ -796,11 +805,12 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File anda terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format KTP Ibu Harus PDF !!',
           'ext_in' => 'Format KTP Ibu Harus PDF !!'
-        ]
-      ]
+        ],
+      ],
+    ]);
 
-    ])) {
-      return redirect()->to(base_url() . '/PelayananSilancar/pendaftaranAktaKelahiran/')->withInput();
+    if (!$validate) {
+      return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
 
     // Berkas Formulir F201 
@@ -879,14 +889,14 @@ class PelayananSilancar extends BaseController
   // Validasi Pendaftaran Akta Kematian
   public function saveAktakematian()
   {
-    if (!$this->validate([
+    $validate = $this->validate([
 
       // Form Nama Pemohon
       'namapemohon' => [
         'rules' => 'required[pendaftaran_aktakematian.namapemohon]',
         'errors' => [
           'required' => 'Nama Pemohon Harus Diisi !!'
-        ]
+        ],
       ],
       // Form Email Pemohon
       'emailpemohon' => [
@@ -894,21 +904,21 @@ class PelayananSilancar extends BaseController
         'errors' => [
           'required' => 'Email Pemohon Harus Diisi !!',
           'valid_email' => 'Mohon cek kembali email anda, gunakan @ agar valid !!'
-        ]
+        ],
       ],
       // Form Nomor Pemohon
       'nomorpemohon' => [
         'rules' => 'required[pendaftaran_aktakematian.nomorpemohon]',
         'errors' => [
           'required' => 'Nomor Pemohon Harus Diisi !!'
-        ]
+        ],
       ],
       // Form Alamat Pemohon
       'alamatpemohon' => [
         'rules' => 'required[pendaftaran_aktakematian.alamatpemohon]',
         'errors' => [
           'required' => 'Alamat Pemohon Harus Diisi !!'
-        ]
+        ],
       ],
       // Berkas KK
       'kartukeluarga' => [
@@ -918,7 +928,7 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File kartu Keluarga terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format Kartu Keluarga Harus PDF !!',
           'ext_in' => 'Format Kartu Keluarga Harus PDF !!'
-        ]
+        ],
       ],
       // Berkas Surat Kematian
       'suratkematian' => [
@@ -928,11 +938,12 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File Surat Kematian terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format Surat Kematian Harus PDF !!',
           'ext_in' => 'Format Surat Kematian Harus PDF !!'
-        ]
-      ]
+        ],
+      ],
+    ]);
 
-    ])) {
-      return redirect()->to(base_url() . '/PelayananSilancar/pendaftaranAktaKematian/')->withInput();
+    if (!$validate) {
+      return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
 
     // Berkas KK
@@ -986,14 +997,14 @@ class PelayananSilancar extends BaseController
   // Validasi Keabsahan Akta Kelahiran
   public function saveKeabsahanAkla()
   {
-    if (!$this->validate([
+    $validate = $this->validate([
 
       // Form Nama Pemohon
       'namapemohon' => [
         'rules' => 'required[pendaftaran_keabsahanakla.namapemohon]',
         'errors' => [
           'required' => 'Nama Pemohon Harus Diisi !!'
-        ]
+        ],
       ],
       // Form Email Pemohon
       'emailpemohon' => [
@@ -1001,21 +1012,21 @@ class PelayananSilancar extends BaseController
         'errors' => [
           'required' => 'Email Pemohon Harus Diisi !!',
           'valid_email' => 'Mohon cek kembali email anda, gunakan @ agar valid !!'
-        ]
+        ],
       ],
       // Form Nomor Pemohon
       'nomorpemohon' => [
         'rules' => 'required[pendaftaran_keabsahanakla.nomorpemohon]',
         'errors' => [
           'required' => 'Nomor Pemohon Harus Diisi !!'
-        ]
+        ],
       ],
       // Form Alamat Pemohon
       'alamatpemohon' => [
         'rules' => 'required[pendaftaran_keabsahanakla.alamatpemohon]',
         'errors' => [
           'required' => 'Alamat Pemohon Harus Diisi !!'
-        ]
+        ],
       ],
       // Berkas Akta Kelahiran
       'aktakelahiran' => [
@@ -1025,7 +1036,7 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File Akta Kelahiran terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format Akta Kelahirans Harus PDF !!',
           'ext_in' => 'Format Akta Kelahirans Harus PDF !!'
-        ]
+        ],
       ],
       // Berkas Kartu Tanda Penduduk
       'kartutandapenduduk' => [
@@ -1035,12 +1046,14 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File KTP terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format KTP Harus PDF !!',
           'ext_in' => 'Format KTP Harus PDF !!'
-        ]
-      ]
+        ],
+      ],
 
 
-    ])) {
-      return redirect()->to(base_url() . '/PelayananSilancar/pendaftaranKeabsahanAkla/')->withInput();
+    ]);
+
+    if (!$validate) {
+      return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
 
     // Berkas Akta Kelahiran 
@@ -1095,14 +1108,14 @@ class PelayananSilancar extends BaseController
   // Validasi Pendaftaran Pelayanan
   public function savePelayananData()
   {
-    if (!$this->validate([
+    $validate = $this->validate([
 
       // Form Nama Pemohon
       'namapemohon' => [
         'rules' => 'required[pendaftaran_pelayanandata.namapemohon]',
         'errors' => [
           'required' => 'Nama Pemohon Harus Diisi !!'
-        ]
+        ],
       ],
       // Form Email Pemohon
       'emailpemohon' => [
@@ -1110,21 +1123,21 @@ class PelayananSilancar extends BaseController
         'errors' => [
           'required' => 'Email Pemohon Harus Diisi !!',
           'valid_email' => 'Mohon cek kembali email anda, gunakan @ agar valid !!'
-        ]
+        ],
       ],
       // Form Nomor Pemohon
       'nomorpemohon' => [
         'rules' => 'required[pendaftaran_pelayanandata.nomorpemohon]',
         'errors' => [
           'required' => 'Nomor Pemohon Harus Diisi !!'
-        ]
+        ],
       ],
       // Form Alamat Pemohon
       'alamatpemohon' => [
         'rules' => 'required[pendaftaran_pelayanandata.alamatpemohon]',
         'errors' => [
           'required' => 'Alamat Pemohon Harus Diisi !!'
-        ]
+        ],
       ],
       // Berkas Pelayanan 1
       'berkaspelayanan1' => [
@@ -1134,7 +1147,7 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File Berkas Pelayanan 1 terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format Berkas Pelayanan 1 Harus PDF !!',
           'ext_in' => 'Format Berkas Pelayanan 1 Harus PDF !!'
-        ]
+        ],
       ],
       // Berkas Pelayanan 2
       'berkaspelayanan2' => [
@@ -1144,7 +1157,7 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File Berkas Pelayanan 2 terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format Berkas Pelayanan 2 Harus PDF !!',
           'ext_in' => 'Format Berkas Pelayanan 2 Harus PDF !!'
-        ]
+        ],
       ],
       // Berkas Pelayanan 3
       'berkaspelayanan3' => [
@@ -1154,7 +1167,7 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File Berkas Pelayanan 3 terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format Berkas Pelayanan 3 Harus PDF !!',
           'ext_in' => 'Format Berkas Pelayanan 3 Harus PDF !!'
-        ]
+        ],
       ],
       // Berkas Pelayanan 4
       'berkaspelayanan4' => [
@@ -1164,7 +1177,7 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File Berkas Pelayanan 4 terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format Berkas Pelayanan 4 Harus PDF !!',
           'ext_in' => 'Format Berkas Pelayanan 4 Harus PDF !!'
-        ]
+        ],
       ],
       // Berkas Pelayanan 5
       'berkaspelayanan5' => [
@@ -1173,7 +1186,7 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File Berkas Pelayanan 5 terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format Berkas Pelayanan 5 Harus PDF !!',
           'ext_in' => 'Format Berkas Pelayanan 5 Harus PDF !!'
-        ]
+        ],
       ],
       // Berkas Pelayanan 6
       'berkaspelayanan6' => [
@@ -1183,7 +1196,7 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File Berkas Pelayanan 6 terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format Berkas Pelayanan 6 Harus PDF !!',
           'ext_in' => 'Format Berkas Pelayanan 6 Harus PDF !!'
-        ]
+        ],
       ],
       // Berkas Pelayanan 7
       'berkaspelayanan7' => [
@@ -1193,7 +1206,7 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File Berkas Pelayanan 7 terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format Berkas Pelayanan 7 Harus PDF !!',
           'ext_in' => 'Format Berkas Pelayanan 7 Harus PDF !!'
-        ]
+        ],
       ],
       // Berkas Pelayanan 8
       'berkaspelayanan8' => [
@@ -1203,7 +1216,7 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File Berkas Pelayanan 8 terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format Berkas Pelayanan 8 Harus PDF !!',
           'ext_in' => 'Format Berkas Pelayanan 8 Harus PDF !!'
-        ]
+        ],
       ],
       // Berkas Pelayanan 9
       'berkaspelayanan9' => [
@@ -1213,7 +1226,7 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File Berkas Pelayanan 9 terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format Berkas Pelayanan 9 Harus PDF !!',
           'ext_in' => 'Format Berkas Pelayanan 9 Harus PDF !!'
-        ]
+        ],
       ],
       // Berkas Pelayanan 10
       'berkaspelayanan10' => [
@@ -1223,11 +1236,12 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File Berkas Pelayanan 10 terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format Berkas Pelayanan 10 Harus PDF !!',
           'ext_in' => 'Format Berkas Pelayanan 10 Harus PDF !!'
-        ]
+        ],
       ],
+    ]);
 
-    ])) {
-      return redirect()->to(base_url() . '/PelayananSilancar/pendaftaranPelayananData/')->withInput();
+    if (!$validate) {
+      return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
 
     // Berkas Pelayanan 1
@@ -1330,14 +1344,14 @@ class PelayananSilancar extends BaseController
   // Validasi Form Perbaikan Data
   public function savePerbaikanData()
   {
-    if (!$this->validate([
+    $validate = $this->validate([
 
       // Form Nama Pemohon
       'namapemohon' => [
         'rules' => 'required[perbaikan_data.namapemohon]',
         'errors' => [
           'required' => 'Nama Pemohon Harus Diisi !!'
-        ]
+        ],
       ],
       // Form Email Pemohon
       'emailpemohon' => [
@@ -1345,140 +1359,110 @@ class PelayananSilancar extends BaseController
         'errors' => [
           'required' => 'Email Pemohon Harus Diisi !!',
           'valid_email' => 'Mohon cek kembali email anda, gunakan @ agar valid !!'
-        ]
+        ],
       ],
       // Form Nomor Pemohon
       'nomorpemohon' => [
         'rules' => 'required[perbaikan_data.nomorpemohon]',
         'errors' => [
           'required' => 'Nomor Pemohon Harus Diisi !!'
-        ]
+        ],
       ],
       // Form Alamat Pemohon
       'alamatpemohon' => [
         'rules' => 'required[perbaikan_data.alamatpemohon]',
         'errors' => [
           'required' => 'Alamat Pemohon Harus Diisi !!'
-        ]
+        ],
       ],
       // Judul Perbaikan
       'judulperbaikan' => [
         'rules' => 'required[perbaikan_data.judulperbaikan]',
         'errors' => [
           'required' => 'Judul Perbaikan Harus Diisi !!'
-        ]
+        ],
       ],
       // Form Penjelasan Perbaikan
       'penjelasanperbaikan' => [
         'rules' => 'required[perbaikan_data.penjelasanperbaikan]',
         'errors' => [
           'required' => 'Penjelasan Perbaikan Harus Diisi !!'
-        ]
+        ],
       ],
       // Berkas Perbaikan 1
-      'berkasperbaikan1' => [
-        'rules' => 'max_size[berkasperbaikan1,2048]|mime_in[berkasperbaikan1,application/pdf]|ext_in[berkasperbaikan1,pdf]',
+      'berkasperbaikan' => [
+        'rules' => 'max_size[berkasperbaikan,2048]|mime_in[berkasperbaikan,application/pdf]|ext_in[berkasperbaikan,pdf]',
         'errors' => [
           'max_size' => 'File Berkas Perbaikan 1 terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format Berkas Perbaikan 1 Harus PDF !!',
           'ext_in' => 'Format Berkas Perbaikan 1 Harus PDF !!'
-        ]
+        ],
       ],
-      // Berkas Perbaikan 2
-      'berkasperbaikan2' => [
-        'rules' => 'max_size[berkasperbaikan2,2048]|mime_in[berkasperbaikan2,application/pdf]|ext_in[berkasperbaikan2,pdf]',
-        'errors' => [
-          'max_size' => 'File Berkas Perbaikan 2 terlalu besar, Kompress terlebih dahulu !!',
-          'mime_in' => 'Format Berkas Perbaikan 2 Harus PDF !!',
-          'ext_in' => 'Format Berkas Perbaikan 2 Harus PDF !!'
-        ]
-      ],
-      // Berkas Perbaikan 3
-      'berkasperbaikan3' => [
-        'rules' => 'max_size[berkasperbaikan3,2048]|mime_in[berkasperbaikan3,application/pdf]|ext_in[berkasperbaikan3,pdf]',
-        'errors' => [
-          'max_size' => 'File Berkas Perbaikan 3 terlalu besar, Kompress terlebih dahulu !!',
-          'mime_in' => 'Format Berkas Perbaikan 3 Harus PDF !!',
-          'ext_in' => 'Format Berkas Perbaikan 3 Harus PDF !!'
-        ]
-      ],
-      // Berkas Perbaikan 4
-      'berkasperbaikan4' => [
-        'rules' => 'max_size[berkasperbaikan4,2048]|mime_in[berkasperbaikan4,application/pdf]|ext_in[berkasperbaikan4,pdf]',
-        'errors' => [
-          'max_size' => 'File Berkas Perbaikan 4 terlalu besar, Kompress terlebih dahulu !!',
-          'mime_in' => 'Format Berkas Perbaikan 4 Harus PDF !!',
-          'ext_in' => 'Format Berkas Perbaikan 4 Harus PDF !!'
-        ]
-      ],
-      // Berkas Perbaikan 5
-      'berkasperbaikan5' => [
-        'rules' => 'max_size[berkasperbaikan5,2048]|mime_in[berkasperbaikan5,application/pdf]|ext_in[berkasperbaikan5,pdf]',
-        'errors' => [
-          'max_size' => 'File Berkas Perbaikan 5 terlalu besar, Kompress terlebih dahulu !!',
-          'mime_in' => 'Format Berkas Perbaikan 5 Harus PDF !!',
-          'ext_in' => 'Format Berkas Perbaikan 5 Harus PDF !!'
-        ]
-      ],
-      // Berkas Perbaikan 6
-      'berkasperbaikan6' => [
-        'rules' => 'max_size[berkasperbaikan6,2048]|mime_in[berkasperbaikan6,application/pdf]|ext_in[berkasperbaikan6,pdf]',
-        'errors' => [
-          'max_size' => 'File Berkas Perbaikan 6 terlalu besar, Kompress terlebih dahulu !!',
-          'mime_in' => 'Format Berkas Perbaikan 6 Harus PDF !!',
-          'ext_in' => 'Format Berkas Perbaikan 6 Harus PDF !!'
-        ]
-      ]
+    ]);
 
-
-    ])) {
-      return redirect()->to(base_url() . '/PelayananSilancar/pendaftaranPerbaikanData/')->withInput();
+    if (!$validate) {
+      return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
 
     // Berkas Perbaikan 1
-    $berkasPerbaikan1 = $this->request->getFile('berkasperbaikan1');
-    $namaBerkasPerbaikan1 = $berkasPerbaikan1->getName();
-    $berkasPerbaikan1->move('pelayanan/perbaikan_data', $namaBerkasPerbaikan1);
+    // $berkasPerbaikan = $this->request->getFiles('berkasperbaikan');
+    // $namaBerkasPerbaikan1 = $berkasPerbaikan->getName();
+    // $berkasPerbaikan->move('pelayanan/perbaikan_data', $namaBerkasPerbaikan1);    
 
-    // Berkas Perbaikan 2
-    $berkasPerbaikan2 = $this->request->getFile('berkasperbaikan2');
-    $namaBerkasPerbaikan2 = $berkasPerbaikan2->getname();
-    $berkasPerbaikan2->move('pelayanan/perbaikan_data', $namaBerkasPerbaikan2);
+    // if ($this->request->getFileMultiple('berkasperbaikan')) {
+    //   $berkasperbaikan = $this->request->getFileMultiple('berkasperbaikan');
 
-    // Berkas Perbaikan 3
-    $berkasPerbaikan3 = $this->request->getFile('berkasperbaikan3');
-    $namaBerkasPerbaikan3 = $berkasPerbaikan3->getname();
-    $berkasPerbaikan3->move('pelayanan/perbaikan_data', $namaBerkasPerbaikan3);
+    //   foreach ($berkasperbaikan as $berkas) {
+    //     if ($berkas->isValid() && !$berkas->hasMoved()) {
+    //       $namaBerkas = $berkas->getName();
+    //       $berkas->move(WRITEPATH . 'pelayanan/perbaikan_data', $namaBerkas);
+    //       $data = [
+    //         'berkasperbaikan' => $berkas->getName()
+    //       ];
+    //     }
+    //   }
+    // }
 
-    // Berkas Perbaikan 4
-    $berkasPerbaikan4 = $this->request->getFile('berkasperbaikan4');
-    $namaBerkasPerbaikan4 = $berkasPerbaikan4->getName();
-    $berkasPerbaikan4->move('pelayanan/perbaikan_data', $namaBerkasPerbaikan4);
+    // $berkasperbaikan = $this->request->getFiles();
 
-    // Berkas Perbaikan 5
-    $berkasPerbaikan5 = $this->request->getFile('berkasperbaikan5');
-    $namaBerkasPerbaikan5 = $berkasPerbaikan5->getName();
-    $berkasPerbaikan5->move('pelayanan/perbaikan_data', $namaBerkasPerbaikan5);
+    // foreach ($berkasperbaikan['berkasperbaikan'] as $berkas) {
+    //   if ($berkas->isValid() && !$berkas->hasMoved()) {
+    //     $namaBerkas = $berkas->getName();
+    //     $berkas->move("pelayanan/perbaikan_data", $namaBerkas);
 
-    // Berkas Perbaikan 6
-    $berkasPerbaikan6 = $this->request->getFile('berkasperbaikan6');
-    $namaBerkasPerbaikan6 = $berkasPerbaikan6->getName();
-    $berkasPerbaikan6->move('pelayanan/perbaikan_data', $namaBerkasPerbaikan6);
+    //     $dataBerkas = [
+    //       'namapemohon' => $this->request->getVar('namapemohon'),
+    //       'emailpemohon' => $this->request->getVar('emailpemohon'),
+    //       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
+    //       'alamatpemohon' => $this->request->getVar('alamatpemohon'),
+    //       'judulperbaikan' => $this->request->getVar('judulperbaikan'),
+    //       'berkasperbaikan' => $namaBerkas,
+    //       'penjelasanperbaikan' => $this->request->getVar('penjelasanperbaikan')
+    //     ];
 
-    $this->perbaikandataModel->save([
-      'namapemohon' => $this->request->getVar('namapemohon'),
-      'emailpemohon' => $this->request->getVar('emailpemohon'),
-      'nomorpemohon' => $this->request->getVar('nomorpemohon'),
-      'alamatpemohon' => $this->request->getVar('alamatpemohon'),
-      'judulperbaikan' => $this->request->getVar('judulperbaikan'),
-      'penjelasanperbaikan' => $this->request->getVar('penjelasanperbaikan'),
-      'berkasperbaikan1' => $namaBerkasPerbaikan1,
-      'berkasperbaikan2' => $namaBerkasPerbaikan2,
-      'berkasperbaikan3' => $namaBerkasPerbaikan3,
-      'berkasperbaikan4' => $namaBerkasPerbaikan4,
-      'berkasperbaikan5' => $namaBerkasPerbaikan5,
-      'berkasperbaikan6' => $namaBerkasPerbaikan6
-    ]);
+    //     $this->perbaikandataModel->save($dataBerkas);
+    //   }
+    // }
+
+    // $berkasperbaikan = $this->request->getFiles('berkasperbaikan');
+
+    // foreach ($berkasperbaikan as $berkas) {
+    //   if ($berkas->isValid() && !$berkas->hasMoved()) {
+    //     $newName = $berkas->getRandomName();
+    //     $berkas->move(WRITEPATH . 'uploads', $newName);
+
+    //     $this->perbaikandataModel->save([
+    //       'namapemohon' => $this->request->getVar('namapemohon'),
+    //       'emailpemohon' => $this->request->getVar('emailpemohon'),
+    //       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
+    //       'alamatpemohon' => $this->request->getVar('alamatpemohon'),
+    //       'judulperbaikan' => $this->request->getVar('judulperbaikan'),
+    //       'berkasperbaikan' => json_encode([$newName, $newName2]), // replace $newName2 with the name of the second file
+    //       'penjelasanperbaikan' => $this->request->getVar('penjelasanperbaikan')
+    //     ]);
+    //   }
+    // }
+
     session()->setFlashdata('pesan', 'Selamat pendaftaran permohonan Perbaikan Data anda telah berhasil !!');
     return redirect()->to('/PelayananSilancar/pendaftaranPerbaikanData/');
   }
@@ -1514,14 +1498,14 @@ class PelayananSilancar extends BaseController
   // Validasi Form Pengaduan Update
   public function savePengaduanUpdate()
   {
-    if (!$this->validate([
+    $validate = $this->validate([
 
       // Form Nama Pemohon
       'namapemohon' => [
         'rules' => 'required[pengaduan_update.namapemohon]',
         'errors' => [
           'required' => 'Nama Pelapor Harus Diisi !!'
-        ]
+        ],
       ],
       // Form Email Pemohon
       'emailpemohon' => [
@@ -1529,28 +1513,28 @@ class PelayananSilancar extends BaseController
         'errors' => [
           'required' => 'Email Pelapor Harus Diisi !!',
           'valid_email' => 'Mohon cek kembali email anda, gunakan @ agar valid !!'
-        ]
+        ],
       ],
       // Form Nomor Pemohon
       'nomorpemohon' => [
         'rules' => 'required[pengaduan_update.nomorpemohon]',
         'errors' => [
           'required' => 'Nomor Pelapor Harus Diisi !!'
-        ]
+        ],
       ],
       // Form Alamat Pemohon
       'alamatpemohon' => [
         'rules' => 'required[pengaduan_update.alamatpemohon]',
         'errors' => [
           'required' => 'Alamat Pelapor Harus Diisi !!'
-        ]
+        ],
       ],
       // Form Pengaduan Update
       'pengaduanupdate' => [
         'rules' => 'required[pengaduan_update.pengaduanupdate]',
         'errors' => [
           'required' => 'Pengaduan Harus Diisi !!'
-        ]
+        ],
       ],
       // Berkas Kartu Tanda Penduduk
       'kartutandapenduduk' => [
@@ -1558,7 +1542,7 @@ class PelayananSilancar extends BaseController
         'errors' => [
           'uploaded' => 'Surat Kematian Harus di isi !!',
           'mime_in' => 'Yang anda pilih bukan gambar'
-        ]
+        ],
       ],
       // Berkas KK
       'kartukeluarga' => [
@@ -1566,11 +1550,12 @@ class PelayananSilancar extends BaseController
         'errors' => [
           'uploaded' => 'Surat Kematian Harus di isi !!',
           'mime_in' => 'Yang anda pilih bukan gambar'
-        ]
-      ]
+        ],
+      ],
+    ]);
 
-    ])) {
-      return redirect()->to(base_url() . '/PelayananSilancar/pendaftaranPengaduanUpdate/')->withInput();
+    if (!$validate) {
+      return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
 
     // Berkas KTP

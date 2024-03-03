@@ -56,6 +56,11 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <!-- Keamanan -->
           <?= csrf_field(); ?>
 
+          <?php $validation = \Config\Services::validation(); ?>
+          <?php if (session()->has('validation')) : ?>
+            <?php $validation = session('validation'); ?>
+          <?php endif; ?>
+
           <!-- Form Nama Pemohon -->
           <div class="row">
             <div class="mb-3">
@@ -106,10 +111,10 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <!-- Berkas Form Perpindahan -->
           <div class="row">
             <div class="mb-3">
-              <label for="formperpindahan" class="form-label fw-semibold"> Berkas Form Perpindahan </label>
-              <input type="file" class="form-control <?= ($validation->hasError('formperpindahan')) ? 'is-invalid' : ''; ?>" name="formperpindahan" id="formperpindahan" value="<?= old('formperpindahan'); ?>">
+              <label for="formperpindahan" class="form-label fw-semibold"> Berkas Akta Kelahiran </label>
+              <input type="file" name="formperpindahan" id="formperpindahan" class="form-control <?= (session('errors.formperpindahan')) ? 'is-invalid' : ''; ?>" value="<?= old('formperpindahan'); ?>">
               <div class="invalid-feedback">
-                <?= $validation->getError('formperpindahan'); ?>
+                <?= session('errors.formperpindahan') ?>
               </div>
             </div>
           </div>
@@ -117,10 +122,10 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <!-- Berkas Kartu Keluarga -->
           <div class="row">
             <div class="mb-3">
-              <label for="kartukeluarga" class="form-label fw-semibold"> Berkas Kartu Keluarga </label>
-              <input type="file" class="form-control <?= ($validation->hasError('kartukeluarga')) ? 'is-invalid' : ''; ?>" name="kartukeluarga" id="kartukeluarga" value="<?= old('kartukeluarga'); ?>">
+              <label for="kattukeluarga" class="form-label fw-semibold"> Berkas Akta Kelahiran </label>
+              <input type="file" name="kattukeluarga" id="kattukeluarga" class="form-control <?= (session('errors.kattukeluarga')) ? 'is-invalid' : ''; ?>" value="<?= old('kattukeluarga'); ?>">
               <div class="invalid-feedback">
-                <?= $validation->getError('kartukeluarga'); ?>
+                <?= session('errors.kattukeluarga') ?>
               </div>
             </div>
           </div>
@@ -128,10 +133,10 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <!-- Berkas Buku Nikah -->
           <div class="row">
             <div class="mb-3">
-              <label for="bukunikah" class="form-label fw-semibold"> Berkas Buku Nikah </label>
-              <input type="file" class="form-control <?= ($validation->hasError('bukunikah')) ? 'is-invalid' : ''; ?>" name="bukunikah" id="bukunikah" value="<?= old('bukunikah'); ?>">
+              <label for="bukunikah" class="form-label fw-semibold"> Berkas Akta Kelahiran </label>
+              <input type="file" name="bukunikah" id="bukunikah" class="form-control <?= (session('errors.bukunikah')) ? 'is-invalid' : ''; ?>" value="<?= old('bukunikah'); ?>">
               <div class="invalid-feedback">
-                <?= $validation->getError('bukunikah'); ?>
+                <?= session('errors.bukunikah') ?>
               </div>
             </div>
           </div>
@@ -139,10 +144,10 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <!-- Berkas KTP Suami -->
           <div class="row">
             <div class="mb-3">
-              <label for="ktpsuami" class="form-label fw-semibold"> Berkas KTP Suami </label>
-              <input type="file" class="form-control <?= ($validation->hasError('ktpsuami')) ? 'is-invalid' : ''; ?>" name="ktpsuami" id="ktpsuami" value="<?= old('ktpsuami'); ?>">
+              <label for="ktpsuami" class="form-label fw-semibold"> Berkas Akta Kelahiran </label>
+              <input type="file" name="ktpsuami" id="ktpsuami" class="form-control <?= (session('errors.ktpsuami')) ? 'is-invalid' : ''; ?>" value="<?= old('ktpsuami'); ?>">
               <div class="invalid-feedback">
-                <?= $validation->getError('ktpsuami'); ?>
+                <?= session('errors.ktpsuami') ?>
               </div>
             </div>
           </div>
@@ -150,10 +155,10 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <!-- Berkas KTP Istri -->
           <div class="row">
             <div class="mb-3">
-              <label for="ktpistri" class="form-label fw-semibold"> Berkas KTP Istri </label>
-              <input type="file" class="form-control <?= ($validation->hasError('ktpistri')) ? 'is-invalid' : ''; ?>" name="ktpistri" id="ktpistri" value="<?= old('ktpistri'); ?>">
+              <label for="ktpistri" class="form-label fw-semibold"> Berkas Akta Kelahiran </label>
+              <input type="file" name="ktpistri" id="ktpistri" class="form-control <?= (session('errors.ktpistri')) ? 'is-invalid' : ''; ?>" value="<?= old('ktpistri'); ?>">
               <div class="invalid-feedback">
-                <?= $validation->getError('ktpistri'); ?>
+                <?= session('errors.ktpistri') ?>
               </div>
             </div>
           </div>

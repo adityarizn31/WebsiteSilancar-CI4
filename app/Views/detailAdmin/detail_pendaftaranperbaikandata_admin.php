@@ -179,86 +179,18 @@
           <div class="card card-outline card-primary">
 
             <div class="card-header">
-              <div class="card-title"> Berkas Perbaikan 1 </div>
+              <div class="card-title"> Berkas Perbaikan </div>
 
             </div>
 
             <div class="col-sm-12">
-              <iframe src="<?= base_url('/pelayanan/perbaikan_data/' . $perbaikan_data['berkasperbaikan1']) ?>" frameborder="0" height="500" width="100%"></iframe>
+              <iframe src="<?= base_url('/pelayanan/perbaikan_data/' . $perbaikan_data['berkasperbaikan']) ?>" frameborder="0" height="500" width="100%"></iframe>
             </div>
 
           </div>
         </div>
 
-        <div class="col-sm-12 col-md-12" style="padding: 20px;">
-          <div class="card card-outline card-primary">
-
-            <div class="card-header">
-              <div class="card-title"> Berkas Perbaikan 2 </div>
-            </div>
-
-            <div class="col-sm-12">
-              <iframe src="<?= base_url('/pelayanan/perbaikan_data/' . $perbaikan_data['berkasperbaikan2']) ?>" frameborder="0" height="500" width="100%"></iframe>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="col-sm-12 col-md-12" style="padding: 20px;">
-          <div class="card card-outline card-primary">
-
-            <div class="card-header">
-              <div class="card-title"> Berkas Perbaikan 3 </div>
-            </div>
-
-            <div class="col-sm-12">
-              <iframe src="<?= base_url('/pelayanan/perbaikan_data/' . $perbaikan_data['berkasperbaikan3']) ?>" frameborder="0" height="500" width="100%"></iframe>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="col-sm-12 col-md-12" style="padding: 20px;">
-          <div class="card card-outline card-primary">
-
-            <div class="card-header">
-              <div class="card-title"> Berkas Perbaikan 4 </div>
-            </div>
-
-            <div class="col-sm-12">
-              <iframe src="<?= base_url('/pelayanan/perbaikan_data/' . $perbaikan_data['berkasperbaikan4']) ?>" frameborder="0" height="500" width="100%"></iframe>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="col-sm-12 col-md-12" style="padding: 20px;">
-          <div class="card card-outline card-primary">
-
-            <div class="card-header">
-              <div class="card-title"> Berkas Perbaikan 5 </div>
-            </div>
-
-            <div class="col-sm-12">
-              <iframe src="<?= base_url('/pelayanan/perbaikan_data/' . $perbaikan_data['berkasperbaikan5']) ?>" frameborder="0" height="500" width="100%"></iframe>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="col-sm-12 col-md-12" style="padding: 20px;">
-          <div class="card card-outline card-primary">
-
-            <div class="card-header">
-              <div class="card-title"> Berkas Perbaikan 6 </div>
-            </div>
-
-            <div class="col-sm-12">
-              <iframe src="<?= base_url('/pelayanan/perbaikan_data/' . $perbaikan_data['berkasperbaikan6']) ?>" frameborder="0" height="500" width="100%"></iframe>
-            </div>
-
-          </div>
-        </div>
+        <!--  -->
 
       </div>
     </div>

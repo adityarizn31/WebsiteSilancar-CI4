@@ -56,24 +56,29 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <!-- Keamanan   -->
           <?= csrf_field(); ?>
 
+          <?php $validation = \Config\Services::validation(); ?>
+          <?php if (session()->has('validation')) : ?>
+            <?php $validation = session('validation'); ?>
+          <?php endif; ?>
+
           <!-- Form Nama Pemohon -->
           <div class="row">
             <div class="mb-3">
               <label for="namapemohon" class="form-label fw-semibold"> Nama Pemohon </label>
-              <input type="text" class="form-control <?= ($validation->hasError('namapemohon')) ? 'is-invalid' : ''; ?>" name="namapemohon" id="namapemohon" autofocus value="<?= old('namapemohon'); ?>">
+              <input type="text" name="namapemohon" id="namapemohon" class="form-control <?= (session('errors.namapemohon')) ? 'is-invalid' : null ?>" autofocus value="<?= old('namapemohon'); ?>">
               <div class="invalid-feedback">
-                <?= $validation->getError('namapemohon') ?>
+                <?= session('errors.namapemohon') ?>
               </div>
             </div>
           </div>
 
-          <!-- Form Email Pemohon -->
+          <!-- Form Email Pemohon  -->
           <div class="row">
             <div class="mb-3">
               <label for="emailpemohon" class="form-label fw-semibold"> Email Pemohon </label>
-              <input type="text" class="form-control <?= ($validation->hasError('emailpemohon')) ? 'is-invalid' : ''; ?>" name="emailpemohon" id="emailpemohon" value="<?= old('emailpemohon'); ?>">
+              <input type="text" name="emailpemohon" id="emailpemohon" class="form-control <?= (session('errors.emailpemohon')) ? 'is-invalid' : null ?>" autofocus value="<?= old('emailpemohon'); ?>">
               <div class="invalid-feedback">
-                <?= $validation->getError('emailpemohon'); ?>
+                <?= session('errors.emailpemohon') ?>
               </div>
             </div>
           </div>
@@ -81,10 +86,10 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <!-- Form Nomor Pemohon -->
           <div class="row">
             <div class="mb-3">
-              <label for="nomorpemohon" class="form-label fw-semibold"> Nomor Whatsapp </label>
-              <input type="text" class="form-control <?= ($validation->hasError('nomorpemohon')) ? 'is-invalid' : ''; ?>" name="nomorpemohon" id="nomorpemohon" value="<?= old('nomorpemohon'); ?>">
+              <label for="nomorpemohon" class="form-label fw-semibold"> Nomor Pemohon </label>
+              <input type="text" name="nomorpemohon" id="nomorpemohon" class="form-control <?= (session('errors.nomorpemohon')) ? 'is-invalid' : null ?>" autofocus value="<?= old('nomorpemohon'); ?>">
               <div class="invalid-feedback">
-                <?= $validation->getError('nomorpemohon'); ?>
+                <?= session('errors.nomorpemohon') ?>
               </div>
             </div>
           </div>
@@ -93,10 +98,9 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <div class="row">
             <div class="mb-3">
               <label for="alamatpemohon" class="form-label fw-semibold"> Alamat Pemohon </label>
-              <br>
-              <textarea class=" form-control text-area <?= ($validation->hasError('alamatpemohon')) ? 'is-invalid' : ''; ?>" name="alamatpemohon" id="alamatpemohon" value="<?= old('alamatpemohon'); ?>"></textarea>
+              <textarea type="text" name="alamatpemohon" id="alamatpemohon" class=" form-control text-area <?= (session('errors.alamatpemohon')) ? 'is-invalid' : null ?>" value="<?= old('alamatpemohon'); ?>"></textarea>
               <div class="invalid-feedback">
-                <?= $validation->getError('alamatpemohon'); ?>
+                <?= session('errors.alamatpemohon') ?>
               </div>
             </div>
           </div>
@@ -107,9 +111,9 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <div class="row">
             <div class="mb-3">
               <label for="kartukeluarga" class="form-label fw-semibold"> Berkas Kartu Keluarga </label>
-              <input type="file" class="form-control <?= ($validation->hasError('kartukeluarga')) ? 'is-invalid' : ''; ?>" name="kartukeluarga" id="kartukeluarga" value="<?= old('kartukeluarga'); ?>">
+              <input type="file" name="kartukeluarga" id="kartukeluarga" class="form-control <?= (session('errors.kartukeluarga')) ? 'is-invalid' : ''; ?>" value="<?= old('kartukeluarga'); ?>">
               <div class="invalid-feedback">
-                <?= $validation->getError('kartukeluarga'); ?>
+                <?= session('errors.kartukeluarga') ?>
               </div>
             </div>
           </div>
@@ -117,10 +121,10 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <!-- FormSuratKematian -->
           <div class="row">
             <div class="mb-3">
-              <label for="suratkematian" class="form-label fw-semibold"> Berkas Surat Kematian dari RS </label>
-              <input type="file" class="form-control <?= ($validation->hasError('suratkematian')) ? 'is-invalid' : ''; ?>" name="suratkematian" id="suratkematian" value="<?= old('suratkematian'); ?>">
+              <label for="suratkematian" class="form-label fw-semibold"> Berkas Kartu Keluarga </label>
+              <input type="file" name="suratkematian" id="suratkematian" class="form-control <?= (session('errors.suratkematian')) ? 'is-invalid' : ''; ?>" value="<?= old('suratkematian'); ?>">
               <div class="invalid-feedback">
-                <?= $validation->getError('suratkematian'); ?>
+                <?= session('errors.suratkematian') ?>
               </div>
             </div>
           </div>
