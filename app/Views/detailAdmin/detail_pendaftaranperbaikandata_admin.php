@@ -179,18 +179,101 @@
           <div class="card card-outline card-primary">
 
             <div class="card-header">
-              <div class="card-title"> Berkas Perbaikan </div>
-
+              <div class="card-title fw-semibold"> Berkas Perbaikan 1 </div>
             </div>
 
-            <div class="col-sm-12">
-              <iframe src="<?= base_url('/pelayanan/perbaikan_data/' . $perbaikan_data['berkasperbaikan']) ?>" frameborder="0" height="500" width="100%"></iframe>
+            <div class="card-body">
+              <?php if (!empty($perbaikan_data['berkasperbaikan_satu'])) : ?>
+                <iframe src="<?= base_url('/pelayanan/perbaikan_data/' . $perbaikan_data['berkasperbaikan_satu']) ?>" frameborder="0" height="500" width="100%"></iframe>
+              <?php else : ?>
+                <div class="alert alert-danger mt-0 mb-0" role="alert">
+                  Berkas Perbaikan 1 tidak diinputkan !!
+                </div>
+              <?php endif; ?>
             </div>
 
           </div>
         </div>
 
-        <!--  -->
+        <div class="col-sm-12 col-md-12" style="padding: 20px;">
+          <div class="card card-outline card-primary">
+
+            <div class="card-header">
+              <div class="card-title fw-semibold"> Berkas Perbaikan 2 </div>
+            </div>
+
+            <div class="card-body">
+              <?php if (!empty($perbaikan_data['berkasperbaikan_dua'])) : ?>
+                <iframe src="<?= base_url('/pelayanan/perbaikan_data/' . $perbaikan_data['berkasperbaikan_dua']) ?>" frameborder="0" height="500" width="100%"></iframe>
+              <?php else : ?>
+                <div class="alert alert-danger mt-0 mb-0" role="alert">
+                  Berkas Perbaikan 2 tidak diinputkan !!
+                </div>
+              <?php endif; ?>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-md-12" style="padding: 20px;">
+          <div class="card card-outline card-primary">
+
+            <div class="card-header">
+              <div class="card-title fw-semibold"> Berkas Perbaikan 3 </div>
+            </div>
+
+            <div class="card-body">
+              <?php if (!empty($perbaikan_data['berkasperbaikan_tiga'])) : ?>
+                <iframe src="<?= base_url('/pelayanan/perbaikan_data/' . $perbaikan_data['berkasperbaikan_tiga']) ?>" frameborder="0" height="500" width="100%"></iframe>
+              <?php else : ?>
+                <div class="alert alert-danger mt-0 mb-0" role="alert">
+                  Berkas Perbaikan 3 tidak diinputkan !!
+                </div>
+              <?php endif; ?>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-md-12" style="padding: 20px;">
+          <div class="card card-outline card-primary">
+
+            <div class="card-header">
+              <div class="card-title fw-semibold"> Berkas Perbaikan 4 </div>
+            </div>
+
+            <div class="card-body">
+              <?php if (!empty($perbaikan_data['berkasperbaikan_empat'])) : ?>
+                <iframe src="<?= base_url('/pelayanan/perbaikan_data/' . $perbaikan_data['berkasperbaikan_empat']) ?>" frameborder="0" height="500" width="100%"></iframe>
+              <?php else : ?>
+                <div class="alert alert-danger mt-0 mb-0" role="alert">
+                  Berkas Perbaikan 4 tidak diinputkan !!
+                </div>
+              <?php endif; ?>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-md-12" style="padding: 20px;">
+          <div class="card card-outline card-primary">
+
+            <div class="card-header">
+              <div class="card-title fw-semibold"> Berkas Perbaikan 5 </div>
+            </div>
+
+            <div class="card-body">
+              <?php if (!empty($perbaikan_data['berkasperbaikan_lima'])) : ?>
+                <iframe src="<?= base_url('/pelayanan/perbaikan_data/' . $perbaikan_data['berkasperbaikan_lima']) ?>" frameborder="0" height="500" width="100%"></iframe>
+              <?php else : ?>
+                <div class="alert alert-danger mt-0 mb-0" role="alert">
+                  Berkas Perbaikan 5 tidak diinputkan !!
+                </div>
+              <?php endif; ?>
+            </div>
+
+          </div>
+        </div>
 
       </div>
     </div>

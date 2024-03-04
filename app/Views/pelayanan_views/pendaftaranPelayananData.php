@@ -5,7 +5,7 @@ $hariSekarang = $waktuSekarang->format('N'); // Mendapatkan nomor hari dalam sem
 $jamSekarang = $waktuSekarang->format('G');
 
 // Check if the access time is within the allowed range (8 AM to 11 AM) on Monday to Friday
-if ($hariSekarang >= 1 && $hariSekarang <= 7 && $jamSekarang >= 8 && $jamSekarang < 22) {
+if ($hariSekarang >= 1 && $hariSekarang <= 7 && $jamSekarang >= 7 && $jamSekarang < 22) {
   // Allow access to the form
 ?>
 
@@ -110,11 +110,12 @@ if ($hariSekarang >= 1 && $hariSekarang <= 7 && $jamSekarang >= 8 && $jamSekaran
           <!-- Form Berkas Pelayanan -->
           <div class="row">
             <div class="mb-3">
-              <label for="berkaspelayanan" class="form-label fw-semibold"> Berkas Pelayanan </label>
-              <input type="file" name="berkaspelayanan" id="berkaspelayanan" multiple="true" class=" form-control <?= (session('errors.berkaspelayanan')) ? 'is-invalid' : ''; ?>" value="<?= old('berkaspelayanan'); ?>">
+              <label for="berkaspelayanan" class="form-label fw-semibold"> Berkas Pelayanan Data </label>
+              <input type="file" name="berkaspelayanan[]" id="berkaspelayanan" multiple class="form-control <?= (session('errors.berkaspelayanan')) ? 'is-invalid' : ''; ?>" value="<?= old('berkaspelayanan'); ?>">
               <div class="invalid-feedback">
-                <?= session('errors.berkaspelayanan') ?>
+                <?= session('errors.berkaspelayanan'); ?>
               </div>
+              <?= session()->getFlashdata('error'); ?>
             </div>
           </div>
 

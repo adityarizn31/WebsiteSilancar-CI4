@@ -1108,7 +1108,7 @@ class PelayananSilancar extends BaseController
   // Validasi Pendaftaran Pelayanan
   public function savePelayananData()
   {
-    $validate = $this->validate([
+    $rule = [
 
       // Form Nama Pemohon
       'namapemohon' => [
@@ -1139,167 +1139,53 @@ class PelayananSilancar extends BaseController
           'required' => 'Alamat Pemohon Harus Diisi !!'
         ],
       ],
-      // Berkas Pelayanan 1
-      'berkaspelayanan1' => [
-        'rules' => 'uploaded[berkaspelayanan1]|max_size[berkaspelayanan1,2048]|mime_in[berkaspelayanan1,application/pdf]|ext_in[berkaspelayanan1,pdf]',
+      // Berkas Pelayanan 
+      'berkaspelayanan' => [
+        'rules' => 'uploaded[berkaspelayanan.0]|max_size[berkaspelayanan,2048]|mime_in[berkaspelayanan,application/pdf]|ext_in[berkaspelayanan,pdf]',
         'errors' => [
-          'uploaded' => 'Berkas Pelayanan 1 Harus Diisi !!',
-          'max_size' => 'File Berkas Pelayanan 1 terlalu besar, Kompress terlebih dahulu !!',
-          'mime_in' => 'Format Berkas Pelayanan 1 Harus PDF !!',
-          'ext_in' => 'Format Berkas Pelayanan 1 Harus PDF !!'
+          'uploaded' => 'Berkas Pelayanan Harus Diisi & Minimal 1 File !!',
+          'max_size' => 'File Berkas Pelayanan terlalu besar, Kompress terlebih dahulu !!',
+          'mime_in' => 'Format Berkas Pelayanan Harus PDF !!',
+          'ext_in' => 'Format Berkas Pelayanan Harus PDF !!'
         ],
       ],
-      // Berkas Pelayanan 2
-      'berkaspelayanan2' => [
-        'rules' => 'uploaded[berkaspelayanan2]|max_size[berkaspelayanan2,2048]|mime_in[berkaspelayanan2,application/pdf]|ext_in[berkaspelayanan2,pdf]',
-        'errors' => [
-          'uploaded' => 'Berkas Pelayanan 2 Harus Diisi !!',
-          'max_size' => 'File Berkas Pelayanan 2 terlalu besar, Kompress terlebih dahulu !!',
-          'mime_in' => 'Format Berkas Pelayanan 2 Harus PDF !!',
-          'ext_in' => 'Format Berkas Pelayanan 2 Harus PDF !!'
-        ],
-      ],
-      // Berkas Pelayanan 3
-      'berkaspelayanan3' => [
-        'rules' => 'uploaded[berkaspelayanan3]|max_size[berkaspelayanan3,2048]|mime_in[berkaspelayanan3,application/pdf]|ext_in[berkaspelayanan3,pdf]',
-        'errors' => [
-          'uploaded' => 'Berkas Pelayanan 3 Harus Diisi !!',
-          'max_size' => 'File Berkas Pelayanan 3 terlalu besar, Kompress terlebih dahulu !!',
-          'mime_in' => 'Format Berkas Pelayanan 3 Harus PDF !!',
-          'ext_in' => 'Format Berkas Pelayanan 3 Harus PDF !!'
-        ],
-      ],
-      // Berkas Pelayanan 4
-      'berkaspelayanan4' => [
-        'rules' => 'uploaded[berkaspelayanan4]|max_size[berkaspelayanan4,2048]|mime_in[berkaspelayanan4,application/pdf]|ext_in[berkaspelayanan4,pdf]',
-        'errors' => [
-          'uploaded' => 'Berkas Pelayanan 4 Harus Diisi !!',
-          'max_size' => 'File Berkas Pelayanan 4 terlalu besar, Kompress terlebih dahulu !!',
-          'mime_in' => 'Format Berkas Pelayanan 4 Harus PDF !!',
-          'ext_in' => 'Format Berkas Pelayanan 4 Harus PDF !!'
-        ],
-      ],
-      // Berkas Pelayanan 5
-      'berkaspelayanan5' => [
-        'rules' => 'max_size[berkaspelayanan5,2048]|mime_in[berkaspelayanan5,application/pdf]|ext_in[berkaspelayanan5,pdf]',
-        'errors' => [
-          'max_size' => 'File Berkas Pelayanan 5 terlalu besar, Kompress terlebih dahulu !!',
-          'mime_in' => 'Format Berkas Pelayanan 5 Harus PDF !!',
-          'ext_in' => 'Format Berkas Pelayanan 5 Harus PDF !!'
-        ],
-      ],
-      // Berkas Pelayanan 6
-      'berkaspelayanan6' => [
-        'rules' => 'uploaded[berkaspelayanan6]|max_size[berkaspelayanan6,2048]|mime_in[berkaspelayanan6,application/pdf]|ext_in[berkaspelayanan6,pdf]',
-        'errors' => [
-          'uploaded' => 'Berkas Pelayanan 6 Harus Diisi !!',
-          'max_size' => 'File Berkas Pelayanan 6 terlalu besar, Kompress terlebih dahulu !!',
-          'mime_in' => 'Format Berkas Pelayanan 6 Harus PDF !!',
-          'ext_in' => 'Format Berkas Pelayanan 6 Harus PDF !!'
-        ],
-      ],
-      // Berkas Pelayanan 7
-      'berkaspelayanan7' => [
-        'rules' => 'uploaded[berkaspelayanan7]|max_size[berkaspelayanan7,2048]|mime_in[berkaspelayanan7,application/pdf]|ext_in[berkaspelayanan7,pdf]',
-        'errors' => [
-          'uploaded' => 'Berkas Pelayanan 7 Harus Diisi !!',
-          'max_size' => 'File Berkas Pelayanan 7 terlalu besar, Kompress terlebih dahulu !!',
-          'mime_in' => 'Format Berkas Pelayanan 7 Harus PDF !!',
-          'ext_in' => 'Format Berkas Pelayanan 7 Harus PDF !!'
-        ],
-      ],
-      // Berkas Pelayanan 8
-      'berkaspelayanan8' => [
-        'rules' => 'uploaded[berkaspelayanan8]|max_size[berkaspelayanan8,2048]|mime_in[berkaspelayanan8,application/pdf]|ext_in[berkaspelayanan8,pdf]',
-        'errors' => [
-          'uploaded' => 'Berkas Pelayanan 8 Harus Diisi !!',
-          'max_size' => 'File Berkas Pelayanan 8 terlalu besar, Kompress terlebih dahulu !!',
-          'mime_in' => 'Format Berkas Pelayanan 8 Harus PDF !!',
-          'ext_in' => 'Format Berkas Pelayanan 8 Harus PDF !!'
-        ],
-      ],
-      // Berkas Pelayanan 9
-      'berkaspelayanan9' => [
-        'rules' => 'uploaded[berkaspelayanan9]|max_size[berkaspelayanan9,2048]|mime_in[berkaspelayanan9,application/pdf]|ext_in[berkaspelayanan9,pdf]',
-        'errors' => [
-          'uploaded' => 'Berkas Pelayanan 9 Harus Diisi !!',
-          'max_size' => 'File Berkas Pelayanan 9 terlalu besar, Kompress terlebih dahulu !!',
-          'mime_in' => 'Format Berkas Pelayanan 9 Harus PDF !!',
-          'ext_in' => 'Format Berkas Pelayanan 9 Harus PDF !!'
-        ],
-      ],
-      // Berkas Pelayanan 10
-      'berkaspelayanan10' => [
-        'rules' => 'uploaded[berkaspelayanan10]|max_size[berkaspelayanan10,2048]|mime_in[berkaspelayanan10,application/pdf]|ext_in[berkaspelayanan10,pdf]',
-        'errors' => [
-          'uploaded' => 'Berkas Pelayanan 10 Harus Diisi !!',
-          'max_size' => 'File Berkas Pelayanan 10 terlalu besar, Kompress terlebih dahulu !!',
-          'mime_in' => 'Format Berkas Pelayanan 10 Harus PDF !!',
-          'ext_in' => 'Format Berkas Pelayanan 10 Harus PDF !!'
-        ],
-      ],
-    ]);
+    ];
 
-    if (!$validate) {
+    if (!$this->validate($rule)) {
       return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
 
-    // Berkas Pelayanan 1
-    $berkasPelayanan1 = $this->request->getFile('berkaspelayanan1');
-    $namaBerkasPelayanan1 = $berkasPelayanan1->getName();
-    $berkasPelayanan1->move('pelayanan/pelayanandata', $namaBerkasPelayanan1);
+    $berkaspelayanan = $this->request->getFileMultiple('berkaspelayanan');
+    $jmlberkas = count($berkaspelayanan);
 
-    // Berkas Pelayanan 2
-    $berkasPelayanan2 = $this->request->getFile('berkaspelayanan2');
-    $namaBerkasPelayanan2 = $berkasPelayanan2->getName();
-    $berkasPelayanan2->move('pelayanan/pelayanandata', $namaBerkasPelayanan2);
+    if ($jmlberkas > 10) {
+      session()->setFlashdata('error', '<span class="text-danger">Anda hanya boleh mengupload 10 file maksimal</span>');
+      return redirect()->to('/PelayananSilancar/pendaftaranPelayananData/');
+    }
 
-    // Berkas Pelayanan 3
-    $berkasPelayanan3 = $this->request->getFile('berkaspelayanan3');
-    $namaBerkasPelayanan3 = $berkasPelayanan3->getName();
-    $berkasPelayanan3->move('pelayanan/pelayanandata', $namaBerkasPelayanan3);
+    foreach ($berkaspelayanan as $i => $berkas) {
+      if ($berkas->isValid() && !$berkas->hasMoved()) {
+        $files[$i] = $berkas->getName();
+        $berkas->move('pelayanan/pelayanan_data', $files[$i]);
+      }
+    }
 
-    // Berkas Pelayanan 4
-    $berkasPelayanan4 = $this->request->getFile('berkaspelayanan4');
-    $namaBerkasPelayanan4 = $berkasPelayanan4->getName();
-    $berkasPelayanan4->move('pelayanan/pelayanandata', $namaBerkasPelayanan4);
-
-    // Berkas Pelayanan 5
-    $berkasPelayanan5 = $this->request->getFile('berkaspelayanan5');
-    $namaBerkasPelayanan5 = $berkasPelayanan5->getName();
-    $berkasPelayanan5->move('pelayanan/pelayanandata', $namaBerkasPelayanan5);
-
-    // Berkas Pelayanan 6
-    $berkasPelayanan6 = $this->request->getFile('berkaspelayanan6');
-    $namaBerkasPelayanan6 = $berkasPelayanan6->getName();
-    $berkasPelayanan6->move('pelayanan/pelayanandata', $namaBerkasPelayanan6);
-
-    // Berkas Pelayanan 7
-    $berkasPelayanan7 = $this->request->getFile('berkaspelayanan7');
-    $namaBerkasPelayanan7 = $berkasPelayanan7->getName();
-    $berkasPelayanan7->move('pelayanan/pelayanandata', $namaBerkasPelayanan7);
-
-    // Berkas Pelayanan 8
-    $berkasPelayanan8 = $this->request->getFile('berkaspelayanan8');
-    $namaBerkasPelayanan8 = $berkasPelayanan8->getName();
-    $berkasPelayanan8->move('pelayanan/pelayanandata', $namaBerkasPelayanan8);
-
-    // Berkas Pelayanan 9
-    $berkasPelayanan9 = $this->request->getFile('berkaspelayanan9');
-    $namaBerkasPelayanan9 = $berkasPelayanan9->getName();
-    $berkasPelayanan9->move('pelayanan/pelayanandata', $namaBerkasPelayanan9);
-
-    // Berkas Pelayanan 10
-    $berkasPelayanan10 = $this->request->getFile('berkaspelayanan10');
-    $namaBerkasPelayanan10 = $berkasPelayanan10->getName();
-    $berkasPelayanan10->move('pelayanan/pelayanandata', $namaBerkasPelayanan10);
+    $berkasPelayanan2 = (array_key_exists(1, $files) ? $files[1] : null);
+    $berkasPelayanan3 = (array_key_exists(2, $files) ? $files[2] : null);
+    $berkasPelayanan4 = (array_key_exists(3, $files) ? $files[3] : null);
+    $berkasPelayanan5 = (array_key_exists(4, $files) ? $files[4] : null);
+    $berkasPelayanan6 = (array_key_exists(5, $files) ? $files[5] : null);
+    $berkasPelayanan7 = (array_key_exists(6, $files) ? $files[6] : null);
+    $berkasPelayanan8 = (array_key_exists(7, $files) ? $files[7] : null);
+    $berkasPelayanan9 = (array_key_exists(8, $files) ? $files[8] : null);
+    $berkasPelayanan10 = (array_key_exists(9, $files) ? $files[9] : null);
 
     $this->pelayanandataModel->save([
       'namapemohon' => $this->request->getVar('namapemohon'),
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
       'alamatpemohon' => $this->request->getVar('alamatpemohon'),
-      'berkaspelayanan1' => $berkasPelayanan1,
+      'berkaspelayanan1' => $files[0],
       'berkaspelayanan2' => $berkasPelayanan2,
       'berkaspelayanan3' => $berkasPelayanan3,
       'berkaspelayanan4' => $berkasPelayanan4,
@@ -1308,8 +1194,9 @@ class PelayananSilancar extends BaseController
       'berkaspelayanan7' => $berkasPelayanan7,
       'berkaspelayanan8' => $berkasPelayanan8,
       'berkaspelayanan9' => $berkasPelayanan9,
-      'berkaspelayanan10' => $berkasPelayanan10
+      'berkaspelayanan10' => $berkasPelayanan10,
     ]);
+
     session()->setFlashdata('pesan', 'Selamat pendaftaran permohnan Pelayanan Pemanfaatan Data Anda telah berhasil !!');
     return redirect()->to('/PelayananSilancar/pendaftaranPelayananData/');
   }
@@ -1393,9 +1280,9 @@ class PelayananSilancar extends BaseController
         'rules' => 'uploaded[berkasperbaikan.0]|max_size[berkasperbaikan,2048]|mime_in[berkasperbaikan,application/pdf]|ext_in[berkasperbaikan,pdf]',
         'errors' => [
           'uploaded' => 'Minimal Anda harus mengupload 1 File',
-          'max_size' => 'File Berkas Perbaikan 1 terlalu besar, Kompress terlebih dahulu !!',
-          'mime_in' => 'Format Berkas Perbaikan 1 Harus PDF !!',
-          'ext_in' => 'Format Berkas Perbaikan 1 Harus PDF !!'
+          'max_size' => 'File Berkas Perbaikan terlalu besar, Kompress terlebih dahulu !!',
+          'mime_in' => 'Format Berkas Perbaikan Harus PDF !!',
+          'ext_in' => 'Format Berkas Perbaikan Harus PDF !!'
         ],
       ],
     ];
@@ -1412,7 +1299,7 @@ class PelayananSilancar extends BaseController
       return redirect()->to('/PelayananSilancar/pendaftaranPerbaikanData/');
     }
 
-    foreach ($berkasperbaikan as $i => $berkas) {
+    foreach ($berkasperbaikan as $i =>  $berkas) {
       if ($berkas->isValid() && !$berkas->hasMoved()) {
         $files[$i] = $berkas->getRandomName();
         $berkas->move('pelayanan/perbaikan_data', $files[$i]);

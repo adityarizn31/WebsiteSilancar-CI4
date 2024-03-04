@@ -172,11 +172,16 @@ v<?= $this->extend('layout/templateadmin'); ?>
 
             <div class="card-header">
               <div class="card-title fw-semibold"> Berkas Pelayanan 1 </div>
-
             </div>
 
-            <div class="col-sm-12">
-              <iframe src="<?= base_url('/pelayanan/pelayanandata/' . $pendaftaran_pelayanandata['berkaspelayanan1']) ?>" frameborder="0" height="500" width="100%"></iframe>
+            <div class="card-body">
+              <?php if (!empty($pendaftaran_pelayanandata['berkaspelayanan1'])) : ?>
+                <iframe src="<?= base_url('/pelayanan/pelayanan_data/' . $pendaftaran_pelayanandata['berkaspelayanan1']) ?>" frameborder="0" height="500" width="100%"></iframe>
+              <?php else : ?>
+                <div class="alert alert-danger mt-0 mb-0" role="alert">
+                  Berkas Pelayanan 1 tidak diinputkan !!
+                </div>
+              <?php endif; ?>
             </div>
 
           </div>
@@ -187,11 +192,16 @@ v<?= $this->extend('layout/templateadmin'); ?>
 
             <div class="card-header">
               <div class="card-title fw-semibold"> Berkas Pelayanan 2 </div>
-
             </div>
 
-            <div class="col-sm-12">
-              <iframe src="<?= base_url('/pelayanan/pelayanan_data/' . $pendaftaran_pelayanandata['berkaspelayanan2']) ?>" frameborder="0" height="500" width="100%"></iframe>
+            <div class="card-body">
+              <?php if (!empty($pendaftaran_pelayanandata['berkaspelayanan2'])) : ?>
+                <iframe src="<?= base_url('/pelayanan/pelayanan_data/' . $pendaftaran_pelayanandata['berkaspelayanan2']) ?>" frameborder="0" height="500" width="100%"></iframe>
+              <?php else : ?>
+                <div class="alert alert-danger mt-0 mb-0" role="alert">
+                  Berkas Pelayanan 2 tidak diinputkan !!
+                </div>
+              <?php endif; ?>
             </div>
 
           </div>
@@ -202,11 +212,16 @@ v<?= $this->extend('layout/templateadmin'); ?>
 
             <div class="card-header">
               <div class="card-title fw-semibold"> Berkas Pelayanan 3 </div>
-
             </div>
 
-            <div class="col-sm-12">
-              <iframe src="<?= base_url('/pelayanan/pelayanan_data/' . $pendaftaran_pelayanandata['berkaspelayanan3']) ?>" frameborder="0" height="500" width="100%"></iframe>
+            <div class="card-body">
+              <?php if (!empty($pendaftaran_pelayanandata['berkaspelayanan3'])) : ?>
+                <iframe src="<?= base_url('/pelayanan/pelayanan_data/' . $pendaftaran_pelayanandata['berkaspelayanan3']) ?>" frameborder="0" height="500" width="100%"></iframe>
+              <?php else : ?>
+                <div class="alert alert-danger mt-0 mb-0" role="alert">
+                  Berkas Pelayanan 3 tidak diinputkan !!
+                </div>
+              <?php endif; ?>
             </div>
 
           </div>
@@ -217,11 +232,16 @@ v<?= $this->extend('layout/templateadmin'); ?>
 
             <div class="card-header">
               <div class="card-title fw-semibold"> Berkas Pelayanan 4 </div>
-
             </div>
 
-            <div class="col-sm-12">
-              <iframe src="<?= base_url('/pelayanan/pelayanan_data/' . $pendaftaran_pelayanandata['berkaspelayanan4']) ?>" frameborder="0" height="500" width="100%"></iframe>
+            <div class="card-body">
+              <?php if (!empty($pendaftaran_pelayanandata['berkaspelayanan4'])) : ?>
+                <iframe src="<?= base_url('/pelayanan/pelayanan_data/' . $pendaftaran_pelayanandata['berkaspelayanan4']) ?>" frameborder="0" height="500" width="100%"></iframe>
+              <?php else : ?>
+                <div class="alert alert-danger mt-0 mb-0" role="alert">
+                  Berkas Pelayanan 4 tidak diinputkan !!
+                </div>
+              <?php endif; ?>
             </div>
 
           </div>
@@ -232,11 +252,16 @@ v<?= $this->extend('layout/templateadmin'); ?>
 
             <div class="card-header">
               <div class="card-title fw-semibold"> Berkas Pelayanan 5 </div>
-
             </div>
 
-            <div class="col-sm-12">
-              <iframe src="<?= base_url('/pelayanan/pelayanan_data/' . $pendaftaran_pelayanandata['berkaspelayanan5']) ?>" frameborder="0" height="500" width="100%"></iframe>
+            <div class="card-body">
+              <?php if (!empty($pendaftaran_pelayanandata['berkaspelayanan5'])) : ?>
+                <iframe src="<?= base_url('/pelayanan/pelayanan_data/' . $pendaftaran_pelayanandata['berkaspelayanan5']) ?>" frameborder="0" height="500" width="100%"></iframe>
+              <?php else : ?>
+                <div class="alert alert-danger mt-0 mb-0" role="alert">
+                  Berkas Pelayanan 5 tidak diinputkan !!
+                </div>
+              <?php endif; ?>
             </div>
 
           </div>
@@ -247,11 +272,16 @@ v<?= $this->extend('layout/templateadmin'); ?>
 
             <div class="card-header">
               <div class="card-title fw-semibold"> Berkas Pelayanan 6 </div>
-
             </div>
 
-            <div class="col-sm-12">
-              <iframe src="<?= base_url('/pelayanan/pelayanan_data/' . $pendaftaran_pelayanandata['berkaspelayanan6']) ?>" frameborder="0" height="500" width="100%"></iframe>
+            <div class="card-body">
+              <?php if (!empty($pendaftaran_pelayanandata['berkaspelayanan6'])) : ?>
+                <iframe src="<?= base_url('/pelayanan/pelayanan_data/' . $pendaftaran_pelayanandata['berkaspelayanan6']) ?>" frameborder="0" height="500" width="100%"></iframe>
+              <?php else : ?>
+                <div class="alert alert-danger mt-0 mb-0" role="alert">
+                  Berkas Pelayanan 6 tidak diinputkan !!
+                </div>
+              <?php endif; ?>
             </div>
 
           </div>
@@ -262,11 +292,16 @@ v<?= $this->extend('layout/templateadmin'); ?>
 
             <div class="card-header">
               <div class="card-title fw-semibold"> Berkas Pelayanan 7 </div>
-
             </div>
 
-            <div class="col-sm-12">
-              <iframe src="<?= base_url('/pelayanan/pelayanan_data/' . $pendaftaran_pelayanandata['berkaspelayanan7']) ?>" frameborder="0" height="500" width="100%"></iframe>
+            <div class="card-body">
+              <?php if (!empty($pendaftaran_pelayanandata['berkaspelayanan7'])) : ?>
+                <iframe src="<?= base_url('/pelayanan/pelayanan_data/' . $pendaftaran_pelayanandata['berkaspelayanan7']) ?>" frameborder="0" height="500" width="100%"></iframe>
+              <?php else : ?>
+                <div class="alert alert-danger mt-0 mb-0" role="alert">
+                  Berkas Pelayanan 7 tidak diinputkan !!
+                </div>
+              <?php endif; ?>
             </div>
 
           </div>
@@ -277,11 +312,16 @@ v<?= $this->extend('layout/templateadmin'); ?>
 
             <div class="card-header">
               <div class="card-title fw-semibold"> Berkas Pelayanan 8 </div>
-
             </div>
 
-            <div class="col-sm-12">
-              <iframe src="<?= base_url('/pelayanan/pelayanan_data/' . $pendaftaran_pelayanandata['berkaspelayanan8']) ?>" frameborder="0" height="500" width="100%"></iframe>
+            <div class="card-body">
+              <?php if (!empty($pendaftaran_pelayanandata['berkaspelayanan8'])) : ?>
+                <iframe src="<?= base_url('/pelayanan/pelayanan_data/' . $pendaftaran_pelayanandata['berkaspelayanan8']) ?>" frameborder="0" height="500" width="100%"></iframe>
+              <?php else : ?>
+                <div class="alert alert-danger mt-0 mb-0" role="alert">
+                  Berkas Pelayanan 8 tidak diinputkan !!
+                </div>
+              <?php endif; ?>
             </div>
 
           </div>
@@ -292,11 +332,16 @@ v<?= $this->extend('layout/templateadmin'); ?>
 
             <div class="card-header">
               <div class="card-title fw-semibold"> Berkas Pelayanan 9 </div>
-
             </div>
 
-            <div class="col-sm-12">
-              <iframe src="<?= base_url('/pelayanan/pelayanan_data/' . $pendaftaran_pelayanandata['berkaspelayanan9']) ?>" frameborder="0" height="500" width="100%"></iframe>
+            <div class="card-body">
+              <?php if (!empty($pendaftaran_pelayanandata['berkaspelayanan9'])) : ?>
+                <iframe src="<?= base_url('/pelayanan/pelayanan_data/' . $pendaftaran_pelayanandata['berkaspelayanan9']) ?>" frameborder="0" height="500" width="100%"></iframe>
+              <?php else : ?>
+                <div class="alert alert-danger mt-0 mb-0" role="alert">
+                  Berkas Pelayanan 9 tidak diinputkan !!
+                </div>
+              <?php endif; ?>
             </div>
 
           </div>
@@ -307,16 +352,20 @@ v<?= $this->extend('layout/templateadmin'); ?>
 
             <div class="card-header">
               <div class="card-title fw-semibold"> Berkas Pelayanan 10 </div>
+            </div>
 
-            </div>P
-
-            <div class="col-sm-12">
-              <iframe src="<?= base_url('/pelayanan/pelayanan_data/' . $pendaftaran_pelayanandata['berkaspelayanan10']) ?>" frameborder="0" height="500" width="100%"></iframe>
+            <div class="card-body">
+              <?php if (!empty($pendaftaran_pelayanandata['berkaspelayanan10'])) : ?>
+                <iframe src="<?= base_url('/pelayanan/pelayanan_data/' . $pendaftaran_pelayanandata['berkaspelayanan10']) ?>" frameborder="0" height="500" width="100%"></iframe>
+              <?php else : ?>
+                <div class="alert alert-danger mt-0 mb-0" role="alert">
+                  Berkas Pelayanan 10 tidak diinputkan !!
+                </div>
+              <?php endif; ?>
             </div>
 
           </div>
         </div>
-
 
       </div>
     </div>
