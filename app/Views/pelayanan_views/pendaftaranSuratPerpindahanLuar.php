@@ -22,10 +22,10 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
         <?php if (session()->getFlashdata('pesan')) : ?>
 
           <div id="myModal" class="modal" tabindex="-1">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title"> Pendaftaran Surat Perpindahan Domisili dari Luar Menuju Majalengka </h5>
+                  <h5 class="modal-title fw-semibold"> Pendaftaran Surat Perpindahan Domisili dari Luar Menuju Majalengka </h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -86,7 +86,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <!-- Form Nomor Pemohon -->
           <div class="row">
             <div class="mb-3">
-              <label for="nomorpemohon" class="form-label fw-semibold"> Email Pemohon </label>
+              <label for="nomorpemohon" class="form-label fw-semibold"> Nomor WA Pemohon </label>
               <input type="text" name="nomorpemohon" id="nomorpemohon" class="form-control <?= (session('errors.nomorpemohon')) ? 'is-invalid' : null ?>" autofocus value="<?= old('nomorpemohon'); ?>">
               <div class="invalid-feedback">
                 <?= session('errors.nomorpemohon') ?>
@@ -97,7 +97,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <!-- Form Alamat Pemohon -->
           <div class="row">
             <div class="mb-3">
-              <label for="alamatpemohon" class="form-label fw-semibold"> Email Pemohon </label>
+              <label for="alamatpemohon" class="form-label fw-semibold"> Alamat Pemohon </label>
               <input type="text" name="alamatpemohon" id="alamatpemohon" class="form-control <?= (session('errors.alamatpemohon')) ? 'is-invalid' : null ?>" autofocus value="<?= old('alamatpemohon'); ?>">
               <div class="invalid-feedback">
                 <?= session('errors.alamatpemohon') ?>
@@ -110,7 +110,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <!-- Berkas SKPWNI -->
           <div class="row">
             <div class="mb-3">
-              <label for="skpwni" class="form-label fw-semibold"> Berkas Akta Kelahiran </label>
+              <label for="skpwni" class="form-label fw-semibold"> Berkas SKPWNI </label>
               <input type="file" name="skpwni" id="skpwni" class="form-control <?= (session('errors.skpwni')) ? 'is-invalid' : ''; ?>" value="<?= old('skpwni'); ?>">
               <div class="invalid-feedback">
                 <?= session('errors.skpwni') ?>
@@ -121,7 +121,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <!-- Berkas Kartu Tanda Penduduk -->
           <div class="row">
             <div class="mb-3">
-              <label for="kartutandapenduduk" class="form-label fw-semibold"> Berkas Akta Kelahiran </label>
+              <label for="kartutandapenduduk" class="form-label fw-semibold"> Berkas Kartu Tanda Penduduk </label>
               <input type="file" name="kartutandapenduduk" id="kartutandapenduduk" class="form-control <?= (session('errors.kartutandapenduduk')) ? 'is-invalid' : ''; ?>" value="<?= old('kartutandapenduduk'); ?>">
               <div class="invalid-feedback">
                 <?= session('errors.kartutandapenduduk') ?>
@@ -132,7 +132,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <hr>
 
           <div class="d-grid gap-2 col-6 mx-auto">
-            <button type="submit" value="submit" name="submit" id="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" value="submit" name="submit" id="submit" class="btn btn-primary"> Daftar </button>
           </div>
 
         </form>

@@ -22,10 +22,10 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
         <?php if (session()->getFlashdata('pesan')) : ?>
 
           <div id="myModal" class="modal" tabindex="-1">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title"> Pendaftaran Akta Kematian </h5>
+                  <h5 class="modal-title fw-semibold"> Pendaftaran Akta Kematian </h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -86,7 +86,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <!-- Form Nomor Pemohon -->
           <div class="row">
             <div class="mb-3">
-              <label for="nomorpemohon" class="form-label fw-semibold"> Nomor Pemohon </label>
+              <label for="nomorpemohon" class="form-label fw-semibold"> Nomor WA Pemohon </label>
               <input type="text" name="nomorpemohon" id="nomorpemohon" class="form-control <?= (session('errors.nomorpemohon')) ? 'is-invalid' : null ?>" autofocus value="<?= old('nomorpemohon'); ?>">
               <div class="invalid-feedback">
                 <?= session('errors.nomorpemohon') ?>
@@ -107,7 +107,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
 
           <hr>
 
-          <!-- Form KK Pelapor -->
+          <!-- Berkas Kartu Keluarga -->
           <div class="row">
             <div class="mb-3">
               <label for="kartukeluarga" class="form-label fw-semibold"> Berkas Kartu Keluarga </label>
@@ -118,10 +118,10 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
             </div>
           </div>
 
-          <!-- FormSuratKematian -->
+          <!-- Berkas Surat Kematian -->
           <div class="row">
             <div class="mb-3">
-              <label for="suratkematian" class="form-label fw-semibold"> Berkas Kartu Keluarga </label>
+              <label for="suratkematian" class="form-label fw-semibold"> Berkas Surat Kematian </label>
               <input type="file" name="suratkematian" id="suratkematian" class="form-control <?= (session('errors.suratkematian')) ? 'is-invalid' : ''; ?>" value="<?= old('suratkematian'); ?>">
               <div class="invalid-feedback">
                 <?= session('errors.suratkematian') ?>
@@ -131,7 +131,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
 
           <!-- FormButton -->
           <div class="d-grid gap-2 col-6 mx-auto">
-            <button type="submit" class="btn btn-primary"> Daftar </button>
+            <button type="submit" value="submit" name="submit" id="submit" class="btn btn-primary"> Daftar </button>
           </div>
 
         </form>

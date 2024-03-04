@@ -92,7 +92,7 @@ class PelayananSilancar extends BaseController
         'rules' => 'required[pendaftaran_kk.namapemohon]',
         'errors' => [
           'required' => 'Nama Pemohon Harus Diisi !!'
-        ]
+        ],
       ],
       // Form Email Pemohon
       'emailpemohon' => [
@@ -100,21 +100,22 @@ class PelayananSilancar extends BaseController
         'errors' => [
           'required' => 'Email Pemohon Harus Diisi !!',
           'valid_email' => 'Mohon cek kembali email anda, gunakan @ agar valid !!'
-        ]
+        ],
       ],
       // Form Nomor Pemohon
       'nomorpemohon' => [
-        'rules' => 'required[pendaftaran_kk.nomorpemohon]',
+        'rules' => 'required[pendaftaran_kk.nomorpemohon]|is_natural',
         'errors' => [
-          'required' => 'Nomor Pemohon Harus Diisi !!'
-        ]
+          'required' => 'Nomor Pemohon Harus Diisi !!',
+          'is_natural' => 'Mohon menggunakan Format 082 !!',
+        ],
       ],
       // Form Alamat Pemohon
       'alamatpemohon' => [
         'rules' => 'required[pendaftaran_kk.alamatpemohon]',
         'errors' => [
           'required' => 'Alamat Pemohon Harus Diisi !!'
-        ]
+        ],
       ],
       // Form Formulir Desa
       'formulirdesa' => [
@@ -124,7 +125,7 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File Formulir Desa terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format Formulir Desa Harus PDF !!',
           'ext_in' => 'Format Formulir Desa Harus PDF !!'
-        ]
+        ],
       ],
       // Form KK Suami
       'kartukeluargasuami' => [
@@ -134,7 +135,7 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File anda terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format File Harus PDF !!',
           'ext_in' => ''
-        ]
+        ],
       ],
       // Form KK Istri
       'kartukeluargaistri' => [
@@ -144,7 +145,7 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File anda terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format File Harus PDF !!',
           'ext_in' => ''
-        ]
+        ],
       ],
       // Form Surat Nikah
       'suratnikah' => [
@@ -154,7 +155,7 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File Surat Nikah terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format Surat Nikah Harus PDF !!',
           'ext_in' => 'Format Surat Nikah Harus PDF !!'
-        ]
+        ],
       ],
       // Form Surat Pindah
       'suratpindah' => [
@@ -164,9 +165,8 @@ class PelayananSilancar extends BaseController
           'max_size' => 'File Surat Pindah terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format Surat Pindah Harus PDF !!',
           'ext_in' => 'Format Surat Pindah Harus PDF !!'
-        ]
-      ]
-
+        ],
+      ],
     ]);
 
     if (!$validate) {
@@ -247,11 +247,12 @@ class PelayananSilancar extends BaseController
           'valid_email' => 'Mohon cek kembali email anda, gunakan @ agar valid !!'
         ],
       ],
-      //Form Nomor Pemohon
+      // Form Nomor Pemohon
       'nomorpemohon' => [
-        'rules' => 'required[pendaftaran_kia.nomorpemohon]',
+        'rules' => 'required[pendaftaran_kia.nomorpemohon]|is_natural',
         'errors' => [
-          'required' => 'Nomor Pemohon Harus Diisi !!'
+          'required' => 'Nomor Pemohon Harus Diisi !!',
+          'is_natural' => 'Mohon menggunakan Format 082 !!',
         ],
       ],
       //Form Alamat Pemohon
@@ -352,14 +353,14 @@ class PelayananSilancar extends BaseController
     $validate = $this->validate([
       // Form Nama Pemohon
       'namapemohon' => [
-        'rules' => 'required[pendaftaran_kk.namapemohon]',
+        'rules' => 'required[pendaftaran_kk_perceraian.namapemohon]',
         'errors' => [
           'required' => 'Nama Pemohon Harus Diisi !!'
         ],
       ],
       // Form Email Pemohon
       'emailpemohon' => [
-        'rules' => 'required[pendaftaran_kk.emailpemohon]|valid_email',
+        'rules' => 'required[pendaftaran_kk_perceraian.emailpemohon]|valid_email',
         'errors' => [
           'required' => 'Email Pemohon Harus Diisi !!',
           'valid_email' => 'Mohon cek kembali email anda, gunakan @ agar valid !!'
@@ -367,14 +368,15 @@ class PelayananSilancar extends BaseController
       ],
       // Form Nomor Pemohon
       'nomorpemohon' => [
-        'rules' => 'required[pendaftaran_kk.nomorpemohon]',
+        'rules' => 'required[pendaftaran_kk_perceraian.nomorpemohon]|is_natural',
         'errors' => [
-          'required' => 'Nomor Pemohon Harus Diisi !!'
+          'required' => 'Nomor Pemohon Harus Diisi !!',
+          'is_natural' => 'Mohon menggunakan Format 082 !!',
         ],
       ],
       // Form Alamat Pemohon
       'alamatpemohon' => [
-        'rules' => 'required[pendaftaran_kk.alamatpemohon]',
+        'rules' => 'required[pendaftaran_kk_perceraian.alamatpemohon]',
         'errors' => [
           'required' => 'Alamat Pemohon Harus Diisi !!'
         ],
@@ -453,7 +455,7 @@ class PelayananSilancar extends BaseController
   {
     helper(['form']);
     $data = [
-      'title' => 'Pendaftaran Surat Perpindahan dari Majalengka ke Luar|| Disdukcapil Majalengka',
+      'title' => 'Pendaftaran Surat Perpindahan dari Majalengka Menuju Luar|| Disdukcapil Majalengka',
       'validation' => \Config\Services::validation()
     ];
     return view('pelayanan_views/pendaftaranSuratPerpindahan', $data);
@@ -480,11 +482,12 @@ class PelayananSilancar extends BaseController
           'valid_email' => 'Mohon cek kembali email anda, gunakan @ agar valid !!'
         ],
       ],
-      //Form Nomor Pemohon
+      // Form Nomor Pemohon
       'nomorpemohon' => [
-        'rules' => 'required[pendaftaran_suratperpindahan.nomorpemohon]',
+        'rules' => 'required[pendaftaran_suratperpindahan.nomorpemohon]|is_natural',
         'errors' => [
-          'required' => 'Nomor Pemohon Harus Diisi !!'
+          'required' => 'Nomor Pemohon Harus Diisi !!',
+          'is_natural' => 'Mohon menggunakan Format 082 !!',
         ],
       ],
       //Form Alamat Pemohon
@@ -631,11 +634,12 @@ class PelayananSilancar extends BaseController
           'valid_email' => 'Mohon cek kembali email anda, gunakan @ agar valid !!'
         ],
       ],
-      //Form Nomor Pemohon
+      // Form Nomor Pemohon
       'nomorpemohon' => [
-        'rules' => 'required[pendaftaran_suratperpindahanluar.nomorpemohon]',
+        'rules' => 'required[pendaftaran_suratperpindahanluar.nomorpemohon]|is_natural',
         'errors' => [
-          'required' => 'Nomor Pemohon Harus Diisi !!'
+          'required' => 'Nomor Pemohon Harus Diisi !!',
+          'is_natural' => 'Mohon menggunakan Format 082 !!',
         ],
       ],
       //Form Alamat Pemohon
@@ -735,9 +739,10 @@ class PelayananSilancar extends BaseController
       ],
       // Form Nomor Pemohon
       'nomorpemohon' => [
-        'rules' => 'required[pendaftaran_aktakelahiran.nomorpemohon]',
+        'rules' => 'required[pendaftaran_aktakelahiran.nomorpemohon]|is_natural',
         'errors' => [
-          'required' => 'Nomor Pemohon Harus Diisi !!'
+          'required' => 'Nomor Pemohon Harus Diisi !!',
+          'is_natural' => 'Mohon menggunakan Format 082 !!',
         ],
       ],
       // Form Alamat Pemohon
@@ -908,9 +913,10 @@ class PelayananSilancar extends BaseController
       ],
       // Form Nomor Pemohon
       'nomorpemohon' => [
-        'rules' => 'required[pendaftaran_aktakematian.nomorpemohon]',
+        'rules' => 'required[pendaftaran_aktakematian.nomorpemohon]|is_natural',
         'errors' => [
-          'required' => 'Nomor Pemohon Harus Diisi !!'
+          'required' => 'Nomor Pemohon Harus Diisi !!',
+          'is_natural' => 'Mohon menggunakan Format 082 !!',
         ],
       ],
       // Form Alamat Pemohon
@@ -1016,9 +1022,10 @@ class PelayananSilancar extends BaseController
       ],
       // Form Nomor Pemohon
       'nomorpemohon' => [
-        'rules' => 'required[pendaftaran_keabsahanakla.nomorpemohon]',
+        'rules' => 'required[pendaftaran_keabsahanakla.nomorpemohon]|is_natural',
         'errors' => [
-          'required' => 'Nomor Pemohon Harus Diisi !!'
+          'required' => 'Nomor Pemohon Harus Diisi !!',
+          'is_natural' => 'Mohon menggunakan Format 082 !!',
         ],
       ],
       // Form Alamat Pemohon
@@ -1127,9 +1134,10 @@ class PelayananSilancar extends BaseController
       ],
       // Form Nomor Pemohon
       'nomorpemohon' => [
-        'rules' => 'required[pendaftaran_pelayanandata.nomorpemohon]',
+        'rules' => 'required[pendaftaran_pelayanandata.nomorpemohon]|is_natural',
         'errors' => [
-          'required' => 'Nomor Pemohon Harus Diisi !!'
+          'required' => 'Nomor Pemohon Harus Diisi !!',
+          'is_natural' => 'Mohon menggunakan Format 082 !!',
         ],
       ],
       // Form Alamat Pemohon
@@ -1159,7 +1167,7 @@ class PelayananSilancar extends BaseController
     $jmlberkas = count($berkaspelayanan);
 
     if ($jmlberkas > 10) {
-      session()->setFlashdata('error', '<span class="text-danger">Anda hanya boleh mengupload 10 file maksimal</span>');
+      session()->setFlashdata('error', '<span class="text-danger">Maksimal anda hanya boleh mengupload 10 file</span>');
       return redirect()->to('/PelayananSilancar/pendaftaranPelayananData/');
     }
 
@@ -1249,9 +1257,10 @@ class PelayananSilancar extends BaseController
       ],
       // Form Nomor Pemohon
       'nomorpemohon' => [
-        'rules' => 'required[perbaikan_data.nomorpemohon]',
+        'rules' => 'required[perbaikan_data.nomorpemohon]|is_natural',
         'errors' => [
-          'required' => 'Nomor Pemohon Harus Diisi !!'
+          'required' => 'Nomor Pemohon Harus Diisi !!',
+          'is_natural' => 'Mohon menggunakan Format 082 !!',
         ],
       ],
       // Form Alamat Pemohon
@@ -1279,7 +1288,7 @@ class PelayananSilancar extends BaseController
       'berkasperbaikan' => [
         'rules' => 'uploaded[berkasperbaikan.0]|max_size[berkasperbaikan,2048]|mime_in[berkasperbaikan,application/pdf]|ext_in[berkasperbaikan,pdf]',
         'errors' => [
-          'uploaded' => 'Minimal Anda harus mengupload 1 File',
+          'uploaded' => 'Berkas Perbaikan Harus Diisi & Minimal 1 File !!',
           'max_size' => 'File Berkas Perbaikan terlalu besar, Kompress terlebih dahulu !!',
           'mime_in' => 'Format Berkas Perbaikan Harus PDF !!',
           'ext_in' => 'Format Berkas Perbaikan Harus PDF !!'
@@ -1294,8 +1303,8 @@ class PelayananSilancar extends BaseController
     $berkasperbaikan = $this->request->getFileMultiple('berkasperbaikan');
     $jmlberkas = count($berkasperbaikan);
 
-    if ($jmlberkas > 3) {
-      session()->setFlashdata('error', '<span class="text-danger">Anda hanya boleh mengupload 3 file maksimal</span>');
+    if ($jmlberkas > 5) {
+      session()->setFlashdata('error', '<span class="text-danger">Maksimal anda hanya boleh mengupload 5 File</span>');
       return redirect()->to('/PelayananSilancar/pendaftaranPerbaikanData/');
     }
 
@@ -1381,9 +1390,10 @@ class PelayananSilancar extends BaseController
       ],
       // Form Nomor Pemohon
       'nomorpemohon' => [
-        'rules' => 'required[pengaduan_update.nomorpemohon]',
+        'rules' => 'required[pengaduan_update.nomorpemohon]|is_natural',
         'errors' => [
-          'required' => 'Nomor Pelapor Harus Diisi !!'
+          'required' => 'Nomor Pemohon Harus Diisi !!',
+          'is_natural' => 'Mohon menggunakan Format 082 !!',
         ],
       ],
       // Form Alamat Pemohon

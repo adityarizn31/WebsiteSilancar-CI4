@@ -22,10 +22,10 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
         <?php if (session()->getFlashdata('pesan')) : ?>
 
           <div id="myModal" class="modal" tabindex="-1">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title"> Pendaftaran Keabsahan Akta Kelahiran </h5>
+                  <h5 class="modal-title fw-semibold"> Pendaftaran Keabsahan Akta Kelahiran </h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -81,7 +81,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <!-- Form Nomor Pemohon -->
           <div class="row">
             <div class="mb-3">
-              <label for="nomorpemohon" class="form-label fw-semibold"> Nomor Whatsapp </label>
+              <label for="nomorpemohon" class="form-label fw-semibold"> Nomor WA Pemohon </label>
               <input type="text" class="form-control <?= ($validation->hasError('nomorpemohon')) ? 'is-invalid' : ''; ?>" name="nomorpemohon" id="nomorpemohon" value="<?= old('nomorpemohon'); ?>">
               <div class="invalid-feedback">
                 <?= $validation->getError('nomorpemohon'); ?>

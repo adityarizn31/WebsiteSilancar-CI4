@@ -5,7 +5,7 @@ $hariSekarang = $waktuSekarang->format('N'); // Mendapatkan nomor hari dalam sem
 $jamSekarang = $waktuSekarang->format('G');
 
 // Check if the access time is within the allowed range (8 AM to 11 AM) on Monday to Friday
-if ($hariSekarang >= 1 && $hariSekarang <= 7 && $jamSekarang >= 8 && $jamSekarang < 22) {
+if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekarang < 22) {
   // Allow access to the form
 ?>
 
@@ -23,10 +23,10 @@ if ($hariSekarang >= 1 && $hariSekarang <= 7 && $jamSekarang >= 8 && $jamSekaran
       <?php if (session()->getFlashdata('pesan')) : ?>
 
         <div id="myModal" class="modal" tabindex="-1">
-          <div class="modal-dialog">
+          <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title"> Pendaftaran Pengaduan Update </h5>
+                <h5 class="modal-title fw-semibold"> Pendaftaran Pengaduan Update </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
@@ -133,7 +133,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 7 && $jamSekarang >= 8 && $jamSekaran
         <!-- Form Pengaduan Pemohon -->
         <div class="row">
           <div class="mb-3">
-            <label for="pengaduanupdate" class="form-label fw-semibold"> Alamat Pemohon </label>
+            <label for="pengaduanupdate" class="form-label fw-semibold"> Penjelasan Pengaduan </label>
             <textarea type="text" name="pengaduanupdate" id="pengaduanupdate" class=" form-control text-area <?= (session('errors.pengaduanupdate')) ? 'is-invalid' : null ?>" value="<?= old('pengaduanupdate'); ?>"></textarea>
             <div class="invalid-feedback">
               <?= session('errors.pengaduanupdate') ?>

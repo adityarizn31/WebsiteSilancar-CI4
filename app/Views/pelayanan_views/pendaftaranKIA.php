@@ -5,7 +5,7 @@ $hariSekarang = $waktuSekarang->format('N'); // Mendapatkan nomor hari dalam sem
 $jamSekarang = $waktuSekarang->format('G');
 
 // Check if the access time is within the allowed range (8 AM to 11 AM) on Monday to Friday
-if ($hariSekarang >= 1 && $hariSekarang <= 7 && $jamSekarang >= 8 && $jamSekarang < 22) {
+if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekarang < 22) {
   // Allow access to the form
 ?>
 
@@ -22,10 +22,10 @@ if ($hariSekarang >= 1 && $hariSekarang <= 7 && $jamSekarang >= 8 && $jamSekaran
         <?php if (session()->getFlashdata('pesan')) : ?>
 
           <div id="myModal" class="modal" tabindex="-1">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title">Pendaftaran Kartu Identitas Anak</h5>
+                  <h5 class="modal-title fw-semibold">Pendaftaran Kartu Identitas Anak</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -87,7 +87,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 7 && $jamSekarang >= 8 && $jamSekaran
           <!-- Form Nomor Pemohon -->
           <div class="row">
             <div class="mb-3">
-              <label for="nomorpemohon" class="form-label fw-semibold"> Nomor Pemohon </label>
+              <label for="nomorpemohon" class="form-label fw-semibold"> Nomor WA Pemohon </label>
               <input type="text" name="nomorpemohon" id="nomorpemohon" class="form-control <?= (session('errors.nomorpemohon')) ? 'is-invalid' : null ?>" autofocus value="<?= old('nomorpemohon'); ?>">
               <div class="invalid-feedback">
                 <?= session('errors.nomorpemohon') ?>
@@ -134,7 +134,8 @@ if ($hariSekarang >= 1 && $hariSekarang <= 7 && $jamSekarang >= 8 && $jamSekaran
           <div class="row">
             <div class="mb-3">
               <label for="pasfoto" class="form-label fw-semibold"> Berkas Pas Foto 3x4 </label>
-              <input type="file" name="pasfoto" id="pasfoto" class="form-control <?= (session('errors.pasfoto')) ? 'is-invalid' : ''; ?>" value="<?= old('pasfoto'); ?>" onchange="previewImgPendaftaranKIA()">
+              <input type="file" name="pasfoto" id="pasfoto" aria-describedby="pasfoto" class="form-control <?= (session('errors.pasfoto')) ? 'is-invalid' : ''; ?>" value="<?= old('pasfoto'); ?>" onchange="previewImgPendaftaranKIA()">
+              <div id="pasfoto" class="form-text">Anak dibawah 5 Tahun tidak perlu mengunggah Foto</div>
               <div class="invalid-feedback">
                 <?= session('errors.pasfoto'); ?>
               </div>
@@ -147,7 +148,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 7 && $jamSekarang >= 8 && $jamSekaran
           <hr>
 
           <div class="d-grid gap-2 col-6 mx-auto">
-            <button type="submit" value="submit" name="submit" id="submit" class="btn btn-primary">Daftar</button>
+            <button type="submit" value="submit" name="submit" id="submit" class="btn btn-primary"> Daftar </button>
           </div>
 
         </form>

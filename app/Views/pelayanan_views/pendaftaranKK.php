@@ -5,7 +5,7 @@ $hariSekarang = $waktuSekarang->format('N'); // Mendapatkan nomor hari dalam sem
 $jamSekarang = $waktuSekarang->format('G');
 
 // Check if the access time is within the allowed range (8 AM to 11 AM) on Monday to Friday
-if ($hariSekarang >= 1 && $hariSekarang <= 7 && $jamSekarang >= 8 && $jamSekarang < 22) {
+if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekarang < 22) {
   // Allow access to the form
 ?>
 
@@ -22,10 +22,10 @@ if ($hariSekarang >= 1 && $hariSekarang <= 7 && $jamSekarang >= 8 && $jamSekaran
         <?php if (session()->getFlashdata('pesan')) : ?>
 
           <div id="myModal" class="modal" tabindex="-1">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title"> Pendaftaran Kartu Keluarga Baru </h5>
+                  <h5 class="modal-title fw-semibold"> Pendaftaran Kartu Keluarga Baru </h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -61,8 +61,6 @@ if ($hariSekarang >= 1 && $hariSekarang <= 7 && $jamSekarang >= 8 && $jamSekaran
             <?php $validation = session('validation'); ?>
           <?php endif; ?>
 
-          <?php $validation = \Config\Services::validation(); ?>
-
           <!-- Form Nama Pemohon -->
           <div class="row">
             <div class="mb-3">
@@ -88,7 +86,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 7 && $jamSekarang >= 8 && $jamSekaran
           <!-- Form Nomor Pemohon -->
           <div class="row">
             <div class="mb-3">
-              <label for="nomorpemohon" class="form-label fw-semibold"> Email Pemohon </label>
+              <label for="nomorpemohon" class="form-label fw-semibold"> Nomor WA Pemohon </label>
               <input type="text" name="nomorpemohon" id="nomorpemohon" class="form-control <?= (session('errors.nomorpemohon')) ? 'is-invalid' : null ?>" autofocus value="<?= old('nomorpemohon'); ?>">
               <div class="invalid-feedback">
                 <?= session('errors.nomorpemohon') ?>
@@ -109,7 +107,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 7 && $jamSekarang >= 8 && $jamSekaran
 
           <hr>
 
-          <!-- Form Desa -->
+          <!-- Berkas Formulir Desa -->
           <div class="row">
             <div class="mb-3">
               <label for="formulirdesa" class="form-label fw-semibold"> Berkas Formulir Desa </label>
@@ -120,7 +118,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 7 && $jamSekarang >= 8 && $jamSekaran
             </div>
           </div>
 
-          <!-- Form KK Suami -->
+          <!-- Berkas KK Suami -->
           <div class="row">
             <div class="mb-3">
               <label for="kartukeluargasuami" class="form-label fw-semibold"> Berkas Kartu Keluarga Suami </label>
@@ -131,7 +129,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 7 && $jamSekarang >= 8 && $jamSekaran
             </div>
           </div>
 
-          <!-- Form KK Istri -->
+          <!-- Berkas KK Istri -->
           <div class="row">
             <div class="mb-3">
               <label for="kartukeluargaistri" class="form-label fw-semibold"> Berkas Kartu Keluarga Istri </label>
@@ -142,7 +140,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 7 && $jamSekarang >= 8 && $jamSekaran
             </div>
           </div>
 
-          <!-- Form Surat Nikah -->
+          <!-- Berkas Surat Nikah -->
           <div class="row">
             <div class="mb-3">
               <label for="suratnikah" class="form-label fw-semibold"> Berkas Surat Nikah </label>
@@ -153,7 +151,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 7 && $jamSekarang >= 8 && $jamSekaran
             </div>
           </div>
 
-          <!-- Form Surat Pindah -->
+          <!-- Berkas Surat Pindah -->
           <div class="row">
             <div class="mb-3">
               <label for="suratpindah" class="form-label fw-semibold"> Berkas Surat Pindah </label>
@@ -167,7 +165,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 7 && $jamSekarang >= 8 && $jamSekaran
           <hr>
 
           <div class="d-grid gap-2 col-6 mx-auto">
-            <button type="submit" name="submit" id="submit" class="btn btn-primary"> Daftar </button>
+            <button type="submit" value="submit" name="submit" id="submit" class="btn btn-primary"> Daftar </button>
           </div>
 
         </form>

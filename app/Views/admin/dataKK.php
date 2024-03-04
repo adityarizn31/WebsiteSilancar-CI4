@@ -75,7 +75,7 @@
               <td><?= $kk['emailpemohon']; ?></td>
               <td><?= $kk['nomorpemohon']; ?></td>
               <td>Pendaftaran KK</td>
-              <td><?= $kk['deleted_at']; ?></td>
+              <td><?= $kk['created_at']; ?></td>
               <td>
                 <?php
                 switch ($kk['status']) {

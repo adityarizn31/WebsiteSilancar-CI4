@@ -17,15 +17,15 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
   <div class="container" style="padding: 10px;">
     <div class="card shadow mb-4" style="padding: 20px;">
       <div class="container">
-        <h4 class="text-center fw-semibold"> Pendaftaran Surat Perpindahan Domisili dari Majalengka Menuju Luar </h4>
+        <h4 class="text-center fw-bold"> Pendaftaran Surat Perpindahan Domisili dari Majalengka Menuju Luar </h4>
 
         <?php if (session()->getFlashdata('pesan')) : ?>
 
           <div id="myModal" class="modal" tabindex="-1">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title">Pendaftaran Surat Perpindahan Domisili dari Majalengka Menuju Luar</h5>
+                  <h5 class="modal-title fw-semibold">Pendaftaran Surat Perpindahan Domisili dari Majalengka Menuju Luar</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -65,9 +65,9 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <div class="row">
             <div class="mb-3">
               <label for="namapemohon" class="form-label fw-semibold"> Nama Pemohon </label>
-              <input type="text" class="form-control <?= ($validation->hasError('namapemohon')) ? 'is-invalid' : ''; ?>" name="namapemohon" id="namapemohon" autofocus value="<?= old('namapemohon'); ?>">
+              <input type="text" name="namapemohon" id="namapemohon" class="form-control <?= (session('errors.namapemohon')) ? 'is-invalid' : null ?>" autofocus value="<?= old('namapemohon'); ?>">
               <div class="invalid-feedback">
-                <?= $validation->getError('namapemohon') ?>
+                <?= session('errors.namapemohon') ?>
               </div>
             </div>
           </div>
@@ -76,9 +76,9 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <div class="row">
             <div class="mb-3">
               <label for="emailpemohon" class="form-label fw-semibold"> Email Pemohon </label>
-              <input type="text" class="form-control <?= ($validation->hasError('emailpemohon')) ? 'is-invalid' : ''; ?>" name="emailpemohon" id="emailpemohon" value="<?= old('emailpemohon'); ?>">
+              <input type="text" name="emailpemohon" id="emailpemohon" class="form-control <?= (session('errors.emailpemohon')) ? 'is-invalid' : null ?>" autofocus value="<?= old('emailpemohon'); ?>">
               <div class="invalid-feedback">
-                <?= $validation->getError('emailpemohon'); ?>
+                <?= session('errors.emailpemohon') ?>
               </div>
             </div>
           </div>
@@ -86,10 +86,10 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <!-- Form Nomor Pemohon -->
           <div class="row">
             <div class="mb-3">
-              <label for="nomorpemohon" class="form-label fw-semibold"> Nomor Whatsapp </label>
-              <input type="text" class="form-control <?= ($validation->hasError('nomorpemohon')) ? 'is-invalid' : ''; ?>" name="nomorpemohon" id="nomorpemohon" value="<?= old('nomorpemohon'); ?>">
+              <label for="nomorpemohon" class="form-label fw-semibold"> Nomor WA Pemohon </label>
+              <input type="text" name="nomorpemohon" id="nomorpemohon" class="form-control <?= (session('errors.nomorpemohon')) ? 'is-invalid' : null ?>" autofocus value="<?= old('nomorpemohon'); ?>">
               <div class="invalid-feedback">
-                <?= $validation->getError('nomorpemohon'); ?>
+                <?= session('errors.nomorpemohon') ?>
               </div>
             </div>
           </div>
@@ -98,20 +98,19 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <div class="row">
             <div class="mb-3">
               <label for="alamatpemohon" class="form-label fw-semibold"> Alamat Pemohon </label>
-              <br>
-              <textarea class=" form-control text-area <?= ($validation->hasError('alamatpemohon')) ? 'is-invalid' : ''; ?>" name="alamatpemohon" id="alamatpemohon" value="<?= old('alamatpemohon'); ?>"></textarea>
+              <textarea type="text" name="alamatpemohon" id="alamatpemohon" class=" form-control text-area <?= (session('errors.alamatpemohon')) ? 'is-invalid' : null ?>" value="<?= old('alamatpemohon'); ?>"></textarea>
               <div class="invalid-feedback">
-                <?= $validation->getError('alamatpemohon'); ?>
+                <?= session('errors.alamatpemohon') ?>
               </div>
             </div>
           </div>
 
           <hr>
 
-          <!-- Berkas Form Perpindahan -->
+          <!-- Berkas Perpindahan -->
           <div class="row">
             <div class="mb-3">
-              <label for="formperpindahan" class="form-label fw-semibold"> Berkas Akta Kelahiran </label>
+              <label for="formperpindahan" class="form-label fw-semibold"> Berkas Formurlir Perpindahan </label>
               <input type="file" name="formperpindahan" id="formperpindahan" class="form-control <?= (session('errors.formperpindahan')) ? 'is-invalid' : ''; ?>" value="<?= old('formperpindahan'); ?>">
               <div class="invalid-feedback">
                 <?= session('errors.formperpindahan') ?>
@@ -122,10 +121,10 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <!-- Berkas Kartu Keluarga -->
           <div class="row">
             <div class="mb-3">
-              <label for="kattukeluarga" class="form-label fw-semibold"> Berkas Akta Kelahiran </label>
-              <input type="file" name="kattukeluarga" id="kattukeluarga" class="form-control <?= (session('errors.kattukeluarga')) ? 'is-invalid' : ''; ?>" value="<?= old('kattukeluarga'); ?>">
+              <label for="kartukeluarga" class="form-label fw-semibold"> Berkas Kartu Keluarga </label>
+              <input type="file" name="kartukeluarga" id="kartukeluarga" class="form-control <?= (session('errors.kartukeluarga')) ? 'is-invalid' : ''; ?>" value="<?= old('kartukeluarga'); ?>">
               <div class="invalid-feedback">
-                <?= session('errors.kattukeluarga') ?>
+                <?= session('errors.kartukeluarga') ?>
               </div>
             </div>
           </div>
@@ -133,7 +132,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <!-- Berkas Buku Nikah -->
           <div class="row">
             <div class="mb-3">
-              <label for="bukunikah" class="form-label fw-semibold"> Berkas Akta Kelahiran </label>
+              <label for="bukunikah" class="form-label fw-semibold"> Berkas Buku Nikah </label>
               <input type="file" name="bukunikah" id="bukunikah" class="form-control <?= (session('errors.bukunikah')) ? 'is-invalid' : ''; ?>" value="<?= old('bukunikah'); ?>">
               <div class="invalid-feedback">
                 <?= session('errors.bukunikah') ?>
@@ -144,7 +143,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <!-- Berkas KTP Suami -->
           <div class="row">
             <div class="mb-3">
-              <label for="ktpsuami" class="form-label fw-semibold"> Berkas Akta Kelahiran </label>
+              <label for="ktpsuami" class="form-label fw-semibold"> Berkas KTP Suami </label>
               <input type="file" name="ktpsuami" id="ktpsuami" class="form-control <?= (session('errors.ktpsuami')) ? 'is-invalid' : ''; ?>" value="<?= old('ktpsuami'); ?>">
               <div class="invalid-feedback">
                 <?= session('errors.ktpsuami') ?>
@@ -155,7 +154,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <!-- Berkas KTP Istri -->
           <div class="row">
             <div class="mb-3">
-              <label for="ktpistri" class="form-label fw-semibold"> Berkas Akta Kelahiran </label>
+              <label for="ktpistri" class="form-label fw-semibold"> Berkas KTP Istri </label>
               <input type="file" name="ktpistri" id="ktpistri" class="form-control <?= (session('errors.ktpistri')) ? 'is-invalid' : ''; ?>" value="<?= old('ktpistri'); ?>">
               <div class="invalid-feedback">
                 <?= session('errors.ktpistri') ?>
