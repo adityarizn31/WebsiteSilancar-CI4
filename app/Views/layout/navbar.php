@@ -31,3 +31,26 @@
     </div>
   </div>
 </nav>
+
+<!-- <nav class="navbar">
+
+  <a href="/Beranda/">
+    <img class="logonav" src="/img/header/HeaderDisduk.PNG" alt="" srcset="">
+  </a>
+
+  <div id="menu-icon" class="menu-icon">
+    <i class="ph-fill ph-list"></i>
+  </div>
+
+  <ul id="menu-list" class="hidden">
+    <li>
+      <a class="nav-link " aria-current="page" href="/TentangSilancar/">Tentang Si Lancar</a>
+    </li>
+    <li>
+      <a class="nav-link " aria-current="page" href="/PelayananSilancar/">Pelayanan Si Lancar</a>
+    </li>
+    <li>
+      <a class="nav-link " aria-current="page" href="/Admin/">Admin</a>
+    </li>
+  </ul>
+</nav> -->
