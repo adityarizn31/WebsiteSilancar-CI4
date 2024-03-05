@@ -75,7 +75,7 @@
               <td><?= $kkper['emailpemohon']; ?></td>
               <td><?= $kkper['nomorpemohon']; ?></td>
               <td>Pendaftaran KIA</td>
-              <td><?= $kkper['deleted_at']; ?></td>
+              <td><?= $kkper['created_at']; ?></td>
               <td>
                 <?php
                 switch ($kkper['status']) {

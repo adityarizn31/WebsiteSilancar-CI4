@@ -237,7 +237,7 @@ class DeleteAdmin extends BaseController
 
   public function deletePermanentKIA($id = null)
   {
-    if ($id = null) {
+    if ($id != null) {
       $this->kiaModel->delete($id, true);
       session()->setFlashdata('pesan', 'Pendaftaran Permohonan Kartu Identitas Anak telah dihapus !!');
       return redirect()->to('/DeleteAdmin/dataSelesaiKIA');
@@ -320,7 +320,7 @@ class DeleteAdmin extends BaseController
     $currentPageSuratPerpindahan =  $this->request->getVar('page_pendaftaran_suratperpindahan') ? $this->request->getVar('page_pendaftaran_suratperpindahan') : 1;
 
     $data = [
-      'title' => 'Data Selesai Surat Perpindahan || Admin Disdukcapil',
+      'title' => 'Data Selesai Surat Perpindahan Majalengka Menuju Luar|| Admin Disdukcapil',
       'pendaftaran_suratperpindahan' => $this->suratperpindahanModel->onlyDeleted()->findAll(),
       'pager' => $this->suratperpindahanModel->pager,
       'currentPage' => $currentPageSuratPerpindahan
@@ -367,8 +367,8 @@ class DeleteAdmin extends BaseController
     $currentPageSuratPerpindahanLuar =  $this->request->getVar('page_pendaftaran_suratperpindahanluar') ? $this->request->getVar('page_pendaftaran_suratperpindahanluar') : 1;
 
     $data = [
-      'title' => 'Data Selesai Surat Perpindahan Luar || Admin Disdukcapil',
-      'pendaftaran_suratperpindahanluar ' => $this->suratperpindahanluarModel->onlyDeleted()->findAll(),
+      'title' => 'Data Selesai Surat Perpindahan Luar Menuju Majalengka || Admin Disdukcapil',
+      'pendaftaran_suratperpindahanluar' => $this->suratperpindahanluarModel->onlyDeleted()->findAll(),
       'pager' => $this->suratperpindahanluarModel->pager,
       'currentPage' => $currentPageSuratPerpindahanLuar
     ];

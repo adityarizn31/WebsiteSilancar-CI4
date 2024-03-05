@@ -45,7 +45,6 @@
     <div class="card-body">
 
       <?php
-      // Custom sorting function based on the 'created_at' field
       usort($pendaftaran_suratperpindahan, function ($a, $b) {
         return strtotime($b['deleted_at']) - strtotime($a['deleted_at']);
       });
@@ -75,7 +74,7 @@
               <td><?= $suratperpindahan['emailpemohon']; ?></td>
               <td><?= $suratperpindahan['nomorpemohon']; ?></td>
               <td>Pendaftaran Surat Perpindahan</td>
-              <td><?= $suratperpindahan['deleted_at']; ?></td>
+              <td><?= $suratperpindahan['created_at']; ?></td>
               <td>
                 <?php
                 switch ($suratperpindahan['status']) {

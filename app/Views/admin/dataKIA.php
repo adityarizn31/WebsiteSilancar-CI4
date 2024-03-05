@@ -75,7 +75,7 @@
               <td><?= $kia['emailpemohon']; ?></td>
               <td><?= $kia['nomorpemohon']; ?></td>
               <td>Pendaftaran KIA</td>
-              <td><?= $kia['deleted_at']; ?></td>
+              <td><?= $kia['created_at']; ?></td>
               <td>
                 <?php
                 switch ($kia['status']) {

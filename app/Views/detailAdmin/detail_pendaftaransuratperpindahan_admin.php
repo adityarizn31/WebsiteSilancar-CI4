@@ -49,11 +49,11 @@
           <div class="d-grip gap-2 d-md-flex justify-content-md-end">
 
             <?php if ($pendaftaran_suratperpindahan['status'] === 'Belum di Proses') : ?>
-              <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalUbahStatus">
+              <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalUbahStatus">
                 Verifikasi Pendaftaran
               </button>
             <?php elseif ($pendaftaran_suratperpindahan['status'] === 'Selesai' || $pendaftaran_suratperpindahan['status'] === 'Belum Selesai') : ?>
-              <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalVerifikasiPendaftaran">
+              <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalVerifikasiPendaftaran">
                 Tandai Selesai
               </button>
             <?php endif; ?>
@@ -69,7 +69,7 @@
 
                   <div class="modal-body">
 
-                  <p>Mohon untuk memverifikasi status Pendaftaran atas nama <b><?= $pendaftaran_suratperpindahan['namapemohon']; ?></b> terlebih dahulu </p>
+                    <p>Mohon untuk memverifikasi status Pendaftaran atas nama <b><?= $pendaftaran_suratperpindahan['namapemohon']; ?></b> terlebih dahulu </p>
 
                     <div class="align-items-center justify-content-center">
 

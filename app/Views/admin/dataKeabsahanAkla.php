@@ -74,7 +74,7 @@
               <td><?= $keabsahanakla['emailpemohon']; ?></td>
               <td><?= $keabsahanakla['nomorpemohon']; ?></td>
               <td>Pendaftaran Keabsahan Akta Kelahiran</td>
-              <td><?= $keabsahanakla['deleted_at']; ?></td>
+              <td><?= $keabsahanakla['created_at']; ?></td>
               <td>
                 <?php
                 switch ($keabsahanakla['status']) {

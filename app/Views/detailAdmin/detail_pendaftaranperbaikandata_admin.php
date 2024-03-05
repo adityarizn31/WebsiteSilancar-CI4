@@ -49,11 +49,11 @@
           <div class="d-grip gap-2 d-md-flex justify-content-md-end">
 
             <?php if ($perbaikan_data['status'] === 'Belum di Proses') : ?>
-              <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalUbahStatus">
+              <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalUbahStatus">
                 Verifikasi Pendaftaran
               </button>
             <?php elseif ($perbaikan_data['status'] === 'Selesai' || $perbaikan_data['status'] === 'Belum Selesai') : ?>
-              <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalVerifikasiPendaftaran">
+              <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalVerifikasiPendaftaran">
                 Tandai Selesai
               </button>
             <?php endif; ?>

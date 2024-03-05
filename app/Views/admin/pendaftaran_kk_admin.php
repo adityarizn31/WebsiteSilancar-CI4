@@ -17,10 +17,6 @@
         <a href="<?= base_url('/DeleteAdmin/dataSelesaiKK'); ?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mt-2"><i></i> Data Selesai Proses </a>
       </div>
 
-      <div class="d-sm-flex align-items justify-content-end mb-2">
-
-      </div>
-
       <?php if (session()->getFlashdata('pesan')) : ?>
 
         <?php

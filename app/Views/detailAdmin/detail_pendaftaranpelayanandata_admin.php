@@ -49,11 +49,11 @@ v<?= $this->extend('layout/templateadmin'); ?>
           <div class="d-grip gap-2 d-md-flex justify-content-md-end">
 
             <?php if ($pendaftaran_pelayanandata['status'] === 'Belum di Proses') : ?>
-              <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalUbahStatus">
+              <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalUbahStatus">
                 Verifikasi Pendaftaran
               </button>
             <?php elseif ($pendaftaran_pelayanandata['status'] === 'Selesai' || $pendaftaran_pelayanandata['status'] === 'Belum Selesai') : ?>
-              <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalVerifikasiPendaftaran">
+              <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalVerifikasiPendaftaran">
                 Tandai Selesai
               </button>
             <?php endif; ?>

@@ -74,7 +74,7 @@
               <td><?= $pelayanandata['emailpemohon']; ?></td>
               <td><?= $pelayanandata['nomorpemohon']; ?></td>
               <td>Pendaftaran Pelayanan Data</td>
-              <td><?= $pelayanandata['deleted_at']; ?></td>
+              <td><?= $pelayanandata['created_at']; ?></td>
               <td>
                 <?php
                 switch ($pelayanandata['status']) {

@@ -74,7 +74,7 @@
               <td><?= $aktakelahiran['emailpemohon']; ?></td>
               <td><?= $aktakelahiran['nomorpemohon']; ?></td>
               <td>Pendaftaran Akta Kelahiran</td>
-              <td><?= $aktakelahiran['deleted_at']; ?></td>
+              <td><?= $aktakelahiran['created_at']; ?></td>
               <td>
                 <?php
                 switch ($aktakelahiran['status']) {

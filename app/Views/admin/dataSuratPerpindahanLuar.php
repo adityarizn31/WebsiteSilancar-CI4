@@ -74,7 +74,7 @@
               <td><?= $suratperpindahanluar['emailpemohon']; ?></td>
               <td><?= $suratperpindahanluar['nomorpemohon']; ?></td>
               <td>Pendaftaran Surat Perpindahan Luar</td>
-              <td><?= $suratperpindahanluar['deleted_at']; ?></td>
+              <td><?= $suratperpindahanluar['created_at']; ?></td>
               <td>
                 <?php
                 switch ($suratperpindahanluar['status']) {

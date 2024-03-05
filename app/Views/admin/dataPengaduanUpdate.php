@@ -74,7 +74,7 @@
               <td><?= $pengaduanupdate['emailpemohon']; ?></td>
               <td><?= $pengaduanupdate['nomorpemohon']; ?></td>
               <td>Pendaftaran Pengaduan Update</td>
-              <td><?= $pengaduanupdate['deleted_at']; ?></td>
+              <td><?= $pengaduanupdate['created_at']; ?></td>
               <td>
                 <?php
                 switch ($pengaduanupdate['status']) {
