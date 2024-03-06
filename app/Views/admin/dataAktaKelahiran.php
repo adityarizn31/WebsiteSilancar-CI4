@@ -14,7 +14,7 @@
 
       <div class="d-sm-flex align-items-center justify-content-between mb-2">
         <h4 class="m-0 font-weight-bold text-primary">Data Pendaftaran Selesai Permohonan Akta Kelahiran</h4>
-        <a href="<?= base_url('ExportExcel/export_pendaftaranaktakelahiran'); ?>" method="POST" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mt-2"><i class="fas fa-download fa-sm text-white-50"></i> Download Data </a>
+        <a href="<?= base_url('ExportExcel/exportAktaKelahiran'); ?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mt-2"><i class="bi bi-download text-white"></i> Export Excel </a>
       </div>
 
       <div class="d-sm-flex align-items justify-content-end mb-2">

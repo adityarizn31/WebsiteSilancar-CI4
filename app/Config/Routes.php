@@ -39,30 +39,21 @@ $routes->get('/', 'Beranda::index');
 
 $routes->post('pelayanan_views/pendaftaranKK', 'PelayananSilancar::pendaftaranKK');
 
-// Routes untuk Halaman Admin
 $routes->get('admin/data_admin/(:segment)', 'CreateAdmin::create_akun_admin/$1');
 $routes->get('/admin/edit_akun_admin/(:segment)', 'Admin::create_akun_admin/$1');
 $routes->delete('admin/detail_akun_admin/(:num)', 'Admin::deleteAkunAdmin/$1');
 $routes->get('detailadmin/data_admin/(:any)', 'DetailAdmin::detail_akun_admin/$1');
 
-
-// Membuat routes baru dengan method get ketika user mengakses (admin/berita_admin) apapun dan ambil serta diarahkan ke controller admin dengan method detail
-// Routes untuk Halaman Berita
 $routes->get('admin/berita_admin/(:segment)', 'CreateAdmin::create_berita_admin/$1');
 $routes->get('/detailadmin/edit_berita_admin/(:segment)', 'EditUpdateAdmin::editBerita/$1');
 $routes->delete('detailadmin/detail_berita_admin/(:num)', 'DeleteAdmin::deleteBerita/$1');
 $routes->get('detailadmin/berita_admin/(:any)', 'DetailAdmin::detail_berita_admin/$1');
 
-
-// Routes untuk Halaman Inovasi
 $routes->get('admin/inovasi_admin/(:segment)', 'CreateAdmin::create_inovasi_admin/$1');
 $routes->get('/detailadmin/edit_inovasi_admin/(:segment)', 'EditUpdateAdmin::editInovasi/$1');
 $routes->delete('detailadmin/detail_inovasi_admin/(:num)', 'DeleteAdmin::deleteInovasi/$1');
 $routes->get('detailadmin/inovasi_admin/(:any)', 'DetailAdmin::detail_inovasi_admin/$1');
 
-// Routes untuk Halaman Admin
-// Dengan parameter menghapus berdasarkan ID
-// Tanpa Parameter menghapus data keseluruhan
 $routes->delete('admin/dataKK/(:any)', 'DeleteAdmin::deletePermanentKK/$1');
 $routes->delete('admin/dataKK', 'DeleteAdmin::deletePermanentKK');
 $routes->delete('admin/dataKIA/(:any)', 'DeleteAdmin::deletePermanentKIA/$1');
@@ -86,14 +77,17 @@ $routes->delete('admin/dataSuratPerbaikanData', 'DeleteAdmin::deletePermanentSur
 $routes->delete('admin/dataSuratPengaduanUpdate/(:any)', 'DeleteAdmin::deletePermanentSuratPengaduanUpdate/$1');
 $routes->delete('admin/dataSuratPengaduanUpdate', 'DeleteAdmin::deletePermanentSuratPengaduanUpdate');
 
-
-
-
-
-
-// Bagian Halaman User
-$routes->get('pages/index/(:segment)', 'Pages::detail_berita/$1');
-$routes->get('pages/index/(:segment)', 'Pages::detail_inovasi/$1');
+$routes->get('admin/dataKK', 'ExportExcel::exportKK');
+$routes->get('admin/dataKIA', 'ExportExcel::exportKIA');
+$routes->get('admin/dataKKPerceraian', 'ExportExcel::exportKKPerceraian');
+$routes->get('admin/dataSuratPerpindahan', 'ExportExcel::exportSuratPerpindahan');
+$routes->get('admin/dataSuratPerpindahanLuar', 'ExportExcel::exportSuratPerpindahanLuar');
+$routes->get('admin/dataAktaKelahiran', 'ExportExcel::exportAktaKelahiran');
+$routes->get('admin/dataAktaKematian', 'ExportExcel::exportAktaKematian');
+$routes->get('admin/dataKeabsahanAkla', 'ExportExcel::exportKeabsahanAkla');
+$routes->get('admin/dataPelayananData', 'ExportExcel::exportPelayananData');
+$routes->get('admin/dataPerbaikanData', 'ExportExcel::exportPerbaikanData');
+$routes->get('admin/dataPengaduanUpdate', 'ExportExcel::exportPengaduanUpdate');
 /*
  * --------------------------------------------------------------------
  * Additional Routing
