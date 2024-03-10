@@ -20,7 +20,7 @@
 
     <div class="row">
 
-      <div class="col-xl-4 col-md-6 mb-4">
+      <!-- <div class="col-xl-4 col-md-6 mb-4">
         <div class="card border-left-primary shadow-h-100 py-2">
           <div class="card-body">
             <div class="row no-gutters align-items-center">
@@ -74,386 +74,386 @@
         </div>
       </div>
 
+    </div> -->
+
     </div>
 
-  </div>
+    <div class="card mt-3 shadow border-2">
 
-  <div class="card mt-3 shadow border-2">
+      <div class="pelayananrow row">
 
-    <div class="pelayananrow row">
+        <!-- Pendaftaran Kartu Keluarga -->
+        <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
+          <a href="/Admin/pendaftaran_kk_admin">
+            <img src="/img/silancar/Kartu Keluarga.png" class="card-img-top">
 
-      <!-- Pendaftaran Kartu Keluarga -->
-      <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
-        <a href="/Admin/pendaftaran_kk_admin">
-          <img src="/img/silancar/Kartu Keluarga.png" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Kartu Keluarga</h5>
+            </div>
 
-          <div class="card-body">
-            <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Kartu Keluarga</h5>
-          </div>
+            <?php
+            $belumDiProsesCountKK = array_filter($pendaftaran_kk, function ($data) {
+              return $data['status'] == 'Belum di Proses';
+            });
 
-          <?php
-          $belumDiProsesCountKK = array_filter($pendaftaran_kk, function ($data) {
-            return $data['status'] == 'Belum di Proses';
-          });
+            $selesaiDiProsesCountKK = array_filter($pendaftaran_kk, function ($data) {
+              return $data['status'] == 'Selesai';
+            });
 
-          $selesaiDiProsesCountKK = array_filter($pendaftaran_kk, function ($data) {
-            return $data['status'] == 'Selesai';
-          });
+            $belumselesaiDiProsesCountKK = array_filter($pendaftaran_kk, function ($data) {
+              return $data['status'] == 'Belum Selesai';
+            });
 
-          $belumselesaiDiProsesCountKK = array_filter($pendaftaran_kk, function ($data) {
-            return $data['status'] == 'Belum Selesai';
-          });
+            $totalSelesaiCountKK = $selesaiDiProsesCountKK + $belumselesaiDiProsesCountKK;
 
-          $totalSelesaiCountKK = $selesaiDiProsesCountKK + $belumselesaiDiProsesCountKK;
+            ?>
 
-          ?>
+            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountKK); ?></p>
+            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountKK); ?></p>
 
-          <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountKK); ?></p>
-          <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountKK); ?></p>
+          </a>
+        </div>
 
-        </a>
+        <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
+          <a href="/Admin/pendaftaran_kia_admin">
+            <img src="/img/silancar/Kartu Identitas Anak.png" class="card-img-top">
+
+            <div class="card-body">
+              <h5 class="card-title text-black text-center font-weight-bold"> Data Pendaftaran Kartu Identitas Anak</h5>
+            </div>
+
+            <?php
+            $belumDiProsesCountKIA = array_filter($pendaftaran_kia, function ($data) {
+              return $data['status'] == 'Belum di Proses';
+            });
+
+            $selesaiDiProsesCountKIA = array_filter($pendaftaran_kia, function ($data) {
+              return $data['status'] == 'Selesai';
+            });
+
+            $belumselesaiDiProsesCountKIA = array_filter($pendaftaran_kia, function ($data) {
+              return $data['status'] == 'Belum Selesai';
+            });
+
+            $totalSelesaiCountKIA = $selesaiDiProsesCountKIA + $belumselesaiDiProsesCountKIA;
+
+            ?>
+
+            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountKIA); ?></p>
+            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountKIA); ?></p>
+
+          </a>
+        </div>
+
+        <!-- Pendaftaran Kartu Keluarga Perceraian -->
+        <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
+          <a href="/Admin/pendaftaran_kkperceraian_admin">
+            <img src="/img/silancar/Kartu Keluarga Perceraian.png" class="card-img-top">
+
+            <div class="card-body">
+              <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Kartu Keluarga Perceraian</h5>
+            </div>
+
+
+            <?php
+            $belumDiProsesCountKKPerceraian = array_filter($pendaftaran_kk_perceraian, function ($data) {
+              return $data['status'] == 'Belum di Proses';
+            });
+
+            $selesaiDiProsesCountKKPerceraian = array_filter($pendaftaran_kk_perceraian, function ($data) {
+              return $data['status'] == 'Selesai';
+            });
+
+            $belumselesaiDiProsesCountKKPerceraian = array_filter($pendaftaran_kk_perceraian, function ($data) {
+              return $data['status'] == 'Belum Selesai';
+            });
+
+            $totalSelesaiCountKKPerceraian = $selesaiDiProsesCountKKPerceraian + $belumselesaiDiProsesCountKKPerceraian;
+
+            ?>
+
+            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountKKPerceraian); ?></p>
+            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountKKPerceraian); ?></p>
+
+          </a>
+        </div>
+
+        <!-- Pendaftaran Surat Perpindahan Domisili -->
+        <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
+          <a href="/Admin/pendaftaran_suratperpindahan_admin">
+            <img src="/img/silancar/Kartu Surat Perpindahan.png" class="card-img-top">
+
+            <div class="card-body">
+              <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Surat Perpindahan Majalengka Menuju Luar</h5>
+            </div>
+
+
+            <?php
+            $belumDiProsesCountSuratPerpindahan = array_filter($pendaftaran_suratperpindahan, function ($data) {
+              return $data['status'] == 'Belum di Proses';
+            });
+
+            $selesaiDiProsesCountSuratPerpindahan = array_filter($pendaftaran_suratperpindahan, function ($data) {
+              return $data['status'] == 'Selesai';
+            });
+
+            $belumselesaiDiProsesCountSuratPerpindahan = array_filter($pendaftaran_suratperpindahan, function ($data) {
+              return $data['status'] == 'Belum Selesai';
+            });
+
+            $totalSelesaiCountSuratPerpindahan = $selesaiDiProsesCountSuratPerpindahan + $belumselesaiDiProsesCountSuratPerpindahan;
+
+            ?>
+
+            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountSuratPerpindahan); ?></p>
+            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountSuratPerpindahan); ?></p>
+
+        </div>
+
+        <!-- Pendaftaran Surat Perpindahan Domisili -->
+        <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
+          <a href="/Admin/pendaftaran_suratperpindahanluar_admin">
+            <img src="/img/silancar/Kartu Surat Perpindahan.png" class="card-img-top">
+
+            <div class="card-body">
+              <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Surat Perpindahan Luar Menuju Majalengka</h5>
+            </div>
+
+            <?php
+            $belumDiProsesCountSuratPerpindahanLuar = array_filter($pendaftaran_suratperpindahanluar, function ($data) {
+              return $data['status'] == 'Belum di Proses';
+            });
+
+            $selesaiDiProsesCountSuratPerpindahanLuar = array_filter($pendaftaran_suratperpindahanluar, function ($data) {
+              return $data['status'] == 'Selesai';
+            });
+
+            $belumselesaiDiProsesCountSuratPerpindahanLuar = array_filter($pendaftaran_suratperpindahanluar, function ($data) {
+              return $data['status'] == 'Belum Selesai';
+            });
+
+            $totalSelesaiCountSuratPerpindahanLuar = $selesaiDiProsesCountSuratPerpindahanLuar + $belumselesaiDiProsesCountSuratPerpindahanLuar;
+
+            ?>
+
+            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountSuratPerpindahanLuar); ?></p>
+            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountSuratPerpindahanLuar); ?></p>
+
+          </a>
+        </div>
+
+        <!-- Pendaftaran Akta Kelahiran -->
+        <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
+          <a href="/Admin/pendaftaran_aktakelahiran_admin">
+            <img src="/img/silancar/Kartu Akta Kelahiran.png" class="card-img-top">
+
+            <div class="card-body">
+              <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Akta Kelahiran</h5>
+            </div>
+
+            <?php
+            $belumDiProsesCountAktaKelahiran = array_filter($pendaftaran_aktakelahiran, function ($data) {
+              return $data['status'] == 'Belum di Proses';
+            });
+
+            $selesaiDiProsesCountAktaKelahiran = array_filter($pendaftaran_aktakelahiran, function ($data) {
+              return $data['status'] == 'Selesai';
+            });
+
+            $belumselesaiDiProsesCountAktaKelahiran = array_filter($pendaftaran_aktakelahiran, function ($data) {
+              return $data['status'] == 'Belum Selesai';
+            });
+
+            $totalSelesaiCountAktaKelahiran = $selesaiDiProsesCountAktaKelahiran + $belumselesaiDiProsesCountAktaKelahiran;
+
+            ?>
+
+            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountAktaKelahiran); ?></p>
+            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountAktaKelahiran); ?></p>
+
+          </a>
+        </div>
+
+        <!-- Pendaftaran Akta Kematian -->
+        <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
+          <a href="/Admin/pendaftaran_aktakematian_admin">
+            <img src="/img/silancar/Kartu Akta Kematian.png" class="card-img-top">
+
+            <div class="card-body">
+              <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Akta Kematian</h5>
+            </div>
+
+            <?php
+            $belumDiProsesCountAktaKematian = array_filter($pendaftaran_aktakematian, function ($data) {
+              return $data['status'] == 'Belum di Proses';
+            });
+
+            $selesaiDiProsesCountAktaKematian = array_filter($pendaftaran_aktakematian, function ($data) {
+              return $data['status'] == 'Selesai';
+            });
+
+            $belumselesaiDiProsesCountAktaKematian = array_filter($pendaftaran_aktakematian, function ($data) {
+              return $data['status'] == 'Belum Selesai';
+            });
+
+            $totalSelesaiCountAktaKematian = $selesaiDiProsesCountAktaKematian + $belumselesaiDiProsesCountAktaKematian;
+
+            ?>
+
+            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountAktaKematian); ?></p>
+            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountAktaKematian); ?></p>
+
+          </a>
+        </div>
+
+        <!-- Pendaftaran Keabsahan Akta Kelahiran -->
+        <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
+          <a href="/Admin/pendaftaran_keabsahanakla_admin">
+            <img src="/img/silancar/Keabsahan Akta Kelahiran.png" class="card-img-top">
+
+            <div class="card-body">
+              <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Keabsahan Akta Kelahiran</h5>
+            </div>
+
+            <?php
+            $belumDiProsesCountKeabsahanAkla = array_filter($pendaftaran_keabsahanakla, function ($data) {
+              return $data['status'] == 'Belum di Proses';
+            });
+
+            $selesaiDiProsesCountKeabsahanAkla = array_filter($pendaftaran_keabsahanakla, function ($data) {
+              return $data['status'] == 'Selesai';
+            });
+
+            $belumselesaiDiProsesCountKeabsahanAkla = array_filter($pendaftaran_keabsahanakla, function ($data) {
+              return $data['status'] == 'Belum Selesai';
+            });
+
+            $totalSelesaiCountKeabsahanAkla = $selesaiDiProsesCountKeabsahanAkla + $belumselesaiDiProsesCountKeabsahanAkla;
+
+            ?>
+
+            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountKeabsahanAkla); ?></p>
+            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountKeabsahanAkla); ?></p>
+
+          </a>
+        </div>
+
+        <!-- Pelayanan Pemanfaatan Data dan Inovasi -->
+        <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
+          <a href="/Admin/pendaftaran_pelayanandata_admin">
+            <img src="/img/silancar/kartu Pelayanan Pemanfaatan Data.png" class="card-img-top">
+
+            <div class="card-body">
+              <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Pelayanan Pemanfaatan Data</h5>
+            </div>
+
+            <?php
+            $belumDiProsesCountPelayananData = array_filter($pendaftaran_pelayanandata, function ($data) {
+              return $data['status'] == 'Belum di Proses';
+            });
+
+            $selesaiDiProsesCountPelayananData = array_filter($pendaftaran_pelayanandata, function ($data) {
+              return $data['status'] == 'Selesai';
+            });
+
+            $belumselesaiDiProsesCountPelayananData = array_filter($pendaftaran_pelayanandata, function ($data) {
+              return $data['status'] == 'Belum Selesai';
+            });
+
+            $totalSelesaiCountPelayananData = $selesaiDiProsesCountPelayananData + $belumselesaiDiProsesCountPelayananData;
+
+            ?>
+
+            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountPelayananData); ?></p>
+            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountPelayananData); ?></p>
+
+          </a>
+        </div>
+
+        <!-- Perbaikan Data -->
+        <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
+          <a href="/Admin/perbaikan_data_admin">
+            <img src="/img/silancar/Kartu Perbaikan Data.png" class="card-img-top">
+
+            <div class="card-body">
+              <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Perbaikan Data</h5>
+            </div>
+
+            <?php
+            $belumDiProsesCountPerbaikanData = array_filter($pendaftaran_perbaikandata, function ($data) {
+              return $data['status'] == 'Belum di Proses';
+            });
+
+            $selesaiDiProsesCountPerbaikanData = array_filter($pendaftaran_perbaikandata, function ($data) {
+              return $data['status'] == 'Selesai';
+            });
+
+            $belumselesaiDiProsesCountPerbaikanData = array_filter($pendaftaran_perbaikandata, function ($data) {
+              return $data['status'] == 'Belum Selesai';
+            });
+
+            $totalSelesaiCountPerbaikanData = $selesaiDiProsesCountPerbaikanData + $belumselesaiDiProsesCountPerbaikanData;
+
+            ?>
+
+            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountPerbaikanData); ?></p>
+            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountPerbaikanData); ?></p>
+
+          </a>
+        </div>
+
+        <!-- Pengaduan Update -->
+        <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
+          <a href="/Admin/pendaftaran_pengaduanupdate_admin">
+            <img src="/img/silancar/Kartu Pengaduan Update.png" class="card-img-top">
+
+            <div class="card-body">
+              <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Pengaduan Update</h5>
+            </div>
+
+            <?php
+            $belumDiProsesCountPengaduanUpdate = array_filter($pendaftaran_pengaduanupdate, function ($data) {
+              return $data['status'] == 'Belum di Proses';
+            });
+
+            $selesaiDiProsesCountPengaduanUpdate = array_filter($pendaftaran_pengaduanupdate, function ($data) {
+              return $data['status'] == 'Selesai';
+            });
+
+            $belumselesaiDiProsesCountPengaduanUpdate = array_filter($pendaftaran_pengaduanupdate, function ($data) {
+              return $data['status'] == 'Belum Selesai';
+            });
+
+            $totalSelesaiCountPengaduanUpdate = $selesaiDiProsesCountPengaduanUpdate + $belumselesaiDiProsesCountPengaduanUpdate;
+
+            ?>
+
+            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountPengaduanUpdate); ?></p>
+            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountPengaduanUpdate); ?></p>
+
+          </a>
+        </div>
+
       </div>
-
-      <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
-        <a href="/Admin/pendaftaran_kia_admin">
-          <img src="/img/silancar/Kartu Identitas Anak.png" class="card-img-top">
-
-          <div class="card-body">
-            <h5 class="card-title text-black text-center font-weight-bold"> Data Pendaftaran Kartu Identitas Anak</h5>
-          </div>
-
-          <?php
-          $belumDiProsesCountKIA = array_filter($pendaftaran_kia, function ($data) {
-            return $data['status'] == 'Belum di Proses';
-          });
-
-          $selesaiDiProsesCountKIA = array_filter($pendaftaran_kia, function ($data) {
-            return $data['status'] == 'Selesai';
-          });
-
-          $belumselesaiDiProsesCountKIA = array_filter($pendaftaran_kia, function ($data) {
-            return $data['status'] == 'Belum Selesai';
-          });
-
-          $totalSelesaiCountKIA = $selesaiDiProsesCountKIA + $belumselesaiDiProsesCountKIA;
-
-          ?>
-
-          <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountKIA); ?></p>
-          <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountKIA); ?></p>
-
-        </a>
-      </div>
-
-      <!-- Pendaftaran Kartu Keluarga Perceraian -->
-      <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
-        <a href="/Admin/pendaftaran_kkperceraian_admin">
-          <img src="/img/silancar/Kartu Keluarga Perceraian.png" class="card-img-top">
-
-          <div class="card-body">
-            <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Kartu Keluarga Perceraian</h5>
-          </div>
-
-
-          <?php
-          $belumDiProsesCountKKPerceraian = array_filter($pendaftaran_kk_perceraian, function ($data) {
-            return $data['status'] == 'Belum di Proses';
-          });
-
-          $selesaiDiProsesCountKKPerceraian = array_filter($pendaftaran_kk_perceraian, function ($data) {
-            return $data['status'] == 'Selesai';
-          });
-
-          $belumselesaiDiProsesCountKKPerceraian = array_filter($pendaftaran_kk_perceraian, function ($data) {
-            return $data['status'] == 'Belum Selesai';
-          });
-
-          $totalSelesaiCountKKPerceraian = $selesaiDiProsesCountKKPerceraian + $belumselesaiDiProsesCountKKPerceraian;
-
-          ?>
-
-          <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountKKPerceraian); ?></p>
-          <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountKKPerceraian); ?></p>
-
-        </a>
-      </div>
-
-      <!-- Pendaftaran Surat Perpindahan Domisili -->
-      <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
-        <a href="/Admin/pendaftaran_suratperpindahan_admin">
-          <img src="/img/silancar/Kartu Surat Perpindahan.png" class="card-img-top">
-
-          <div class="card-body">
-            <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Surat Perpindahan Majalengka Menuju Luar</h5>
-          </div>
-
-
-          <?php
-          $belumDiProsesCountSuratPerpindahan = array_filter($pendaftaran_suratperpindahan, function ($data) {
-            return $data['status'] == 'Belum di Proses';
-          });
-
-          $selesaiDiProsesCountSuratPerpindahan = array_filter($pendaftaran_suratperpindahan, function ($data) {
-            return $data['status'] == 'Selesai';
-          });
-
-          $belumselesaiDiProsesCountSuratPerpindahan = array_filter($pendaftaran_suratperpindahan, function ($data) {
-            return $data['status'] == 'Belum Selesai';
-          });
-
-          $totalSelesaiCountSuratPerpindahan = $selesaiDiProsesCountSuratPerpindahan + $belumselesaiDiProsesCountSuratPerpindahan;
-
-          ?>
-
-          <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountSuratPerpindahan); ?></p>
-          <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountSuratPerpindahan); ?></p>
-
-      </div>
-
-      <!-- Pendaftaran Surat Perpindahan Domisili -->
-      <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
-        <a href="/Admin/pendaftaran_suratperpindahanluar_admin">
-          <img src="/img/silancar/Kartu Surat Perpindahan.png" class="card-img-top">
-
-          <div class="card-body">
-            <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Surat Perpindahan Luar Menuju Majalengka</h5>
-          </div>
-
-          <?php
-          $belumDiProsesCountSuratPerpindahanLuar = array_filter($pendaftaran_suratperpindahanluar, function ($data) {
-            return $data['status'] == 'Belum di Proses';
-          });
-
-          $selesaiDiProsesCountSuratPerpindahanLuar = array_filter($pendaftaran_suratperpindahanluar, function ($data) {
-            return $data['status'] == 'Selesai';
-          });
-
-          $belumselesaiDiProsesCountSuratPerpindahanLuar = array_filter($pendaftaran_suratperpindahanluar, function ($data) {
-            return $data['status'] == 'Belum Selesai';
-          });
-
-          $totalSelesaiCountSuratPerpindahanLuar = $selesaiDiProsesCountSuratPerpindahanLuar + $belumselesaiDiProsesCountSuratPerpindahanLuar;
-
-          ?>
-
-          <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountSuratPerpindahanLuar); ?></p>
-          <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountSuratPerpindahanLuar); ?></p>
-
-        </a>
-      </div>
-
-      <!-- Pendaftaran Akta Kelahiran -->
-      <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
-        <a href="/Admin/pendaftaran_aktakelahiran_admin">
-          <img src="/img/silancar/Kartu Akta Kelahiran.png" class="card-img-top">
-
-          <div class="card-body">
-            <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Akta Kelahiran</h5>
-          </div>
-
-          <?php
-          $belumDiProsesCountAktaKelahiran = array_filter($pendaftaran_aktakelahiran, function ($data) {
-            return $data['status'] == 'Belum di Proses';
-          });
-
-          $selesaiDiProsesCountAktaKelahiran = array_filter($pendaftaran_aktakelahiran, function ($data) {
-            return $data['status'] == 'Selesai';
-          });
-
-          $belumselesaiDiProsesCountAktaKelahiran = array_filter($pendaftaran_aktakelahiran, function ($data) {
-            return $data['status'] == 'Belum Selesai';
-          });
-
-          $totalSelesaiCountAktaKelahiran = $selesaiDiProsesCountAktaKelahiran + $belumselesaiDiProsesCountAktaKelahiran;
-
-          ?>
-
-          <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountAktaKelahiran); ?></p>
-          <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountAktaKelahiran); ?></p>
-
-        </a>
-      </div>
-
-      <!-- Pendaftaran Akta Kematian -->
-      <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
-        <a href="/Admin/pendaftaran_aktakematian_admin">
-          <img src="/img/silancar/Kartu Akta Kematian.png" class="card-img-top">
-
-          <div class="card-body">
-            <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Akta Kematian</h5>
-          </div>
-
-          <?php
-          $belumDiProsesCountAktaKematian = array_filter($pendaftaran_aktakematian, function ($data) {
-            return $data['status'] == 'Belum di Proses';
-          });
-
-          $selesaiDiProsesCountAktaKematian = array_filter($pendaftaran_aktakematian, function ($data) {
-            return $data['status'] == 'Selesai';
-          });
-
-          $belumselesaiDiProsesCountAktaKematian = array_filter($pendaftaran_aktakematian, function ($data) {
-            return $data['status'] == 'Belum Selesai';
-          });
-
-          $totalSelesaiCountAktaKematian = $selesaiDiProsesCountAktaKematian + $belumselesaiDiProsesCountAktaKematian;
-
-          ?>
-
-          <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountAktaKematian); ?></p>
-          <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountAktaKematian); ?></p>
-
-        </a>
-      </div>
-
-      <!-- Pendaftaran Keabsahan Akta Kelahiran -->
-      <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
-        <a href="/Admin/pendaftaran_keabsahanakla_admin">
-          <img src="/img/silancar/Keabsahan Akta Kelahiran.png" class="card-img-top">
-
-          <div class="card-body">
-            <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Keabsahan Akta Kelahiran</h5>
-          </div>
-
-          <?php
-          $belumDiProsesCountKeabsahanAkla = array_filter($pendaftaran_keabsahanakla, function ($data) {
-            return $data['status'] == 'Belum di Proses';
-          });
-
-          $selesaiDiProsesCountKeabsahanAkla = array_filter($pendaftaran_keabsahanakla, function ($data) {
-            return $data['status'] == 'Selesai';
-          });
-
-          $belumselesaiDiProsesCountKeabsahanAkla = array_filter($pendaftaran_keabsahanakla, function ($data) {
-            return $data['status'] == 'Belum Selesai';
-          });
-
-          $totalSelesaiCountKeabsahanAkla = $selesaiDiProsesCountKeabsahanAkla + $belumselesaiDiProsesCountKeabsahanAkla;
-
-          ?>
-
-          <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountKeabsahanAkla); ?></p>
-          <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountKeabsahanAkla); ?></p>
-
-        </a>
-      </div>
-
-      <!-- Pelayanan Pemanfaatan Data dan Inovasi -->
-      <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
-        <a href="/Admin/pendaftaran_pelayanandata_admin">
-          <img src="/img/silancar/kartu Pelayanan Pemanfaatan Data.png" class="card-img-top">
-
-          <div class="card-body">
-            <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Pelayanan Pemanfaatan Data</h5>
-          </div>
-
-          <?php
-          $belumDiProsesCountPelayananData = array_filter($pendaftaran_pelayanandata, function ($data) {
-            return $data['status'] == 'Belum di Proses';
-          });
-
-          $selesaiDiProsesCountPelayananData = array_filter($pendaftaran_pelayanandata, function ($data) {
-            return $data['status'] == 'Selesai';
-          });
-
-          $belumselesaiDiProsesCountPelayananData = array_filter($pendaftaran_pelayanandata, function ($data) {
-            return $data['status'] == 'Belum Selesai';
-          });
-
-          $totalSelesaiCountPelayananData = $selesaiDiProsesCountPelayananData + $belumselesaiDiProsesCountPelayananData;
-
-          ?>
-
-          <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountPelayananData); ?></p>
-          <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountPelayananData); ?></p>
-
-        </a>
-      </div>
-
-      <!-- Perbaikan Data -->
-      <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
-        <a href="/Admin/perbaikan_data_admin">
-          <img src="/img/silancar/Kartu Perbaikan Data.png" class="card-img-top">
-
-          <div class="card-body">
-            <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Perbaikan Data</h5>
-          </div>
-
-          <?php
-          $belumDiProsesCountPerbaikanData = array_filter($pendaftaran_perbaikandata, function ($data) {
-            return $data['status'] == 'Belum di Proses';
-          });
-
-          $selesaiDiProsesCountPerbaikanData = array_filter($pendaftaran_perbaikandata, function ($data) {
-            return $data['status'] == 'Selesai';
-          });
-
-          $belumselesaiDiProsesCountPerbaikanData = array_filter($pendaftaran_perbaikandata, function ($data) {
-            return $data['status'] == 'Belum Selesai';
-          });
-
-          $totalSelesaiCountPerbaikanData = $selesaiDiProsesCountPerbaikanData + $belumselesaiDiProsesCountPerbaikanData;
-
-          ?>
-
-          <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountPerbaikanData); ?></p>
-          <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountPerbaikanData); ?></p>
-
-        </a>
-      </div>
-
-      <!-- Pengaduan Update -->
-      <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
-        <a href="/Admin/pendaftaran_pengaduanupdate_admin">
-          <img src="/img/silancar/Kartu Pengaduan Update.png" class="card-img-top">
-
-          <div class="card-body">
-            <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Pengaduan Update</h5>
-          </div>
-
-          <?php
-          $belumDiProsesCountPengaduanUpdate = array_filter($pendaftaran_pengaduanupdate, function ($data) {
-            return $data['status'] == 'Belum di Proses';
-          });
-
-          $selesaiDiProsesCountPengaduanUpdate = array_filter($pendaftaran_pengaduanupdate, function ($data) {
-            return $data['status'] == 'Selesai';
-          });
-
-          $belumselesaiDiProsesCountPengaduanUpdate = array_filter($pendaftaran_pengaduanupdate, function ($data) {
-            return $data['status'] == 'Belum Selesai';
-          });
-
-          $totalSelesaiCountPengaduanUpdate = $selesaiDiProsesCountPengaduanUpdate + $belumselesaiDiProsesCountPengaduanUpdate;
-
-          ?>
-
-          <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountPengaduanUpdate); ?></p>
-          <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountPengaduanUpdate); ?></p>
-
-        </a>
-      </div>
-
     </div>
-  </div>
 
-  <div class="container">
-    <div class="row">
-      <div class="col">
+    <div class="container">
+      <div class="row">
+        <div class="col">
 
-        <div class="card text-white bg-primary mb-3">
+          <div class="card text-white bg-primary mb-3">
 
-          <div class="card-header">
-            Grafik Pelayanan Si Lancar
+            <div class="card-header">
+              Grafik Pelayanan Si Lancar
+            </div>
+            <div class="card-body bg-white viewTampilGrafik">
+              <canvas id="myChart" width="200" height="200"></canvas>
+            </div>
+
           </div>
-          <div class="card-body bg-white viewTampilGrafik">
-            <canvas id="myChart" width="200" height="200"></canvas>
-          </div>
-
         </div>
       </div>
     </div>
-  </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

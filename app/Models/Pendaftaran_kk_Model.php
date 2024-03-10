@@ -9,7 +9,7 @@ class Pendaftaran_kk_Model extends Model
   protected $table = 'pendaftaran_kk';
   protected $useTimeStamps = true;
   protected $useSoftDeletes = true;
-  protected $allowedFields = ['namapemohon', 'emailpemohon', 'nomorpemohon', 'alamatpemohon', 'formulirdesa', 'kartukeluargasuami', 'kartukeluargaistri', 'suratnikah', 'suratpindah', 'status'];
+  protected $allowedFields = ['nik', 'namapemohon', 'emailpemohon', 'nomorpemohon', 'alamatpemohon', 'formulirdesa', 'kartukeluargasuami', 'kartukeluargaistri', 'suratnikah', 'suratpindah', 'status'];
 
   public function getDataKK($nama = false)
   {
@@ -25,7 +25,7 @@ class Pendaftaran_kk_Model extends Model
   // Digunakan untuk mencari item
   public function search($keyword)
   {
-    return $this->table('pendaftaran_kk')->like('namapemohon', $keyword);
+    return $this->table('pendaftaran_kk')->like('namapemohon', $keyword)->orLike('nik', $keyword);
   }
 
   // Digunakan untuk mengubah Status Pendaftaran

@@ -8,7 +8,7 @@
     <i class="bi bi-list"></i>
   </button>
 
-  <div class="card shadow mb-4" style="margin-top: 25px;">#49C7DC
+  <div class="card shadow mb-4" style="margin-top: 25px;">
 
     <div class="card-header py-3">
 

@@ -9,7 +9,7 @@ class Pendaftaran_kia_Model extends Model
   protected $table = 'pendaftaran_kia';
   protected $useTimeStamps = true;
   protected $useSoftDeletes =  true;
-  protected $allowedFields = ['namapemohon', 'emailpemohon', 'nomorpemohon', 'alamatpemohon', 'aktakelahiran', 'kartukeluarga', 'pasfoto', 'status'];
+  protected $allowedFields = ['nik', 'namapemohon', 'emailpemohon', 'nomorpemohon', 'alamatpemohon', 'aktakelahiran', 'kartukeluarga', 'pasfoto', 'status'];
 
   public function getDataKIA($nama = false)
   {
@@ -25,7 +25,7 @@ class Pendaftaran_kia_Model extends Model
   // Digunakan untuk mencari item
   public function search($keyword)
   {
-    return $this->table('pendaftaran_kia')->like('namapemohon', $keyword);
+    return $this->table('pendaftaran_kia')->like('namapemohon', $keyword)->orLike('nik', $keyword);
   }
 
   // Digunakan untuk mengubah Status Pendaftaran
@@ -35,30 +35,4 @@ class Pendaftaran_kia_Model extends Model
       ->where('namapemohon', $nama)
       ->update(['status' => $status]);
   }
-
-  //   session()->setFlashdata('pesan', 'Pendaftaran Telah Diubah Statusnya !!');
-  //   return redirect()->to('/DetailAdmin/detail_pendaftarankia_admin/' . $nama);
-
-  //   // return $this->db->table('pendaftaran_kia')
-  //   //   ->where('namapemohon', $nama)
-  //   //   ->update(['status' => $status]);
-  // }
-
-  // public function updateStatus($nama, $status)
-  // {
-  //   if ($this->kiaModel->where('namapemohon', '=', $nama)->exists()) {
-  //     $pendaftaran_kia = $this->kiaModel->find($nama);
-
-  //     if ($status == 'Selesai') {
-  //       $pendaftaran_kia->update(['status' => $status]);
-  //     } else {
-  //       $pendaftaran_kia->forceDelete();
-  //     }
-  //   } else {
-  //     // Do nothing
-  //   }
-
-  //   session()->setFlashdata('pesan', 'Pendaftaran Telah Diubah Statusnya !!');
-  //   return redirect()->to('/DetailAdmin/detail_pendaftarankia_admin/' . $nama);
-  // }
 }

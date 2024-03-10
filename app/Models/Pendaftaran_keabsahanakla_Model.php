@@ -9,7 +9,7 @@ class Pendaftaran_keabsahanakla_Model extends Model
   protected $table = 'pendaftaran_keabsahanakla';
   protected $useTimeStamps = true;
   protected $useSoftDeletes = true;
-  protected $allowedFields = ['namapemohon', 'emailpemohon', 'nomorpemohon', 'alamatpemohon', 'aktakelahiran', 'kartutandapenduduk', 'status'];
+  protected $allowedFields = ['nik', 'namapemohon', 'emailpemohon', 'nomorpemohon', 'alamatpemohon', 'aktakelahiran', 'kartutandapenduduk', 'status'];
 
   public function getDataKeabsahanakla($nama = false)
   {
@@ -25,7 +25,7 @@ class Pendaftaran_keabsahanakla_Model extends Model
   // Digunakan untuk mencari item
   public function search($keyword)
   {
-    return $this->table('pendaftaran_keabsahanakla')->like('namapemohon', $keyword);
+    return $this->table('pendaftaran_keabsahanakla')->like('namapemohon', $keyword)->orLike('nik', $keyword);
   }
 
   // Digunakan untuk mengubah Status Pendaftaran

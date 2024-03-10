@@ -9,7 +9,7 @@ class Pendaftaran_aktakematian_Model extends Model
   protected $table = 'pendaftaran_aktakematian';
   protected $useTimeStamps = true;
   protected $useSoftDeletes = true;
-  protected $allowedFields = ['namapemohon', 'emailpemohon', 'nomorpemohon', 'alamatpemohon', 'kartukeluarga', 'suratkematian', 'status'];
+  protected $allowedFields = ['nik', 'namapemohon', 'emailpemohon', 'nomorpemohon', 'alamatpemohon', 'kartukeluarga', 'suratkematian', 'status'];
 
   public function getDataAktaKematian($nama = false)
   {
@@ -24,7 +24,7 @@ class Pendaftaran_aktakematian_Model extends Model
 
   public function search($keyword)
   {
-    return $this->table('pendaftaran_aktakematian')->like('namapemohon', $keyword);
+    return $this->table('pendaftaran_aktakematian')->like('namapemohon', $keyword)->orLike('nik', $keyword);
   }
 
   public function updateStatus($nama, $status)

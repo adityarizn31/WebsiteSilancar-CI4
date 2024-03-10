@@ -23,6 +23,10 @@
         </li>
 
         <li class="nav-item">
+          <a class="nav-link text-white" aria-current="page" href="/Searching/">Pengecekan Status</a>
+        </li>
+
+        <li class="nav-item">
           <a class="nav-link text-white" aria-current="page" href="/Admin/">Admin</a>
         </li>
 

@@ -9,7 +9,7 @@ class Pendaftaran_suratperpindahan_Model extends Model
   protected $table = 'pendaftaran_suratperpindahan';
   protected $useTimeStamps = true;
   protected $useSoftDeletes = true;
-  protected $allowedFields = ['namapemohon', 'emailpemohon', 'nomorpemohon', 'alamatpemohon', 'formperpindahan', 'kartukeluarga', 'bukunikah', 'ktpsuami', 'ktpistri', 'status'];
+  protected $allowedFields = ['nik', 'namapemohon', 'emailpemohon', 'nomorpemohon', 'alamatpemohon', 'formperpindahan', 'kartukeluarga', 'bukunikah', 'ktpsuami', 'ktpistri', 'status'];
 
   public function getDataSuratPerpindahan($nama = false)
   {
@@ -25,7 +25,7 @@ class Pendaftaran_suratperpindahan_Model extends Model
   // Digunakan untuk mencari item
   public function search($keyword)
   {
-    return $this->table('pendaftaran_suratperpindahan')->like('namapemohon', $keyword);
+    return $this->table('pendaftaran_suratperpindahan')->like('namapemohon', $keyword)->orLike('nik', $keyword);
   }
 
   // Digunakan untuk mengubah Status Pendaftaran

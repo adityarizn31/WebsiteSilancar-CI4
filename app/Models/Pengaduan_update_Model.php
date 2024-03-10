@@ -9,7 +9,7 @@ class Pengaduan_update_Model extends Model
   protected $table = 'pengaduan_update';
   protected $useTimeStamps = true;
   protected $useSoftDeletes = true;
-  protected $allowedFields = ['namapemohon', 'emailpemohon', 'nomorpemohon', 'alamatpemohon', 'kartutandapenduduk', 'kartukeluarga', 'pengaduanupdate'];
+  protected $allowedFields = ['nik', 'namapemohon', 'emailpemohon', 'nomorpemohon', 'alamatpemohon', 'kartutandapenduduk', 'kartukeluarga', 'pengaduanupdate'];
 
   public function getDataPengaduanUpdate($nama = false)
   {
@@ -24,7 +24,7 @@ class Pengaduan_update_Model extends Model
 
   public function search($keyword)
   {
-    return $this->table('pengaduan_update')->like('namapemohon', $keyword);
+    return $this->table('pengaduan_update')->like('namapemohon', $keyword)->orLike('nik', $keyword);
   }
 
   public function updateStatus($nama, $status)

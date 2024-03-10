@@ -9,7 +9,7 @@ class Perbaikan_data_Model extends Model
   protected $table = 'perbaikan_data';
   protected $useTimeStamps = true;
   protected $useSoftDeletes = true;
-  protected $allowedFields = ['namapemohon', 'emailpemohon', 'nomorpemohon', 'alamatpemohon', 'judulperbaikan', 'berkasperbaikan_satu', 'berkasperbaikan_dua', 'berkasperbaikan_tiga', 'berkasperbaikan_empat', 'berkasperbaikan_lima', 'penjelasanperbaikan', 'status'];
+  protected $allowedFields = ['nik', 'namapemohon', 'emailpemohon', 'nomorpemohon', 'alamatpemohon', 'judulperbaikan', 'berkasperbaikan_satu', 'berkasperbaikan_dua', 'berkasperbaikan_tiga', 'berkasperbaikan_empat', 'berkasperbaikan_lima', 'penjelasanperbaikan', 'status'];
 
   public function getPerbaikanData($nama = false)
   {
@@ -24,7 +24,7 @@ class Perbaikan_data_Model extends Model
 
   public function search($keyword)
   {
-    return $this->table('perbaikan_data')->like('namapemohon', $keyword);
+    return $this->table('perbaikan_data')->like('namapemohon', $keyword)->orLike('nik', $keyword);
   }
 
   public function updateStatus($nama, $status)
