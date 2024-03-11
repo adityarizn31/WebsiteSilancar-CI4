@@ -61,6 +61,17 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
             <?php $validation = session('validation'); ?>
           <?php endif; ?>
 
+          <!-- Form NIK Pemohon -->
+          <div class="row">
+            <div class="mb-3">
+              <label for="nik" class="form-label fw-semibold"> NIK Pemohon </label>
+              <input type="text" name="nik" id="nik" class="form-control <?= (session('errors.nik')) ? 'is-invalid' : null ?>" autofocus value="<?= old('nik'); ?>">
+              <div class="invalid-feedback">
+                <?= session('errors.nik') ?>
+              </div>
+            </div>
+          </div>
+
           <!-- Form Nama Pemohon -->
           <div class="row">
             <div class="mb-3">

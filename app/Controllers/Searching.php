@@ -67,58 +67,8 @@ class Searching extends BaseController
   public function index()
   {
 
-    $keyword = $this->request->getVar('keyword');
-    if ($keyword) {
-      $this->kkModel->search($keyword)->withDeleted()->findAll();
-      $this->kiaModel->search($keyword)->withDeleted()->findAll();
-      $this->kkperceraianModel->search($keyword)->withDeleted()->findAll();
-      $this->suratperpindahanModel->search($keyword)->withDeleted()->findAll();
-      $this->suratperpindahanluarModel->search($keyword)->withDeleted()->findAll();
-      $this->aktakelahiranModel->search($keyword)->withDeleted()->findAll();
-      $this->aktakematianModel->search($keyword)->withDeleted()->findAll();
-      $this->keabsahanaklaModel->search($keyword)->withDeleted()->findAll();
-      $this->pelayanandataModel->search($keyword)->withDeleted()->findAll();
-      $this->perbaikandataModel->search($keyword)->withDeleted()->findAll();
-      $this->pengaduanupdateModel->search($keyword)->withDeleted()->findAll();
-    } else {
-      $orangKK = $this->kkModel;
-      $orangKIA = $this->kiaModel;
-      $orangKKPerceraian = $this->kkperceraianModel;
-      $orangSuratPerpindahan = $this->suratperpindahanModel;
-      $orangSuratPerpindahanLuar = $this->suratperpindahanluarModel;
-      $orangAktaKelahiran = $this->aktakelahiranModel;
-      $orangAktaKematian = $this->aktakematianModel;
-      $orangKeabsahanAkla = $this->keabsahanaklaModel;
-      $orangPelayananData = $this->pelayanandataModel;
-      $orangPerbaikanData = $this->perbaikandataModel;
-      $orangPengaduanUpdate = $this->pengaduanupdateModel;
-    }
-
-    $pendaftaran_kk = $this->kkModel->withDeleted()->findAll();
-    $pendaftaran_kia = $this->kiaModel->withDeleted()->findAll();
-    $pendaftaran_kk_perceraian = $this->kkperceraianModel->withDeleted()->findAll();
-    $pendaftaran_suratperpindahan = $this->suratperpindahanModel->withDeleted()->findAll();
-    $pendaftaran_suratperpindahanluar = $this->suratperpindahanluarModel->withDeleted()->findAll();
-    $pendaftaran_aktakelahiran = $this->aktakelahiranModel->withDeleted()->findAll();
-    $pendaftaran_aktakematian = $this->aktakematianModel->withDeleted()->findAll();
-    $pendaftaran_keabsahanakla = $this->keabsahanaklaModel->withDeleted()->findAll();
-    $pendaftaran_pelayanandata = $this->pelayanandataModel->withDeleted()->findAll();
-    $pendaftaran_perbaikandata = $this->perbaikandataModel->withDeleted()->findAll();
-    $pendaftaran_pengaduanupdate = $this->pengaduanupdateModel->withDeleted()->findAll();
-
     $data = [
-      'title' => 'Pencarian Data || Disdukcapil Majalengka',
-      'pendaftaran_kk' => $orangKK,
-      'pendaftaran_kia' => $pendaftaran_kia,
-      'pendaftaran_kk_perceraian' => $pendaftaran_kk_perceraian,
-      'pendaftaran_suratperpindahan' => $pendaftaran_suratperpindahan,
-      'pendaftaran_suratperpindahanluar' => $pendaftaran_suratperpindahanluar,
-      'pendaftaran_aktakelahiran' => $pendaftaran_aktakelahiran,
-      'pendaftaran_aktakematian' => $pendaftaran_aktakematian,
-      'pendaftaran_keabsahanakla' => $pendaftaran_keabsahanakla,
-      'pendaftaran_pelayanandata' => $pendaftaran_pelayanandata,
-      'pendaftaran_perbaikandata' => $pendaftaran_perbaikandata,
-      'pendaftaran_pengaduanupdate' => $pendaftaran_pengaduanupdate,
+      'title' => 'Pencarian Data || Disdukcapil Majalengka'
     ];
     return view('pencarian_views/index', $data);
   }
@@ -133,20 +83,27 @@ class Searching extends BaseController
 
   public function cekKK()
   {
-    $keyword = $this->request->getVar('keyword');
-    if ($keyword) {
-      $orangKK = $this->kkModel->search($keyword);
-    } else {
-      $orangKK = $this->kkModel;
-    }
-
     helper(['form']);
     $data = [
       'title' => 'Pengecekan Status KK || Disdukcapil Majalengka',
-      'pendaftaran_kk' => $orangKK
+      'pendaftaran_kk' => $this->kkModel
     ];
     return view('pencarian_views/cekKK', $data);
   }
+
+  public function cariKK()
+  {
+    $nik = $this->request->getPost('keyword');
+    $dataModel = new Pendaftaran_kk_Model();
+    $data = $dataModel->getDataByNIK($nik);
+
+    if ($data) {
+      return view('modal_view', ['data' => $data]);
+    } else {
+      return "Data tidak ditemukan"; // Atau Anda bisa menampilkan pesan error yang sesuai
+    }
+  }
+
 
 
 

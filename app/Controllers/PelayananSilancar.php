@@ -87,6 +87,13 @@ class PelayananSilancar extends BaseController
   {
     $validate = $this->validate([
 
+      // Form NIK Pemohon
+      'nik' => [
+        'rules' => 'required[pendaftaran_kk.nik]',
+        'errors' => [
+          'required' => 'NIK Pemohon Harus Diisi !!'
+        ],
+      ],
       // Form Nama Pemohon
       'namapemohon' => [
         'rules' => 'required[pendaftaran_kk.namapemohon]',
@@ -199,6 +206,7 @@ class PelayananSilancar extends BaseController
     $berkasSuratPindah_KK->move('pelayanan/kk', $namaSuratPindah_KK);
 
     $this->kkModel->save([
+      'nik' => $this->request->getVar('nik'),
       'namapemohon' => $this->request->getVar('namapemohon'),
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
@@ -232,9 +240,16 @@ class PelayananSilancar extends BaseController
 
     $validate = $this->validate([
 
+      // Form NIK Pemohon
+      'nik' => [
+        'rules' => 'required[pendaftaran_kia.nik]',
+        'errors' => [
+          'required' => 'NIK Pemohon Harus Diisi !!'
+        ],
+      ],
       //Form Nama Pemohon
       'namapemohon' => [
-        'rules' => 'required',
+        'rules' => 'required[pendaftaran_kia.namapemohon]',
         'errors' => [
           'required' => 'Nama Pemohon Harus diisi !!'
         ],
@@ -319,6 +334,7 @@ class PelayananSilancar extends BaseController
     }
 
     $this->kiaModel->save([
+      'nik' => $this->request->getVar('nik'),
       'namapemohon' => $this->request->getVar('namapemohon'),
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
@@ -351,6 +367,14 @@ class PelayananSilancar extends BaseController
   public function saveKKPerceraian()
   {
     $validate = $this->validate([
+
+      // Form NIK Pemohon
+      'nik' => [
+        'rules' => 'required[pendaftaran_kk_perceraian.nik]',
+        'errors' => [
+          'required' => 'NIK Pemohon Harus Diisi !!'
+        ],
+      ],
       // Form Nama Pemohon
       'namapemohon' => [
         'rules' => 'required[pendaftaran_kk_perceraian.namapemohon]',
@@ -418,6 +442,7 @@ class PelayananSilancar extends BaseController
     $berkasAktaPerceraian_KKPerceraian->move('pelayanan/kkperceraian', $namaAktaPerceraian_KKPerceraian);
 
     $this->kkperceraianModel->save([
+      'nik' => $this->request->getVar('nik'),
       'namapemohon' => $this->request->getVar('namapemohon'),
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
@@ -467,6 +492,13 @@ class PelayananSilancar extends BaseController
 
     $validate = $this->validate([
 
+      // Form NIK Pemohon
+      'nik' => [
+        'rules' => 'required[pendaftaran_suratperpindahan.nik]',
+        'errors' => [
+          'required' => 'NIK Pemohon Harus Diisi !!'
+        ],
+      ],
       //Form Nama Pemohon
       'namapemohon' => [
         'rules' => 'required[pendaftaran_suratperpindahan.namapemohon]',
@@ -580,6 +612,7 @@ class PelayananSilancar extends BaseController
     $berkasKTPIstri_Perpindahan->move('pelayanan/perpindahan', $namaKTPIstri_Perpindahan);
 
     $this->suratperpindahanModel->save([
+      'nik' => $this->request->getVar('nik'),
       'namapemohon' => $this->request->getVar('namapemohon'),
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
@@ -619,6 +652,13 @@ class PelayananSilancar extends BaseController
 
     $validate = $this->validate([
 
+      // Form NIK Pemohon
+      'nik' => [
+        'rules' => 'required[pendaftaran_suratperpindahanluar.nik]',
+        'errors' => [
+          'required' => 'NIK Pemohon Harus Diisi !!'
+        ],
+      ],
       //Form Nama Pemohon
       'namapemohon' => [
         'rules' => 'required[pendaftaran_suratperpindahanluar.namapemohon]',
@@ -687,6 +727,7 @@ class PelayananSilancar extends BaseController
     $berkasKartuTandaPenduduk_Perpindahan->move('pelayanan/perpindahan_luar', $namaKartuTandaPenduduk_Perpindahan);
 
     $this->suratperpindahanluarModel->save([
+      'nik' => $this->request->getVar('nik'),
       'namapemohon' => $this->request->getVar('namapemohon'),
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
@@ -722,6 +763,13 @@ class PelayananSilancar extends BaseController
 
     $validate = $this->validate([
 
+      // Form NIK Pemohon
+      'nik' => [
+        'rules' => 'required[pendaftaran_aktakelahiran.nik]',
+        'errors' => [
+          'required' => 'NIK Pemohon Harus Diisi !!'
+        ],
+      ],
       // Form Nama Pemohon
       'namapemohon' => [
         'rules' => 'required[pendaftaran_aktakelahiran.namapemohon]',
@@ -849,6 +897,7 @@ class PelayananSilancar extends BaseController
     $berkasKTPIbu_Akla->move('pelayanan/aktakelahiran', $namaKTPIbu_Akla);
 
     $this->aktakelahiranModel->save([
+      'nik' => $this->request->getVar('nik'),
       'namapemohon' => $this->request->getVar('namapemohon'),
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
@@ -896,6 +945,13 @@ class PelayananSilancar extends BaseController
   {
     $validate = $this->validate([
 
+      // Form NIK Pemohon
+      'nik' => [
+        'rules' => 'required[pendaftaran_aktakematian.nik]',
+        'errors' => [
+          'required' => 'NIK Pemohon Harus Diisi !!'
+        ],
+      ],
       // Form Nama Pemohon
       'namapemohon' => [
         'rules' => 'required[pendaftaran_aktakematian.namapemohon]',
@@ -963,6 +1019,7 @@ class PelayananSilancar extends BaseController
     $berkasSuratKematian_Akket->move('pelayanan/aktakematian', $namaSuratKematian_Akket);
 
     $this->aktakematianModel->save([
+      'nik' => $this->request->getVar('nik'),
       'namapemohon' => $this->request->getVar('namapemohon'),
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
@@ -1005,6 +1062,13 @@ class PelayananSilancar extends BaseController
   {
     $validate = $this->validate([
 
+      // Form NIK Pemohon
+      'nik' => [
+        'rules' => 'required[pendaftaran_keabsahanakla.nik]',
+        'errors' => [
+          'required' => 'NIK Pemohon Harus Diisi !!'
+        ],
+      ],
       // Form Nama Pemohon
       'namapemohon' => [
         'rules' => 'required[pendaftaran_keabsahanakla.namapemohon]',
@@ -1073,6 +1137,7 @@ class PelayananSilancar extends BaseController
     $berkasKartuTandaPenduduk_Akla->move('pelayanan/keabsahanaktakelahiran', $namaAktaKelahiran_Akla);
 
     $this->keabsahanaklaModel->save([
+      'nik' => $this->request->getVar('nik'),
       'namapemohon' => $this->request->getVar('namapemohon'),
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
@@ -1117,6 +1182,13 @@ class PelayananSilancar extends BaseController
   {
     $rule = [
 
+      // Form NIK Pemohon
+      'nik' => [
+        'rules' => 'required[pendaftaran_pelayanandata.nik]',
+        'errors' => [
+          'required' => 'NIK Pemohon Harus Diisi !!'
+        ],
+      ],
       // Form Nama Pemohon
       'namapemohon' => [
         'rules' => 'required[pendaftaran_pelayanandata.namapemohon]',
@@ -1189,6 +1261,7 @@ class PelayananSilancar extends BaseController
     $berkasPelayanan10 = (array_key_exists(9, $files) ? $files[9] : null);
 
     $this->pelayanandataModel->save([
+      'nik' => $this->request->getVar('nik'),
       'namapemohon' => $this->request->getVar('namapemohon'),
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
@@ -1241,6 +1314,13 @@ class PelayananSilancar extends BaseController
   {
     $rule = [
       // Form Nama Pemohon
+      // Form NIK Pemohon
+      'nik' => [
+        'rules' => 'required[perbaikan_data.nik]',
+        'errors' => [
+          'required' => 'NIK Pemohon Harus Diisi !!'
+        ],
+      ],
       'namapemohon' => [
         'rules' => 'required[perbaikan_data.namapemohon]',
         'errors' => [
@@ -1321,6 +1401,7 @@ class PelayananSilancar extends BaseController
     $berkasperbaikan_lima = (array_key_exists(4, $files) ? $files[4] : null);
 
     $this->perbaikandataModel->save([
+      'nik' => $this->request->getVar('nik'),
       'namapemohon' => $this->request->getVar('namapemohon'),
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
@@ -1373,6 +1454,13 @@ class PelayananSilancar extends BaseController
   {
     $validate = $this->validate([
 
+      // Form NIK Pemohon
+      'nik' => [
+        'rules' => 'required[pengaduan_update.nik]',
+        'errors' => [
+          'required' => 'NIK Pemohon Harus Diisi !!'
+        ],
+      ],
       // Form Nama Pemohon
       'namapemohon' => [
         'rules' => 'required[pengaduan_update.namapemohon]',
@@ -1443,6 +1531,7 @@ class PelayananSilancar extends BaseController
     $berkasKK_Pengup->move('pelayanan/pengaduan_update', $namaKK_PengUp);
 
     $this->pengaduanupdateModel->save([
+      'nik' => $this->request->getVar('nik'),
       'namapemohon' => $this->request->getVar('namapemohon'),
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),

@@ -88,6 +88,8 @@ $routes->get('admin/dataKeabsahanAkla', 'ExportExcel::exportKeabsahanAkla');
 $routes->get('admin/dataPelayananData', 'ExportExcel::exportPelayananData');
 $routes->get('admin/dataPerbaikanData', 'ExportExcel::exportPerbaikanData');
 $routes->get('admin/dataPengaduanUpdate', 'ExportExcel::exportPengaduanUpdate');
+
+$routes->get('/Searching/modalKK/(:num)', 'Searching::modalKK/$1');
 /*
  * --------------------------------------------------------------------
  * Additional Routing
