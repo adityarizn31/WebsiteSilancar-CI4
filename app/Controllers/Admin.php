@@ -27,6 +27,8 @@ use App\Models\Pendaftaran_pelayanandata_Model;
 use App\Models\Perbaikan_data_Model;
 use App\Models\Pengaduan_update_Model;
 
+use CodeIgniter\Config\Services;
+
 class Admin extends BaseController
 {
 
@@ -239,6 +241,47 @@ class Admin extends BaseController
     ];
     return view('admin/pelayanan', $data);
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  public function login()
+  {
+    $data = [
+      'title' => 'Login Admin || Admin Disdukcapil',
+      'config' => Services::config()
+    ];
+    return view('auth/login', $data);
+  }
+
+
+
+
+
+
+
+
+
+
+  public function register()
+  {
+    $data = [
+      'title' => 'Register Admin || Admin Disdukcapil'
+    ];
+    return view('auth/register', $data);
+  }
+
 
 
 

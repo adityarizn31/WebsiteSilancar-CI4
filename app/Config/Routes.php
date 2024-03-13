@@ -35,7 +35,7 @@ $routes->setAutoRoute(true);
 // adityarizkiawann@gmail.com  
 // Sadilcantik05!
 
-$routes->get('/', 'Beranda::index');
+$routes->get('/', 'Admin::login');
 
 $routes->post('pelayanan_views/pendaftaranKK', 'PelayananSilancar::pendaftaranKK');
 

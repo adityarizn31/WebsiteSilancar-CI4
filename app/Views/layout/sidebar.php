@@ -69,7 +69,7 @@
     </li>
 
     <li>
-      <a class="text-white" href="/logout">
+      <a class="text-white" href="<?= base_url('logout'); ?>">
         <i class="bi bi-box-arrow-right mr-2"></i>
         Logout
       </a>

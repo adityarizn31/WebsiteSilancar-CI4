@@ -1,5 +1,3 @@
-<!-- Halaman Tampilan List Berita Admin  -->
-
 <?= $this->extend('layout/templateadmin'); ?>
 
 <?= $this->section('contentadmin'); ?>
