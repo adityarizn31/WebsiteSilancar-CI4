@@ -35,7 +35,16 @@ $routes->setAutoRoute(true);
 // adityarizkiawann@gmail.com  
 // Sadilcantik05!
 
-$routes->get('/', 'Admin::login');
+$routes->get('/', 'Beranda::index');
+
+$routes->post('auth/login', 'Admin::login');
+
+// Benar
+// $routes->get('/Admin', 'Admin::index', ['filter' => 'role:admin']);
+// $routes->get('/admin/index', 'Admin::index', ['filter' => 'role:admin']);
+
+$routes->get('/Admin', 'Admin::index');
+$routes->get('/admin/index', 'Admin::index');
 
 $routes->post('pelayanan_views/pendaftaranKK', 'PelayananSilancar::pendaftaranKK');
 
@@ -44,50 +53,50 @@ $routes->get('/admin/edit_akun_admin/(:segment)', 'Admin::create_akun_admin/$1')
 $routes->delete('admin/detail_akun_admin/(:num)', 'Admin::deleteAkunAdmin/$1');
 $routes->get('detailadmin/data_admin/(:any)', 'DetailAdmin::detail_akun_admin/$1');
 
-$routes->get('admin/berita_admin/(:segment)', 'CreateAdmin::create_berita_admin/$1');
-$routes->get('/detailadmin/edit_berita_admin/(:segment)', 'EditUpdateAdmin::editBerita/$1');
-$routes->delete('detailadmin/detail_berita_admin/(:num)', 'DeleteAdmin::deleteBerita/$1');
-$routes->get('detailadmin/berita_admin/(:any)', 'DetailAdmin::detail_berita_admin/$1');
+$routes->get('admin/berita_admin/(:segment)', 'CreateAdmin::create_berita_admin/$1', ['filter' => 'role:admin']);
+$routes->get('/detailadmin/edit_berita_admin/(:segment)', 'EditUpdateAdmin::editBerita/$1', ['filter' => 'role:admin']);
+$routes->delete('detailadmin/detail_berita_admin/(:num)', 'DeleteAdmin::deleteBerita/$1', ['filter' => 'role:admin']);
+$routes->get('detailadmin/berita_admin/(:any)', 'DetailAdmin::detail_berita_admin/$1', ['filter' => 'role:admin']);
 
-$routes->get('admin/inovasi_admin/(:segment)', 'CreateAdmin::create_inovasi_admin/$1');
-$routes->get('/detailadmin/edit_inovasi_admin/(:segment)', 'EditUpdateAdmin::editInovasi/$1');
-$routes->delete('detailadmin/detail_inovasi_admin/(:num)', 'DeleteAdmin::deleteInovasi/$1');
-$routes->get('detailadmin/inovasi_admin/(:any)', 'DetailAdmin::detail_inovasi_admin/$1');
+$routes->get('admin/inovasi_admin/(:segment)', 'CreateAdmin::create_inovasi_admin/$1', ['filter' => 'role:admin']);
+$routes->get('/detailadmin/edit_inovasi_admin/(:segment)', 'EditUpdateAdmin::editInovasi/$1', ['filter' => 'role:admin']);
+$routes->delete('detailadmin/detail_inovasi_admin/(:num)', 'DeleteAdmin::deleteInovasi/$1', ['filter' => 'role:admin']);
+$routes->get('detailadmin/inovasi_admin/(:any)', 'DetailAdmin::detail_inovasi_admin/$1', ['filter' => 'role:admin']);
 
-$routes->delete('admin/dataKK/(:any)', 'DeleteAdmin::deletePermanentKK/$1');
-$routes->delete('admin/dataKK', 'DeleteAdmin::deletePermanentKK');
-$routes->delete('admin/dataKIA/(:any)', 'DeleteAdmin::deletePermanentKIA/$1');
-$routes->delete('admin/dataKIA', 'DeleteAdmin::deletePermanentKIA');
-$routes->delete('admin/dataKKPerceraian/(:any)', 'DeleteAdmin::deletePermanentKKPerceraian/$1');
-$routes->delete('admin/dataKKPerceraian', 'DeleteAdmin::deletePermanentKKPerceraian');
-$routes->delete('admin/dataSuratPerpindahan/(:any)', 'DeleteAdmin::deletePermanentSuratPerpindahan/$1');
-$routes->delete('admin/dataSuratPerpindahan', 'DeleteAdmin::deletePermanentSuratPerpindahan');
-$routes->delete('admin/dataSuratPerpindahanLuar/(:any)', 'DeleteAdmin::deletePermanentSuratPerpindahanLuar/$1');
-$routes->delete('admin/dataSuratPerpindahanLuar', 'DeleteAdmin::deletePermanentSuratPerpindahanLuar');
-$routes->delete('admin/dataSuratAktaKelahiran/(:any)', 'DeleteAdmin::deletePermanentSuratAktaKelahiran/$1');
-$routes->delete('admin/dataSuratAktaKelahiran', 'DeleteAdmin::deletePermanentSuratAktaKelahiran');
-$routes->delete('admin/dataSuratAktaKematian/(:any)', 'DeleteAdmin::deletePermanentSuratAktaKematian/$1');
-$routes->delete('admin/dataSuratAktaKematian', 'DeleteAdmin::deletePermanentSuratAktaKematian');
-$routes->delete('admin/dataSuratKeabsahanAkla/(:any)', 'DeleteAdmin::deletePermanentSuratKeabsahanAkla/$1');
-$routes->delete('admin/dataSuratKeabsahanAkla', 'DeleteAdmin::deletePermanentSuratKeabsahanAkla');
-$routes->delete('admin/dataSuratPelayananData/(:any)', 'DeleteAdmin::deletePermanentSuratPelayananData/$1');
-$routes->delete('admin/dataSuratPelayananData', 'DeleteAdmin::deletePermanentSuratPelayananData');
-$routes->delete('admin/dataSuratPerbaikanData/(:any)', 'DeleteAdmin::deletePermanentSuratPerbaikanData/$1');
-$routes->delete('admin/dataSuratPerbaikanData', 'DeleteAdmin::deletePermanentSuratPerbaikanData');
-$routes->delete('admin/dataSuratPengaduanUpdate/(:any)', 'DeleteAdmin::deletePermanentSuratPengaduanUpdate/$1');
-$routes->delete('admin/dataSuratPengaduanUpdate', 'DeleteAdmin::deletePermanentSuratPengaduanUpdate');
+$routes->delete('admin/dataKK/(:any)', 'DeleteAdmin::deletePermanentKK/$1', ['filter' => 'role:admin']);
+$routes->delete('admin/dataKK', 'DeleteAdmin::deletePermanentKK', ['filter' => 'role:admin']);
+$routes->delete('admin/dataKIA/(:any)', 'DeleteAdmin::deletePermanentKIA/$1', ['filter' => 'role:admin']);
+$routes->delete('admin/dataKIA', 'DeleteAdmin::deletePermanentKIA', ['filter' => 'role:admin']);
+$routes->delete('admin/dataKKPerceraian/(:any)', 'DeleteAdmin::deletePermanentKKPerceraian/$1', ['filter' => 'role:admin']);
+$routes->delete('admin/dataKKPerceraian', 'DeleteAdmin::deletePermanentKKPerceraian', ['filter' => 'role:admin']);
+$routes->delete('admin/dataSuratPerpindahan/(:any)', 'DeleteAdmin::deletePermanentSuratPerpindahan/$1', ['filter' => 'role:admin']);
+$routes->delete('admin/dataSuratPerpindahan', 'DeleteAdmin::deletePermanentSuratPerpindahan', ['filter' => 'role:admin']);
+$routes->delete('admin/dataSuratPerpindahanLuar/(:any)', 'DeleteAdmin::deletePermanentSuratPerpindahanLuar/$1', ['filter' => 'role:admin']);
+$routes->delete('admin/dataSuratPerpindahanLuar', 'DeleteAdmin::deletePermanentSuratPerpindahanLuar', ['filter' => 'role:admin']);
+$routes->delete('admin/dataSuratAktaKelahiran/(:any)', 'DeleteAdmin::deletePermanentSuratAktaKelahiran/$1', ['filter' => 'role:admin']);
+$routes->delete('admin/dataSuratAktaKelahiran', 'DeleteAdmin::deletePermanentSuratAktaKelahiran', ['filter' => 'role:admin']);
+$routes->delete('admin/dataSuratAktaKematian/(:any)', 'DeleteAdmin::deletePermanentSuratAktaKematian/$1', ['filter' => 'role:admin']);
+$routes->delete('admin/dataSuratAktaKematian', 'DeleteAdmin::deletePermanentSuratAktaKematian', ['filter' => 'role:admin']);
+$routes->delete('admin/dataSuratKeabsahanAkla/(:any)', 'DeleteAdmin::deletePermanentSuratKeabsahanAkla/$1', ['filter' => 'role:admin']);
+$routes->delete('admin/dataSuratKeabsahanAkla', 'DeleteAdmin::deletePermanentSuratKeabsahanAkla', ['filter' => 'role:admin']);
+$routes->delete('admin/dataSuratPelayananData/(:any)', 'DeleteAdmin::deletePermanentSuratPelayananData/$1', ['filter' => 'role:admin']);
+$routes->delete('admin/dataSuratPelayananData', 'DeleteAdmin::deletePermanentSuratPelayananData', ['filter' => 'role:admin']);
+$routes->delete('admin/dataSuratPerbaikanData/(:any)', 'DeleteAdmin::deletePermanentSuratPerbaikanData/$1', ['filter' => 'role:admin']);
+$routes->delete('admin/dataSuratPerbaikanData', 'DeleteAdmin::deletePermanentSuratPerbaikanData', ['filter' => 'role:admin']);
+$routes->delete('admin/dataSuratPengaduanUpdate/(:any)', 'DeleteAdmin::deletePermanentSuratPengaduanUpdate/$1', ['filter' => 'role:admin']);
+$routes->delete('admin/dataSuratPengaduanUpdate', 'DeleteAdmin::deletePermanentSuratPengaduanUpdate', ['filter' => 'role:admin']);
 
-$routes->get('admin/dataKK', 'ExportExcel::exportKK');
-$routes->get('admin/dataKIA', 'ExportExcel::exportKIA');
-$routes->get('admin/dataKKPerceraian', 'ExportExcel::exportKKPerceraian');
-$routes->get('admin/dataSuratPerpindahan', 'ExportExcel::exportSuratPerpindahan');
-$routes->get('admin/dataSuratPerpindahanLuar', 'ExportExcel::exportSuratPerpindahanLuar');
-$routes->get('admin/dataAktaKelahiran', 'ExportExcel::exportAktaKelahiran');
-$routes->get('admin/dataAktaKematian', 'ExportExcel::exportAktaKematian');
-$routes->get('admin/dataKeabsahanAkla', 'ExportExcel::exportKeabsahanAkla');
-$routes->get('admin/dataPelayananData', 'ExportExcel::exportPelayananData');
-$routes->get('admin/dataPerbaikanData', 'ExportExcel::exportPerbaikanData');
-$routes->get('admin/dataPengaduanUpdate', 'ExportExcel::exportPengaduanUpdate');
+$routes->get('admin/dataKK', 'ExportExcel::exportKK', ['filter' => 'role:admin']);
+$routes->get('admin/dataKIA', 'ExportExcel::exportKIA', ['filter' => 'role:admin']);
+$routes->get('admin/dataKKPerceraian', 'ExportExcel::exportKKPerceraian', ['filter' => 'role:admin']);
+$routes->get('admin/dataSuratPerpindahan', 'ExportExcel::exportSuratPerpindahan', ['filter' => 'role:admin']);
+$routes->get('admin/dataSuratPerpindahanLuar', 'ExportExcel::exportSuratPerpindahanLuar', ['filter' => 'role:admin']);
+$routes->get('admin/dataAktaKelahiran', 'ExportExcel::exportAktaKelahiran', ['filter' => 'role:admin']);
+$routes->get('admin/dataAktaKematian', 'ExportExcel::exportAktaKematian', ['filter' => 'role:admin']);
+$routes->get('admin/dataKeabsahanAkla', 'ExportExcel::exportKeabsahanAkla', ['filter' => 'role:admin']);
+$routes->get('admin/dataPelayananData', 'ExportExcel::exportPelayananData', ['filter' => 'role:admin']);
+$routes->get('admin/dataPerbaikanData', 'ExportExcel::exportPerbaikanData', ['filter' => 'role:admin']);
+$routes->get('admin/dataPengaduanUpdate', 'ExportExcel::exportPengaduanUpdate', ['filter' => 'role:admin']);
 
 $routes->get('/Searching/modalKK/(:num)', 'Searching::modalKK/$1');
 /*

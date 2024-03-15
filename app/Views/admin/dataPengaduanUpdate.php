@@ -17,9 +17,33 @@
         <a href="<?= base_url('ExportExcel/exportPengaduanUpdate'); ?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mt-2"><i class="bi bi-download text-white"></i> Export Excel </a>
       </div>
 
-      <div class="d-sm-flex align-items justify-content-end mb-2">
-
+      <div class="d-sm-flex align-items-center justify-content-end mb-2">
+        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalHapusSeluruh"> Hapus Seluruh Data </button>
       </div>
+
+      <div class="modal fade" id="modalHapusSeluruh" tabindex="-1" aria-labelledby="modalHapusLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title fw-semibold" id="modalHapusLabel">Hapus Keseluruhan Data Pengaduan Update</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Apakah Anda yakin ingin menghapus Keseluruhan data Pengaduan Update ?
+              <br>
+              Dan apakah sudah mengirimkan email kepada setiap Pendaftar ??
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+              <form action="<?= base_url('DeleteAdmin/DeletePermanentPengaduanUpdate/'); ?>" method="post">
+                <?= csrf_field(); ?>
+                <button type="submit" class="btn btn-danger">Hapus</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
       <?php if (session()->getFlashdata('pesan')) : ?>
 
