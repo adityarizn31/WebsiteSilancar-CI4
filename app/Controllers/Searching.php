@@ -94,17 +94,17 @@ class Searching extends BaseController
   public function cariKK()
   {
     $nik = $this->request->getPost('keyword');
-    $dataModel = new Pendaftaran_kk_Model();
-    $data = $dataModel->getDataByNIK($nik);
-    $pendaftaran_kk = $this->kkModel->getPendaftaranByNik($nik);
+    $pendaftaran_kk = new Pendaftaran_kk_Model();
+    $data = $pendaftaran_kk->getDataByNIK($nik);
 
     $data = [
       'title' => 'Hasil Pendaftaran KK || Disdukcapil Majalengka',
       'pendaftaran_kk' => $this->kkModel
     ];
+    return view('pencarian_views/hasilKK', $data);
 
-    if ($pendaftaran_kk) {
-      return view('pencarian_views/hasilKK', ['pendaftaran_kk' => $pendaftaran_kk, $data]);
+    if ($nik) {
+      return view('pencarian_views/hasilKK', ['nik' => $nik, $data]);
     } else {
       return "Data tidak ditemukan"; // Atau Anda bisa menampilkan pesan error yang sesuai
     }

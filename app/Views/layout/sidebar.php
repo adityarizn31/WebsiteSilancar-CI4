@@ -9,7 +9,6 @@
         <i class="bi bi-house mr-2"></i>
         Dashboard
       </a>
-      <!-- CodeIgniter akan mengakses Controller dengan method index -->
     </li>
 
     <li>
@@ -17,7 +16,6 @@
         <i class="bi bi-universal-access-circle mr-2"></i>
         Register Admin
       </a>
-      <!-- CodeIginiter akan mengkases Controller dengan method register -->
     </li>
 
     <li>
@@ -25,7 +23,6 @@
         <i class="bi bi-person-badge-fill mr-2"></i>
         Data Admin
       </a>
-      <!-- CodeIgniter akan mengakses Controller admin dengan method data_admin -->
     </li>
 
     <li>
@@ -33,7 +30,6 @@
         <i class="bi bi-newspaper mr-2"></i>
         Berita
       </a>
-      <!-- CodeIgniter akan mengakses Controller admin dengan method Index -->
     </li>
 
     <li>
@@ -41,7 +37,6 @@
         <i class="bi bi-slack mr-2"></i>
         Inovasi
       </a>
-      <!-- CodeIgniter akan mengakses Controller admin dengan method inovasi_admin -->
     </li>
 
     <li>
@@ -49,7 +44,6 @@
         <i class="bi bi-peace-fill mr-2"></i>
         Visi Misi
       </a>
-      <!-- CodeIgniter akan mengakses controller admin dengan method visimisi_admin -->
     </li>
 
     <li>
@@ -57,15 +51,6 @@
         <i class="bi bi-journal-medical mr-2"></i>
         Persyaratan Si Lancar
       </a>
-      <!-- Controller akan mengakses Controller admin dengan method persyaratan -->
-    </li>
-
-    <li>
-      <a class="text-white" href="/Admin/pelayanan">
-        <i class="bi bi-menu-button-wide mr-2"></i>
-        Pelayanan Si Lancar
-      </a>
-      <!-- CodeIgniter akan mengakses Controller admin dengan method Pelayanan -->
     </li>
 
     <li>
@@ -73,11 +58,9 @@
         <i class="bi bi-box-arrow-right mr-2"></i>
         Logout
       </a>
-      <!-- CodeIgniter akan mengakses Controller admin dengan method login -->
     </li>
 
     <hr>
-
 
   </div>
 </div>

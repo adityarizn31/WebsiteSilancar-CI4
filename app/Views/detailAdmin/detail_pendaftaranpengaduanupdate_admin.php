@@ -124,6 +124,12 @@
           <table>
 
             <tr>
+              <th width="150px">NIK</th>
+              <th width="20px">:</th>
+              <td><?= $pengaduan_update['nik']; ?></td>
+            </tr>
+
+            <tr>
               <th width="150px">Nama</th>
               <th width="20px">:</th>
               <td><?= $pengaduan_update['namapemohon']; ?></td>

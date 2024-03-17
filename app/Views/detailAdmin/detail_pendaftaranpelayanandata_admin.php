@@ -124,6 +124,12 @@ v<?= $this->extend('layout/templateadmin'); ?>
           <table>
 
             <tr>
+              <th width="150px">NIK</th>
+              <th width="20px">:</th>
+              <td><?= $pendaftaran_pelayanandata['nik']; ?></td>
+            </tr>
+
+            <tr>
               <th width="150px">Nama</th>
               <th width="20px">:</th>
               <td><?= $pendaftaran_pelayanandata['namapemohon']; ?></td>

@@ -57,7 +57,7 @@
         });
       </script>
 
-      <form action="/Searching/cariKK" method="post">
+      <form action="/Searching/cariKK/<?= $pendaftaran_kk->nik ?>" method="post">
 
         <?= csrf_field(); ?>
 

@@ -126,6 +126,11 @@
         <table>
 
           <tr>
+            <th width="150px">NIK</th>
+            <th width="20px">:</th>
+            <td><?= $pendaftaran_kia['nik']; ?></td>
+          </tr>
+          <tr>
             <th width="150px">Nama</th>
             <th width="20px">:</th>
             <td><?= $pendaftaran_kia['namapemohon']; ?></td>

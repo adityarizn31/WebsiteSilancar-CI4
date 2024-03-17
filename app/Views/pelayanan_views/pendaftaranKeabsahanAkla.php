@@ -1,23 +1,21 @@
 <?php
 
 $waktuSekarang = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
-$hariSekarang = $waktuSekarang->format('N'); // Mendapatkan nomor hari dalam seminggu (1 untuk Senin, 2 untuk Selasa, dst)
+$hariSekarang = $waktuSekarang->format('N');
 $jamSekarang = $waktuSekarang->format('G');
 
-// Check if the access time is within the allowed range (8 AM to 11 AM) on Monday to Friday
-if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekarang < 22) {
-  // Allow access to the form
+if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekarang < 11) {
+
 ?>
 
   <?= $this->extend('layout/template'); ?>
 
   <?= $this->section('content'); ?>
 
-  <!-- Form Pendaftaran Keabsahan Akta Kelahiran -->
   <div class="container" style="padding: 10px;">
     <div class="card shadow mb-4" style="padding: 20px;">
       <div class="container">
-        <h4 class="text-center fw-bold"> Pendaftaran Keabsahan Akta Kelahiran </h4>
+        <h4 class="text-center text-black fw-bold"> Pendaftaran Keabsahan Akta Kelahiran </h4>
 
         <?php if (session()->getFlashdata('pesan')) : ?>
 
@@ -42,7 +40,6 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           </div>
 
           <script>
-            // Tampilkan modal secara otomatis saat halaman dimuat
             var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
               keyboard: false
             });
@@ -53,59 +50,53 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
 
         <form action="/PelayananSilancar/saveKeabsahanAkla" method="post" enctype="multipart/form-data">
 
-          <!-- Keamanan -->
           <?= csrf_field(); ?>
 
-          <!-- Form NIK Pemohon -->
           <div class="row">
             <div class="mb-3">
               <label for="nik" class="form-label fw-semibold"> NIK Pemohon </label>
-              <input type="text" name="nik" id="nik" class="form-control <?= (session('errors.nik')) ? 'is-invalid' : null ?>" autofocus value="<?= old('nik'); ?>">
+              <input type="text" name="nik" id="nik" class="form-control text-black <?= (session('errors.nik')) ? 'is-invalid' : null ?>" autofocus value="<?= old('nik'); ?>">
               <div class="invalid-feedback">
                 <?= session('errors.nik') ?>
               </div>
             </div>
           </div>
 
-          <!-- Form Nama Pemohon -->
           <div class="row">
             <div class="mb-3">
               <label for="namapemohon" class="form-label fw-semibold"> Nama Pemohon </label>
-              <input type="text" class="form-control <?= ($validation->hasError('namapemohon')) ? 'is-invalid' : ''; ?>" name="namapemohon" id="namapemohon" autofocus value="<?= old('namapemohon'); ?>">
+              <input type="text" class="form-control text-black <?= ($validation->hasError('namapemohon')) ? 'is-invalid' : ''; ?>" name="namapemohon" id="namapemohon" autofocus value="<?= old('namapemohon'); ?>">
               <div class="invalid-feedback">
                 <?= $validation->getError('namapemohon') ?>
               </div>
             </div>
           </div>
 
-          <!-- Form Email Pemohon  -->
           <div class="row">
             <div class="mb-3">
               <label for="emailpemohon" class="form-label fw-semibold"> Email Pemohon </label>
-              <input type="text" class="form-control <?= ($validation->hasError('emailpemohon')) ? 'is-invalid' : ''; ?>" name="emailpemohon" id="emailpemohon" value="<?= old('emailpemohon'); ?>">
+              <input type="text" class="form-control text-black <?= ($validation->hasError('emailpemohon')) ? 'is-invalid' : ''; ?>" name="emailpemohon" id="emailpemohon" value="<?= old('emailpemohon'); ?>">
               <div class="invalid-feedback">
                 <?= $validation->getError('emailpemohon'); ?>
               </div>
             </div>
           </div>
 
-          <!-- Form Nomor Pemohon -->
           <div class="row">
             <div class="mb-3">
               <label for="nomorpemohon" class="form-label fw-semibold"> Nomor WA Pemohon </label>
-              <input type="text" class="form-control <?= ($validation->hasError('nomorpemohon')) ? 'is-invalid' : ''; ?>" name="nomorpemohon" id="nomorpemohon" value="<?= old('nomorpemohon'); ?>">
+              <input type="text" class="form-control text-black <?= ($validation->hasError('nomorpemohon')) ? 'is-invalid' : ''; ?>" name="nomorpemohon" id="nomorpemohon" value="<?= old('nomorpemohon'); ?>">
               <div class="invalid-feedback">
                 <?= $validation->getError('nomorpemohon'); ?>
               </div>
             </div>
           </div>
 
-          <!-- Form Alamat Pemohon -->
           <div class="row">
             <div class="mb-3">
               <label for="alamatpemohon" class="form-label fw-semibold"> Alamat Pemohon </label>
               <br>
-              <textarea class=" form-control text-area <?= ($validation->hasError('alamatpemohon')) ? 'is-invalid' : ''; ?>" name="alamatpemohon" id="alamatpemohon" value="<?= old('alamatpemohon'); ?>"></textarea>
+              <textarea class=" form-control text-black text-area <?= ($validation->hasError('alamatpemohon')) ? 'is-invalid' : ''; ?>" name="alamatpemohon" id="alamatpemohon" value="<?= old('alamatpemohon'); ?>"></textarea>
               <div class="invalid-feedback">
                 <?= $validation->getError('alamatpemohon'); ?>
               </div>
@@ -114,7 +105,6 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
 
           <hr>
 
-          <!-- Berkas Akta Kelahiran -->
           <div class="row">
             <div class="mb-3">
               <label for="aktakelahiran" class="form-label fw-semibold"> Berkas Akta Kelahiran </label>
@@ -125,7 +115,6 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
             </div>
           </div>
 
-          <!-- Berkas Kartu Tanda Penduduk -->
           <div class="row">
             <div class="mb-3">
               <label for="kartutandapenduduk" class="form-label fw-semibold"> Berkas Kartu Tanda Penduduk </label>

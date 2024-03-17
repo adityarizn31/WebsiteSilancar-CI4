@@ -3,7 +3,7 @@
 <?= $this->section('content'); ?>
 
 
-<div class="container">
+<div class="container text-black">
   <div class="row text-center">
     <img src="/pelayanan/error_page/Error Page.png" class="errorpage" alt="" srcset="">
     <h2>Mohon Maaf, Ditutup !!</h2>

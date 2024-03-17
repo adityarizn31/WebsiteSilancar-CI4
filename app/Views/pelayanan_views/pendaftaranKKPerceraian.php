@@ -1,19 +1,17 @@
 <?php
 
 $waktuSekarang = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
-$hariSekarang = $waktuSekarang->format('N'); // Mendapatkan nomor hari dalam seminggu (1 untuk Senin, 2 untuk Selasa, dst)
+$hariSekarang = $waktuSekarang->format('N');
 $jamSekarang = $waktuSekarang->format('G');
 
-// Check if the access time is within the allowed range (8 AM to 11 AM) on Monday to Friday
-if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekarang < 22) {
-  // Allow access to the form
+if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekarang < 11) {
+
 ?>
 
   <?= $this->extend('layout/template'); ?>
 
   <?= $this->section('content'); ?>
 
-  <!-- Form Pendaftaran KK Perceraian -->
   <div class="container" style="padding: 10px;">
     <div class="card shadow mb-4" style="padding: 20px;">
       <div class="container">
@@ -42,7 +40,6 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           </div>
 
           <script>
-            // Tampilkan modal secara otomatis saat halaman dimuat
             var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
               keyboard: false
             });
@@ -53,7 +50,6 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
 
         <form action="/PelayananSilancar/saveKKPerceraian" method="post" enctype="multipart/form-data">
 
-          <!-- Keamanan -->
           <?= csrf_field(); ?>
 
           <?php $validation = \Config\Services::validation(); ?>
@@ -61,55 +57,50 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
             <?php $validation = session('validation'); ?>
           <?php endif; ?>
 
-          <!-- Form NIK Pemohon -->
           <div class="row">
             <div class="mb-3">
               <label for="nik" class="form-label fw-semibold"> NIK Pemohon </label>
-              <input type="text" name="nik" id="nik" class="form-control <?= (session('errors.nik')) ? 'is-invalid' : null ?>" autofocus value="<?= old('nik'); ?>">
+              <input type="text" name="nik" id="nik" class="form-control text-black <?= (session('errors.nik')) ? 'is-invalid' : null ?>" autofocus value="<?= old('nik'); ?>">
               <div class="invalid-feedback">
                 <?= session('errors.nik') ?>
               </div>
             </div>
           </div>
 
-          <!-- Form Nama Pemohon -->
           <div class="row">
             <div class="mb-3">
               <label for="namapemohon" class="form-label fw-semibold"> Nama Pemohon </label>
-              <input type="text" name="namapemohon" id="namapemohon" class="form-control <?= (session('errors.namapemohon')) ? 'is-invalid' : null ?>" autofocus value="<?= old('namapemohon'); ?>">
+              <input type="text" name="namapemohon" id="namapemohon" class="form-control text-black <?= (session('errors.namapemohon')) ? 'is-invalid' : null ?>" autofocus value="<?= old('namapemohon'); ?>">
               <div class="invalid-feedback">
                 <?= session('errors.namapemohon') ?>
               </div>
             </div>
           </div>
 
-          <!-- Form Email Pemohon  -->
           <div class="row">
             <div class="mb-3">
               <label for="emailpemohon" class="form-label fw-semibold"> Email Pemohon </label>
-              <input type="text" name="emailpemohon" id="emailpemohon" class="form-control <?= (session('errors.emailpemohon')) ? 'is-invalid' : null ?>" autofocus value="<?= old('emailpemohon'); ?>">
+              <input type="text" name="emailpemohon" id="emailpemohon" class="form-control text-black <?= (session('errors.emailpemohon')) ? 'is-invalid' : null ?>" autofocus value="<?= old('emailpemohon'); ?>">
               <div class="invalid-feedback">
                 <?= session('errors.emailpemohon') ?>
               </div>
             </div>
           </div>
 
-          <!-- Form Nomor Pemohon -->
           <div class="row">
             <div class="mb-3">
               <label for="nomorpemohon" class="form-label fw-semibold"> Nomor WA Pemohon </label>
-              <input type="text" name="nomorpemohon" id="nomorpemohon" class="form-control <?= (session('errors.nomorpemohon')) ? 'is-invalid' : null ?>" autofocus value="<?= old('nomorpemohon'); ?>">
+              <input type="text" name="nomorpemohon" id="nomorpemohon" class="form-control text-black <?= (session('errors.nomorpemohon')) ? 'is-invalid' : null ?>" autofocus value="<?= old('nomorpemohon'); ?>">
               <div class="invalid-feedback">
                 <?= session('errors.nomorpemohon') ?>
               </div>
             </div>
           </div>
 
-          <!-- Form Alamat Pemohon -->
           <div class="row">
             <div class="mb-3">
               <label for="alamatpemohon" class="form-label fw-semibold"> Alamat Pemohon </label>
-              <input type="text" name="alamatpemohon" id="alamatpemohon" class="form-control <?= (session('errors.alamatpemohon')) ? 'is-invalid' : null ?>" autofocus value="<?= old('alamatpemohon'); ?>">
+              <input type="text" name="alamatpemohon" id="alamatpemohon" class="form-control text-black <?= (session('errors.alamatpemohon')) ? 'is-invalid' : null ?>" autofocus value="<?= old('alamatpemohon'); ?>">
               <div class="invalid-feedback">
                 <?= session('errors.alamatpemohon') ?>
               </div>
@@ -118,7 +109,6 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
 
           <hr>
 
-          <!-- Berkas Kartu Keluarga Lama -->
           <div class="row">
             <div class="mb-3">
               <label for="kartukeluargalama" class="form-label fw-semibold"> Berkas Kartu Keluarga Lama </label>
@@ -129,7 +119,6 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
             </div>
           </div>
 
-          <!-- Berkas Akta Perceraian -->
           <div class="row">
             <div class="mb-3">
               <label for="aktaperceraian" class="form-label fw-semibold"> Berkas Akta Perceraian </label>
@@ -156,7 +145,6 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
 
 <?php
 } else {
-  // Redirect to a message page or display a message
   header('Location: /PelayananSilancar/errorPage');
   exit;
 }

@@ -1,5 +1,3 @@
-<!-- Halamaan Dashboard Admin -->
-
 <?= $this->extend('layout/templateadmin'); ?>
 
 <?= $this->section('contentadmin'); ?>
@@ -12,77 +10,15 @@
 
   <div class="container-fluid">
 
-    <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4" style="padding-top: 20px;">
       <h1 class="h3 mb-0 text-gray-800 fw-bold">Dashboard</h1>
       <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
     </div>
 
-    <div class="row">
-
-      <!-- <div class="col-xl-4 col-md-6 mb-4">
-        <div class="card border-left-primary shadow-h-100 py-2">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                  Permohonan
-                </div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">100</div>
-              </div>
-              <div class="col-auto">
-                <img src="/img/dashboard/Permohonan.png" alt="" style="width: 50px;">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-xl-4 col-md-6 mb-4">
-        <div class="card border-left-warning shadow-h-100 py-2">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                  Permohonan Dalam Proses
-                </div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">100</div>
-              </div>
-              <div class="col-auto">
-                <img src="/img/dashboard/Process.png" alt="" style="width: 50px;">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-xl-4 col-md-6 mb-4">
-        <div class="card border-left-primary shadow-h-100 py-2">
-          <div class="card-body">
-            <div class="row no-gutters align-items-center">
-              <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                  Permohonan Yang Selesai
-                </div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">100</div>
-              </div>
-              <div class="col-auto">
-                <img src="/img/dashboard/ProcessDone.png" alt="" style="width: 50px;">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div> -->
-
-    </div>
-
     <div class="card mt-3 shadow border-2">
 
-      <div class="pelayananrow row">
+      <div class="pelayananadmin row">
 
-        <!-- Pendaftaran Kartu Keluarga -->
         <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
           <a href="/Admin/pendaftaran_kk_admin">
             <img src="/img/silancar/Kartu Keluarga.png" class="card-img-top">
@@ -145,7 +81,6 @@
           </a>
         </div>
 
-        <!-- Pendaftaran Kartu Keluarga Perceraian -->
         <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
           <a href="/Admin/pendaftaran_kkperceraian_admin">
             <img src="/img/silancar/Kartu Keluarga Perceraian.png" class="card-img-top">
@@ -178,7 +113,6 @@
           </a>
         </div>
 
-        <!-- Pendaftaran Surat Perpindahan Domisili -->
         <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
           <a href="/Admin/pendaftaran_suratperpindahan_admin">
             <img src="/img/silancar/Kartu Surat Perpindahan.png" class="card-img-top">
@@ -210,7 +144,6 @@
 
         </div>
 
-        <!-- Pendaftaran Surat Perpindahan Domisili -->
         <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
           <a href="/Admin/pendaftaran_suratperpindahanluar_admin">
             <img src="/img/silancar/Kartu Surat Perpindahan.png" class="card-img-top">
@@ -242,7 +175,6 @@
           </a>
         </div>
 
-        <!-- Pendaftaran Akta Kelahiran -->
         <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
           <a href="/Admin/pendaftaran_aktakelahiran_admin">
             <img src="/img/silancar/Kartu Akta Kelahiran.png" class="card-img-top">
@@ -274,7 +206,6 @@
           </a>
         </div>
 
-        <!-- Pendaftaran Akta Kematian -->
         <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
           <a href="/Admin/pendaftaran_aktakematian_admin">
             <img src="/img/silancar/Kartu Akta Kematian.png" class="card-img-top">
@@ -306,7 +237,6 @@
           </a>
         </div>
 
-        <!-- Pendaftaran Keabsahan Akta Kelahiran -->
         <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
           <a href="/Admin/pendaftaran_keabsahanakla_admin">
             <img src="/img/silancar/Keabsahan Akta Kelahiran.png" class="card-img-top">
@@ -338,7 +268,6 @@
           </a>
         </div>
 
-        <!-- Pelayanan Pemanfaatan Data dan Inovasi -->
         <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
           <a href="/Admin/pendaftaran_pelayanandata_admin">
             <img src="/img/silancar/kartu Pelayanan Pemanfaatan Data.png" class="card-img-top">
@@ -370,7 +299,6 @@
           </a>
         </div>
 
-        <!-- Perbaikan Data -->
         <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
           <a href="/Admin/perbaikan_data_admin">
             <img src="/img/silancar/Kartu Perbaikan Data.png" class="card-img-top">
@@ -402,7 +330,6 @@
           </a>
         </div>
 
-        <!-- Pengaduan Update -->
         <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
           <a href="/Admin/pendaftaran_pengaduanupdate_admin">
             <img src="/img/silancar/Kartu Pengaduan Update.png" class="card-img-top">

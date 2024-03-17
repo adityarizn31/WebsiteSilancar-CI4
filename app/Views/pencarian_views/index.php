@@ -15,7 +15,7 @@
 </center>
 
 <div class="container">
-  <h4 class="text-center fw-bold">Pengecekan Status Pendaftaran</h4>
+  <h4 class="text-center text-black fw-bold">Pengecekan Status Pendaftaran</h4>
   <div class="pelayanan">
     <div class="row">
 
