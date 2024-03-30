@@ -1,5 +1,3 @@
-<!-- Halaman Ubah Berita Admin -->
-
 <?= $this->extend('layout/templateadmin'); ?>
 
 <?= $this->section('contentadmin'); ?>
@@ -16,21 +14,23 @@
         <h6 class="m-0 font-weight-bold text-primary">Ubah Visi Misi admin</h6>
       </div>
 
-      <!-- Diarahkan ke Method baru yang terdapat dalam Controller EditUpdateAdmin -->
       <form action="/EditUpdateAdmin/updateVisiMisi/<?= $visimisi['id']; ?>" method="post" enctype="multipart/form-data">
 
-        <!-- Keamanan -->
         <?= csrf_field(); ?>
+
+        <?php $validation = \Config\Services::validation(); ?>
+        <?php if (session()->has('validation')) : ?>
+          <?php $validation = session('validation'); ?>
+        <?php endif; ?>
 
         <input type="hidden" name="fotolama" value="<?= $visimisi['fotovisimisi']; ?>">
 
-        <!-- Form Upload File -->
         <div class="row">
           <div class="mb-3">
             <label for="fotovisimisi" class="form-label fw-semibold">Foto Visi Misi</label>
-            <input type="file" class="form-control <?= ($validation->hasError('fotovisimisi')) ? 'is-invalid' : '';  ?>" name="fotovisimisi" id="fotovisimisi" value="<?= old('fotovisimisi'); ?>" onchange="previewImgVisiMisi()">
+            <input type="file" name="fotovisimisi" id="fotovisimisi" class="form-control text-black <?= (session('errors.fotovisimisi')) ? 'is-invalid' : null  ?>" autofocus value="<?= old('fotovisimisi'); ?>" onchange="previewImgVisiMisi()">
             <div class="invalid-feedback">
-              <?= $validation->getError('fotovisimisi'); ?>
+              <?= session('errors.fotovisimisi'); ?>
             </div>
             <div class="col-xxl-4 my-4">
               <img src="/img/visimisi/<?= $visimisi['fotovisimisi']; ?>" class="img-thumbnail img-preview" srcset="">

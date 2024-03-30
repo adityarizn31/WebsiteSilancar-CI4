@@ -21,7 +21,7 @@
 
           <div class="card mb-3">
             <center>
-              <img src="/img/persyaratansilancar/<?= $persyaratansilancar['fotopersyaratan']; ?>" style="width: 50%;" class="detail_berita mt-3" alt="Foto Persyaratan">
+              <img src="/img/persyaratansilancar/<?= $persyaratansilancar['fotopersyaratan']; ?>" style="width: 40%;" class="detail_berita mt-3" alt="Foto Persyaratan">
             </center>
             <div class="card-body mt-2">
 
@@ -37,10 +37,8 @@
                 <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda Yakin ingin dihapus ?? ');">Delete</button>
               </form>
 
-              <!-- Kodingan Sukses Dihapus -->
-              <!-- <a href="/admin/deleteBerita/<?= $persyaratansilancar['id']; ?>" class="btn btn-danger">Delete</a> -->
-
               <br><br><a class="" href="/Admin/persyaratansilancar_admin">kembali ke Daftar Persyaratan Si Lancar</a>
+
             </div>
           </div>
 

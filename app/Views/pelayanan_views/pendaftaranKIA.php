@@ -67,7 +67,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
               </div>
             </div>
           </div>
-          
+
           <div class="row">
             <div class="mb-3">
               <label for="namapemohon" class="form-label fw-semibold"> Nama Pemohon </label>
@@ -77,7 +77,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
               </div>
             </div>
           </div>
-          
+
           <div class="row">
             <div class="mb-3">
               <label for="emailpemohon" class="form-label fw-semibold"> Email Pemohon </label>
@@ -87,7 +87,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
               </div>
             </div>
           </div>
-          
+
           <div class="row">
             <div class="mb-3">
               <label for="nomorpemohon" class="form-label fw-semibold"> Nomor WA Pemohon </label>
@@ -97,11 +97,11 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
               </div>
             </div>
           </div>
-        
+
           <div class="row">
             <div class="mb-3">
-              <label for="alamatpemohon" class="form-label fw-semibold"> Alamat Pemohon </label>
-              <textarea type="text" name="alamatpemohon" id="alamatpemohon" class=" form-control text-black text-area <?= (session('errors.alamatpemohon')) ? 'is-invalid' : null ?>" value="<?= old('alamatpemohon'); ?>"></textarea>
+              <label for="alamatpemohon" class="form-label fw-semibold">Alamat Pemohon</label>
+              <textarea name="alamatpemohon" id="alamatpemohon" class="form-control text-black text-area <?= (session('errors.alamatpemohon')) ? 'is-invalid' : null ?>"><?= old('alamatpemohon'); ?></textarea>
               <div class="invalid-feedback">
                 <?= session('errors.alamatpemohon') ?>
               </div>
@@ -109,11 +109,11 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           </div>
 
           <hr>
-          
+
           <div class="row">
             <div class="mb-3">
               <label for="aktakelahiran" class="form-label fw-semibold"> Berkas Akta Kelahiran </label>
-              <input type="file" name="aktakelahiran" id="aktakelahiran" class="form-control <?= (session('errors.aktakelahiran')) ? 'is-invalid' : ''; ?>" value="<?= old('aktakelahiran'); ?>">
+              <input type="file" name="aktakelahiran" id="aktakelahiran" class="form-control text-black <?= (session('errors.aktakelahiran')) ? 'is-invalid' : ''; ?>" value="<?= old('aktakelahiran'); ?>">
               <div class="invalid-feedback">
                 <?= session('errors.aktakelahiran') ?>
               </div>
@@ -123,7 +123,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <div class="row">
             <div class="mb-3">
               <label for="kartukeluarga" class="form-label fw-semibold"> Berkas Kartu Keluarga </label>
-              <input type="file" name="kartukeluarga" id="kartukeluarga" class="form-control <?= (session('errors.kartukeluarga')) ? 'is-invalid' : ''; ?>" value="<?= old('kartukeluarga'); ?>">
+              <input type="file" name="kartukeluarga" id="kartukeluarga" class="form-control text-black <?= (session('errors.kartukeluarga')) ? 'is-invalid' : ''; ?>" value="<?= old('kartukeluarga'); ?>">
               <div class="invalid-feedback">
                 <?= session('errors.kartukeluarga') ?>
               </div>
@@ -132,8 +132,8 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
 
           <div class="row">
             <div class="mb-3">
-              <label for="pasfoto" class="form-label fw-semibold"> Berkas Pas Foto 3x4 </label>
-              <input type="file" name="pasfoto" id="pasfoto" aria-describedby="pasfoto" class="form-control <?= (session('errors.pasfoto')) ? 'is-invalid' : ''; ?>" value="<?= old('pasfoto'); ?>" onchange="previewImgPendaftaranKIA()">
+              <label for="pasfoto" class="form-label fw-semibold"> Berkas Pas Foto Berwarna 3x4 </label>
+              <input type="file" name="pasfoto" id="pasfoto" aria-describedby="pasfoto" class="form-control text-black <?= (session('errors.pasfoto')) ? 'is-invalid' : ''; ?>" value="<?= old('pasfoto'); ?>" onchange="previewImgPendaftaranKIA()">
               <div id="pasfoto" class="form-text">Anak dibawah 5 Tahun tidak perlu mengunggah Foto</div>
               <div class="invalid-feedback">
                 <?= session('errors.pasfoto'); ?>
@@ -147,7 +147,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <hr>
 
           <div class="d-grid gap-2 col-6 mx-auto">
-            <button type="submit" value="submit" name="submit" id="submit" class="btn btn-primary"> Daftar </button>
+            <button type="submit" value="submit" name="submit" id="submit" class="btn btn-primary"> D A F T A R </button>
           </div>
 
         </form>
@@ -160,7 +160,6 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
 
 <?php
 } else {
-  // Redirect to a message page or display a message
   header('Location: /PelayananSilancar/errorPage');
   exit;
 }

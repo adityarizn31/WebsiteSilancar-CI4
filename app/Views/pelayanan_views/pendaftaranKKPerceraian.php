@@ -99,8 +99,8 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
 
           <div class="row">
             <div class="mb-3">
-              <label for="alamatpemohon" class="form-label fw-semibold"> Alamat Pemohon </label>
-              <input type="text" name="alamatpemohon" id="alamatpemohon" class="form-control text-black <?= (session('errors.alamatpemohon')) ? 'is-invalid' : null ?>" autofocus value="<?= old('alamatpemohon'); ?>">
+              <label for="alamatpemohon" class="form-label fw-semibold">Alamat Pemohon</label>
+              <textarea name="alamatpemohon" id="alamatpemohon" class="form-control text-black text-area <?= (session('errors.alamatpemohon')) ? 'is-invalid' : null ?>"><?= old('alamatpemohon'); ?></textarea>
               <div class="invalid-feedback">
                 <?= session('errors.alamatpemohon') ?>
               </div>
@@ -112,7 +112,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <div class="row">
             <div class="mb-3">
               <label for="kartukeluargalama" class="form-label fw-semibold"> Berkas Kartu Keluarga Lama </label>
-              <input type="file" name="kartukeluargalama" id="kartukeluargalama" class="form-control <?= (session('errors.kartukeluargalama')) ? 'is-invalid' : ''; ?>" value="<?= old('kartukeluargalama'); ?>">
+              <input type="file" name="kartukeluargalama" id="kartukeluargalama" class="form-control text-black <?= (session('errors.kartukeluargalama')) ? 'is-invalid' : ''; ?>" value="<?= old('kartukeluargalama'); ?>">
               <div class="invalid-feedback">
                 <?= session('errors.kartukeluargalama') ?>
               </div>
@@ -122,7 +122,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <div class="row">
             <div class="mb-3">
               <label for="aktaperceraian" class="form-label fw-semibold"> Berkas Akta Perceraian </label>
-              <input type="file" name="aktaperceraian" id="aktaperceraian" class="form-control <?= (session('errors.aktaperceraian')) ? 'is-invalid' : ''; ?>" value="<?= old('aktaperceraian'); ?>">
+              <input type="file" name="aktaperceraian" id="aktaperceraian" class="form-control text-black <?= (session('errors.aktaperceraian')) ? 'is-invalid' : ''; ?>" value="<?= old('aktaperceraian'); ?>">
               <div class="invalid-feedback">
                 <?= session('errors.aktaperceraian') ?>
               </div>
@@ -132,7 +132,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <hr>
 
           <div class="d-grid gap-2 col-6 mx-auto">
-            <button type="submit" value="submit" name="submit" id="submit" class="btn btn-primary"> Daftar </button>
+            <button type="submit" value="submit" name="submit" id="submit" class="btn btn-primary"> D A F T A R </button>
           </div>
 
         </form>

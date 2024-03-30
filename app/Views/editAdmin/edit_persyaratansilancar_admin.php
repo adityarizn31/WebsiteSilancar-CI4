@@ -1,5 +1,3 @@
-<!-- Halaman Ubah Berita Admin -->
-
 <?= $this->extend('layout/templateadmin'); ?>
 
 <?= $this->section('contentadmin'); ?>
@@ -13,35 +11,36 @@
   <div class="card shadow mb-4 border-2" style="margin-top: 25px; padding: 20px;">
     <div class="container">
       <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Ubah Persyaratan Si Lancar <?= $persyaratansilancar['judulpersyaratan']; ?></h6>
+        <h6 class="m-0 font-weight-bold text-primary">Ubah Persyaratan Si Lancar <?= $persyaratansilancar['judulpersyaratan']; ?> </h6>
       </div>
 
-      <!-- Diarahkan ke Method baru yang terdapat dalam Controller EditUpdateAdmin -->
       <form action="/EditUpdateAdmin/updatePersyaratan/<?= $persyaratansilancar['id']; ?>" method="post" enctype="multipart/form-data">
 
-        <!-- Keamanan -->
         <?= csrf_field(); ?>
+
+        <?php $validation = \Config\Services::validation(); ?>
+        <?php if (session()->has('validation')) : ?>
+          <?php $validation = session('validation'); ?>
+        <?php endif; ?>
 
         <input type="hidden" name="fotolama" value="<?= $persyaratansilancar['fotopersyaratan']; ?>">
 
-        <!-- Form Judul Berita -->
         <div class="row">
           <div class="mb-3">
             <label for="judulpersyaratan" class="form-label fw-semibold">Judul Persyaratan</label>
-            <input type="text" class="form-control <?= ($validation->hasError('judulpersyaratan')) ? 'is-invalid' : ''; ?>" name="judulpersyaratan" id="judulpersyaratan" autofocus value="<?= (old('judulpersyaratan')) ? old('judulpersyaratan') : $persyaratansilancar['judulpersyaratan'] ?>" ?>
+            <input type="text" name="judulpersyaratan" id="judulpersyaratan" class="form-control text-black <?= (session('errors.judulpersyaratan')) ? 'is-invalid' : null ?>" autofocus value="<?= (old('judulpersyaratan')) ? old('judulpersyaratan') : $persyaratansilancar['judulpersyaratan'] ?>" ?>
             <div class="invalid-feedback">
-              <?= $validation->getError('judulpersyaratan'); ?>
+              <?= session('errors.judulpersyaratan'); ?>
             </div>
           </div>
         </div>
 
-        <!-- Form Upload File -->
         <div class="row">
           <div class="mb-3">
             <label for="fotopersyaratan" class="form-label fw-semibold">Foto Persyaratan</label>
-            <input type="file" class="form-control <?= ($validation->hasError('fotopersyaratan')) ? 'is-invalid' : ''; ?>" name="fotopersyaratan" id="fotopersyaratan" value="<?= old('fotopersyaratan'); ?>" onchange="previewImgPersyaratan()">
+            <input type="file" name="fotopersyaratan" id="fotopersyaratan" class="form-control text-black <?= (session('errors.fotopersyaratan')) ? 'is-invalid' : null ?>" value="<?= old('fotopersyaratan'); ?>" onchange="previewImgPersyaratan()">
             <div class="invalid-feedback">
-              <?= $validation->getError('fotopersyaratan'); ?>
+              <?= session('errors.fotopersyaratan'); ?>
             </div>
             <div class="col-sm-2 my-4">
               <img src="/img/persyaratansilancar/<?= $persyaratansilancar['fotopersyaratan']; ?>" class="img-thumbnail img-preview" srcset="">
@@ -49,17 +48,17 @@
           </div>
         </div>
 
-        <!-- Form Keterangan Berita -->
         <div class="row">
           <div class="mb-3">
             <label for="keteranganpersyaratan" class="form-label fw-semibold">Keterangan Persyaratan</label>
             <br>
-            <textarea name="keteranganpersyaratan" id="keteranganpersyaratan" class="form-control text-area <?= ($validation->hasError('keteranganpersyaratan')) ? 'is-invalid' : ''; ?>" value="<?= $persyaratansilancar['keteranganpersyaratan']; ?>"></textarea>
+            <textarea name="keteranganpersyaratan" id="keteranganpersyaratan" class="form-control text-black text-area <?= (session('errors.keteranganpersyaratan')) ? 'is-invalid' : null ?>"><?= $persyaratansilancar['keteranganpersyaratan']; ?></textarea>
             <div class="invalid-feedback">
-              <?= $validation->getError('keteranganpersyaratan'); ?>
+              <?= session('errors.keteranganpersyaratan'); ?>
             </div>
           </div>
         </div>
+
 
         <div class="d-grid gap-2 col-6 mx-auto">
           <button type="submit" value="submit" name="submit" id="submit" class="btn btn-primary btn-sm">Ubah Persyaratan Si Lancar </button>

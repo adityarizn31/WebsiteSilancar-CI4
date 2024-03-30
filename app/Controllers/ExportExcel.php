@@ -3,8 +3,12 @@
 namespace App\Controllers;
 
 use App\Models\Pendaftaran_kk_Model;
-use App\Models\Pendaftaran_kia_Model;
+use App\Models\Pendaftaran_kkpemisahan_Model;
+use App\Models\Pendaftaran_kkpenambahan_Model;
+use App\Models\Pendaftaran_kkpengurangan_Model;
 use App\Models\Pendaftaran_kkperceraian_Model;
+use App\Models\Pendaftaran_kkperubahan_Model;
+use App\Models\Pendaftaran_kia_Model;
 use App\Models\Pendaftaran_suratperpindahan_Model;
 use App\Models\Pendaftaran_suratperpindahanluar_Model;
 
@@ -23,8 +27,13 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 class ExportExcel extends BaseController
 {
   protected $kkModel;
-  protected $kiaModel;
+  protected $kkpemisahanModel;
+  protected $kkpenambahanModel;
+  protected $kkpenguranganModel;
   protected $kkperceraianModel;
+  protected $kkperubahanModel;
+  protected $ktpModel;
+  protected $kiaModel;
   protected $suratperpindahanModel;
   protected $suratperpindahanluarModel;
 
@@ -40,8 +49,12 @@ class ExportExcel extends BaseController
   public function __construct()
   {
     $this->kkModel = new Pendaftaran_kk_Model();
-    $this->kiaModel = new Pendaftaran_kia_Model();
+    $this->kkpemisahanModel = new Pendaftaran_kkpemisahan_Model();
+    $this->kkpenambahanModel = new Pendaftaran_kkpenambahan_Model();
+    $this->kkpenguranganModel = new Pendaftaran_kkpengurangan_Model();
     $this->kkperceraianModel = new Pendaftaran_kkperceraian_Model();
+    $this->kkperubahanModel = new Pendaftaran_kkperubahan_Model();
+    $this->kiaModel = new Pendaftaran_kia_Model();
     $this->suratperpindahanModel = new Pendaftaran_suratperpindahan_Model();
     $this->suratperpindahanluarModel = new Pendaftaran_suratperpindahanluar_Model();
 
@@ -152,6 +165,348 @@ class ExportExcel extends BaseController
 
 
 
+
+
+
+
+
+
+
+
+  public function exportKKPemisahan()
+  {
+    $pendaftaranKKPemisahan = new Pendaftaran_kkpemisahan_Model();
+    $dataPendaftaranKKPemisahan = $pendaftaranKKPemisahan->onlyDeleted()->findAll();
+
+    $spreadsheetPendaftaranKKPemisahan = new Spreadsheet();
+    $sheet = $spreadsheetPendaftaranKKPemisahan->getActiveSheet();
+    $sheet->setCellValue('A1', 'Nama Pemohon');
+    $sheet->setCellValue('B1', 'Email Pemohon');
+    $sheet->setCellValue('C1', 'Nomor Pemohon');
+    $sheet->setCellValue('D1', 'Alamat Pemohon');
+    $sheet->setCellValue('E1', 'Kartu Keluarga Lama');
+    $sheet->setCellValue('F1', 'File Pemisahan');
+    $sheet->setCellValue('G1', 'Status');
+    $sheet->setCellValue('H1', 'Di buat Tanggal');
+    $sheet->setCellValue('I1', 'Di update Tanggal');
+    $sheet->setCellValue('J1', 'Di proses Tanggal');
+
+    $column = 2;
+    foreach ($dataPendaftaranKKPemisahan as $KKPemisah) {
+      $spreadsheetPendaftaranKKPemisahan->setActiveSheetIndex(0)
+        ->setCellValue('A' . $column, $KKPemisah['namapemohon'])
+        ->setCellValue('B' . $column, $KKPemisah['emailpemohon'])
+        ->setCellValue('C' . $column, $KKPemisah['nomorpemohon'])
+        ->setCellValue('D' . $column, $KKPemisah['alamatpemohon'])
+        ->setCellValue('E' . $column, $KKPemisah['kartukeluargalama'])
+        ->setCellValue('F' . $column, $KKPemisah['filepemisahan'])
+        ->setCellValue('G' . $column, $KKPemisah['status'])
+        ->setCellValue('H' . $column, $KKPemisah['created_at'])
+        ->setCellValue('I' . $column, $KKPemisah['updated_at'])
+        ->setCellValue('J' . $column, $KKPemisah['deleted_at']);;
+      $column++;
+    }
+
+    $worksheet = $spreadsheetPendaftaranKKPemisahan->getActiveSheet();
+    $worksheet->getColumnDimension('A')->setAutoSize(true);
+    $worksheet->getColumnDimension('B')->setAutoSize(true);
+    $worksheet->getColumnDimension('C')->setAutoSize(true);
+    $worksheet->getColumnDimension('D')->setAutoSize(true);
+    $worksheet->getColumnDimension('E')->setAutoSize(true);
+    $worksheet->getColumnDimension('F')->setAutoSize(true);
+    $worksheet->getColumnDimension('G')->setAutoSize(true);
+    $worksheet->getColumnDimension('H')->setAutoSize(true);
+    $worksheet->getColumnDimension('I')->setAutoSize(true);
+    $worksheet->getColumnDimension('J')->setAutoSize(true);
+
+    $worksheet->getStyle('A1:J1')->getFont()->setBold(true);
+    $worksheet->getStyle('A1:J1')->getFill()
+      ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+      ->getStartColor()->setRGB('4769FF');
+    $styleArray = [
+      'borders' => [
+        'allBorders' => [
+          'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+          'color' => ['argb' => 'FF000000']
+        ]
+      ]
+    ];
+    $worksheet->getStyle('A1:J' . ($column - 1))->applyFromArray($styleArray);
+    $worksheet->getStyle('A1:J1')->getFont()->getColor()->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_WHITE);
+
+
+    // Menuliskan dalam format
+    $writerKKPemisahan = new Xlsx($spreadsheetPendaftaranKKPemisahan);
+    $fileNameKKPemisahan = 'Data Selesai Pendaftaran Permohonan Kartu Keluarga Pemisahan Anggota';
+
+    // Redirect hasil generate Xlsx ke web
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment;filename=' . $fileNameKKPemisahan . '.xlsx');
+    header('Cache-Control: max-age=0');
+
+    $writerKKPemisahan->save('php://output');
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+  public function exportKKPenambahan()
+  {
+    $pendaftaranKKPenambahan = new Pendaftaran_kkpenambahan_Model();
+    $dataPendaftaranKKPenambahan = $pendaftaranKKPenambahan->onlyDeleted()->findAll();
+
+    $spreadsheetPendaftaranKKPenambahan = new Spreadsheet();
+    $sheet = $spreadsheetPendaftaranKKPenambahan->getActiveSheet();
+    $sheet->setCellValue('A1', 'Nama Pemohon');
+    $sheet->setCellValue('B1', 'Email Pemohon');
+    $sheet->setCellValue('C1', 'Nomor Pemohon');
+    $sheet->setCellValue('D1', 'Alamat Pemohon');
+    $sheet->setCellValue('E1', 'Kartu Keluarga Lama');
+    $sheet->setCellValue('F1', 'Surat Nikah');
+    $sheet->setCellValue('G1', 'Surat Keterangan Lahir');
+    $sheet->setCellValue('H1', 'Status');
+    $sheet->setCellValue('I1', 'Di buat Tanggal');
+    $sheet->setCellValue('J1', 'Di update Tanggal');
+    $sheet->setCellValue('K1', 'Di proses Tanggal');
+
+    $column = 2;
+    foreach ($dataPendaftaranKKPenambahan as $KKPenambahan) {
+      $spreadsheetPendaftaranKKPenambahan->setActiveSheetIndex(0)
+        ->setCellValue('A' . $column, $KKPenambahan['namapemohon'])
+        ->setCellValue('B' . $column, $KKPenambahan['emailpemohon'])
+        ->setCellValue('C' . $column, $KKPenambahan['nomorpemohon'])
+        ->setCellValue('D' . $column, $KKPenambahan['alamatpemohon'])
+        ->setCellValue('E' . $column, $KKPenambahan['kartukeluargalama'])
+        ->setCellValue('F' . $column, $KKPenambahan['suratnikah'])
+        ->setCellValue('G' . $column, $KKPenambahan['suratketeranganlahir'])
+        ->setCellValue('H' . $column, $KKPenambahan['status'])
+        ->setCellValue('I' . $column, $KKPenambahan['created_at'])
+        ->setCellValue('J' . $column, $KKPenambahan['updated_at'])
+        ->setCellValue('K' . $column, $KKPenambahan['deleted_at']);;
+      $column++;
+    }
+
+    $worksheet = $spreadsheetPendaftaranKKPenambahan->getActiveSheet();
+    $worksheet->getColumnDimension('A')->setAutoSize(true);
+    $worksheet->getColumnDimension('B')->setAutoSize(true);
+    $worksheet->getColumnDimension('C')->setAutoSize(true);
+    $worksheet->getColumnDimension('D')->setAutoSize(true);
+    $worksheet->getColumnDimension('E')->setAutoSize(true);
+    $worksheet->getColumnDimension('F')->setAutoSize(true);
+    $worksheet->getColumnDimension('G')->setAutoSize(true);
+    $worksheet->getColumnDimension('H')->setAutoSize(true);
+    $worksheet->getColumnDimension('I')->setAutoSize(true);
+    $worksheet->getColumnDimension('J')->setAutoSize(true);
+    $worksheet->getColumnDimension('K')->setAutoSize(true);
+
+    $worksheet->getStyle('A1:K1')->getFont()->setBold(true);
+    $worksheet->getStyle('A1:K1')->getFill()
+      ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+      ->getStartColor()->setRGB('FC657E');
+    $styleArray = [
+      'borders' => [
+        'allBorders' => [
+          'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+          'color' => ['argb' => 'FF000000']
+        ]
+      ]
+    ];
+    $worksheet->getStyle('A1:K' . ($column - 1))->applyFromArray($styleArray);
+    $worksheet->getStyle('A1:K1')->getFont()->getColor()->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_WHITE);
+
+
+    // Menuliskan dalam format
+    $writerKKPenambahan = new Xlsx($spreadsheetPendaftaranKKPenambahan);
+    $fileNameKKPenambahan = 'Data Selesai Pendaftaran Permohonan Kartu Keluarga Penambahan Anggota';
+
+    // Redirect hasil generate Xlsx ke web
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment;filename=' . $fileNameKKPenambahan . '.xlsx');
+    header('Cache-Control: max-age=0');
+
+    $writerKKPenambahan->save('php://output');
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+  public function exportKKPengurangan()
+  {
+    $pendaftaranKKPengurangan = new Pendaftaran_kkpengurangan_Model();
+    $dataPendaftaranKKPengurangan = $pendaftaranKKPengurangan->onlyDeleted()->findAll();
+
+    $spreadsheetPendaftaranKKPengurangan = new Spreadsheet();
+    $sheet = $spreadsheetPendaftaranKKPengurangan->getActiveSheet();
+    $sheet->setCellValue('A1', 'Nama Pemohon');
+    $sheet->setCellValue('B1', 'Email Pemohon');
+    $sheet->setCellValue('C1', 'Nomor Pemohon');
+    $sheet->setCellValue('D1', 'Alamat Pemohon');
+    $sheet->setCellValue('E1', 'Kartu Keluarga Lama');
+    $sheet->setCellValue('F1', 'File Pengurangan');
+    $sheet->setCellValue('G1', 'Status');
+    $sheet->setCellValue('H1', 'Di buat Tanggal');
+    $sheet->setCellValue('I1', 'Di update Tanggal');
+    $sheet->setCellValue('J1', 'Di proses Tanggal');
+
+    $column = 2;
+    foreach ($dataPendaftaranKKPengurangan as $KKPengurangan) {
+      $spreadsheetPendaftaranKKPengurangan->setActiveSheetIndex(0)
+        ->setCellValue('A' . $column, $KKPengurangan['namapemohon'])
+        ->setCellValue('B' . $column, $KKPengurangan['emailpemohon'])
+        ->setCellValue('C' . $column, $KKPengurangan['nomorpemohon'])
+        ->setCellValue('D' . $column, $KKPengurangan['alamatpemohon'])
+        ->setCellValue('E' . $column, $KKPengurangan['kartukeluargalama'])
+        ->setCellValue('F' . $column, $KKPengurangan['filepengurangan'])
+        ->setCellValue('G' . $column, $KKPengurangan['status'])
+        ->setCellValue('H' . $column, $KKPengurangan['created_at'])
+        ->setCellValue('I' . $column, $KKPengurangan['updated_at'])
+        ->setCellValue('J' . $column, $KKPengurangan['deleted_at']);;
+      $column++;
+    }
+
+    $worksheet = $spreadsheetPendaftaranKKPengurangan->getActiveSheet();
+    $worksheet->getColumnDimension('A')->setAutoSize(true);
+    $worksheet->getColumnDimension('B')->setAutoSize(true);
+    $worksheet->getColumnDimension('C')->setAutoSize(true);
+    $worksheet->getColumnDimension('D')->setAutoSize(true);
+    $worksheet->getColumnDimension('E')->setAutoSize(true);
+    $worksheet->getColumnDimension('F')->setAutoSize(true);
+    $worksheet->getColumnDimension('G')->setAutoSize(true);
+    $worksheet->getColumnDimension('H')->setAutoSize(true);
+    $worksheet->getColumnDimension('I')->setAutoSize(true);
+    $worksheet->getColumnDimension('J')->setAutoSize(true);
+
+    $worksheet->getStyle('A1:J1')->getFont()->setBold(true);
+    $worksheet->getStyle('A1:J1')->getFill()
+      ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+      ->getStartColor()->setRGB('414344');
+    $styleArray = [
+      'borders' => [
+        'allBorders' => [
+          'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+          'color' => ['argb' => 'FF000000']
+        ]
+      ]
+    ];
+    $worksheet->getStyle('A1:J' . ($column - 1))->applyFromArray($styleArray);
+    $worksheet->getStyle('A1:J1')->getFont()->getColor()->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_WHITE);
+
+
+    // Menuliskan dalam format
+    $writerKKPengurangan = new Xlsx($spreadsheetPendaftaranKKPengurangan);
+    $fileNameKKPengurangan = 'Data Selesai Pendaftaran Permohonan Kartu Keluarga Pengurangan Anggota';
+
+    // Redirect hasil generate Xlsx ke web
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment;filename=' . $fileNameKKPengurangan . '.xlsx');
+    header('Cache-Control: max-age=0');
+
+    $writerKKPengurangan->save('php://output');
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+  public function exportKKPerubahan()
+  {
+    $pendaftaranKKPerubahan = new Pendaftaran_kkperubahan_Model();
+    $dataPendaftaranKKPerubahan = $pendaftaranKKPerubahan->onlyDeleted()->findAll();
+
+    $spreadsheetPendaftaranKKPerubahan = new Spreadsheet();
+    $sheet = $spreadsheetPendaftaranKKPerubahan->getActiveSheet();
+    $sheet->setCellValue('A1', 'Nama Pemohon');
+    $sheet->setCellValue('B1', 'Email Pemohon');
+    $sheet->setCellValue('C1', 'Nomor Pemohon');
+    $sheet->setCellValue('D1', 'Alamat Pemohon');
+    $sheet->setCellValue('E1', 'Kartu Keluarga Lama');
+    $sheet->setCellValue('F1', 'Surat Nikah');
+    $sheet->setCellValue('G1', 'File Perubahan');
+    $sheet->setCellValue('H1', 'Status');
+    $sheet->setCellValue('I1', 'Di buat Tanggal');
+    $sheet->setCellValue('J1', 'Di update Tanggal');
+    $sheet->setCellValue('K1', 'Di proses Tanggal');
+
+    $column = 2;
+    foreach ($dataPendaftaranKKPerubahan as $KKPengurangan) {
+      $spreadsheetPendaftaranKKPerubahan->setActiveSheetIndex(0)
+        ->setCellValue('A' . $column, $KKPengurangan['namapemohon'])
+        ->setCellValue('B' . $column, $KKPengurangan['emailpemohon'])
+        ->setCellValue('C' . $column, $KKPengurangan['nomorpemohon'])
+        ->setCellValue('D' . $column, $KKPengurangan['alamatpemohon'])
+        ->setCellValue('E' . $column, $KKPengurangan['kartukeluargalama'])
+        ->setCellValue('F' . $column, $KKPengurangan['suratnikah'])
+        ->setCellValue('G' . $column, $KKPengurangan['fileperubahan'])
+        ->setCellValue('H' . $column, $KKPengurangan['status'])
+        ->setCellValue('I' . $column, $KKPengurangan['created_at'])
+        ->setCellValue('J' . $column, $KKPengurangan['updated_at'])
+        ->setCellValue('K' . $column, $KKPengurangan['deleted_at']);;
+      $column++;
+    }
+
+    $worksheet = $spreadsheetPendaftaranKKPerubahan->getActiveSheet();
+    $worksheet->getColumnDimension('A')->setAutoSize(true);
+    $worksheet->getColumnDimension('B')->setAutoSize(true);
+    $worksheet->getColumnDimension('C')->setAutoSize(true);
+    $worksheet->getColumnDimension('D')->setAutoSize(true);
+    $worksheet->getColumnDimension('E')->setAutoSize(true);
+    $worksheet->getColumnDimension('F')->setAutoSize(true);
+    $worksheet->getColumnDimension('G')->setAutoSize(true);
+    $worksheet->getColumnDimension('H')->setAutoSize(true);
+    $worksheet->getColumnDimension('I')->setAutoSize(true);
+    $worksheet->getColumnDimension('J')->setAutoSize(true);
+    $worksheet->getColumnDimension('K')->setAutoSize(true);
+
+    $worksheet->getStyle('A1:K1')->getFont()->setBold(true);
+    $worksheet->getStyle('A1:K1')->getFill()
+      ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
+      ->getStartColor()->setRGB('00191A');
+    $styleArray = [
+      'borders' => [
+        'allBorders' => [
+          'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+          'color' => ['argb' => 'FF000000']
+        ]
+      ]
+    ];
+    $worksheet->getStyle('A1:K' . ($column - 1))->applyFromArray($styleArray);
+    $worksheet->getStyle('A1:K1')->getFont()->getColor()->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_WHITE);
+
+
+    // Menuliskan dalam format
+    $writerKKPerubahan = new Xlsx($spreadsheetPendaftaranKKPerubahan);
+    $fileNameKKPerubahan = 'Data Selesai Pendaftaran Permohonan Kartu Keluarga Perubahan Anggota';
+
+    // Redirect hasil generate Xlsx ke web
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment;filename=' . $fileNameKKPerubahan . '.xlsx');
+    header('Cache-Control: max-age=0');
+
+    $writerKKPerubahan->save('php://output');
+  }
 
 
 
@@ -764,19 +1119,19 @@ class ExportExcel extends BaseController
     $sheet->setCellValue('C1', 'Nomor Pemohon');
     $sheet->setCellValue('D1', 'Alamat Pemohon');
     $sheet->setCellValue('E1', 'Berkas Pelayanan 1');
-    $sheet->setCellValue('G1', 'Berkas Pelayanan 2');
-    $sheet->setCellValue('H1', 'Berkas Pelayanan 3');
-    $sheet->setCellValue('I1', 'Berkas Pelayanan 4');
-    $sheet->setCellValue('J1', 'Berkas Pelayanan 5');
-    $sheet->setCellValue('K1', 'Berkas Pelayanan 6');
-    $sheet->setCellValue('L1', 'Berkas Pelayanan 7');
-    $sheet->setCellValue('M1', 'Berkas Pelayanan 8');
-    $sheet->setCellValue('N1', 'Berkas Pelayanan 9');
-    $sheet->setCellValue('O1', 'Berkas Pelayanan 10');
-    $sheet->setCellValue('P1', 'Status');
-    $sheet->setCellValue('Q1', 'Di buat Tanggal');
-    $sheet->setCellValue('R1', 'Di update Tanggal');
-    $sheet->setCellValue('S1', 'Di proses Tanggal');
+    $sheet->setCellValue('F1', 'Berkas Pelayanan 2');
+    $sheet->setCellValue('G1', 'Berkas Pelayanan 3');
+    $sheet->setCellValue('H1', 'Berkas Pelayanan 4');
+    $sheet->setCellValue('I1', 'Berkas Pelayanan 5');
+    $sheet->setCellValue('J1', 'Berkas Pelayanan 6');
+    $sheet->setCellValue('K1', 'Berkas Pelayanan 7');
+    $sheet->setCellValue('L1', 'Berkas Pelayanan 8');
+    $sheet->setCellValue('M1', 'Berkas Pelayanan 9');
+    $sheet->setCellValue('N1', 'Berkas Pelayanan 10');
+    $sheet->setCellValue('O1', 'Status');
+    $sheet->setCellValue('P1', 'Di buat Tanggal');
+    $sheet->setCellValue('Q1', 'Di update Tanggal');
+    $sheet->setCellValue('R1', 'Di proses Tanggal');
 
     $column = 2;
     foreach ($dataPendaftaranPelayananData as $akla) {
@@ -786,19 +1141,19 @@ class ExportExcel extends BaseController
         ->setCellValue('C' . $column, $akla['nomorpemohon'])
         ->setCellValue('D' . $column, $akla['alamatpemohon'])
         ->setCellValue('E' . $column, $akla['berkaspelayanan1'])
-        ->setCellValue('G' . $column, $akla['berkaspelayanan2'])
-        ->setCellValue('H' . $column, $akla['berkaspelayanan3'])
-        ->setCellValue('I' . $column, $akla['berkaspelayanan4'])
-        ->setCellValue('J' . $column, $akla['berkaspelayanan5'])
-        ->setCellValue('K' . $column, $akla['berkaspelayanan6'])
-        ->setCellValue('L' . $column, $akla['berkaspelayanan7'])
-        ->setCellValue('M' . $column, $akla['berkaspelayanan8'])
-        ->setCellValue('N' . $column, $akla['berkaspelayanan9'])
-        ->setCellValue('O' . $column, $akla['berkaspelayanan10'])
-        ->setCellValue('P' . $column, $akla['status'])
-        ->setCellValue('Q' . $column, $akla['created_at'])
-        ->setCellValue('R' . $column, $akla['updated_at'])
-        ->setCellValue('S' . $column, $akla['deleted_at']);
+        ->setCellValue('F' . $column, $akla['berkaspelayanan2'])
+        ->setCellValue('G' . $column, $akla['berkaspelayanan3'])
+        ->setCellValue('H' . $column, $akla['berkaspelayanan4'])
+        ->setCellValue('I' . $column, $akla['berkaspelayanan5'])
+        ->setCellValue('J' . $column, $akla['berkaspelayanan6'])
+        ->setCellValue('K' . $column, $akla['berkaspelayanan7'])
+        ->setCellValue('L' . $column, $akla['berkaspelayanan8'])
+        ->setCellValue('M' . $column, $akla['berkaspelayanan9'])
+        ->setCellValue('N' . $column, $akla['berkaspelayanan10'])
+        ->setCellValue('O' . $column, $akla['status'])
+        ->setCellValue('P' . $column, $akla['created_at'])
+        ->setCellValue('Q' . $column, $akla['updated_at'])
+        ->setCellValue('R' . $column, $akla['deleted_at']);
       $column++;
     }
 
@@ -821,10 +1176,9 @@ class ExportExcel extends BaseController
     $worksheet->getColumnDimension('P')->setAutoSize(true);
     $worksheet->getColumnDimension('Q')->setAutoSize(true);
     $worksheet->getColumnDimension('R')->setAutoSize(true);
-    $worksheet->getColumnDimension('S')->setAutoSize(true);
 
-    $worksheet->getStyle('A1:J1')->getFont()->setBold(true);
-    $worksheet->getStyle('A1:J1')->getFill()
+    $worksheet->getStyle('A1:R1')->getFont()->setBold(true);
+    $worksheet->getStyle('A1:R1')->getFill()
       ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
       ->getStartColor()->setRGB('000000');
     $styleArray = [
@@ -835,8 +1189,8 @@ class ExportExcel extends BaseController
         ]
       ]
     ];
-    $worksheet->getStyle('A1:J' . ($column - 1))->applyFromArray($styleArray);
-    $worksheet->getStyle('A1:J1')->getFont()->getColor()->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_WHITE);
+    $worksheet->getStyle('A1:R' . ($column - 1))->applyFromArray($styleArray);
+    $worksheet->getStyle('A1:R1')->getFont()->getColor()->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_WHITE);
 
 
     // Menuliskan dalam format
@@ -873,15 +1227,15 @@ class ExportExcel extends BaseController
     $sheet->setCellValue('C1', 'Nomor Pemohon');
     $sheet->setCellValue('D1', 'Alamat Pemohon');
     $sheet->setCellValue('E1', 'Berkas Perbaikan 1');
-    $sheet->setCellValue('G1', 'Berkas Perbaikan 2');
-    $sheet->setCellValue('H1', 'Berkas Perbaikan 3');
-    $sheet->setCellValue('I1', 'Berkas Perbaikan 4');
-    $sheet->setCellValue('J1', 'Berkas Perbaikan 5');
-    $sheet->setCellValue('K1', 'Penjelasan Perbaikan');
-    $sheet->setCellValue('L1', 'Status');
-    $sheet->setCellValue('M1', 'Di buat Tanggal');
-    $sheet->setCellValue('N1', 'Di update Tanggal');
-    $sheet->setCellValue('O1', 'Di proses Tanggal');
+    $sheet->setCellValue('F1', 'Berkas Perbaikan 2');
+    $sheet->setCellValue('G1', 'Berkas Perbaikan 3');
+    $sheet->setCellValue('H1', 'Berkas Perbaikan 4');
+    $sheet->setCellValue('I1', 'Berkas Perbaikan 5');
+    $sheet->setCellValue('J1', 'Penjelasan Perbaikan');
+    $sheet->setCellValue('K1', 'Status');
+    $sheet->setCellValue('L1', 'Di buat Tanggal');
+    $sheet->setCellValue('M1', 'Di update Tanggal');
+    $sheet->setCellValue('N1', 'Di proses Tanggal');
 
     $column = 2;
     foreach ($dataPendaftaranPerbaikanData as $perdat) {
@@ -891,15 +1245,15 @@ class ExportExcel extends BaseController
         ->setCellValue('C' . $column, $perdat['nomorpemohon'])
         ->setCellValue('D' . $column, $perdat['alamatpemohon'])
         ->setCellValue('E' . $column, $perdat['berkasperbaikan_satu'])
-        ->setCellValue('G' . $column, $perdat['berkasperbaikan_dua'])
-        ->setCellValue('H' . $column, $perdat['berkasperbaikan_tiga'])
-        ->setCellValue('I' . $column, $perdat['berkasperbaikan_empat'])
-        ->setCellValue('J' . $column, $perdat['berkasperbaikan_lima'])
-        ->setCellValue('K' . $column, $perdat['penjelasanperbaikan'])
-        ->setCellValue('L' . $column, $perdat['status'])
-        ->setCellValue('M' . $column, $perdat['created_at'])
-        ->setCellValue('N' . $column, $perdat['updated_at'])
-        ->setCellValue('O' . $column, $perdat['deleted_at']);
+        ->setCellValue('F' . $column, $perdat['berkasperbaikan_dua'])
+        ->setCellValue('G' . $column, $perdat['berkasperbaikan_tiga'])
+        ->setCellValue('H' . $column, $perdat['berkasperbaikan_empat'])
+        ->setCellValue('I' . $column, $perdat['berkasperbaikan_lima'])
+        ->setCellValue('J' . $column, $perdat['penjelasanperbaikan'])
+        ->setCellValue('K' . $column, $perdat['status'])
+        ->setCellValue('L' . $column, $perdat['created_at'])
+        ->setCellValue('M' . $column, $perdat['updated_at'])
+        ->setCellValue('N' . $column, $perdat['deleted_at']);
       $column++;
     }
 
@@ -918,10 +1272,9 @@ class ExportExcel extends BaseController
     $worksheet->getColumnDimension('L')->setAutoSize(true);
     $worksheet->getColumnDimension('M')->setAutoSize(true);
     $worksheet->getColumnDimension('N')->setAutoSize(true);
-    $worksheet->getColumnDimension('O')->setAutoSize(true);
 
-    $worksheet->getStyle('A1:J1')->getFont()->setBold(true);
-    $worksheet->getStyle('A1:J1')->getFill()
+    $worksheet->getStyle('A1:N1')->getFont()->setBold(true);
+    $worksheet->getStyle('A1:N1')->getFill()
       ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
       ->getStartColor()->setRGB('98FB98');
     $styleArray = [
@@ -932,8 +1285,8 @@ class ExportExcel extends BaseController
         ]
       ]
     ];
-    $worksheet->getStyle('A1:J' . ($column - 1))->applyFromArray($styleArray);
-    $worksheet->getStyle('A1:J1')->getFont()->getColor()->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_WHITE);
+    $worksheet->getStyle('A1:N' . ($column - 1))->applyFromArray($styleArray);
+    $worksheet->getStyle('A1:N1')->getFont()->getColor()->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_WHITE);
 
 
     // Menuliskan dalam format

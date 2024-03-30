@@ -26,24 +26,6 @@ use App\Models\Pendaftaran_pelayanandata_Model;
 use App\Models\Perbaikan_data_Model;
 use App\Models\Pengaduan_update_Model;
 
-// Halaman Pelayanan
-
-use App\Models\PelayananModel;
-
-use App\Models\Pelayanan_kk_Model;
-use App\Models\Pelayanan_kia_Model;
-use App\Models\Pelayanan_suratperpindahan_Model;
-use App\Models\Pelayanan_suratperpindahanluar_Model;
-
-use App\Models\Pelayanan_aktakelahiran_Model;
-use App\Models\Pelayanan_aktakematian_Model;
-use App\Models\Pelayanan_keabsahanakla_Model;
-
-use App\Models\Pelayanan_pelayanandata_Model;
-
-use App\Models\Pelayanan_perbaikandata_Model;
-use App\Models\Pelayanan_pengaduanupdate_Model;
-
 class CreateAdmin extends BaseController
 {
 
@@ -72,21 +54,6 @@ class CreateAdmin extends BaseController
   // Halaman Pelayanan
 
   protected $pelayananModel;
-
-  protected $pelkkModel;
-  protected $pelkiaModel;
-  protected $pelsuratperpindahanModel;
-  protected $pelsuratperpindahanluarModel;
-
-  protected $pelaktakelahiranModel;
-  protected $pelaktakematianModel;
-  protected $pelkeabsahanaklaModel;
-
-  protected $pelpelayanandataModel;
-
-  protected $pelperbaikandataModel;
-  protected $pelpengaduanupdateModel;
-
 
   public function __construct()
   {
@@ -327,7 +294,6 @@ class CreateAdmin extends BaseController
       return redirect()->to(base_url() . '/createAdmin/create_akun_admin/')->withInput();
     }
 
-    //
     $fotoAdmin = $this->request->getFile('foto_admin');
     if ($fotoAdmin->getError() == 4) {
       $namaFotoAdmin = 'img/akun.png';
@@ -355,9 +321,9 @@ class CreateAdmin extends BaseController
 
 
 
-  // Form Halaman Tambah Pelayanan
   public function create_persyaratansilancar_admin()
   {
+    helper(['form']);
     $data = [
       'title' => 'Form Halaman Tambah Persyaratan Si Lancar || Admin Disdukcapil',
       'validation' => \Config\Services::validation()
@@ -367,33 +333,32 @@ class CreateAdmin extends BaseController
 
   public function savePersyaratanSilancar()
   {
-    if (!$this->validate([
+    $validate = $this->validate([
 
-      // Judul Persyaratan
       'judulpersyaratan' => [
         'rules' => 'required[persyaratansilancar.judulpersyaratan]',
         'errors' => [
           'required' => 'Judul Persyaratan Harus Di isi !!'
-        ]
+        ],
       ],
-      // Foto Persyaratan
       'fotopersyaratan' => [
         'rules' => 'max_size[fotopersyaratan,2048]|is_image[fotopersyaratan]|mime_in[fotopersyaratan,image/jpg,image/jpeg,image/png]',
         'errors' => [
           'max_size' => 'Ukuran Gambar terlalu besar !!',
           'is_image' => 'Yang anda pilih bukan gambar !!',
           'mime_in' => 'Yang anda pilih bukan gambar'
-        ]
+        ],
       ],
-      // Keterangan Persyaratan
       'keteranganpersyaratan' => [
         'rules' => 'required[persyaratansilancar.keteranganpersyaratan]',
         'errors' => [
           'required' => 'Keterangan Persyaratan Si Lancar Harus diisi !!'
-        ]
-      ]
-    ])) {
-      return redirect()->to(base_url() . '/CreateAdmin/create_persyaratansilancar_admin/')->withInput();
+        ],
+      ],
+    ]);
+
+    if (!$validate) {
+      return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
 
     // Cara Memanggil Gambar
@@ -404,7 +369,7 @@ class CreateAdmin extends BaseController
     } else {
       // Generate nama foto random inovasi
       $namaFotoPersyaratan = $fileFotoPersyaratan->getRandomName();
-      // Memindahkan FIle Gambar ke Folder img/Inovasi
+      // Memindahkan File Gambar ke Folder img/Inovasi
       $fileFotoPersyaratan->move('img/persyaratansilancar', $namaFotoPersyaratan);
     }
 
@@ -416,74 +381,5 @@ class CreateAdmin extends BaseController
 
     session()->setFlashdata('pesan', 'Data Persyaratan Si Lancar Berhasil Ditambahkan');
     return redirect()->to('admin/persyaratansilancar_admin');
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // Form Halaman Tambah Foto Pendaftaran Kartu Keluarga
-  public function create_cardpendaftarankk_admin()
-  {
-    $data = [
-      'title' => 'Form Tambah Foto Pendaftaran KK || Admin Disdukcapil',
-      'validation' => \Config\Services::validation()
-    ];
-    return view('createAdmin/create_cardpendaftarankk_admin', $data);
-  }
-
-  // Digunakan untuk Validasi Halaman Pendaftaran KK
-  public function saveCardPendaftaranKK()
-  {
-    if (!$this->validate([
-
-      // Foto Pendaftaran KK
-      'fotopelayanan' => [
-        'rules' => 'max_size[fotopelayanan,2048]|is_image[fotopelayanan]|mime_in[fotopelayanan,image/jpg,image/jpeg,image/png]',
-        'errors' => [
-          'max_size' => 'Ukuran Foto Pendaftaran KK terlalu besar !!',
-          'is_image' => 'File Foto Pendaftaran KK harus berupa Gambar !!',
-          'mime_in' => 'Yang anda pilih bukan Gambar !!'
-        ]
-      ],
-      // Judul Pendaftaran KK
-      'judulpelayanan' => [
-        'rules' => 'required[pelayanan_kk.judulpelayanan]',
-        'errors' => [
-          'required' => 'Judul Pelayanan KK Harus Di isi !!'
-        ]
-      ]
-
-    ])) {
-      return redirect()->to(base_url() . '/CreateAdmin/create_cardpendaftarankk_admin/')->withInput();
-    }
-
-    // Cara Memanggil Gambar
-    $fileFotoPelayananKK = $this->request->getFile('fotopelayanan');
-    if ($fileFotoPelayananKK->getError() == 4) {
-      $namaFotoPelayananKK = '';
-    } else {
-      // Generate nama Foto Pelayanan
-      $namaFotoPelayananKK = $fileFotoPelayananKK->getRandomName();
-      // Memindahkan File Gambar ke Folder img/PelayananKK
-      $fileFotoPelayananKK->move('img/pelayananKK', $namaFotoPelayananKK);
-    }
-
-    $this->pelkkModel->save([
-      'judulpelayanan' => $this->request->getVar('judulpelayanan'),
-      'fotopelayanan' => $namaFotoPelayananKK
-    ]);
-    session()->setFlashdata('pesan', 'Data Pelayanan KK berhasil Di tambahkan !!');
-    return redirect()->to('/Admin/pelayanan');
   }
 }

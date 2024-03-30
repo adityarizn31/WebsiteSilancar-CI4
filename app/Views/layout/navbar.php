@@ -1,14 +1,14 @@
-<nav class="navbar navbar-expand-sm">
+<!-- <nav class="navbar navbar-expand-sm">
 
-  <a href="/Beranda/">
-    <img class="logonav" src="/img/header/HeaderDisduk.PNG" alt="" srcset="">
+  <a class="navbar-brand" href="/Beranda/">
+    <img class="logodisduknav" src="/img/header/HeaderDisduk.PNG">
   </a>
 
-  <div class="container-fluid">
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon">A</span>
+  </button>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <div class="container-fluid">
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 
@@ -36,7 +36,7 @@
   </div>
 </nav>
 
-<!-- <nav class="navbar">
+<nav class="navbar">
 
   <a href="/Beranda/">
     <img class="logonav" src="/img/header/HeaderDisduk.PNG" alt="" srcset="">
@@ -58,3 +58,40 @@
     </li>
   </ul>
 </nav> -->
+
+<nav class="navbar navbar-expand-lg">
+
+  <div class="grup d-flex">
+    <a class="navbar-brand" href="/Beranda/">
+      <img class="logodisduknav" src="/img/header/HeaderDisduk.PNG">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item">
+        <a class="nav-link text-white" aria-current="page" href="/TentangSilancar/">Tentang Si Lancar</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link text-white" aria-current="page" href="/PelayananSilancar/">Pelayanan Si Lancar</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link text-white" aria-current="page" href="/Searching/">Pengecekan Status</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link text-white" aria-current="page" href="/Admin/">Masuk</a>
+      </li>
+
+    </ul>
+
+  </div>
+</nav>

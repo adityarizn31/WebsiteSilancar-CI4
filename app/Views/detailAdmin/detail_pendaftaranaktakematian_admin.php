@@ -21,7 +21,6 @@
           <?php
           $pesan = session()->getFlashdata('pesan');
 
-          // Jika status = Selesai
           if ($pesan == 'Pendaftaran Telah Selesai di Verifikasi !!') {
             $class = 'alert-success';
           } else {
@@ -52,7 +51,7 @@
               <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalUbahStatus">
                 Verifikasi Pendaftaran
               </button>
-            <?php elseif ($pendaftaran_aktakematian['status'] === 'Selesai' || $pendaftaran_aktakematian['status'] === 'Belum Selesai') : ?>
+            <?php elseif ($pendaftaran_aktakematian['status'] === 'Selesai Verifikasi' || $pendaftaran_aktakematian['status'] === 'Gagal Verifikasi') : ?>
               <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalVerifikasiPendaftaran">
                 Tandai Selesai
               </button>
@@ -73,9 +72,9 @@
 
                     <div class="align-items-center justify-content-center">
 
-                      <a href="<?= base_url('/DetailAdmin/selesaiAktaKematian/' . $pendaftaran_aktakematian['namapemohon']) ?>" class="btn btn-outline-success" data-popup="tooltip" data-placement="top" title="Selesai"><i class="bi bi-check-square" aria-hidden="true"></i> Verifikasi </a>
+                      <a href="<?= base_url('/DetailAdmin/selesaiAktaKematian/' . $pendaftaran_aktakematian['namapemohon']) ?>" class="btn btn-outline-success" data-popup="tooltip" data-placement="top" title="Selesai Verifikasi"><i class="bi bi-check-square" aria-hidden="true"></i> Selesai Verifikasi </a>
 
-                      <a href="<?= base_url('/DetailAdmin/belumSelesaiAktaKematian/' . $pendaftaran_aktakematian['namapemohon']) ?>" class="btn btn-outline-danger" data-popup="tooltip" data-placement="top" title="Tidak Selesai"><i class="bi bi-x-square" aria-hidden="true"></i> Gagal Verifikasi </a>
+                      <a href="<?= base_url('/DetailAdmin/belumSelesaiAktaKematian/' . $pendaftaran_aktakematian['namapemohon']) ?>" class="btn btn-outline-danger" data-popup="tooltip" data-placement="top" title="Gagal Verifikasi"><i class="bi bi-x-square" aria-hidden="true"></i> Gagal Verifikasi </a>
 
                     </div>
                   </div>
@@ -156,7 +155,21 @@
             <tr>
               <th width="">Status</th>
               <th width="">:</th>
-              <td><?= $pendaftaran_aktakematian['status']; ?></td>
+              <td>
+                <?php
+                switch ($pendaftaran_aktakematian['status']) {
+                  case 'Selesai Verifikasi':
+                    echo '<span class="badge bg-success"> Selesai Verifikasi </span>';
+                    break;
+                  case 'Belum di Proses':
+                    echo '<span class="badge bg-warning"> Belum di Proses </span>';
+                    break;
+                  case 'Gagal Verifikasi':
+                    echo '<span class="badge bg-danger"> Gagal Verifikasi </span>';
+                    break;
+                }
+                ?>
+              </td>
             </tr>
 
           </table>
@@ -164,11 +177,11 @@
           <div class="grid-container2 align-items-center justify-content-center">
 
             <div class="div">
-              <a href="<?= base_url('/DetailAdmin/selesaiAktaKematian/' . $pendaftaran_aktakematian['namapemohon']) ?>" class="btn btn-success" data-popup="tooltip" data-placement="top" title="Selesai"><i class="bi bi-check-square" aria-hidden="true"></i></a>
+              <a href="<?= base_url('/DetailAdmin/selesaiAktaKematian/' . $pendaftaran_aktakematian['namapemohon']) ?>" class="btn btn-success" data-popup="tooltip" data-placement="top" title="Selesai Verifikasi"><i class="bi bi-check-square" aria-hidden="true"></i></a>
             </div>
 
             <div class="div">
-              <a href="<?= base_url('/DetailAdmin/belumSelesaiAktaKematian/' . $pendaftaran_aktakematian['namapemohon']) ?>" class="btn btn-danger" data-popup="tooltip" data-placement="top" title="Tidak Selesai"><i class="bi bi-x-square" aria-hidden="true"></i></a>
+              <a href="<?= base_url('/DetailAdmin/belumSelesaiAktaKematian/' . $pendaftaran_aktakematian['namapemohon']) ?>" class="btn btn-danger" data-popup="tooltip" data-placement="top" title="Gagal Verifikasi"><i class="bi bi-x-square" aria-hidden="true"></i></a>
             </div>
 
           </div>
@@ -179,7 +192,7 @@
           <div class="card card-outline card-primary">
 
             <div class="card-header">
-              <div class="card-title"> Berkas Kartu Keluarga </div>
+              <div class="card-title text-black fw-semibold"> Berkas Kartu Keluarga </div>
 
             </div>
 
@@ -194,7 +207,7 @@
           <div class="card card-outline card-primary">
 
             <div class="card-header">
-              <div class="card-title"> Berkas Surat Kematian </div>
+              <div class="card-title text-black fw-semibold"> Berkas Surat Kematian </div>
             </div>
 
             <div class="col-sm-12">

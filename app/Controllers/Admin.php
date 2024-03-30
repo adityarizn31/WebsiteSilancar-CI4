@@ -13,7 +13,11 @@ use App\Models\PersyaratansilancarModel;
 // Halaman Pendaftaran Si Lancar
 
 use App\Models\Pendaftaran_kk_Model;
+use App\Models\Pendaftaran_kkpemisahan_Model;
+use App\Models\Pendaftaran_kkpenambahan_Model;
+use App\Models\Pendaftaran_kkpengurangan_Model;
 use App\Models\Pendaftaran_kkperceraian_Model;
+use App\Models\Pendaftaran_kkperubahan_Model;
 use App\Models\Pendaftaran_kia_Model;
 use App\Models\Pendaftaran_suratperpindahan_Model;
 use App\Models\Pendaftaran_suratperpindahanluar_Model;
@@ -41,7 +45,12 @@ class Admin extends BaseController
   // Halaman Pendaftaran Si Lancar
 
   protected $kkModel;
+  protected $kkpemisahanModel;
+  protected $kkpenambahanModel;
+  protected $kkpenguranganModel;
   protected $kkperceraianModel;
+  protected $kkperubahanModel;
+  protected $ktpModel;
   protected $kiaModel;
   protected $suratperpindahanModel;
   protected $suratperpindahanluarModel;
@@ -85,7 +94,11 @@ class Admin extends BaseController
     // Halaman Pendaftaran Si Lancar
 
     $this->kkModel = new Pendaftaran_kk_Model();
+    $this->kkpemisahanModel = new Pendaftaran_kkpemisahan_Model();
+    $this->kkpenambahanModel = new Pendaftaran_kkpenambahan_Model();
+    $this->kkpenguranganModel = new Pendaftaran_kkpengurangan_Model();
     $this->kkperceraianModel = new Pendaftaran_kkperceraian_Model();
+    $this->kkperubahanModel = new Pendaftaran_kkperubahan_Model();
     $this->kiaModel = new Pendaftaran_kia_Model();
     $this->suratperpindahanModel = new Pendaftaran_suratperpindahan_Model();
     $this->suratperpindahanluarModel = new Pendaftaran_suratperpindahanluar_Model();
@@ -111,7 +124,11 @@ class Admin extends BaseController
   public function index()
   {
     $pendaftaran_kk = $this->kkModel->findAll();
+    $pendaftaran_kk_pemisahan = $this->kkpemisahanModel->findAll();
+    $pendaftaran_kk_penambahan = $this->kkpenambahanModel->findAll();
+    $pendaftaran_kk_pengurangan = $this->kkpenguranganModel->findAll();
     $pendaftaran_kk_perceraian = $this->kkperceraianModel->findAll();
+    $pendaftaran_kk_perubahan = $this->kkperubahanModel->findAll();
     $pendaftaran_kia = $this->kiaModel->findAll();
     $pendaftaran_suratperpindahan = $this->suratperpindahanModel->findAll();
     $pendaftaran_suratperpindahanluar = $this->suratperpindahanluarModel->findAll();
@@ -124,7 +141,11 @@ class Admin extends BaseController
     $data = [
       'title' => 'Admin Disdukcapil',
       'pendaftaran_kk' => $pendaftaran_kk,
+      'pendaftaran_kk_pemisahan' => $pendaftaran_kk_pemisahan,
+      'pendaftaran_kk_penambahan' => $pendaftaran_kk_penambahan,
+      'pendaftaran_kk_pengurangan' => $pendaftaran_kk_pengurangan,
       'pendaftaran_kk_perceraian' => $pendaftaran_kk_perceraian,
+      'pendaftaran_kk_perubahan' => $pendaftaran_kk_perubahan,
       'pendaftaran_kia' => $pendaftaran_kia,
       'pendaftaran_suratperpindahan' => $pendaftaran_suratperpindahan,
       'pendaftaran_suratperpindahanluar' => $pendaftaran_suratperpindahanluar,
@@ -291,14 +312,11 @@ class Admin extends BaseController
 
 
   // PELAYANAN SI LANCAR
-
-  // Menampilkan data Kartu Keluarga pada halaman Admin
   public function pendaftaran_kk_admin()
   {
-    // Digunakan untuk Pagination
+
     $currentPageKK =  $this->request->getVar('page_pendaftaran_kk') ? $this->request->getVar('page_pendaftaran_kk') : 1;
 
-    // Digunakan untuk Pencarian Data
     $keyword = $this->request->getVar('keyword');
     if ($keyword) {
       $orangKK = $this->kkModel->search($keyword);
@@ -306,9 +324,8 @@ class Admin extends BaseController
       $orangKK = $this->kkModel;
     }
 
-    // Digunakan untuk menampilkan Detail data, Jumlah data per Halaman serta Halamannya
     $data = [
-      'title' => 'Data Pendaftaran KK || Admin Disdukcapil',
+      'title' => 'Data Pendaftaran KK Baru || Admin Disdukcapil',
       'pendaftaran_kk' => $this->kkModel->getDataKK(),
       'pendaftaran_kk' => $orangKK->paginate(10, 'pendaftaran_kk'),
       'pager' => $this->kkModel->pager,
@@ -323,13 +340,119 @@ class Admin extends BaseController
 
 
 
-  // Menampilkan data Kartu Keluarga Perceraian pada halaman Admin
+  public function pendaftaran_kkpemisahan_admin()
+  {
+    $currentPageKKPemisahan =  $this->request->getVar('page_pendaftaran_kk_pemisahan') ? $this->request->getVar('page_pendaftaran_kk_pemisahan') : 1;
+
+    $keyword = $this->request->getVar('keyword');
+    if ($keyword) {
+      $orangKKPemisahan = $this->kkpemisahanModel->search($keyword);
+    } else {
+      $orangKKPemisahan = $this->kkpemisahanModel;
+    }
+
+    $data = [
+      'title' => 'Data Pendaftaran KK Pemisahan || Admin Disdukcapil',
+      'pendaftaran_kk_pemisahan' => $this->kkpemisahanModel->getDataKKPemisahan(),
+      'pendaftaran_kk_pemisahan' => $orangKKPemisahan->paginate(10, 'pendaftaran_kk_pemisahan'),
+      'pager' => $this->kkpemisahanModel->pager,
+      'currentPage' => $currentPageKKPemisahan
+    ];
+    return view('admin/pendaftaran_kkpemisahan_admin', $data);
+  }
+
+
+
+
+
+
+
+  public function pendaftaran_kkpenambahan_admin()
+  {
+    $currentPageKKPenambahan =  $this->request->getVar('page_pendaftaran_kk_penambahan') ? $this->request->getVar('page_pendaftaran_kk_penambahan') : 1;
+
+    $keyword = $this->request->getVar('keyword');
+    if ($keyword) {
+      $orangKKPenambahan = $this->kkpenambahanModel->search($keyword);
+    } else {
+      $orangKKPenambahan = $this->kkpenambahanModel;
+    }
+
+    $data = [
+      'title' => 'Data Pendaftaran KK Penambahan || Admin Disdukcapil',
+      'pendaftaran_kk_penambahan' => $this->kkpenambahanModel->getDataKKPenambahan(),
+      'pendaftaran_kk_penambahan' => $orangKKPenambahan->paginate(10, 'pendaftaran_kk_penambahan'),
+      'pager' => $this->kkpenambahanModel->pager,
+      'currentPage' => $currentPageKKPenambahan
+    ];
+    return view('admin/pendaftaran_kkpenambahan_admin', $data);
+  }
+
+
+
+
+
+
+
+  public function pendaftaran_kkpengurangan_admin()
+  {
+    $currentPageKKPengurangan =  $this->request->getVar('page_pendaftaran_kk_pengurangan') ? $this->request->getVar('page_pendaftaran_kk_pengurangan') : 1;
+
+    $keyword = $this->request->getVar('keyword');
+    if ($keyword) {
+      $orangKKPengurangan = $this->kkpenguranganModel->search($keyword);
+    } else {
+      $orangKKPengurangan = $this->kkpenguranganModel;
+    }
+
+    $data = [
+      'title' => 'Data Pendaftaran KK Pengurangan || Admin Disdukcapil',
+      'pendaftaran_kk_pengurangan' => $this->kkpenguranganModel->getDataKKPengurangan(),
+      'pendaftaran_kk_pengurangan' => $orangKKPengurangan->paginate(10, 'pendaftaran_kk_pengurangan'),
+      'pager' => $this->kkpenguranganModel->pager,
+      'currentPage' => $currentPageKKPengurangan
+    ];
+    return view('admin/pendaftaran_kkpengurangan_admin', $data);
+  }
+
+
+
+
+
+
+
+  public function pendaftaran_kkperubahan_admin()
+  {
+    $currentPageKKPerubahan =  $this->request->getVar('page_pendaftaran_kk_perubahan') ? $this->request->getVar('page_pendaftaran_kk_perubahan') : 1;
+
+    $keyword = $this->request->getVar('keyword');
+    if ($keyword) {
+      $orangKKPerubahan = $this->kkperubahanModel->search($keyword);
+    } else {
+      $orangKKPerubahan = $this->kkperubahanModel;
+    }
+
+    $data = [
+      'title' => 'Data Pendaftaran KK Perubahan || Admin Disdukcapil',
+      'pendaftaran_kk_perubahan' => $this->kkperubahanModel->getDataKKPerubahan(),
+      'pendaftaran_kk_perubahan' => $orangKKPerubahan->paginate(10, 'pendaftaran_kk_perubahan'),
+      'pager' => $this->kkperubahanModel->pager,
+      'currentPage' => $currentPageKKPerubahan
+    ];
+    return view('admin/pendaftaran_kkperubahan_admin', $data);
+  }
+
+
+
+
+
+
+
   public function pendaftaran_kkperceraian_admin()
   {
-    // Digunakan untuk Pagination
     $currentPageKKPerceraian =  $this->request->getVar('page_pendaftaran_kk_perceraian') ? $this->request->getVar('page_pendaftaran_kk_perceraian') : 1;
 
-    // Digunakan untuk Pencarian Data
+
     $keyword = $this->request->getVar('keyword');
     if ($keyword) {
       $orangKKPerceraian = $this->kkperceraianModel->search($keyword);
@@ -337,7 +460,7 @@ class Admin extends BaseController
       $orangKKPerceraian = $this->kkperceraianModel;
     }
 
-    // Digunakan untuk menampilkan Detail data, Jumlah data per Halaman serta Halamannya
+
     $data = [
       'title' => 'Data Pendaftaran KK Perceraian || Admin Disdukcapil',
       'pendaftaran_kk_perceraian' => $this->kkperceraianModel->getDataKKPerceraian(),
@@ -354,13 +477,10 @@ class Admin extends BaseController
 
 
 
-  // Menampilkan data pendaftaran KIA pada halaman admin
   public function pendaftaran_kia_admin()
   {
-    // Digunakan untuk Pagination
     $currentPageKIA =  $this->request->getVar('page_pendaftaran_kia') ? $this->request->getVar('page_pendaftaran_kia') : 1;
 
-    // Digunakan untuk Pencarian Data
     $keyword = $this->request->getVar('keyword');
     if ($keyword) {
       $orangKIA = $this->kiaModel->search($keyword);
@@ -368,7 +488,6 @@ class Admin extends BaseController
       $orangKIA = $this->kiaModel;
     }
 
-    // Digunakan untuk menampilkan Detail data, Jumlah data per halaman serta Halamannya
     $data = [
       'title' => 'Data Pendaftaran KIA || Admin Disdukcapil',
       'pendaftaran_kia' => $this->kiaModel->getDataKIA(),
@@ -385,13 +504,11 @@ class Admin extends BaseController
 
 
 
-  // Menampilkan data pendaftaran Surat Perpindahan pada halaman admin
   public function pendaftaran_suratperpindahan_admin()
   {
-    // Digunakan untuk Pagination
+
     $currentPageSuratPerpindahan =  $this->request->getVar('page_pendaftaran_suratperpindahan') ? $this->request->getVar('page_pendaftaran_suratperpindahan') : 1;
 
-    // Digunakan untuk Pencarian Data
     $keyword = $this->request->getVar('keyword');
     if ($keyword) {
       $orangSuratPerpindahan = $this->suratperpindahanModel->search($keyword);
@@ -399,7 +516,6 @@ class Admin extends BaseController
       $orangSuratPerpindahan = $this->suratperpindahanModel;
     }
 
-    // Digunakan untuk menampilkan Detail data, Jumlah data per halaman serta Halamannya
     $data = [
       'title' => 'Data Pendaftaran Surat Perpindahan dari Majalengka ke Luar || Admin Disdukcapil',
       'pendaftaran_suratperpindahan' => $this->suratperpindahanModel->getDataSuratPerpindahan(),
@@ -418,10 +534,8 @@ class Admin extends BaseController
 
   public function pendaftaran_suratperpindahanluar_admin()
   {
-    // Digunakan untuk Pagination
     $currentPageSuratPerpindahanLuar = $this->request->getVar('page_pendaftaran_suratperpindahanluar') ? $this->request->getVar('page_pendaftaran_suratperpindahanluar') : 1;
 
-    // Digunakan untuk Pencarian Data
     $keyword = $this->request->getVar('keyword');
     if ($keyword) {
       $orangSuratPerpindahanluar = $this->suratperpindahanluarModel->search($keyword);
@@ -429,7 +543,6 @@ class Admin extends BaseController
       $orangSuratPerpindahanluar = $this->suratperpindahanluarModel;
     }
 
-    // Digunakan untuk menampilkan Detail data, Jumlah data per halaman serta Halamannya
     $data = [
       'title' => 'Data Pendaftaran Surat Perpindahan dari Luar ke Majalengka || Admin Disdukcapil',
       'pendaftaran_suratperpindahanluar' => $this->suratperpindahanluarModel->getDataSuratPerpindahanLuar(),
@@ -446,13 +559,10 @@ class Admin extends BaseController
 
 
 
-  // Menampilkan data aktakelahiran pada halaman Admin
   public function pendaftaran_aktakelahiran_admin()
   {
-    // Digunakan untuk Pagination
     $currentPageAkla =  $this->request->getVar('page_pendaftaran_aktakelahiran') ? $this->request->getVar('page_pendaftaran_aktakelahiran') : 1;
 
-    // Digunakan untuk Pencarian Data
     $keyword = $this->request->getVar('keyword');
     if ($keyword) {
       $orangAkla = $this->aktakelahiranModel->search($keyword);
@@ -460,7 +570,6 @@ class Admin extends BaseController
       $orangAkla = $this->aktakelahiranModel;
     }
 
-    // Digunakan untuk menampilkan Detail data, Jumlah data per halaman serta halamannya
     $data = [
       'title' => 'Data Pendaftaran Akta Kelahiran || Admin Disdukcapil ',
       'pendaftaran_aktakelahiran' => $this->aktakelahiranModel->getDataAktaKelahiran(),
@@ -478,16 +587,21 @@ class Admin extends BaseController
 
 
 
-  // Menampilkan data Pendaftaran Akta Kematian pada halaman admin
   public function pendaftaran_aktakematian_admin()
   {
-    // Menghubungkan Controller Admin degnan Pendaftaran aktakematian Model
-    // $aktakematian = $this->aktalahirModel->findAll();
     $currentPageAkket =  $this->request->getVar('page_pendaftaran_aktakematian') ? $this->request->getVar('page_pendaftaran_aktakematian') : 1;
+
+    $keyword = $this->request->getVar('keyword');
+    if ($keyword) {
+      $orangAkket = $this->aktakematianModel->search($keyword);
+    } else {
+      $orangAkket = $this->aktakematianModel;
+    }
+
     $data = [
       'title' => 'Data Pendaftaran Akta Kematian || Admin Disdukcapil',
       'pendaftaran_aktakematian' => $this->aktakematianModel->getDataAktaKematian(),
-      'pendaftaran_aktakematian' => $this->aktakematianModel->paginate(10, 'pendaftaran_aktakematian'),
+      'pendaftaran_aktakematian' => $orangAkket->paginate(10, 'pendaftaran_aktakematian'),
       'pager' => $this->aktakematianModel->pager,
       'currentPage' => $currentPageAkket
     ];
@@ -502,18 +616,23 @@ class Admin extends BaseController
 
 
 
-  // Menampilkan Data Pendaftaran Keabsahan Akta Kelahiran Admin
   public function pendaftaran_keabsahanakla_admin()
   {
-    // Menghubungkan Controller Admin degnan Pendaftaran aktakematian Model
-    // $aktakematian = $this->aktalahirModel->findAll();
-    $currentPageAkket =  $this->request->getVar('page_pendaftaran_aktakematian') ? $this->request->getVar('page_pendaftaran_aktakematian') : 1;
+    $currentPageKeabsahanAkla =  $this->request->getVar('page_pendaftaran_keabsahanakla') ? $this->request->getVar('page_pendaftaran_keabsahanakla') : 1;
+
+    $keyword = $this->request->getVar('keyword');
+    if ($keyword) {
+      $orangAkla = $this->keabsahanaklaModel->search($keyword);
+    } else {
+      $orangAkla = $this->keabsahanaklaModel;
+    }
+
     $data = [
       'title' => 'Data Pendaftaran Keabsahan Akta Kelahiran || Admin Disdukcapil',
       'pendaftaran_keabsahanakla' => $this->keabsahanaklaModel->getDataKeabsahanakla(),
-      'pendaftaran_keabsahanakla' => $this->keabsahanaklaModel->paginate(10, 'pendaftaran_keabsahanakla'),
+      'pendaftaran_keabsahanakla' => $orangAkla->paginate(10, 'pendaftaran_keabsahanakla'),
       'pager' => $this->keabsahanaklaModel->pager,
-      'currentPage' => $currentPageAkket
+      'currentPage' => $currentPageKeabsahanAkla
     ];
     return view('admin/pendaftaran_keabsahanakla_admin', $data);
   }
@@ -526,16 +645,21 @@ class Admin extends BaseController
 
 
 
-  // Menampilkan Data Pendaftaran Keabsahan Akta Kelahiran Admin
   public function pendaftaran_pelayanandata_admin()
   {
-    // Menghubungkan Controller Admin degnan Pendaftaran aktakematian Model
-    // $aktakematian = $this->aktalahirModel->findAll();
     $currentPagePelayananData =  $this->request->getVar('page_pendaftaran_pelayanandata') ? $this->request->getVar('page_pendaftaran_pelayanandata') : 1;
+
+    $keyword = $this->request->getVar('keyword');
+    if ($keyword) {
+      $orangPeldata = $this->pelayanandataModel->search($keyword);
+    } else {
+      $orangPeldata = $this->pelayanandataModel;
+    }
+
     $data = [
       'title' => 'Data Pendaftaran Pelayanan Data || Admin Disdukcapil',
       'pendaftaran_pelayanandata' => $this->pelayanandataModel->getDataPelayananData(),
-      'pendaftaran_pelayanandata' => $this->pelayanandataModel->paginate(10, 'pendaftaran_pelayanandata'),
+      'pendaftaran_pelayanandata' => $orangPeldata->paginate(10, 'pendaftaran_pelayanandata'),
       'pager' => $this->pelayanandataModel->pager,
       'currentPage' => $currentPagePelayananData
     ];
@@ -549,16 +673,21 @@ class Admin extends BaseController
 
 
 
-  // Menampilkan data Perbaikan data pada halaman Admin
   public function perbaikan_data_admin()
   {
-    // Menghubungkan Controller Admin dengan Perbaikan data Model
-    // $perbaikandata = $this->perbaikandataModel->findAll();
     $currentPagePerdat =  $this->request->getVar('page_perbaikan_data') ? $this->request->getVar('page_perbaikan_data') : 1;
+
+    $keyword = $this->request->getVar('keyword');
+    if ($keyword) {
+      $orangPerbaikan = $this->perbaikandataModel->search($keyword);
+    } else {
+      $orangPerbaikan = $this->perbaikandataModel;
+    }
+
     $data = [
       'title' => 'Data Pendaftaran Perbaikan Data || Admin Disdukcapil',
       'perbaikan_data' => $this->perbaikandataModel->getPerbaikanData(),
-      'perbaikan_data' => $this->perbaikandataModel->paginate(10, 'perbaikan_data'),
+      'perbaikan_data' => $orangPerbaikan->paginate(10, 'perbaikan_data'),
       'pager' => $this->perbaikandataModel->pager,
       'currentPage' => $currentPagePerdat
     ];
@@ -572,16 +701,21 @@ class Admin extends BaseController
 
 
 
-  // Menampilkan data Pengaduan Update pada halaman Admin
   public function pendaftaran_pengaduanupdate_admin()
   {
-    // Menghubungkan Controller Admin dengan Pengaduan update Model
-    // $pengaduanupdate = $this->pengaduanupdateModel->findAll();
     $currentPagePengdat =  $this->request->getVar('page_pengaduan_update') ? $this->request->getVar('page_pengaduan_update') : 1;
+
+    $keyword = $this->request->getVar('keyword');
+    if ($keyword) {
+      $orangPengaduan = $this->pengaduanupdateModel->search($keyword);
+    } else {
+      $orangPengaduan = $this->pengaduanupdateModel;
+    }
+
     $data = [
       'title' => 'Data Pendaftaran Pengaduan Update || Admin Disdukcapil',
       'pengaduan_update' => $this->pengaduanupdateModel->getDataPengaduanUpdate(),
-      'pengaduan_update' => $this->pengaduanupdateModel->paginate(10, 'pengaduan_update'),
+      'pengaduan_update' => $orangPengaduan->paginate(10, 'pengaduan_update'),
       'pager' => $this->pengaduanupdateModel->pager,
       'currentPage' => $currentPagePengdat
     ];
@@ -600,8 +734,6 @@ class Admin extends BaseController
 
 
 
-  // Menampilkan Halaman Pelayanan KK
-  // Digunakan untuk mengedit Judul, Foto dan Keterangan
   public function pelayananKK()
   {
     $data = [

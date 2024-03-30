@@ -21,7 +21,6 @@
           <?php
           $pesan = session()->getFlashdata('pesan');
 
-          // Jika status = Selesai
           if ($pesan == 'Pendaftaran Telah Selesai di Verifikasi !!') {
             $class = 'alert-success';
           } else {
@@ -185,7 +184,7 @@
           <div class="card card-outline card-primary">
 
             <div class="card-header">
-              <div class="card-title"> Berkas Kartu Tanda Penduduk </div>
+              <div class="card-title text-black fw-semibold"> Berkas Kartu Tanda Penduduk </div>
 
             </div>
 
@@ -200,7 +199,7 @@
           <div class="card card-outline card-primary">
 
             <div class="card-header">
-              <div class="card-title"> Berkas Kartu Keluarga </div>
+              <div class="card-title text-black fw-semibold"> Berkas Kartu Keluarga </div>
             </div>
 
             <div class="col-sm-12">

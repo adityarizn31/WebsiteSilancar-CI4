@@ -11,8 +11,12 @@ use App\Models\PersyaratansilancarModel;
 // Halaman Pendaftaran Si Lancar
 
 use App\Models\Pendaftaran_kk_Model;
-use App\Models\Pendaftaran_kia_Model;
+use App\Models\Pendaftaran_kkpemisahan_Model;
+use App\Models\Pendaftaran_kkpenambahan_Model;
+use App\Models\Pendaftaran_kkpengurangan_Model;
 use App\Models\Pendaftaran_kkperceraian_Model;
+use App\Models\Pendaftaran_kkperubahan_Model;
+use App\Models\Pendaftaran_kia_Model;
 use App\Models\Pendaftaran_suratperpindahan_Model;
 use App\Models\Pendaftaran_suratperpindahanluar_Model;
 
@@ -37,8 +41,13 @@ class DeleteAdmin extends BaseController
   // Halaman Pendaftaran Si Lancar
 
   protected $kkModel;
-  protected $kiaModel;
+  protected $kkpemisahanModel;
+  protected $kkpenambahanModel;
+  protected $kkpenguranganModel;
   protected $kkperceraianModel;
+  protected $kkperubahanModel;
+  protected $ktpModel;
+  protected $kiaModel;
   protected $suratperpindahanModel;
   protected $suratperpindahanluarModel;
 
@@ -62,8 +71,12 @@ class DeleteAdmin extends BaseController
     // Halaman Pendaftaran Si Lancar
 
     $this->kkModel = new Pendaftaran_kk_Model();
-    $this->kiaModel = new Pendaftaran_kia_Model();
+    $this->kkpemisahanModel = new Pendaftaran_kkpemisahan_Model();
+    $this->kkpenambahanModel = new Pendaftaran_kkpenambahan_Model();
+    $this->kkpenguranganModel = new Pendaftaran_kkpengurangan_Model();
     $this->kkperceraianModel = new Pendaftaran_kkperceraian_Model();
+    $this->kkperubahanModel = new Pendaftaran_kkperubahan_Model();
+    $this->kiaModel = new Pendaftaran_kia_Model();
     $this->suratperpindahanModel = new Pendaftaran_suratperpindahan_Model();
     $this->suratperpindahanluarModel = new Pendaftaran_suratperpindahanluar_Model();
 
@@ -206,6 +219,190 @@ class DeleteAdmin extends BaseController
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+  // Digunakan untuk menghapus sementara data KK
+  public function tandaiSelesaiKKPemisahan($id = null)
+  {
+    $this->kkpemisahanModel->delete($id);
+    return redirect()->to('/Admin/pendaftaran_kkpemisahan_admin');
+  }
+
+  public function dataSelesaiKKPemisahan()
+  {
+    $currentPageKKPemisahan =  $this->request->getVar('page_pendaftaran_kk_pemisahan') ? $this->request->getVar('page_pendaftaran_kk_pemisahan') : 1;
+
+    $data = [
+      'title' => 'Data Selesai KK Pemisahan || Admin Disdukcapil',
+      'pendaftaran_kk_pemisahan' => $this->kkpemisahanModel->onlyDeleted()->findAll(),
+      'pager' => $this->kkpemisahanModel->pager,
+      'currentPage' => $currentPageKKPemisahan
+    ];
+    return view('admin/dataKKPemisahan', $data);
+  }
+
+  public function deletePermanentKKPemisahan($id = null)
+  {
+    if ($id != null) {
+      $this->kkpemisahanModel->delete($id, true);
+      session()->setFlashdata('pesan', 'Pendaftaran Permohonan Kartu keluarga Pemisahan telah dihapus !!');
+      return redirect()->to('/DeleteAdmin/dataSelesaiKKPemisahan');
+    } else {
+      $this->kkpemisahanModel->purgeDeleted();
+      session()->setFlashdata('pesan', 'Pendaftaran Permohonan Kartu keluarga Pemisahan telah dihapus !!');
+      return redirect()->to('/DeleteAdmin/dataSelesaiKKPemisahan');
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // Digunakan untuk menghapus sementara data KK
+  public function tandaiSelesaiKKPenambahan($id = null)
+  {
+    $this->kkpenambahanModel->delete($id);
+    return redirect()->to('/Admin/pendaftaran_kkpenambahan_admin');
+  }
+
+  public function dataSelesaiKKPenambahan()
+  {
+    $currentPageKKPenambahan =  $this->request->getVar('page_pendaftaran_kk_penambahan') ? $this->request->getVar('page_pendaftaran_kk_penambahan') : 1;
+
+    $data = [
+      'title' => 'Data Selesai KK Penambahan || Admin Disdukcapil',
+      'pendaftaran_kk_penambahan' => $this->kkpenambahanModel->onlyDeleted()->findAll(),
+      'pager' => $this->kkpenambahanModel->pager,
+      'currentPage' => $currentPageKKPenambahan
+    ];
+    return view('admin/dataKKPenambahan', $data);
+  }
+
+  public function deletePermanentKKPenambahan($id = null)
+  {
+    if ($id != null) {
+      $this->kkpenambahanModel->delete($id, true);
+      session()->setFlashdata('pesan', 'Pendaftaran Permohonan Kartu keluarga Penambahan telah dihapus !!');
+      return redirect()->to('/DeleteAdmin/dataSelesaiKKPenambahan');
+    } else {
+      $this->kkpenambahanModel->purgeDeleted();
+      session()->setFlashdata('pesan', 'Pendaftaran Permohonan Kartu keluarga Penambahan telah dihapus !!');
+      return redirect()->to('/DeleteAdmin/dataSelesaiKKPenambahan');
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // Digunakan untuk menghapus sementara data KK
+  public function tandaiSelesaiKKPengurangan($id = null)
+  {
+    $this->kkpenguranganModel->delete($id);
+    return redirect()->to('/Admin/pendaftaran_kkpengurangan_admin');
+  }
+
+  public function dataSelesaiKKPengurangan()
+  {
+    $currentPageKKPengurangan =  $this->request->getVar('page_pendaftaran_kk_pengurangan') ? $this->request->getVar('page_pendaftaran_kk_pengurangan') : 1;
+
+    $data = [
+      'title' => 'Data Selesai KK Pengurangan || Admin Disdukcapil',
+      'pendaftaran_kk_pengurangan' => $this->kkpenguranganModel->onlyDeleted()->findAll(),
+      'pager' => $this->kkpenguranganModel->pager,
+      'currentPage' => $currentPageKKPengurangan
+    ];
+    return view('admin/dataKKPengurangan', $data);
+  }
+
+  public function deletePermanentKKPengurangan($id = null)
+  {
+    if ($id != null) {
+      $this->kkpenguranganModel->delete($id, true);
+      session()->setFlashdata('pesan', 'Pendaftaran Permohonan Kartu keluarga Pengurangan telah dihapus !!');
+      return redirect()->to('/DeleteAdmin/dataSelesaiKKPengurangan');
+    } else {
+      $this->kkpenguranganModel->purgeDeleted();
+      session()->setFlashdata('pesan', 'Pendaftaran Permohonan Kartu keluarga Pengurangan telah dihapus !!');
+      return redirect()->to('/DeleteAdmin/dataSelesaiKKPengurangan');
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // Digunakan untuk menghapus sementara data KK
+  public function tandaiSelesaiKKPerubahan($id = null)
+  {
+    $this->kkperubahanModel->delete($id);
+    return redirect()->to('/Admin/pendaftaran_kkperubahan_admin');
+  }
+
+  public function dataSelesaiKKPerubahan()
+  {
+    $currentPageKKPerubahan =  $this->request->getVar('page_pendaftaran_kk_perubahan') ? $this->request->getVar('page_pendaftaran_kk_perubahan') : 1;
+
+    $data = [
+      'title' => 'Data Selesai KK Perubahan || Admin Disdukcapil',
+      'pendaftaran_kk_perubahan' => $this->kkperubahanModel->onlyDeleted()->findAll(),
+      'pager' => $this->kkperubahanModel->pager,
+      'currentPage' => $currentPageKKPerubahan
+    ];
+    return view('admin/dataKKPerubahan', $data);
+  }
+
+  public function deletePermanentKKPerubahan($id = null)
+  {
+    if ($id != null) {
+      $this->kkperubahanModel->delete($id, true);
+      session()->setFlashdata('pesan', 'Pendaftaran Permohonan Kartu keluarga Perubahan telah dihapus !!');
+      return redirect()->to('/DeleteAdmin/dataSelesaiKKPerubahan');
+    } else {
+      $this->kkperubahanModel->purgeDeleted();
+      session()->setFlashdata('pesan', 'Pendaftaran Permohonan Kartu keluarga Perubahan telah dihapus !!');
+      return redirect()->to('/DeleteAdmin/dataSelesaiKKPerubahan');
+    }
+  }
 
 
 

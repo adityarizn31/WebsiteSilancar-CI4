@@ -13,7 +13,7 @@
     <div class="card-header py-3">
 
       <div class="d-sm-flex align-items-center justify-content-between mb-2">
-        <h4 class="m-0 font-weight-bold text-primary">Data Pendaftaran Surat Perpindahan Majalengka Menuju Luar</h4>
+        <h4 class="m-0 font-weight-bold text-primary">Data Pendaftaran Surat Perpindahan dari Majalengka Menuju Luar Kabupaten</h4>
         <a href="<?= base_url('/DeleteAdmin/dataSelesaiSuratPerpindahan'); ?>" method="POST" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mt-2"><i></i> Data Selesai Proses </a>
       </div>
 
@@ -22,7 +22,6 @@
         <?php
         $pesan = session()->getFlashdata('pesan');
 
-        // Jika status = Selesai
         if ($pesan == 'Pendaftaran Telah Selesai di Verifikasi !!') {
           $class = 'alert-success';
         } else {
@@ -40,8 +39,7 @@
 
     <div class="card-body">
 
-      <?php
-      // Custom sorting function based on the 'created_at' field
+    <?php
       usort($pendaftaran_suratperpindahan, function ($a, $b) {
         return strtotime($b['created_at']) - strtotime($a['created_at']);
       });
@@ -75,14 +73,14 @@
               <td>
                 <?php
                 switch ($surpin['status']) {
-                  case 'Selesai';
-                    echo '<span class="badge rounded-pill bg-success">Terverifikasi</span>';
+                  case 'Selesai Verifikasi':
+                    echo '<span class="badge bg-success"> Selesai Verifikasi </span>';
                     break;
-                  case 'Belum di Proses';
-                    echo '<span class="badge rounded-pill bg-warning">Belum di Proses</span>';
+                  case 'Belum di Proses':
+                    echo '<span class="badge bg-warning"> Belum di Proses </span>';
                     break;
-                  case 'Belum Selesai';
-                    echo '<span class="badge rounded-pill bg-danger">Ditolak</span>';
+                  case 'Gagal Verifikasi':
+                    echo '<span class="badge bg-danger"> Gagal Verifikasi </span>';
                     break;
                 }
 

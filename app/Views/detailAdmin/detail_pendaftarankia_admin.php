@@ -21,7 +21,6 @@
           <?php
           $pesan = session()->getFlashdata('pesan');
 
-          // Jika status = Selesai
           if ($pesan == 'Pendaftaran Telah Selesai di Verifikasi !!') {
             $class = 'alert-success';
           } else {
@@ -52,7 +51,7 @@
               <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalUbahStatus">
                 Verifikasi Pendaftaran
               </button>
-            <?php elseif ($pendaftaran_kia['status'] === 'Selesai' || $pendaftaran_kia['status'] === 'Belum Selesai') : ?>
+            <?php elseif ($pendaftaran_kia['status'] === 'Selesai Verifikasi' || $pendaftaran_kia['status'] === 'Gagal Verifikasi') : ?>
               <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalVerifikasiPendaftaran">
                 Tandai Selesai
               </button>
@@ -73,9 +72,9 @@
 
                     <div class="align-items-center justify-content-center">
 
-                      <a href="<?= base_url('/DetailAdmin/selesaiKiA/' . $pendaftaran_kia['namapemohon']) ?>" class="btn btn-outline-success" data-popup="tooltip" data-placement="top" title="Selesai"><i class="bi bi-check-square" aria-hidden="true"></i> Verifikasi </a>
+                      <a href="<?= base_url('/DetailAdmin/selesaiKiA/' . $pendaftaran_kia['namapemohon']) ?>" class="btn btn-outline-success" data-popup="tooltip" data-placement="top" title="Selesai Verifikasi"><i class="bi bi-check-square" aria-hidden="true"></i> Selesai Verifikasi </a>
 
-                      <a href="<?= base_url('/DetailAdmin/belumSelesaiKIA/' . $pendaftaran_kia['namapemohon']) ?>" class="btn btn-outline-danger" data-popup="tooltip" data-placement="top" title="Tidak Selesai"><i class="bi bi-x-square" aria-hidden="true"></i> Gagal Verifikasi </a>
+                      <a href="<?= base_url('/DetailAdmin/belumSelesaiKIA/' . $pendaftaran_kia['namapemohon']) ?>" class="btn btn-outline-danger" data-popup="tooltip" data-placement="top" title="Gagal Verifikasi"><i class="bi bi-x-square" aria-hidden="true"></i> Gagal Verifikasi </a>
                     </div>
 
                   </div>
@@ -157,7 +156,21 @@
           <tr>
             <th width="">Status</th>
             <th width="">:</th>
-            <td><?= $pendaftaran_kia['status']; ?></td>
+            <td>
+              <?php
+              switch ($pendaftaran_kia['status']) {
+                case 'Selesai Verifikasi':
+                  echo '<span class="badge bg-success"> Selesai Verifikasi </span>';
+                  break;
+                case 'Belum di Proses':
+                  echo '<span class="badge bg-warning"> Belum di Proses </span>';
+                  break;
+                case 'Gagal Verifikasi':
+                  echo '<span class="badge bg-danger"> Gagal Verifikasi </span>';
+                  break;
+              }
+              ?>
+            </td>
           </tr>
 
         </table>
@@ -165,11 +178,11 @@
         <div class="grid-container2 align-items-center justify-content-center">
 
           <div class="div">
-            <a href="<?= base_url('/DetailAdmin/selesaiKIA/' . $pendaftaran_kia['namapemohon']) ?>" class="btn btn-success" data-popup="tooltip" data-placement="top" title="Selesai"><i class="bi bi-check-square" aria-hidden="true"></i></a>
+            <a href="<?= base_url('/DetailAdmin/selesaiKIA/' . $pendaftaran_kia['namapemohon']) ?>" class="btn btn-success" data-popup="tooltip" data-placement="top" title="Selesai Verifikasi"><i class="bi bi-check-square" aria-hidden="true"></i></a>
           </div>
 
           <div class="div">
-            <a href="<?= base_url('/DetailAdmin/belumSelesaiKIA/' . $pendaftaran_kia['namapemohon']) ?>" class="btn btn-danger" data-popup="tooltip" data-placement="top" title="Tidak Selesai"><i class="bi bi-x-square" aria-hidden="true"></i></a>
+            <a href="<?= base_url('/DetailAdmin/belumSelesaiKIA/' . $pendaftaran_kia['namapemohon']) ?>" class="btn btn-danger" data-popup="tooltip" data-placement="top" title="Gagal Verifikasi"><i class="bi bi-x-square" aria-hidden="true"></i></a>
           </div>
 
         </div>
@@ -210,9 +223,13 @@
           <div class="card-header">
             <div class="card-title fw-semibold"> Berkas Pas Foto 3 x 4 </div>
             <?php if (file_exists(FCPATH . '/pelayanan/kia/' . $pendaftaran_kia['pasfoto'])) : ?>
-              <a href="<?= base_url('/pelayanan/kia/' . $pendaftaran_kia['pasfoto']) ?>" download class="btn btn-success mx-2 mt-2 mb-2 mr-2 position-absolute top-0 end-0">
-                <i class="bi bi-download"></i>
-              </a>
+
+              <form action="" method="post">
+                <a href="<?= base_url('/pelayanan/kia/' . $pendaftaran_kia['pasfoto']) ?>" download class="btn btn-success mx-2 mt-2 mb-2 mr-2 position-absolute top-0 end-0">
+                  <i class="bi bi-download"></i>
+                </a>
+              </form>
+
               <div class="col-sm-12">
                 <iframe class="mt-4" src="<?= base_url('/pelayanan/kia/' . $pendaftaran_kia['pasfoto']) ?>" frameborder="0" height="500" width="100%"></iframe>
               </div>

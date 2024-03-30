@@ -42,7 +42,7 @@
             <div class="card-group" style="padding: 20px;">
 
               <div class="card">
-                <img src="/img/visimisi/LogoSindangKasih.png" alt="Logo Sindang Kasih" style="height: 50%; width: 27%; padding-top: 20px;">
+                <img src="/img/visimisi/LogoSindangKasih.png" class="logosindangkasihfooter" alt="Logo Sindang Kasih">
                 <div class="card-body">
                   <h5 class="card-title">Disdukcapil Majalengka</h5>
                   <p class="card-text">Jl. Kh. Abdul Halim, Tonjong, Kec. Majalengka, Kabupaten Majalengka, Jawa Barat 45414</p>

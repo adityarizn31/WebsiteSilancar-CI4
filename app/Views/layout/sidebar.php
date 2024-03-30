@@ -26,20 +26,6 @@
     </li>
 
     <li>
-      <a class="text-white" href="/admin/berita_admin">
-        <i class="bi bi-newspaper mr-2"></i>
-        Berita
-      </a>
-    </li>
-
-    <li>
-      <a class="text-white" href="/admin/inovasi_admin">
-        <i class="bi bi-slack mr-2"></i>
-        Inovasi
-      </a>
-    </li>
-
-    <li>
       <a class="text-white" href="/admin/visimisi_admin">
         <i class="bi bi-peace-fill mr-2"></i>
         Visi Misi

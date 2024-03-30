@@ -4,7 +4,7 @@ $waktuSekarang = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
 $hariSekarang = $waktuSekarang->format('N');
 $jamSekarang = $waktuSekarang->format('G');
 
-if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekarang < 22) {
+if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekarang < 11) {
 
 ?>
 
@@ -15,7 +15,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
   <div class="container" style="padding: 10px;">
     <div class="card shadow mb-4" style="padding: 20px;">
       <div class="container">
-        <h4 class="text-center text-black fw-semibold"> Pendaftaran Surat Perpindahan Domisili dari Luar Menuju Majalengka </h4>
+        <h4 class="text-center text-black fw-semibold"> Pendaftaran Surat Perpindahan Domisili dari Luar Kabupaten Menuju Majalengka </h4>
 
         <?php if (session()->getFlashdata('pesan')) : ?>
 
@@ -99,8 +99,8 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
 
           <div class="row">
             <div class="mb-3">
-              <label for="alamatpemohon" class="form-label fw-semibold"> Alamat Pemohon </label>
-              <input type="text" name="alamatpemohon" id="alamatpemohon" class="form-control text-black <?= (session('errors.alamatpemohon')) ? 'is-invalid' : null ?>" autofocus value="<?= old('alamatpemohon'); ?>">
+              <label for="alamatpemohon" class="form-label fw-semibold">Alamat Pemohon</label>
+              <textarea name="alamatpemohon" id="alamatpemohon" class="form-control text-black text-area <?= (session('errors.alamatpemohon')) ? 'is-invalid' : null ?>"><?= old('alamatpemohon'); ?></textarea>
               <div class="invalid-feedback">
                 <?= session('errors.alamatpemohon') ?>
               </div>
@@ -112,7 +112,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <div class="row">
             <div class="mb-3">
               <label for="skpwni" class="form-label fw-semibold"> Berkas SKPWNI </label>
-              <input type="file" name="skpwni" id="skpwni" class="form-control <?= (session('errors.skpwni')) ? 'is-invalid' : ''; ?>" value="<?= old('skpwni'); ?>">
+              <input type="file" name="skpwni" id="skpwni" class="form-control text-black <?= (session('errors.skpwni')) ? 'is-invalid' : ''; ?>" value="<?= old('skpwni'); ?>">
               <div class="invalid-feedback">
                 <?= session('errors.skpwni') ?>
               </div>
@@ -122,7 +122,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <div class="row">
             <div class="mb-3">
               <label for="kartutandapenduduk" class="form-label fw-semibold"> Berkas Kartu Tanda Penduduk </label>
-              <input type="file" name="kartutandapenduduk" id="kartutandapenduduk" class="form-control <?= (session('errors.kartutandapenduduk')) ? 'is-invalid' : ''; ?>" value="<?= old('kartutandapenduduk'); ?>">
+              <input type="file" name="kartutandapenduduk" id="kartutandapenduduk" class="form-control text-black <?= (session('errors.kartutandapenduduk')) ? 'is-invalid' : ''; ?>" value="<?= old('kartutandapenduduk'); ?>">
               <div class="invalid-feedback">
                 <?= session('errors.kartutandapenduduk') ?>
               </div>
@@ -132,7 +132,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <hr>
 
           <div class="d-grid gap-2 col-6 mx-auto">
-            <button type="submit" value="submit" name="submit" id="submit" class="btn btn-primary"> Daftar </button>
+            <button type="submit" value="submit" name="submit" id="submit" class="btn btn-primary"> D A F T A R </button>
           </div>
 
         </form>

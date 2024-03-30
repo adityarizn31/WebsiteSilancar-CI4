@@ -21,7 +21,6 @@
           <?php
           $pesan = session()->getFlashdata('pesan');
 
-          // Jika status = Selesai
           if ($pesan == 'Pendaftaran Telah Selesai di Verifikasi !!') {
             $class = 'alert-success';
           } else {
@@ -52,7 +51,7 @@
               <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalUbahStatus">
                 Verifikasi Pendaftaran
               </button>
-            <?php elseif ($pendaftaran_kk_perceraian['status'] === 'Selesai' || $pendaftaran_kk_perceraian['status'] === 'Belum Selesai') : ?>
+            <?php elseif ($pendaftaran_kk_perceraian['status'] === 'Selesai Verifikasi' || $pendaftaran_kk_perceraian['status'] === 'Gagal Verifikasi') : ?>
               <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalVerifikasiPendaftaran">
                 Tandai Selesai
               </button>
@@ -73,9 +72,9 @@
 
                     <div class="align-items-center justify-content-center">
 
-                      <a href="<?= base_url('/DetailAdmin/selesaiKKPerceraian/' . $pendaftaran_kk_perceraian['namapemohon']) ?>" class="btn btn-outline-success" data-popup="tooltip" data-placement="top" title="Selesai"><i class="bi bi-check-square" aria-hidden="true"></i> Verifikasi </a>
+                      <a href="<?= base_url('/DetailAdmin/selesaiKKPerceraian/' . $pendaftaran_kk_perceraian['namapemohon']) ?>" class="btn btn-outline-success" data-popup="tooltip" data-placement="top" title="Selesai Verifikasi"><i class="bi bi-check-square" aria-hidden="true"></i> Selesai Verifikasi </a>
 
-                      <a href="<?= base_url('/DetailAdmin/belumSelesaiKKPerceraian/' . $pendaftaran_kk_perceraian['namapemohon']) ?>" class="btn btn-outline-danger" data-popup="tooltip" data-placement="top" title="Tidak Selesai"><i class="bi bi-x-square" aria-hidden="true"></i> Gagal Verifikasi </a>
+                      <a href="<?= base_url('/DetailAdmin/belumSelesaiKKPerceraian/' . $pendaftaran_kk_perceraian['namapemohon']) ?>" class="btn btn-outline-danger" data-popup="tooltip" data-placement="top" title="Gagal Verifikasi"><i class="bi bi-x-square" aria-hidden="true"></i> Gagal Verifikasi </a>
 
                     </div>
                   </div>
@@ -156,7 +155,21 @@
             <tr>
               <th width="">Status</th>
               <th width="">:</th>
-              <td><?= $pendaftaran_kk_perceraian['status']; ?></td>
+              <td>
+                <?php
+                switch ($pendaftaran_kk_perceraian['status']) {
+                  case 'Selesai Verifikasi':
+                    echo '<span class="badge bg-success"> Selesai Verifikasi </span>';
+                    break;
+                  case 'Belum di Proses':
+                    echo '<span class="badge bg-warning"> Belum di Proses </span>';
+                    break;
+                  case 'Gagal Verifikasi':
+                    echo '<span class="badge bg-danger"> Gagal Verifikasi </span>';
+                    break;
+                }
+                ?>
+              </td>
             </tr>
 
           </table>
@@ -164,11 +177,11 @@
           <div class="grid-container2 align-items-center justify-content-center">
 
             <div class="div">
-              <a href="<?= base_url('/DetailAdmin/selesaiKKPerceraian/' . $pendaftaran_kk_perceraian['namapemohon']) ?>" class="btn btn-success" data-popup="tooltip" data-placement="top" title="Selesai"><i class="bi bi-check-square" aria-hidden="true"></i></a>
+              <a href="<?= base_url('/DetailAdmin/selesaiKKPerceraian/' . $pendaftaran_kk_perceraian['namapemohon']) ?>" class="btn btn-success" data-popup="tooltip" data-placement="top" title="Selesai Verifikasi"><i class="bi bi-check-square" aria-hidden="true"></i></a>
             </div>
 
             <div class="div">
-              <a href="<?= base_url('/DetailAdmin/belumSelesaiKKPerceraian/' . $pendaftaran_kk_perceraian['namapemohon']) ?>" class="btn btn-danger" data-popup="tooltip" data-placement="top" title="Tidak Selesai"><i class="bi bi-x-square" aria-hidden="true"></i></a>
+              <a href="<?= base_url('/DetailAdmin/belumSelesaiKKPerceraian/' . $pendaftaran_kk_perceraian['namapemohon']) ?>" class="btn btn-danger" data-popup="tooltip" data-placement="top" title="Gagal Verifikasi"><i class="bi bi-x-square" aria-hidden="true"></i></a>
             </div>
 
           </div>

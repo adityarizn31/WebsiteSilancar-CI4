@@ -14,8 +14,6 @@
 
       <div class="d-sm-flex align-items-center justify-content-between" style="padding-top: 10px;">
         <h6 class="m-0 font-weight-bold text-primary">Berita Disdukcapil Majalengka</h6>
-
-        <!-- Method create_berita_admin digunakan untuk Menampilkan Form Insert Data -->
         <a href="/CreateAdmin/create_berita_admin/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Tambah Berita</a>
       </div>
 
@@ -58,7 +56,6 @@
               <td><img src="/img/berita/<?= $b['fotoberita']; ?>" class="foto_berita" alt="Foto Berita" style="width: 50%; height: auto;"></td>
               <td><?= $b['judulberita']; ?></td>
               <td><?= $b['keteranganberita']; ?></td>
-              <!-- <td>Jumlah Data <?= count($berita) ?></td> -->
               <td>
                 <a href="/DetailAdmin/detail_berita_admin/<?= $b['judulberita']; ?>" class="btn btn-success btn-sm">Detail</a>
               </td>

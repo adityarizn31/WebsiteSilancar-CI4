@@ -11,7 +11,7 @@
   <div class="container-fluid">
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4" style="padding-top: 20px;">
-      <h1 class="h3 mb-0 text-gray-800 fw-bold">Dashboard</h1>
+      <h1 class="h3 text-black fw-bold">Dashboard</h1>
       <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
     </div>
 
@@ -19,12 +19,16 @@
 
       <div class="pelayananadmin row">
 
+
+
+
+
         <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
           <a href="/Admin/pendaftaran_kk_admin">
             <img src="/img/silancar/Kartu Keluarga.png" class="card-img-top">
 
             <div class="card-body">
-              <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Kartu Keluarga</h5>
+              <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Kartu Keluarga Baru</h5>
             </div>
 
             <?php
@@ -50,36 +54,149 @@
           </a>
         </div>
 
+
+
+
+
         <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
-          <a href="/Admin/pendaftaran_kia_admin">
-            <img src="/img/silancar/Kartu Identitas Anak.png" class="card-img-top">
+          <a href="/Admin/pendaftaran_kkpemisahan_admin">
+            <img src="/img/silancar/Kartu Keluarga Pemisah.png" class="card-img-top">
 
             <div class="card-body">
-              <h5 class="card-title text-black text-center font-weight-bold"> Data Pendaftaran Kartu Identitas Anak</h5>
+              <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Kartu Keluarga Pemisahan Anggota</h5>
             </div>
 
             <?php
-            $belumDiProsesCountKIA = array_filter($pendaftaran_kia, function ($data) {
+            $belumDiProsesCountKKPemisahan = array_filter($pendaftaran_kk_pemisahan, function ($data) {
               return $data['status'] == 'Belum di Proses';
             });
 
-            $selesaiDiProsesCountKIA = array_filter($pendaftaran_kia, function ($data) {
+            $selesaiDiProsesCountKKPemisahan = array_filter($pendaftaran_kk_pemisahan, function ($data) {
               return $data['status'] == 'Selesai';
             });
 
-            $belumselesaiDiProsesCountKIA = array_filter($pendaftaran_kia, function ($data) {
+            $belumselesaiDiProsesCountKKPemisahan = array_filter($pendaftaran_kk_pemisahan, function ($data) {
               return $data['status'] == 'Belum Selesai';
             });
 
-            $totalSelesaiCountKIA = $selesaiDiProsesCountKIA + $belumselesaiDiProsesCountKIA;
+            $totalSelesaiCountKKPemisahan = $selesaiDiProsesCountKKPemisahan + $belumselesaiDiProsesCountKKPemisahan;
 
             ?>
 
-            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountKIA); ?></p>
-            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountKIA); ?></p>
+            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountKKPemisahan); ?></p>
+            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountKKPemisahan); ?></p>
 
           </a>
         </div>
+
+
+
+
+
+        <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
+          <a href="/Admin/pendaftaran_kkpenambahan_admin">
+            <img src="/img/silancar/Kartu Keluarga Tambah.png" class="card-img-top">
+
+            <div class="card-body">
+              <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Kartu Keluarga Penambahan Anggota</h5>
+            </div>
+
+            <?php
+            $belumDiProsesCountKKPenambahan = array_filter($pendaftaran_kk_penambahan, function ($data) {
+              return $data['status'] == 'Belum di Proses';
+            });
+
+            $selesaiDiProsesCountKKPenambahan = array_filter($pendaftaran_kk_penambahan, function ($data) {
+              return $data['status'] == 'Selesai';
+            });
+
+            $belumselesaiDiProsesCountKKPenambahan = array_filter($pendaftaran_kk_penambahan, function ($data) {
+              return $data['status'] == 'Belum Selesai';
+            });
+
+            $totalSelesaiCountKKPenambahan = $selesaiDiProsesCountKKPenambahan + $belumselesaiDiProsesCountKKPenambahan;
+
+            ?>
+
+            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountKKPenambahan); ?></p>
+            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountKKPenambahan); ?></p>
+
+          </a>
+        </div>
+
+
+
+
+
+        <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
+          <a href="/Admin/pendaftaran_kkpengurangan_admin">
+            <img src="/img/silancar/Kartu Keluarga Kurang.png" class="card-img-top">
+
+            <div class="card-body">
+              <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Kartu Keluarga Pengurangan Anggota</h5>
+            </div>
+
+            <?php
+            $belumDiProsesCountKKPengurangan = array_filter($pendaftaran_kk_pengurangan, function ($data) {
+              return $data['status'] == 'Belum di Proses';
+            });
+
+            $selesaiDiProsesCountKKPengurangan = array_filter($pendaftaran_kk_pengurangan, function ($data) {
+              return $data['status'] == 'Selesai';
+            });
+
+            $belumselesaiDiProsesCountKKPengurangan = array_filter($pendaftaran_kk_pengurangan, function ($data) {
+              return $data['status'] == 'Belum Selesai';
+            });
+
+            $totalSelesaiCountKKPengurangan = $selesaiDiProsesCountKKPengurangan + $belumselesaiDiProsesCountKKPengurangan;
+
+            ?>
+
+            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountKKPengurangan); ?></p>
+            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountKKPengurangan); ?></p>
+
+          </a>
+        </div>
+
+
+
+
+
+        <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
+          <a href="/Admin/pendaftaran_kkperubahan_admin">
+            <img src="/img/silancar/Kartu Keluarga Ubah.png" class="card-img-top">
+
+            <div class="card-body">
+              <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Kartu Keluarga Perubahan Anggota</h5>
+            </div>
+
+            <?php
+            $belumDiProsesCountKKPerubahan = array_filter($pendaftaran_kk_perubahan, function ($data) {
+              return $data['status'] == 'Belum di Proses';
+            });
+
+            $selesaiDiProsesCountKKPerubahan = array_filter($pendaftaran_kk_perubahan, function ($data) {
+              return $data['status'] == 'Selesai';
+            });
+
+            $belumselesaiDiProsesCountKKPerubahan = array_filter($pendaftaran_kk_perubahan, function ($data) {
+              return $data['status'] == 'Belum Selesai';
+            });
+
+            $totalSelesaiCountKKPerubahan = $selesaiDiProsesCountKKPerubahan + $belumselesaiDiProsesCountKKPerubahan;
+
+            ?>
+
+            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountKKPerubahan); ?></p>
+            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountKKPerubahan); ?></p>
+
+          </a>
+        </div>
+
+
+
+
 
         <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
           <a href="/Admin/pendaftaran_kkperceraian_admin">
@@ -113,12 +230,51 @@
           </a>
         </div>
 
+
+
+
+        <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
+          <a href="/Admin/pendaftaran_kia_admin">
+            <img src="/img/silancar/Kartu Identitas Anak.png" class="card-img-top">
+
+            <div class="card-body">
+              <h5 class="card-title text-black text-center font-weight-bold"> Data Pendaftaran Kartu Identitas Anak</h5>
+            </div>
+
+            <?php
+            $belumDiProsesCountKIA = array_filter($pendaftaran_kia, function ($data) {
+              return $data['status'] == 'Belum di Proses';
+            });
+
+            $selesaiDiProsesCountKIA = array_filter($pendaftaran_kia, function ($data) {
+              return $data['status'] == 'Selesai';
+            });
+
+            $belumselesaiDiProsesCountKIA = array_filter($pendaftaran_kia, function ($data) {
+              return $data['status'] == 'Belum Selesai';
+            });
+
+            $totalSelesaiCountKIA = $selesaiDiProsesCountKIA + $belumselesaiDiProsesCountKIA;
+
+            ?>
+
+            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountKIA); ?></p>
+            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountKIA); ?></p>
+
+          </a>
+        </div>
+
+
+
+
+
+
         <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
           <a href="/Admin/pendaftaran_suratperpindahan_admin">
             <img src="/img/silancar/Kartu Surat Perpindahan.png" class="card-img-top">
 
             <div class="card-body">
-              <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Surat Perpindahan Majalengka Menuju Luar</h5>
+              <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Surat Perpindahan Dari Majalengka Menuju Luar Kabupaten</h5>
             </div>
 
 
@@ -144,12 +300,16 @@
 
         </div>
 
+
+
+
+
         <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
           <a href="/Admin/pendaftaran_suratperpindahanluar_admin">
             <img src="/img/silancar/Kartu Surat Perpindahan.png" class="card-img-top">
 
             <div class="card-body">
-              <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Surat Perpindahan Luar Menuju Majalengka</h5>
+              <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Surat Perpindahan Dari Luar Kabupaten Menuju Majalengka</h5>
             </div>
 
             <?php
@@ -174,6 +334,10 @@
 
           </a>
         </div>
+
+
+
+
 
         <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
           <a href="/Admin/pendaftaran_aktakelahiran_admin">
@@ -206,6 +370,10 @@
           </a>
         </div>
 
+
+
+
+
         <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
           <a href="/Admin/pendaftaran_aktakematian_admin">
             <img src="/img/silancar/Kartu Akta Kematian.png" class="card-img-top">
@@ -236,6 +404,10 @@
 
           </a>
         </div>
+
+
+
+
 
         <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
           <a href="/Admin/pendaftaran_keabsahanakla_admin">
@@ -268,6 +440,10 @@
           </a>
         </div>
 
+
+
+
+
         <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
           <a href="/Admin/pendaftaran_pelayanandata_admin">
             <img src="/img/silancar/kartu Pelayanan Pemanfaatan Data.png" class="card-img-top">
@@ -299,6 +475,10 @@
           </a>
         </div>
 
+
+
+
+
         <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
           <a href="/Admin/perbaikan_data_admin">
             <img src="/img/silancar/Kartu Perbaikan Data.png" class="card-img-top">
@@ -329,6 +509,10 @@
 
           </a>
         </div>
+
+
+
+
 
         <div class="card shadow border-2" style="width: 19rem; padding: 3%; margin: 3%; border-color: #007BFF;">
           <a href="/Admin/pendaftaran_pengaduanupdate_admin">
@@ -364,6 +548,10 @@
       </div>
     </div>
 
+
+
+
+
     <div class="container">
       <div class="row">
         <div class="col">
@@ -387,6 +575,10 @@
 
   <script>
     var pendaftaranKKData = <?php echo json_encode($pendaftaran_kk); ?>;
+    var pendaftaranKKPemisahanData = <?php echo json_encode($pendaftaran_kk_pemisahan); ?>;
+    var pendaftaranKKPenambahanData = <?php echo json_encode($pendaftaran_kk_penambahan); ?>;
+    var pendaftaranKKPenguranganData = <?php echo json_encode($pendaftaran_kk_pengurangan); ?>;
+    var pendaftaranKKPerubahanData = <?php echo json_encode($pendaftaran_kk_perubahan); ?>;
     var pendaftaranKKPerceraianData = <?php echo json_encode($pendaftaran_kk_perceraian); ?>;
     var pendaftaranKIAData = <?php echo json_encode($pendaftaran_kia); ?>;
     var pendaftaranSuratPerpindahanData = <?php echo json_encode($pendaftaran_suratperpindahan); ?>;
@@ -399,6 +591,10 @@
     var pendaftaranPengaduanUpdateData = <?php echo json_encode($pendaftaran_pengaduanupdate); ?>;
 
     var countKKData = pendaftaranKKData.length
+    var countKKPemisahanData = pendaftaranKKPemisahanData.length
+    var countKKPenambahanData = pendaftaranKKPenambahanData.length
+    var countKKPenguranganData = pendaftaranKKPenguranganData.length
+    var countKKPerubahanData = pendaftaranKKPerubahanData.length
     var countKKPerceraianData = pendaftaranKKPerceraianData.length
     var countKIAData = pendaftaranKIAData.length
     var countSuratPerpindahanData = pendaftaranSuratPerpindahanData.length
@@ -410,9 +606,13 @@
     var countPerbaikanData = pendaftaranPerbaikanData.length
     var countPengaduanUpdateData = pendaftaranPengaduanUpdateData.length
 
-    var total = countKKData + countKKPerceraianData + countKIAData + countSuratPerpindahanData + countSuratPerpindahanLuarData + countAktaKelahiranData + countAktaKematianData + countKeabsahanAklaData + countPelayananData + countPerbaikanData + countPengaduanUpdateData;
+    var total = countKKData + countKKPemisahanData + countKKPenambahanData + countKKPenguranganData + countKKPerubahanData + countKKPerceraianData + countKIAData + countSuratPerpindahanData + countSuratPerpindahanLuarData + countAktaKelahiranData + countAktaKematianData + countKeabsahanAklaData + countPelayananData + countPerbaikanData + countPengaduanUpdateData;
 
     var percentKK = parseFloat((countKKData / total) * 100, 2).toFixed(2)
+    var percentKKPemisahan = parseFloat((countKKPemisahanData / total) * 100, 2).toFixed(2)
+    var percentKKPenambahan = parseFloat((countKKPenambahanData / total) * 100, 2).toFixed(2)
+    var percentKKPengurangan = parseFloat((countKKPenguranganData / total) * 100, 2).toFixed(2)
+    var percentKKPerubahan = parseFloat((countKKPerubahanData / total) * 100, 2).toFixed(2)
     var percentKKPerceraian = parseFloat((countKKPerceraianData / total) * 100, 2).toFixed(2)
     var percentKIA = parseFloat((countKIAData / total) * 100, 2).toFixed(2)
     var percentSuratPerpindahan = parseFloat((countSuratPerpindahanData / total) * 100, 2).toFixed(2)
@@ -424,7 +624,11 @@
     var percentPerbaikanData = parseFloat((countPerbaikanData / total) * 100, 2).toFixed(2)
     var percentPengaduanUpdateData = parseFloat((countPengaduanUpdateData / total) * 100, 2).toFixed(2)
 
-    var labelKK = `Pendaftaran KK (${percentKK}%)`
+    var labelKK = `Pendaftaran KK Baru (${percentKK}%)`
+    var labelKKPemisahan = `Pendaftaran KK Pemisahan Anggota (${percentKKPemisahan}%)`
+    var labelKKPenambahan = `Pendaftaran KK Penambahan Anggota (${percentKKPenambahan}%)`
+    var labelKKPengurangan = `Pendaftaran KK Pengurangan Anggota (${percentKKPengurangan}%)`
+    var labelKKPerubahan = `Pendaftaran KK Perubahan Anggota (${percentKKPerubahan}%)`
     var labelKKPerceraian = `Pendaftaran KK Perceraian (${percentKKPerceraian}%)`
     var labelKIA = `Pendaftaran KIA (${percentKIA}%)`
     var labelSuratPerpindahan = `Pendaftaran Surat Perpindahan dari Majalengka Menuju Luar (${percentSuratPerpindahan}%)`
@@ -441,10 +645,10 @@
     new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: [labelKK, labelKKPerceraian, labelKIA, labelSuratPerpindahan, labelSuratPerpindahanLuar, labelAktaKelahiran, labelAktaKematian, labelKeabsahanAktaKelahiran, labelPelayananData, labelPerbaikanData, labelPengaduanUpdateData],
+        labels: [labelKK, labelKKPemisahan, labelKKPenambahan, labelKKPengurangan, labelKKPerubahan, labelKKPerceraian, labelKIA, labelSuratPerpindahan, labelSuratPerpindahanLuar, labelAktaKelahiran, labelAktaKematian, labelKeabsahanAktaKelahiran, labelPelayananData, labelPerbaikanData, labelPengaduanUpdateData],
         datasets: [{
           label: 'Pendaftar Pelayanan Si Lancar',
-          data: [countKKData, countKKPerceraianData, countKIAData, countSuratPerpindahanData, countSuratPerpindahanLuarData, countAktaKelahiranData, countAktaKematianData, countKeabsahanAklaData, countPelayananData, countPerbaikanData, countPengaduanUpdateData],
+          data: [countKKData, countKKPemisahanData, countKKPenambahanData, countKKPenguranganData, countKKPerubahanData, countKKPerceraianData, countKIAData, countSuratPerpindahanData, countSuratPerpindahanLuarData, countAktaKelahiranData, countAktaKematianData, countKeabsahanAklaData, countPelayananData, countPerbaikanData, countPengaduanUpdateData],
           borderWidth: 3
         }]
       }

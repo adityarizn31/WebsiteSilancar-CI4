@@ -28,6 +28,10 @@ class Pager extends BaseConfig
         'kk_pagination' => 'App\Views\Pagers\kk_pagination',
         'kia_pagination' => 'App\Views\Pagers\kia_pagination',
         'kkperceraian_pagination' => 'App\Views\Pagers\kkperceraian_pagination',
+        'kkpemisahan_pagination' => 'App\Views\Pagers\kkpemisahan_pagination',
+        'kkpenambahan_pagination' => 'App\Views\Pagers\kkpenambahan_pagination',
+        'kkpengurangan_pagination' => 'App\Views\Pagers\kkpengurangan_pagination',
+        'kkperubahan_pagination' => 'App\Views\Pagers\kkperubahan_pagination',
         'suratperpindahan_pagination' => 'App\Views\Pagers\suratperpindahan_pagination',
         'suratperpindahanluar_pagination' => 'App\Views\Pagers\suratperpindahanluar_pagination',
 

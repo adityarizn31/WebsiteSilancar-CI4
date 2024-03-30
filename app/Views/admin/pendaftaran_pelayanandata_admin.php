@@ -22,7 +22,6 @@
           <?php
           $pesan = session()->getFlashdata('pesan');
 
-          // Jika status = Selesai
           if ($pesan == 'Pendaftaran Telah Selesai di Verifikasi !!') {
             $class = 'alert-success';
           } else {
@@ -67,14 +66,14 @@
                 <td>
                   <?php
                   switch ($peldat['status']) {
-                    case 'Selesai':
-                      echo '<span class="badge rounded-pill bg-success">Terverifikasi</span>';
+                    case 'Selesai Verifikasi':
+                      echo '<span class="badge bg-success"> Selesai Verifikasi </span>';
                       break;
                     case 'Belum di Proses':
-                      echo '<span class="badge rounded-pill bg-warning">Belum di Proses</span>';
+                      echo '<span class="badge bg-warning"> Belum di Proses </span>';
                       break;
-                    case 'Belum Selesai':
-                      echo '<span class="badge rounded-pill bg-danger">Ditolak</span>';
+                    case 'Gagal Verifikasi':
+                      echo '<span class="badge bg-danger"> Gagal Verifikasi </span>';
                       break;
                   }
                   ?>

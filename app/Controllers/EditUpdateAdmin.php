@@ -24,24 +24,6 @@ use App\Models\Pendaftaran_pelayanandata_Model;
 use App\Models\Perbaikan_data_Model;
 use App\Models\Pengaduan_update_Model;
 
-// Halaman Pelayanan
-
-use App\Models\PelayananModel;
-
-use App\Models\Pelayanan_kk_Model;
-use App\Models\Pelayanan_kia_Model;
-use App\Models\Pelayanan_suratperpindahan_Model;
-use App\Models\Pelayanan_suratperpindahanluar_Model;
-
-use App\Models\Pelayanan_aktakelahiran_Model;
-use App\Models\Pelayanan_aktakematian_Model;
-use App\Models\Pelayanan_keabsahanakla_Model;
-
-use App\Models\Pelayanan_pelayanandata_Model;
-
-use App\Models\Pelayanan_perbaikandata_Model;
-use App\Models\Pelayanan_pengaduanupdate_Model;
-
 class EditUpdateAdmin extends BaseController
 {
 
@@ -293,6 +275,7 @@ class EditUpdateAdmin extends BaseController
   // Halaman Visi Misi 
   public function editVisiMisi($visimisi)
   {
+    helper(['form']);
     $data = [
       'title' => 'Form Edit Visi Misi || Admin Disdukcapil',
       'validation' => \Config\Services::validation(),
@@ -303,8 +286,7 @@ class EditUpdateAdmin extends BaseController
 
   public function updateVisiMisi($id)
   {
-    if (!$this->validate([
-      // Foto Visi Misi
+    $validate = $this->validate([
       'fotovisimisi' => [
         'rules' => 'max_size[fotovisimisi,2048]|is_image[fotovisimisi]|mime_in[fotovisimisi,image/jpg,image/jpeg,image/png]',
         'errors' => [
@@ -313,9 +295,10 @@ class EditUpdateAdmin extends BaseController
           'mime_in' => 'Yang anda pilih bukan gambar'
         ]
       ]
-    ])) {
+    ]);
 
-      return redirect()->to(base_url() . '/EditUpdateAdmin/editVisiMisi/' . $this->request->getVar('fotovisimisi'))->withInput();
+    if (!$validate) {
+      return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
 
     $fileFotoVisiMisi = $this->request->getFile('fotovisimisi');
@@ -353,6 +336,7 @@ class EditUpdateAdmin extends BaseController
   // Halaman Persyaratan
   public function editPersyaratan($judulPersyaratan)
   {
+    helper(['form']);
     $data = [
       'title' => 'Form Edit Persyaratan Si Lancar || Admin Disdukcapil',
       'validation' => \Config\Services::validation(),
@@ -371,7 +355,7 @@ class EditUpdateAdmin extends BaseController
       $rule_judul = 'required|is_unique[persyaratansilancar.judulpersyaratan]';
     }
 
-    if (!$this->validate([
+    $validate = $this->validate([
 
       // Judul Persyaratan
       'judulpersyaratan' => [
@@ -379,7 +363,7 @@ class EditUpdateAdmin extends BaseController
         'errors' => [
           'required' => 'Judul Persyaratan harus diisi !!',
           'is_unique' => 'Judul Persyaratan Sudah terdaftar !!'
-        ]
+        ],
       ],
       // Foto Persyaratan
       'fotopersyaratan' => [
@@ -388,18 +372,19 @@ class EditUpdateAdmin extends BaseController
           'max_size' => 'File Gambar terlalu besar !!',
           'is_image' => 'Yang anda pilih bukan Gambar !!',
           'mime_in' => 'Gunakan Format JPG, JPEG dan PNG'
-        ]
+        ],
       ],
       // Keterangan Persyaratan
       'keteranganpersyaratan' => [
         'rules' => 'required[persyaratansilancar.keteranganpersyaratan]',
         'errors' => [
           'required' => 'Keterangan Persyaratan Harus Diisi !!'
-        ]
-      ]
+        ],
+      ],
+    ]);
 
-    ])) {
-      return redirect()->to(base_url() . '/EditUpdateAdmin/editPersyaratan/' . $this->request->getVar('judulpersyaratan'))->withInput();
+    if (!$validate) {
+      return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
 
     $fileFotoPersyaratan = $this->request->getFile('fotopersyaratan');

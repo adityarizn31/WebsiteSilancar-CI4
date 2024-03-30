@@ -1,5 +1,3 @@
-<!-- Halaman Tambah Inovasi Admin -->
-
 <?= $this->extend('layout/templateadmin'); ?>
 
 <?= $this->section('contentadmin'); ?>
@@ -19,27 +17,29 @@
 
       <form action="/CreateAdmin/savePersyaratanSilancar" method="post" enctype="multipart/form-data">
 
-        <!-- Keamanan -->
         <?= csrf_field(); ?>
 
-        <!-- Form Judul Persyaratan Si Lancar -->
+        <?php $validation = \Config\Services::validation(); ?>
+        <?php if (session()->has('validation')) : ?>
+          <?php $validation = session('validation'); ?>
+        <?php endif; ?>
+
         <div class="row">
           <div class="mb-3">
             <label for="judulpersyaratan" class="form-label fw-semibold">Judul Persyaratan Si Lancar</label>
-            <input type="text" class="form-control <?= ($validation->hasError('judulpersyaratan')) ? 'is-invalid' : ''; ?>" name="judulpersyaratan" id="judulpersyaratan" autofocus value="<?= old('judulpersyaratan'); ?>">
+            <input type="text" name="judulpersyaratan" id="judulpersyaratan" class="form-control text-black <?= (session('errors.judulpersyaratan')) ? 'is-invalid' : null ?>" autofocus value="<?= old('judulpersyaratan'); ?>">
             <div class="invalid-feedback">
-              <?= $validation->getError('judulpersyaratan'); ?>
+              <?= session('errors.judulpersyaratan'); ?>
             </div>
           </div>
         </div>
 
-        <!-- Form Foto Persyaratan Si Lancar -->
         <div class="row">
           <div class="mb-3">
             <label for="fotopersyaratan" class="form-label fw-semibold">Foto Persyaratan Si Lancar</label>
-            <input type="file" class="form-control <?= ($validation->hasError('fotopersyaratan')) ? 'is-invalid' : ''; ?>" name="fotopersyaratan" id="fotopersyaratan" value="<?= old('fotopersyaratan'); ?>" onchange="previewImgPersyaratan()">
+            <input type="file" name="fotopersyaratan" id="fotopersyaratan" class="form-control text-black <?= (session('errors.fotopersyaratan')) ? 'is-invalid' : null ?>" value="<?= old('fotopersyaratan'); ?>" onchange="previewImgPersyaratan()">
             <div class="invalid-feedback">
-              <?= $validation->getError('fotopersyaratan'); ?>
+              <?= session('errors.fotopersyaratan'); ?>
             </div>
             <div class="col-sm-2 my-4">
               <img src="/img/inovasi/inovasidef.PNG" class="img-thumbnail img-preview" srcset="">
@@ -47,14 +47,13 @@
           </div>
         </div>
 
-        <!-- Form Keterangan Inovasi -->
         <div class="row">
           <div class="mb-3">
             <label for="keteranganpersyaratan" class="form-label fw-semibold">Keterangan Persyaratan Si Lancar</label>
             <br>
-            <textarea class=" form-control text-area <?= ($validation->hasError('keteranganpersyaratan')) ? 'is-invalid' : '' ?>" name="keteranganpersyaratan" id="keteranganpersyaratan" value="<?= old('keteranganpersyaratan'); ?>"></textarea>
+            <textarea name="keteranganpersyaratan" id="keteranganpersyaratan" class="form-control text-area text-black <?= (session('errors.keteranganpersyaratan')) ? 'is-invalid' : null ?>" value="<?= old('keteranganpersyaratan'); ?>"></textarea>
             <div class="invalid-feedback">
-              <?= $validation->getError('keteranganpersyaratan'); ?>
+              <?= session('errors.keteranganpersyaratan'); ?>
             </div>
           </div>
         </div>
@@ -77,6 +76,7 @@
         </div>
 
         <img src="/img/default/v_Persyaratan.jpg" alt="Preview Persyaratan" srcset="" style="width: 100%; height: 100%;">
+
       </div>
     </div>
   </div>

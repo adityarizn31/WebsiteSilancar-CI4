@@ -40,20 +40,22 @@
   border-bottom: 1px solid orangered;
 }
 
-.logonav {
-  width: 30%;
-  padding-left: 2%;
+.grup .logodisduknav {
+  width: 45%;
 }
 
 .sampul {
   width: 100%;
-  background-color: #C65958;
-  
 }
 
-.inovasi {
+.fotovisi {
   width: 100%;
-  background-color: #C65958;
+}
+
+.logosindangkasihfooter{
+  width: 25%;
+  height: auto;
+  margin-top: 1%;
 }
 
 body {
@@ -161,10 +163,6 @@ body {
   padding: 1.5%;
 }
 
-.persyaratansilancar {
-  background-color: #eaa2a2;  
-}
-
 .menu-icon {
   /* background-color: tomato; */
   font-size: 28px;
@@ -211,7 +209,6 @@ a {
 .sampulnengah {
   width: 50px;
   height: 50px;
-  /* Center vertically and horizontally */
   position: absolute;
   top: 50%;
   left: 50%;
@@ -328,7 +325,6 @@ a {
   }
 }
 
-/* Hamburger Menu */
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -360,7 +356,6 @@ a {
   display: flex;
 }
 
-/* Hamburger Animation  */
 .menu-toggle span:nth-child(2) {
   transform-origin: 0 0;
 }
@@ -383,23 +378,25 @@ a {
   transform: rotate(-45deg);
 }
 
-/* Ukuran Mobile */
 @media screen and (max-width: 576px) {
   .navbar {
     flex-direction: column;
   }
 
-  .logonav {
-    width: 50%;
+  .fotovisi {
+    width: 100%;
   }
 
   .sampulsilancar {
     width: 100%;
-    
   }
 
-  .berita {    
-    margin-left: 28%;
+  .grup .logodisduknav{
+    width: 69%;
+  }
+
+  .navbar-toggler-icon{
+    margin-left: 20%;    
   }
 
   .pelayanan {
@@ -410,6 +407,7 @@ a {
 
   .fotovisimisi {
     width: 100%;
+    height: auto;
   }
 
   .judulpersyaratansilancar {
@@ -433,6 +431,19 @@ a {
     display: flex;
     align-items: center;
   }
+
+  .errorpage{
+    width: 80%;
+  }
+
+  .logosindangkasihfooter{
+    width: 20%;
+    height: auto;
+    padding-top: 5%;
+  }
+
+
+  
 }
 
 

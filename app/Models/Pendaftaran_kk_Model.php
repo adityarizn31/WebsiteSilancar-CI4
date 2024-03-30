@@ -13,16 +13,12 @@ class Pendaftaran_kk_Model extends Model
 
   public function getDataKK($nama = false)
   {
-    // Jika nama pemohon == false maka yang akan ditampilkan semua
     if ($nama == false) {
       return $this->findAll();
     }
-
-    // Namun jika nama pemohon == true makan akan ditampilkan nama tersebut saja
     return $this->where(['namapemohon' => $nama])->first();
   }
 
-  // Digunakan untuk mencari item
   public function search($keyword)
   {
     return $this->table('pendaftaran_kk')->like('namapemohon', $keyword)->orLike('nik', $keyword);
@@ -33,7 +29,6 @@ class Pendaftaran_kk_Model extends Model
     return $this->where('NIK', $nik)->first();
   }
 
-  // Digunakan untuk mengubah Status Pendaftaran
   public function updateStatus($nama, $status)
   {
     return $this->db->table('pendaftaran_kk')

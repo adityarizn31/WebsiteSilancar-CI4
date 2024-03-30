@@ -4,7 +4,7 @@ $waktuSekarang = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
 $hariSekarang = $waktuSekarang->format('N');
 $jamSekarang = $waktuSekarang->format('G');
 
-if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekarang < 22) {
+if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekarang < 11) {
 
 ?>
 
@@ -90,7 +90,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <div class="row">
             <div class="mb-3">
               <label for="nomorpemohon" class="form-label fw-semibold"> Nomor WA Pemohon </label>
-              <input type="text" name="nomorpemohon" id="nomorpemohon" class="form-control text-black <?= (session('errors.nomorpemohon')) ? 'is-invalid' : null ?>" autofocus value="<?= old('nomorpemohon'); ?>">
+              <input type="text" name="nomorpemohon" id="nomorpemohon" class="form-control text-black <?= (session('errors.nomorpemohon')) ? 'is-invalid' : null ?>" value="<?= old('nomorpemohon'); ?>">
               <div class="invalid-feedback">
                 <?= session('errors.nomorpemohon') ?>
               </div>
@@ -99,8 +99,8 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
 
           <div class="row">
             <div class="mb-3">
-              <label for="alamatpemohon" class="form-label fw-semibold"> Alamat Pemohon </label>
-              <textarea type="text" name="alamatpemohon" id="alamatpemohon" class=" form-control text-black text-area <?= (session('errors.alamatpemohon')) ? 'is-invalid' : null ?>" value="<?= old('alamatpemohon'); ?>"></textarea>
+              <label for="alamatpemohon" class="form-label fw-semibold">Alamat Pemohon</label>
+              <textarea name="alamatpemohon" id="alamatpemohon" class="form-control text-black text-area <?= (session('errors.alamatpemohon')) ? 'is-invalid' : null ?>"><?= old('alamatpemohon'); ?></textarea>
               <div class="invalid-feedback">
                 <?= session('errors.alamatpemohon') ?>
               </div>
@@ -112,7 +112,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <div class="row">
             <div class="mb-3">
               <label for="kartukeluarga" class="form-label fw-semibold"> Berkas Kartu Keluarga </label>
-              <input type="file" name="kartukeluarga" id="kartukeluarga" class="form-control <?= (session('errors.kartukeluarga')) ? 'is-invalid' : ''; ?>" value="<?= old('kartukeluarga'); ?>">
+              <input type="file" name="kartukeluarga" id="kartukeluarga" class="form-control text-black <?= (session('errors.kartukeluarga')) ? 'is-invalid' : ''; ?>" value="<?= old('kartukeluarga'); ?>">
               <div class="invalid-feedback">
                 <?= session('errors.kartukeluarga') ?>
               </div>
@@ -122,7 +122,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <div class="row">
             <div class="mb-3">
               <label for="suratkematian" class="form-label fw-semibold"> Berkas Surat Kematian </label>
-              <input type="file" name="suratkematian" id="suratkematian" class="form-control <?= (session('errors.suratkematian')) ? 'is-invalid' : ''; ?>" value="<?= old('suratkematian'); ?>">
+              <input type="file" name="suratkematian" id="suratkematian" class="form-control text-black <?= (session('errors.suratkematian')) ? 'is-invalid' : ''; ?>" value="<?= old('suratkematian'); ?>">
               <div class="invalid-feedback">
                 <?= session('errors.suratkematian') ?>
               </div>
@@ -130,7 +130,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           </div>
 
           <div class="d-grid gap-2 col-6 mx-auto">
-            <button type="submit" value="submit" name="submit" id="submit" class="btn btn-primary"> Daftar </button>
+            <button type="submit" value="submit" name="submit" id="submit" class="btn btn-primary"> D A F T A R </button>
           </div>
 
         </form>

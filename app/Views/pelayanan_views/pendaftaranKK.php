@@ -99,8 +99,8 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
 
           <div class="row">
             <div class="mb-3">
-              <label for="alamatpemohon" class="form-label fw-semibold"> Alamat Pemohon </label>
-              <textarea type="text" name="alamatpemohon" id="alamatpemohon" class="form-control text-black text-area <?= (session('errors.alamatpemohon')) ? 'is-invalid' : null ?>" value="<?= old('alamatpemohon'); ?>"></textarea>
+              <label for="alamatpemohon" class="form-label fw-semibold">Alamat Pemohon</label>
+              <textarea name="alamatpemohon" id="alamatpemohon" class="form-control text-black text-area <?= (session('errors.alamatpemohon')) ? 'is-invalid' : null ?>"><?= old('alamatpemohon'); ?></textarea>
               <div class="invalid-feedback">
                 <?= session('errors.alamatpemohon') ?>
               </div>
@@ -112,7 +112,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <div class="row">
             <div class="mb-3">
               <label for="formulirdesa" class="form-label fw-semibold"> Berkas Formulir Desa </label>
-              <input type="file" name="formulirdesa" id="formulirdesa" class="form-control <?= (session('errors.formulirdesa')) ? 'is-invalid' : ''; ?>" value="<?= old('formulirdesa'); ?>">
+              <input type="file" name="formulirdesa" id="formulirdesa" class="form-control text-black <?= (session('errors.formulirdesa')) ? 'is-invalid' : ''; ?>" value="<?= old('formulirdesa'); ?>">
               <div class="invalid-feedback">
                 <?= session('errors.formulirdesa') ?>
               </div>
@@ -122,7 +122,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <div class="row">
             <div class="mb-3">
               <label for="kartukeluargasuami" class="form-label fw-semibold"> Berkas Kartu Keluarga Suami </label>
-              <input type="file" name="kartukeluargasuami" id="kartukeluargasuami" class="form-control <?= (session('errors.kartukeluargasuami')) ? 'is-invalid' : ''; ?>" value="<?= old('kartukeluargasuami'); ?>">
+              <input type="file" name="kartukeluargasuami" id="kartukeluargasuami" class="form-control text-black <?= (session('errors.kartukeluargasuami')) ? 'is-invalid' : ''; ?>" value="<?= old('kartukeluargasuami'); ?>">
               <div class="invalid-feedback">
                 <?= session('errors.kartukeluargasuami') ?>
               </div>
@@ -132,7 +132,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <div class="row">
             <div class="mb-3">
               <label for="kartukeluargaistri" class="form-label fw-semibold"> Berkas Kartu Keluarga Istri </label>
-              <input type="file" name="kartukeluargaistri" id="kartukeluargaistri" class="form-control <?= (session('errors.kartukeluargaistri')) ? 'is-invalid' : ''; ?>" value="<?= old('kartukeluargaistri'); ?>">
+              <input type="file" name="kartukeluargaistri" id="kartukeluargaistri" class="form-control text-black <?= (session('errors.kartukeluargaistri')) ? 'is-invalid' : ''; ?>" value="<?= old('kartukeluargaistri'); ?>">
               <div class="invalid-feedback">
                 <?= session('errors.kartukeluargaistri') ?>
               </div>
@@ -142,7 +142,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <div class="row">
             <div class="mb-3">
               <label for="suratnikah" class="form-label fw-semibold"> Berkas Surat Nikah </label>
-              <input type="file" name="suratnikah" id="suratnikah" class="form-control <?= (session('errors.suratnikah')) ? 'is-invalid' : ''; ?>" value="<?= old('suratnikah'); ?>">
+              <input type="file" name="suratnikah" id="suratnikah" class="form-control text-black <?= (session('errors.suratnikah')) ? 'is-invalid' : ''; ?>" value="<?= old('suratnikah'); ?>">
               <div class="invalid-feedback">
                 <?= session('errors.suratnikah') ?>
               </div>
@@ -151,8 +151,9 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
 
           <div class="row">
             <div class="mb-3">
-              <label for="suratpindah" class="form-label fw-semibold"> Berkas Surat Pindah </label>
-              <input type="file" name="suratpindah" id="suratpindah" class="form-control <?= (session('errors.suratpindah')) ? 'is-invalid' : ''; ?>" value="<?= old('suratpindah'); ?>">
+              <label for="suratpindah" class="form-label fw-semibold"> Berkas Surat Pindah (Jika Alamat Berbeda) </label>
+              <input type="file" name="suratpindah" id="suratpindah" class="form-control text-black <?= (session('errors.suratpindah')) ? 'is-invalid' : ''; ?>" value="<?= old('suratpindah'); ?>">
+              <div id="suratpindah" class="form-text">Jika alamat sama, bisa di isi dengan File lain</div>
               <div class="invalid-feedback">
                 <?= session('errors.suratpindah') ?>
               </div>
@@ -162,7 +163,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <hr>
 
           <div class="d-grid gap-2 col-6 mx-auto">
-            <button type="submit" value="submit" name="submit" id="submit" class="btn btn-primary"> Daftar </button>
+            <button type="submit" value="submit" name="submit" id="submit" class="btn btn-primary"> D A F T A R </button>
           </div>
 
         </form>
@@ -178,3 +179,4 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
   header('Location: /PelayananSilancar/errorPage');
   exit;
 }
+// 

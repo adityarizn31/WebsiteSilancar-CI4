@@ -11,7 +11,7 @@
   <div class="card shadow mb-4" style="margin-top: 25px;">
 
     <div class="card-header py-3" style="border: none; border: 0; outline: none; box-shadow: none;">
-      <h4 class="m-0 font-weight-bold text-primary text-center">Detail Data Pendaftaran Surat Perpindahan</h4>
+      <h4 class="m-0 font-weight-bold text-primary text-center">Detail Data Pendaftaran Surat Perpindahan dari Majalengka Menuju Luar Kabupaten</h4>
     </div>
 
     <div class="container">
@@ -21,7 +21,6 @@
           <?php
           $pesan = session()->getFlashdata('pesan');
 
-          // Jika status = Selesai
           if ($pesan == 'Pendaftaran Telah Selesai di Verifikasi !!') {
             $class = 'alert-success';
           } else {
@@ -52,7 +51,7 @@
               <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalUbahStatus">
                 Verifikasi Pendaftaran
               </button>
-            <?php elseif ($pendaftaran_suratperpindahan['status'] === 'Selesai' || $pendaftaran_suratperpindahan['status'] === 'Belum Selesai') : ?>
+            <?php elseif ($pendaftaran_suratperpindahan['status'] === 'Selesai Verifikasi' || $pendaftaran_suratperpindahan['status'] === 'Gagal Verifikasi') : ?>
               <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalVerifikasiPendaftaran">
                 Tandai Selesai
               </button>
@@ -73,9 +72,9 @@
 
                     <div class="align-items-center justify-content-center">
 
-                      <a href="<?= base_url('/DetailAdmin/selesaiSuratPerpindahan/' . $pendaftaran_suratperpindahan['namapemohon']) ?>" class="btn btn-outline-success" data-popup="tooltip" data-placement="top" title="Selesai"><i class="bi bi-check-square" aria-hidden="true"></i> Verifikasi </a>
+                      <a href="<?= base_url('/DetailAdmin/selesaiSuratPerpindahan/' . $pendaftaran_suratperpindahan['namapemohon']) ?>" class="btn btn-outline-success" data-popup="tooltip" data-placement="top" title="Selesai Verifikasi"><i class="bi bi-check-square" aria-hidden="true"></i> Selesai Verifikasi </a>
 
-                      <a href="<?= base_url('/DetailAdmin/belumSelesaiSuratPerpindahan/' . $pendaftaran_suratperpindahan['namapemohon']) ?>" class="btn btn-outline-danger" data-popup="tooltip" data-placement="top" title="Tidak Selesai"><i class="bi bi-x-square" aria-hidden="true"></i> Gagal Verifikasi </a>
+                      <a href="<?= base_url('/DetailAdmin/belumSelesaiSuratPerpindahan/' . $pendaftaran_suratperpindahan['namapemohon']) ?>" class="btn btn-outline-danger" data-popup="tooltip" data-placement="top" title="Gagal Verifikasi"><i class="bi bi-x-square" aria-hidden="true"></i> Gagal Verifikasi </a>
 
                     </div>
                   </div>
@@ -156,7 +155,21 @@
             <tr>
               <th width="">Status</th>
               <th width="">:</th>
-              <td><?= $pendaftaran_suratperpindahan['status']; ?></td>
+              <td>
+                <?php
+                switch ($pendaftaran_suratperpindahan['status']) {
+                  case 'Selesai Verifikasi':
+                    echo '<span class="badge bg-success"> Selesai Verifikasi </span>';
+                    break;
+                  case 'Belum di Proses':
+                    echo '<span class="badge bg-warning"> Belum di Proses </span>';
+                    break;
+                  case 'Gagal Verifikasi':
+                    echo '<span class="badge bg-danger"> Gagal Verifikasi </span>';
+                    break;
+                }
+                ?>
+              </td>
             </tr>
 
           </table>
@@ -164,30 +177,15 @@
           <div class="grid-container2 align-items-center justify-content-center">
 
             <div class="div">
-              <a href="<?= base_url('/DetailAdmin/selesaiSuratPerpindahan/' . $pendaftaran_suratperpindahan['namapemohon']) ?>" class="btn btn-success" data-popup="tooltip" data-placement="top" title="Selesai"><i class="bi bi-check-square" aria-hidden="true"></i></a>
+              <a href="<?= base_url('/DetailAdmin/selesaiSuratPerpindahan/' . $pendaftaran_suratperpindahan['namapemohon']) ?>" class="btn btn-success" data-popup="tooltip" data-placement="top" title="Selesai Verifikasi"><i class="bi bi-check-square" aria-hidden="true"></i></a>
             </div>
 
             <div class="div">
-              <a href="<?= base_url('/DetailAdmin/belumSelesaiSuratPerpindahan/' . $pendaftaran_suratperpindahan['namapemohon']) ?>" class="btn btn-danger" data-popup="tooltip" data-placement="top" title="Tidak Selesai"><i class="bi bi-x-square" aria-hidden="true"></i></a>
+              <a href="<?= base_url('/DetailAdmin/belumSelesaiSuratPerpindahan/' . $pendaftaran_suratperpindahan['namapemohon']) ?>" class="btn btn-danger" data-popup="tooltip" data-placement="top" title="Gagal Verifikasi"><i class="bi bi-x-square" aria-hidden="true"></i></a>
             </div>
 
           </div>
 
-        </div>
-
-        <div class="col-sm-12 col-md-12" style="padding: 20px;">
-          <div class="card card-outline card-primary">
-
-            <div class="card-header">
-              <div class="card-title fw-semibold"> Berkas Formulir Perpindahan </div>
-
-            </div>
-
-            <div class="col-sm-12">
-              <iframe src="<?= base_url('/pelayanan/perpindahan/' . $pendaftaran_suratperpindahan['formperpindahan']) ?>" frameborder="0" height="500" width="100%"></iframe>
-            </div>
-
-          </div>
         </div>
 
         <div class="col-sm-12 col-md-12" style="padding: 20px;">
@@ -208,44 +206,15 @@
           <div class="card card-outline card-primary">
 
             <div class="card-header">
-              <div class="card-title fw-semibold"> Berkas Buku Nikah </div>
+              <div class="card-title fw-semibold"> Berkas Kartu Tanda Penduduk </div>
             </div>
 
             <div class="col-sm-12">
-              <iframe src="<?= base_url('/pelayanan/perpindahan/' . $pendaftaran_suratperpindahan['bukunikah']) ?>" frameborder="0" height="500" width="100%"></iframe>
+              <iframe src="<?= base_url('/pelayanan/perpindahan/' . $pendaftaran_suratperpindahan['kartutandapenduduk']) ?>" frameborder="0" height="500" width="100%"></iframe>
             </div>
 
           </div>
         </div>
-
-        <div class="col-sm-12 col-md-12" style="padding: 20px;">
-          <div class="card card-outline card-primary">
-
-            <div class="card-header">
-              <div class="card-title fw-semibold"> Berkas KTP Suami </div>
-            </div>
-
-            <div class="col-sm-12">
-              <iframe src="<?= base_url('/pelayanan/perpindahan/' . $pendaftaran_suratperpindahan['ktpsuami']) ?>" frameborder="0" height="500" width="100%"></iframe>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="col-sm-12 col-md-12" style="padding: 20px;">
-          <div class="card card-outline card-primary">
-
-            <div class="card-header">
-              <div class="card-title fw-semibold"> Berkas KTP Istri </div>
-            </div>
-
-            <div class="col-sm-12">
-              <iframe src="<?= base_url('/pelayanan/perpindahan/' . $pendaftaran_suratperpindahan['ktpistri']) ?>" frameborder="0" height="500" width="100%"></iframe>
-            </div>
-
-          </div>
-        </div>
-
 
       </div>
     </div>

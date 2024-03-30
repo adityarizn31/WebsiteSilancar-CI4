@@ -100,8 +100,8 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
 
         <div class="row">
           <div class="mb-3">
-            <label for="alamatpemohon" class="form-label fw-semibold"> Alamat Pemohon </label>
-            <textarea type="text" name="alamatpemohon" id="alamatpemohon" class=" form-control text-black text-area <?= (session('errors.alamatpemohon')) ? 'is-invalid' : null ?>" value="<?= old('alamatpemohon'); ?>"></textarea>
+            <label for="alamatpemohon" class="form-label fw-semibold">Alamat Pemohon</label>
+            <textarea name="alamatpemohon" id="alamatpemohon" class="form-control text-black text-area <?= (session('errors.alamatpemohon')) ? 'is-invalid' : null ?>"><?= old('alamatpemohon'); ?></textarea>
             <div class="invalid-feedback">
               <?= session('errors.alamatpemohon') ?>
             </div>
@@ -123,7 +123,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
         <div class="row">
           <div class="mb-3">
             <label for="berkasperbaikan" class="form-label fw-semibold"> Berkas Perbaikan </label>
-            <input type="file" name="berkasperbaikan[]" id="berkasperbaikan" multiple class="form-control <?= (session('errors.berkasperbaikan')) ? 'is-invalid' : ''; ?>" value="<?= old('berkasperbaikan'); ?>">
+            <input type="file" name="berkasperbaikan[]" id="berkasperbaikan" multiple class="form-control text-black <?= (session('errors.berkasperbaikan')) ? 'is-invalid' : ''; ?>" value="<?= old('berkasperbaikan'); ?>">
             <div id="pasfoto" class="form-text"> Maksimal 5 File </div>
             <div class="invalid-feedback">
               <?= session('errors.berkasperbaikan'); ?>
@@ -134,18 +134,19 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
 
         <div class="row">
           <div class="mb-3">
-            <label for="penjelasanperbaikan" class="form-label fw-semibold"> Penjelasan Perbaikan </label>
-            <textarea type="text" name="penjelasanperbaikan" id="penjelasanperbaikan" class="form-control text-black text-area <?= (session('errors.penjelasanperbaikan')) ? 'is-invalid' : null ?>" value="<?= old('penjelasanperbaikan'); ?>"></textarea>
+            <label for="penjelasanperbaikan" class="form-label fw-semibold">Penjelasan Perbaikan</label>
+            <textarea name="penjelasanperbaikan" id="penjelasanperbaikan" class="form-control text-black text-area <?= (session('errors.penjelasanperbaikan')) ? 'is-invalid' : null ?>"><?= old('penjelasanperbaikan'); ?></textarea>
             <div class="invalid-feedback">
               <?= session('errors.penjelasanperbaikan') ?>
             </div>
           </div>
         </div>
 
+
         <hr>
 
         <div class="d-grid gap-2 col-6 mx-auto">
-          <button type="submit" value="submit" name="submit" id="submit" class="btn btn-primary"> Daftar </button>
+          <button type="submit" value="submit" name="submit" id="submit" class="btn btn-primary"> D A F T A R </button>
         </div>
 
       </form>
