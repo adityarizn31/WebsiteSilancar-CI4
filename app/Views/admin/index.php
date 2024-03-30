@@ -37,11 +37,11 @@
             });
 
             $selesaiDiProsesCountKK = array_filter($pendaftaran_kk, function ($data) {
-              return $data['status'] == 'Selesai';
+              return $data['status'] == 'Selesai Verifikasi';
             });
 
             $belumselesaiDiProsesCountKK = array_filter($pendaftaran_kk, function ($data) {
-              return $data['status'] == 'Belum Selesai';
+              return $data['status'] == 'Gagal Verifikasi';
             });
 
             $totalSelesaiCountKK = $selesaiDiProsesCountKK + $belumselesaiDiProsesCountKK;
@@ -72,11 +72,11 @@
             });
 
             $selesaiDiProsesCountKKPemisahan = array_filter($pendaftaran_kk_pemisahan, function ($data) {
-              return $data['status'] == 'Selesai';
+              return $data['status'] == 'Selesai Verifikasi';
             });
 
             $belumselesaiDiProsesCountKKPemisahan = array_filter($pendaftaran_kk_pemisahan, function ($data) {
-              return $data['status'] == 'Belum Selesai';
+              return $data['status'] == 'Gagal Verifikasi';
             });
 
             $totalSelesaiCountKKPemisahan = $selesaiDiProsesCountKKPemisahan + $belumselesaiDiProsesCountKKPemisahan;
@@ -107,11 +107,11 @@
             });
 
             $selesaiDiProsesCountKKPenambahan = array_filter($pendaftaran_kk_penambahan, function ($data) {
-              return $data['status'] == 'Selesai';
+              return $data['status'] == 'Selesai Verifikasi';
             });
 
             $belumselesaiDiProsesCountKKPenambahan = array_filter($pendaftaran_kk_penambahan, function ($data) {
-              return $data['status'] == 'Belum Selesai';
+              return $data['status'] == 'Gagal Verifikasi';
             });
 
             $totalSelesaiCountKKPenambahan = $selesaiDiProsesCountKKPenambahan + $belumselesaiDiProsesCountKKPenambahan;
@@ -142,11 +142,11 @@
             });
 
             $selesaiDiProsesCountKKPengurangan = array_filter($pendaftaran_kk_pengurangan, function ($data) {
-              return $data['status'] == 'Selesai';
+              return $data['status'] == 'Selesai Verifikasi';
             });
 
             $belumselesaiDiProsesCountKKPengurangan = array_filter($pendaftaran_kk_pengurangan, function ($data) {
-              return $data['status'] == 'Belum Selesai';
+              return $data['status'] == 'Gagal Verifikasi';
             });
 
             $totalSelesaiCountKKPengurangan = $selesaiDiProsesCountKKPengurangan + $belumselesaiDiProsesCountKKPengurangan;
@@ -177,11 +177,11 @@
             });
 
             $selesaiDiProsesCountKKPerubahan = array_filter($pendaftaran_kk_perubahan, function ($data) {
-              return $data['status'] == 'Selesai';
+              return $data['status'] == 'Selesai Verifikasi';
             });
 
             $belumselesaiDiProsesCountKKPerubahan = array_filter($pendaftaran_kk_perubahan, function ($data) {
-              return $data['status'] == 'Belum Selesai';
+              return $data['status'] == 'Gagal Verifikasi';
             });
 
             $totalSelesaiCountKKPerubahan = $selesaiDiProsesCountKKPerubahan + $belumselesaiDiProsesCountKKPerubahan;
@@ -213,11 +213,11 @@
             });
 
             $selesaiDiProsesCountKKPerceraian = array_filter($pendaftaran_kk_perceraian, function ($data) {
-              return $data['status'] == 'Selesai';
+              return $data['status'] == 'Selesai Verifikasi';
             });
 
             $belumselesaiDiProsesCountKKPerceraian = array_filter($pendaftaran_kk_perceraian, function ($data) {
-              return $data['status'] == 'Belum Selesai';
+              return $data['status'] == 'Gagal Verifikasi';
             });
 
             $totalSelesaiCountKKPerceraian = $selesaiDiProsesCountKKPerceraian + $belumselesaiDiProsesCountKKPerceraian;
@@ -247,11 +247,11 @@
             });
 
             $selesaiDiProsesCountKIA = array_filter($pendaftaran_kia, function ($data) {
-              return $data['status'] == 'Selesai';
+              return $data['status'] == 'Selesai Verifikasi';
             });
 
             $belumselesaiDiProsesCountKIA = array_filter($pendaftaran_kia, function ($data) {
-              return $data['status'] == 'Belum Selesai';
+              return $data['status'] == 'Gagal Verifikasi';
             });
 
             $totalSelesaiCountKIA = $selesaiDiProsesCountKIA + $belumselesaiDiProsesCountKIA;
@@ -284,11 +284,11 @@
             });
 
             $selesaiDiProsesCountSuratPerpindahan = array_filter($pendaftaran_suratperpindahan, function ($data) {
-              return $data['status'] == 'Selesai';
+              return $data['status'] == 'Selesai Verifikasi';
             });
 
             $belumselesaiDiProsesCountSuratPerpindahan = array_filter($pendaftaran_suratperpindahan, function ($data) {
-              return $data['status'] == 'Belum Selesai';
+              return $data['status'] == 'Gagal Verifikasi';
             });
 
             $totalSelesaiCountSuratPerpindahan = $selesaiDiProsesCountSuratPerpindahan + $belumselesaiDiProsesCountSuratPerpindahan;
@@ -318,11 +318,11 @@
             });
 
             $selesaiDiProsesCountSuratPerpindahanLuar = array_filter($pendaftaran_suratperpindahanluar, function ($data) {
-              return $data['status'] == 'Selesai';
+              return $data['status'] == 'Selesai Verifikasi';
             });
 
             $belumselesaiDiProsesCountSuratPerpindahanLuar = array_filter($pendaftaran_suratperpindahanluar, function ($data) {
-              return $data['status'] == 'Belum Selesai';
+              return $data['status'] == 'Gagal Verifikasi';
             });
 
             $totalSelesaiCountSuratPerpindahanLuar = $selesaiDiProsesCountSuratPerpindahanLuar + $belumselesaiDiProsesCountSuratPerpindahanLuar;
@@ -353,11 +353,11 @@
             });
 
             $selesaiDiProsesCountAktaKelahiran = array_filter($pendaftaran_aktakelahiran, function ($data) {
-              return $data['status'] == 'Selesai';
+              return $data['status'] == 'Selesai Verifikasi';
             });
 
             $belumselesaiDiProsesCountAktaKelahiran = array_filter($pendaftaran_aktakelahiran, function ($data) {
-              return $data['status'] == 'Belum Selesai';
+              return $data['status'] == 'Gagal Verifikasi';
             });
 
             $totalSelesaiCountAktaKelahiran = $selesaiDiProsesCountAktaKelahiran + $belumselesaiDiProsesCountAktaKelahiran;
@@ -388,11 +388,11 @@
             });
 
             $selesaiDiProsesCountAktaKematian = array_filter($pendaftaran_aktakematian, function ($data) {
-              return $data['status'] == 'Selesai';
+              return $data['status'] == 'Selesai Verifikasi';
             });
 
             $belumselesaiDiProsesCountAktaKematian = array_filter($pendaftaran_aktakematian, function ($data) {
-              return $data['status'] == 'Belum Selesai';
+              return $data['status'] == 'Gagal Verifikasi';
             });
 
             $totalSelesaiCountAktaKematian = $selesaiDiProsesCountAktaKematian + $belumselesaiDiProsesCountAktaKematian;
@@ -423,11 +423,11 @@
             });
 
             $selesaiDiProsesCountKeabsahanAkla = array_filter($pendaftaran_keabsahanakla, function ($data) {
-              return $data['status'] == 'Selesai';
+              return $data['status'] == 'Selesai Verifikasi';
             });
 
             $belumselesaiDiProsesCountKeabsahanAkla = array_filter($pendaftaran_keabsahanakla, function ($data) {
-              return $data['status'] == 'Belum Selesai';
+              return $data['status'] == 'Gagal Verifikasi';
             });
 
             $totalSelesaiCountKeabsahanAkla = $selesaiDiProsesCountKeabsahanAkla + $belumselesaiDiProsesCountKeabsahanAkla;
@@ -458,11 +458,11 @@
             });
 
             $selesaiDiProsesCountPelayananData = array_filter($pendaftaran_pelayanandata, function ($data) {
-              return $data['status'] == 'Selesai';
+              return $data['status'] == 'Selesai Verifikasi';
             });
 
             $belumselesaiDiProsesCountPelayananData = array_filter($pendaftaran_pelayanandata, function ($data) {
-              return $data['status'] == 'Belum Selesai';
+              return $data['status'] == 'Gagal Verifikasi';
             });
 
             $totalSelesaiCountPelayananData = $selesaiDiProsesCountPelayananData + $belumselesaiDiProsesCountPelayananData;
@@ -493,11 +493,11 @@
             });
 
             $selesaiDiProsesCountPerbaikanData = array_filter($pendaftaran_perbaikandata, function ($data) {
-              return $data['status'] == 'Selesai';
+              return $data['status'] == 'Selesai Verifikasi';
             });
 
             $belumselesaiDiProsesCountPerbaikanData = array_filter($pendaftaran_perbaikandata, function ($data) {
-              return $data['status'] == 'Belum Selesai';
+              return $data['status'] == 'Gagal Verifikasi';
             });
 
             $totalSelesaiCountPerbaikanData = $selesaiDiProsesCountPerbaikanData + $belumselesaiDiProsesCountPerbaikanData;
@@ -528,11 +528,11 @@
             });
 
             $selesaiDiProsesCountPengaduanUpdate = array_filter($pendaftaran_pengaduanupdate, function ($data) {
-              return $data['status'] == 'Selesai';
+              return $data['status'] == 'Selesai Verifikasi';
             });
 
             $belumselesaiDiProsesCountPengaduanUpdate = array_filter($pendaftaran_pengaduanupdate, function ($data) {
-              return $data['status'] == 'Belum Selesai';
+              return $data['status'] == 'Gagal Verifikasi';
             });
 
             $totalSelesaiCountPengaduanUpdate = $selesaiDiProsesCountPengaduanUpdate + $belumselesaiDiProsesCountPengaduanUpdate;
