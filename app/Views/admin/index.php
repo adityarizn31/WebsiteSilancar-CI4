@@ -48,8 +48,8 @@
 
             ?>
 
-            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountKK); ?></p>
-            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountKK); ?></p>
+            <p class="justify-content-end text-black badge bg-warning"> Belum di Proses = <?= count($belumDiProsesCountKK); ?></p>
+            <p class="justify-content-end text-black badge bg-success"> Selesai di Proses = <?= count($totalSelesaiCountKK); ?></p>
 
           </a>
         </div>
@@ -83,8 +83,8 @@
 
             ?>
 
-            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountKKPemisahan); ?></p>
-            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountKKPemisahan); ?></p>
+            <p class="justify-content-end text-black badge bg-warning"> Belum di Proses = <?= count($belumDiProsesCountKKPemisahan); ?></p>
+            <p class="justify-content-end text-black badge bg-success"> Selesai di Proses = <?= count($totalSelesaiCountKKPemisahan); ?></p>
 
           </a>
         </div>
@@ -118,8 +118,8 @@
 
             ?>
 
-            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountKKPenambahan); ?></p>
-            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountKKPenambahan); ?></p>
+            <p class="justify-content-end text-black badge bg-warning"> Belum di Proses = <?= count($belumDiProsesCountKKPenambahan); ?></p>
+            <p class="justify-content-end text-black badge bg-success"> Selesai di Proses = <?= count($totalSelesaiCountKKPenambahan); ?></p>
 
           </a>
         </div>
@@ -153,8 +153,8 @@
 
             ?>
 
-            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountKKPengurangan); ?></p>
-            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountKKPengurangan); ?></p>
+            <p class="justify-content-end text-black badge bg-warning"> Belum di Proses = <?= count($belumDiProsesCountKKPengurangan); ?></p>
+            <p class="justify-content-end text-black badge bg-success"> Selesai di Proses = <?= count($totalSelesaiCountKKPengurangan); ?></p>
 
           </a>
         </div>
@@ -188,8 +188,8 @@
 
             ?>
 
-            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountKKPerubahan); ?></p>
-            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountKKPerubahan); ?></p>
+            <p class="justify-content-end text-black badge bg-warning"> Belum di Proses = <?= count($belumDiProsesCountKKPerubahan); ?></p>
+            <p class="justify-content-end text-black badge bg-success"> Selesai di Proses = <?= count($totalSelesaiCountKKPerubahan); ?></p>
 
           </a>
         </div>
@@ -224,8 +224,8 @@
 
             ?>
 
-            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountKKPerceraian); ?></p>
-            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountKKPerceraian); ?></p>
+            <p class="justify-content-end text-black badge bg-warning"> Belum di Proses = <?= count($belumDiProsesCountKKPerceraian); ?></p>
+            <p class="justify-content-end text-black badge bg-success"> Selesai di Proses = <?= count($totalSelesaiCountKKPerceraian); ?></p>
 
           </a>
         </div>
@@ -258,8 +258,8 @@
 
             ?>
 
-            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountKIA); ?></p>
-            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountKIA); ?></p>
+            <p class="justify-content-end text-black badge bg-warning"> Belum di Proses = <?= count($belumDiProsesCountKIA); ?></p>
+            <p class="justify-content-end text-black badge bg-success"> Selesai di Proses = <?= count($totalSelesaiCountKIA); ?></p>
 
           </a>
         </div>
@@ -295,8 +295,8 @@
 
             ?>
 
-            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountSuratPerpindahan); ?></p>
-            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountSuratPerpindahan); ?></p>
+            <p class="justify-content-end text-black badge bg-warning"> Belum di Proses = <?= count($belumDiProsesCountSuratPerpindahan); ?></p>
+            <p class="justify-content-end text-black badge bg-success"> Selesai di Proses = <?= count($totalSelesaiCountSuratPerpindahan); ?></p>
 
         </div>
 
@@ -329,8 +329,8 @@
 
             ?>
 
-            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountSuratPerpindahanLuar); ?></p>
-            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountSuratPerpindahanLuar); ?></p>
+            <p class="justify-content-end text-black badge bg-warning"> Belum di Proses = <?= count($belumDiProsesCountSuratPerpindahanLuar); ?></p>
+            <p class="justify-content-end text-black badge bg-success"> Selesai di Proses = <?= count($totalSelesaiCountSuratPerpindahanLuar); ?></p>
 
           </a>
         </div>
@@ -364,8 +364,8 @@
 
             ?>
 
-            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountAktaKelahiran); ?></p>
-            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountAktaKelahiran); ?></p>
+            <p class="justify-content-end text-black badge bg-warning"> Belum di Proses = <?= count($belumDiProsesCountAktaKelahiran); ?></p>
+            <p class="justify-content-end text-black badge bg-success"> Selesai di Proses = <?= count($totalSelesaiCountAktaKelahiran); ?></p>
 
           </a>
         </div>
@@ -399,8 +399,8 @@
 
             ?>
 
-            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountAktaKematian); ?></p>
-            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountAktaKematian); ?></p>
+            <p class="justify-content-end text-black badge bg-warning"> Belum di Proses = <?= count($belumDiProsesCountAktaKematian); ?></p>
+            <p class="justify-content-end text-black badge bg-success"> Selesai di Proses = <?= count($totalSelesaiCountAktaKematian); ?></p>
 
           </a>
         </div>
@@ -434,8 +434,8 @@
 
             ?>
 
-            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountKeabsahanAkla); ?></p>
-            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountKeabsahanAkla); ?></p>
+            <p class="justify-content-end text-black badge bg-warning"> Belum di Proses = <?= count($belumDiProsesCountKeabsahanAkla); ?></p>
+            <p class="justify-content-end text-black badge bg-success"> Selesai di Proses = <?= count($totalSelesaiCountKeabsahanAkla); ?></p>
 
           </a>
         </div>
@@ -469,8 +469,8 @@
 
             ?>
 
-            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountPelayananData); ?></p>
-            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountPelayananData); ?></p>
+            <p class="justify-content-end text-black badge bg-warning"> Belum di Proses = <?= count($belumDiProsesCountPelayananData); ?></p>
+            <p class="justify-content-end text-black badge bg-success"> Selesai di Proses = <?= count($totalSelesaiCountPelayananData); ?></p>
 
           </a>
         </div>
@@ -504,8 +504,8 @@
 
             ?>
 
-            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountPerbaikanData); ?></p>
-            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountPerbaikanData); ?></p>
+            <p class="justify-content-end text-black badge bg-warning"> Belum di Proses = <?= count($belumDiProsesCountPerbaikanData); ?></p>
+            <p class="justify-content-end text-black badge bg-success"> Selesai di Proses = <?= count($totalSelesaiCountPerbaikanData); ?></p>
 
           </a>
         </div>
@@ -539,8 +539,8 @@
 
             ?>
 
-            <p class="justify-content-end text-black"> Belum di Proses = <?= count($belumDiProsesCountPengaduanUpdate); ?></p>
-            <p class="justify-content-end text-black"> Selesai di Proses = <?= count($totalSelesaiCountPengaduanUpdate); ?></p>
+            <p class="justify-content-end text-black badge bg-warning"> Belum di Proses = <?= count($belumDiProsesCountPengaduanUpdate); ?></p>
+            <p class="justify-content-end text-black badge bg-success"> Selesai di Proses = <?= count($totalSelesaiCountPengaduanUpdate); ?></p>
 
           </a>
         </div>
