@@ -112,13 +112,14 @@ class Searching extends BaseController
     // $pendaftarankkModel = new Pendaftaran_kk_Model();
     // $pendaftaranKK = $pendaftarankkModel->searchKK($nik, $keyword);
     // return view('pencarian_views/hasilKK', ['pendaftaran_kk' => $pendaftaranKK]);
+
     $keyword = $this->request->getVar('keyword');
     $pendaftaran_kk = $this->kkModel->search($keyword)->get()->getResultArray();
 
     if (empty($pendaftaran_kk)) {
       return redirect()->back()->with('error', 'No results found');
     }
-    
+
     return view('pencarian_views/hasilKK', ['pendaftaran_kk' => $pendaftaran_kk]);
   }
 
