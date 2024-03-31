@@ -29,6 +29,20 @@ class Pendaftaran_kk_Model extends Model
     return $this->where('NIK', $nik)->first();
   }
 
+  public function searchKK($nik, $keyword)
+  {
+    // Use the query builder to search for the pendaftaran kartu keluarga with the given NIK and keyword
+    $query = $this->db->table('pendaftaran_kk')
+      ->like('nik', $nik)
+      ->like('namapemohon', $keyword);
+
+    // Execute the query and return the result
+    $result = $query->get();
+
+    return $result->getRow();
+  }
+
+
   public function updateStatus($nama, $status)
   {
     return $this->db->table('pendaftaran_kk')

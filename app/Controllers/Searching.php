@@ -91,23 +91,35 @@ class Searching extends BaseController
     return view('pencarian_views/cekKK', $data);
   }
 
-  public function cariKK()
+  public function cariKK($nik = null)
   {
-    $nik = $this->request->getPost('keyword');
-    $pendaftaran_kk = new Pendaftaran_kk_Model();
-    $data = $pendaftaran_kk->getDataByNIK($nik);
+    // $nik = $this->request->getPost('keyword');
+    // $pendaftaran_kk = new Pendaftaran_kk_Model();
+    // $data = $pendaftaran_kk->getDataByNIK($nik);
 
-    $data = [
-      'title' => 'Hasil Pendaftaran KK || Disdukcapil Majalengka',
-      'pendaftaran_kk' => $this->kkModel
-    ];
-    return view('pencarian_views/hasilKK', $data);
+    // $data = [
+    //   'title' => 'Hasil Pendaftaran KK || Disdukcapil Majalengka',
+    //   'pendaftaran_kk' => $this->kkModel
+    // ];
+    // return view('pencarian_views/hasilKK', $data);
 
-    if ($nik) {
-      return view('pencarian_views/hasilKK', ['nik' => $nik, $data]);
-    } else {
-      return "Data tidak ditemukan"; // Atau Anda bisa menampilkan pesan error yang sesuai
+    // if ($nik) {
+    //   return view('pencarian_views/hasilKK', ['nik' => $nik, $data]);
+    // } else {
+    //   return "Data tidak ditemukan";
+    // }
+    // $keyword = $this->request->getPost('keyword');
+    // $pendaftarankkModel = new Pendaftaran_kk_Model();
+    // $pendaftaranKK = $pendaftarankkModel->searchKK($nik, $keyword);
+    // return view('pencarian_views/hasilKK', ['pendaftaran_kk' => $pendaftaranKK]);
+    $keyword = $this->request->getVar('keyword');
+    $pendaftaran_kk = $this->kkModel->search($keyword)->get()->getResultArray();
+
+    if (empty($pendaftaran_kk)) {
+      return redirect()->back()->with('error', 'No results found');
     }
+    
+    return view('pencarian_views/hasilKK', ['pendaftaran_kk' => $pendaftaran_kk]);
   }
 
 
