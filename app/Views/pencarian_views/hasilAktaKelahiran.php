@@ -5,11 +5,11 @@
 <div class="container text-black">
   <div class="row">
 
-    <h3 class="text-center fw-semibold">Cek Hasil KK</h3>
+    <h3 class="text-center fw-semibold">Cek Hasil Akta Kelahiran</h3>
 
     <table class="table text-center table-fixed table-responsive-sm" style="margin-top: 5%;">
 
-      <?php foreach ($pendaftaran_kk as $kk) : ?>
+      <?php foreach ($pendaftaran_aktakelahiran as $aktakelahiran) : ?>
 
         <thead class="">
 
@@ -18,34 +18,34 @@
         <tbody class="">
           <tr>
             <th>NIK :</th>
-            <td><?= $kk['nik'] ?></td>
+            <td><?= $aktakelahiran['nik'] ?></td>
           </tr>
 
           <tr>
             <th>Nama Pemohon :</th>
-            <td><?= $kk['namapemohon'] ?></td>
+            <td><?= $aktakelahiran['namapemohon'] ?></td>
           </tr>
 
           <tr>
             <th>Email Pemohon :</th>
-            <td><?= $kk['emailpemohon'] ?></td>
+            <td><?= $aktakelahiran['emailpemohon'] ?></td>
           </tr>
 
           <tr>
             <th>Nomor Pemohon :</th>
-            <td><?= $kk['nomorpemohon'] ?></td>
+            <td><?= $aktakelahiran['nomorpemohon'] ?></td>
           </tr>
 
           <tr>
             <th>Alamat Pemohon :</th>
-            <td><?= $kk['alamatpemohon'] ?></td>
+            <td><?= $aktakelahiran['alamatpemohon'] ?></td>
           </tr>
 
           <tr>
             <th>Status :</th>
             <td>
               <?php
-              switch ($kk['status']) {
+              switch ($aktakelahiran['status']) {
                 case 'Selesai Verifikasi':
                   echo '<span class="badge bg-success"> Selesai Verifikasi </span>';
                   break;
@@ -62,7 +62,7 @@
 
           <tr>
             <th>Tanggal di Proses :</th>
-            <td><?= $kk['updated_at'] ?></td>
+            <td><?= $aktakelahiran['updated_at'] ?></td>
           </tr>
 
         </tbody>

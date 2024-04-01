@@ -13,22 +13,18 @@ class Pendaftaran_kia_Model extends Model
 
   public function getDataKIA($nama = false)
   {
-    // Jika nama pemohon == false maka yang akan ditampilkan semua
     if ($nama == false) {
       return $this->findAll();
     }
 
-    // Namun jika nama pemohon == true makan akan ditampilkan nama tersebut saja
     return $this->where(['namapemohon' => $nama])->first();
   }
 
-  // Digunakan untuk mencari item
   public function search($keyword)
   {
     return $this->table('pendaftaran_kia')->like('namapemohon', $keyword)->orLike('nik', $keyword);
   }
 
-  // Digunakan untuk mengubah Status Pendaftaran
   public function updateStatus($nama, $status)
   {
     return $this->db->table('pendaftaran_kia')

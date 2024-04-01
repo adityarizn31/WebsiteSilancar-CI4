@@ -24,11 +24,6 @@ class Pendaftaran_kkpenambahan_Model extends Model
     return $this->table('pendaftaran_kk_penambahan')->like('namapemohon', $keyword)->orLike('nik', $keyword);
   }
 
-  public function getDataByNIK($nik)
-  {
-    return $this->where('NIK', $nik)->first();
-  }
-
   public function updateStatus($nama, $status)
   {
     return $this->db->table('pendaftaran_kk_penambahan')

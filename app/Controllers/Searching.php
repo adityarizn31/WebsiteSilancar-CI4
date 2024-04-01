@@ -3,8 +3,12 @@
 namespace App\Controllers;
 
 use App\Models\Pendaftaran_kk_Model;
-use App\Models\Pendaftaran_kia_Model;
+use App\Models\Pendaftaran_kkpemisahan_Model;
+use App\Models\Pendaftaran_kkpenambahan_Model;
+use App\Models\Pendaftaran_kkpengurangan_Model;
 use App\Models\Pendaftaran_kkperceraian_Model;
+use App\Models\Pendaftaran_kkperubahan_Model;
+use App\Models\Pendaftaran_kia_Model;
 use App\Models\Pendaftaran_suratperpindahan_Model;
 use App\Models\Pendaftaran_suratperpindahanluar_Model;
 
@@ -20,8 +24,13 @@ use App\Models\Pengaduan_update_Model;
 class Searching extends BaseController
 {
   protected $kkModel;
-  protected $kiaModel;
+  protected $kkpemisahanModel;
+  protected $kkpenambahanModel;
+  protected $kkpenguranganModel;
   protected $kkperceraianModel;
+  protected $kkperubahanModel;
+  protected $ktpModel;
+  protected $kiaModel;
   protected $suratperpindahanModel;
   protected $suratperpindahanluarModel;
 
@@ -37,8 +46,12 @@ class Searching extends BaseController
   public function __construct()
   {
     $this->kkModel = new Pendaftaran_kk_Model();
-    $this->kiaModel = new Pendaftaran_kia_Model();
+    $this->kkpemisahanModel = new Pendaftaran_kkpemisahan_Model();
+    $this->kkpenambahanModel = new Pendaftaran_kkpenambahan_Model();
+    $this->kkpenguranganModel = new Pendaftaran_kkpengurangan_Model();
     $this->kkperceraianModel = new Pendaftaran_kkperceraian_Model();
+    $this->kkperubahanModel = new Pendaftaran_kkperubahan_Model();
+    $this->kiaModel = new Pendaftaran_kia_Model();
     $this->suratperpindahanModel = new Pendaftaran_suratperpindahan_Model();
     $this->suratperpindahanluarModel = new Pendaftaran_suratperpindahanluar_Model();
 
@@ -66,7 +79,6 @@ class Searching extends BaseController
 
   public function index()
   {
-
     $data = [
       'title' => 'Pencarian Data || Disdukcapil Majalengka'
     ];
@@ -102,7 +114,7 @@ class Searching extends BaseController
     $pendaftaran_kk = $this->kkModel->search($keyword)->get()->getResultArray();
 
     if (empty($pendaftaran_kk)) {
-      return redirect()->back()->with('error', 'No results found');
+      return redirect()->back()->with('error', 'No results found for the provided NIK');
     }
 
     return view('pencarian_views/hasilKK', ['pendaftaran_kk' => $pendaftaran_kk], $data);
@@ -116,27 +128,137 @@ class Searching extends BaseController
 
 
 
-
-  public function cekKIA()
+  public function cekKKPemisahan()
   {
-    $keyword = $this->request->getVar('keyword');
-    if ($keyword) {
-      $orangKIA = $this->kiaModel->search($keyword);
-    } else {
-      $orangKIA = $this->kiaModel;
-    }
-
     helper(['form']);
     $data = [
-      'title' => 'Pengecekan Status KIA || Disdukcapil Majalengka',
-      'pendaftaran_kia' => $orangKIA
+      'title' => 'Pengecekan Status KK Pemisahan || Disdukcapil Majalengka',
+      'pendaftaran_kk_pemisahan' => $this->kkpemisahanModel
     ];
-    return view('pencarian_views/cekKIA', $data);
+    return view('pencarian_views/cekKKPemisahan', $data);
+  }
+
+  public function cariKKPemisahan()
+  {
+    $data = [
+      'title' => 'Hasil Status KK Pemisahan || Disdukcapil Majalengka',
+      'pendaftaran_kk_pemisahan' => $this->kkpemisahanModel
+    ];
+
+    $keyword = $this->request->getVar('keyword');
+    $pendaftaran_kk_pemisahan = $this->kkpemisahanModel->search($keyword)->get()->getResultArray();
+
+    if (empty($pendaftaran_kk_pemisahan)) {
+      return redirect()->back()->with('error', 'No results found for the provided NIK');
+    }
+
+    return view('pencarian_views/hasilKKPemisahan', ['pendaftaran_kk_pemisahan' => $pendaftaran_kk_pemisahan], $data);
   }
 
 
 
 
+
+
+
+
+
+  public function cekKKPenambahan()
+  {
+    helper(['form']);
+    $data = [
+      'title' => 'Pengecekan Status KK Penambahan || Disdukcapil Majalengka',
+      'pendaftaran_kk_penambahan' => $this->kkpenambahanModel
+    ];
+    return view('pencarian_views/cekKKPenambahan', $data);
+  }
+
+  public function cariKKPenambahan()
+  {
+    $data = [
+      'title' => 'Hasil Status KK Penambahan || Disdukcapil Majalengka',
+      'pendaftaran_kk_penambahan' => $this->kkpenambahanModel
+    ];
+
+    $keyword = $this->request->getVar('keyword');
+    $pendaftaran_kk_penambahan = $this->kkpenambahanModel->search($keyword)->get()->getResultArray();
+
+    if (empty($pendaftaran_kk_penambahan)) {
+      return redirect()->back()->with('error', 'No results found for the provided NIK');
+    }
+
+    return view('pencarian_views/hasilKKPenambahan', ['pendaftaran_kk_penambahan' => $pendaftaran_kk_penambahan], $data);
+  }
+
+
+
+
+
+
+
+
+
+  public function cekKKPengurangan()
+  {
+    helper(['form']);
+    $data = [
+      'title' => 'Pengecekan Status KK Pengurangan || Disdukcapil Majalengka',
+      'pendaftaran_kk_pengurangan' => $this->kkpenguranganModel
+    ];
+    return view('pencarian_views/cekKKPengurangan', $data);
+  }
+
+  public function cariKKPengurangan()
+  {
+    $data = [
+      'title' => 'Hasil Status KK Pengurangan || Disdukcapil Majalengka',
+      'pendaftaran_kk_pengurangan' => $this->kkpenguranganModel
+    ];
+
+    $keyword = $this->request->getVar('keyword');
+    $pendaftaran_kk_pengurangan = $this->kkpenguranganModel->search($keyword)->get()->getResultArray();
+
+    if (empty($pendaftaran_kk_pengurangan)) {
+      return redirect()->back()->with('error', 'No results found for the provided NIK');
+    }
+
+    return view('pencarian_views/hasilKKPengurangan', ['pendaftaran_kk_pengurangan' => $pendaftaran_kk_pengurangan], $data);
+  }
+
+
+
+
+
+
+
+
+
+  public function cekKKPerubahan()
+  {
+    helper(['form']);
+    $data = [
+      'title' => 'Pengecekan Status KK Perubahan || Disdukcapil Majalengka',
+      'pendaftaran_kk_perubahan' => $this->kkperubahanModel
+    ];
+    return view('pencarian_views/cekKKPerubahan', $data);
+  }
+
+  public function cariKKPerubahan()
+  {
+    $data = [
+      'title' => 'Hasil Status KK Perubahan || Disdukcapil Majalengka',
+      'pendaftaran_kk_perubahan' => $this->kkperubahanModel
+    ];
+
+    $keyword = $this->request->getVar('keyword');
+    $pendaftaran_kk_perubahan = $this->kkperubahanModel->search($keyword)->get()->getResultArray();
+
+    if (empty($pendaftaran_kk_perubahan)) {
+      return redirect()->back()->with('error', 'No results found for the provided NIK');
+    }
+
+    return view('pencarian_views/hasilKKPerubahan', ['pendaftaran_kk_perubahan' => $pendaftaran_kk_perubahan], $data);
+  }
 
 
 
@@ -144,21 +266,62 @@ class Searching extends BaseController
 
   public function cekKKPerceraian()
   {
-
-    $keyword = $this->request->getVar('keyword');
-    if ($keyword) {
-      $orangKKPerceraian = $this->kkperceraianModel->search($keyword);
-    } else {
-      $orangKKPerceraian = $this->kkperceraianModel;
-    }
-
     helper(['form']);
     $data = [
       'title' => 'Pengecekan Status KK Perceraian || Disdukcapil Majalengka',
-      'pendaftaran_kk_perceraian' => $orangKKPerceraian
+      'pendaftaran_kk_perceraian' => $this->kkperceraianModel
     ];
     return view('pencarian_views/cekKKPerceraian', $data);
   }
+
+  public function cariKKPerceraian()
+  {
+    $data = [
+      'title' => 'Hasil Status KK Perceraian || Disdukcapil Majalengka',
+      'pendaftaran_kk_perceraian' => $this->kkperceraianModel
+    ];
+
+    $keyword = $this->request->getVar('keyword');
+    $pendaftaran_kia = $this->kiaModel->search($keyword)->get()->getResultArray();
+
+    return view('pencarian_views/hasilKKPerceraian', ['pendaftaran_kia' => $pendaftaran_kia], $data);
+  }
+
+
+
+
+
+
+
+
+
+  public function cekKIA()
+  {
+    helper(['form']);
+    $data = [
+      'title' => 'Pengecekan Status KIA || Disdukcapil Majalengka',
+      'pendaftaran_kia' => $this->kiaModel
+    ];
+    return view('pencarian_views/cekKIA', $data);
+  }
+
+  public function cariKIA()
+  {
+    $data = [
+      'title' => 'Hasil Status KIA || Disdukcapil Majalengka',
+      'pendaftaran_kia' => $this->kiaModel
+    ];
+
+    $keyword = $this->request->getVar('keyword');
+    $pendaftaran_kia = $this->kiaModel->search($keyword)->get()->getResultArray();
+
+    if (empty($pendaftaran_kia)) {
+      return redirect()->back()->with('error', 'No results found for the provided NIK');
+    }
+
+    return view('pencarian_views/hasilKIA', ['pendaftaran_kia' => $pendaftaran_kia], $data);
+  }
+
 
 
 
@@ -170,19 +333,29 @@ class Searching extends BaseController
 
   public function cekSuratPerpindahan()
   {
-    $keyword = $this->request->getVar('keyword');
-    if ($keyword) {
-      $orangSuratPerpindahan = $this->suratperpindahanModel->search($keyword);
-    } else {
-      $orangSuratPerpindahan = $this->suratperpindahanModel;
-    }
-
     helper(['form']);
     $data = [
       'title' => 'Pengecekan Status Surat Perpindahan || Disdukcapil Majalengka',
-      'pendaftaran_suratperpindahan' => $orangSuratPerpindahan
+      'pendaftaran_suratperpindahan' => $this->suratperpindahanModel
     ];
     return view('pencarian_views/cekSuratPerpindahan', $data);
+  }
+
+  public function cariSuratPerpindahan()
+  {
+    $data = [
+      'title' => 'Hasil Status Surat Perpindahan || Disdukcapil Majalengka',
+      'pendaftaran_suratperpindahan' => $this->suratperpindahanModel
+    ];
+
+    $keyword = $this->request->getVar('keyword');
+    $pendaftaran_suratperpindahan = $this->suratperpindahanModel->search($keyword)->get()->getResultArray();
+
+    if (empty($pendaftaran_suratperpindahan)) {
+      return redirect()->back()->with('error', 'No results found for the provided NIK');
+    }
+
+    return view('pencarian_views/hasilSuratPerpindahan', ['pendaftaran_suratperpindahan' => $pendaftaran_suratperpindahan], $data);
   }
 
 
@@ -195,19 +368,29 @@ class Searching extends BaseController
 
   public function cekSuratPerpindahanLuar()
   {
-    $keyword = $this->request->getVar('keyword');
-    if ($keyword) {
-      $orangSuratPerpindahanLuar = $this->suratperpindahanluarModel->search('keyword');
-    } else {
-      $orangSuratPerpindahanLuar = $this->suratperpindahanluarModel;
-    }
-
     helper(['form']);
     $data = [
       'title' => 'Pengecekan Status KK || Disdukcapil Majalengka',
-      'pendaftaran_suratperpindahanluar' => $orangSuratPerpindahanLuar
+      'pendaftaran_suratperpindahanluar' => $this->suratperpindahanluarModel
     ];
     return view('pencarian_views/cekSuratPerpindahanLuar', $data);
+  }
+
+  public function cariSuratPerpindahanLuar()
+  {
+    $data = [
+      'title' => 'Hasil Status Surat Perpindahan Luar || Disdukcapil Majalengka',
+      'pendaftaran_suratperpindahanluar' => $this->suratperpindahanluarModel
+    ];
+
+    $keyword = $this->request->getVar('keyword');
+    $pendaftaran_suratperpindahanluar = $this->suratperpindahanluarModel->search($keyword)->get()->getResultArray();
+
+    if (empty($pendaftaran_suratperpindahanluar)) {
+      return redirect()->back()->with('error', 'No results found for the provided NIK');
+    }
+
+    return view('pencarian_views/hasilSuratPerpindahanLuar', ['pendaftaran_kk' => $pendaftaran_suratperpindahanluar], $data);
   }
 
 
@@ -220,19 +403,29 @@ class Searching extends BaseController
 
   public function cekAktaKelahiran()
   {
-    $keyword = $this->request->getVar('keyword');
-    if ($keyword) {
-      $orangAktaKelahiran = $this->aktakelahiranModel->search($keyword);
-    } else {
-      $orangAktaKelahiran = $this->aktakelahiranModel;
-    }
-
     helper(['form']);
     $data = [
       'title' => 'Pengecekan Status Akta Kelahiran || Disdukcapil Majalengka',
-      'pendaftaran_aktakelahiran' => $orangAktaKelahiran
+      'pendaftaran_aktakelahiran' => $this->aktakelahiranModel
     ];
     return view('pencarian_views/cekAktaKelahiran', $data);
+  }
+
+  public function cariAktaKelahiran()
+  {
+    $data = [
+      'title' => 'Hasil Status Akta Kelahiran || Disdukcapil Majalengka',
+      'pendaftaran_aktakelahiran' => $this->aktakelahiranModel
+    ];
+
+    $keyword = $this->request->getVar('keyword');
+    $pendaftaran_aktakelahiran = $this->aktakelahiranModel->search($keyword)->get()->getResultArray();
+
+    if (empty($pendaftaran_aktakelahiran)) {
+      return redirect()->back()->with('error', 'No results found for the provided NIK');
+    }
+
+    return view('pencarian_views/hasilAktaKelahiran', ['pendaftaran_aktakelahiran' => $pendaftaran_aktakelahiran], $data);
   }
 
 
@@ -245,19 +438,29 @@ class Searching extends BaseController
 
   public function cekAktaKematian()
   {
-    $keyword = $this->request->getVar('keyword');
-    if ($keyword) {
-      $orangAktaKematian = $this->aktakematianModel->search($keyword);
-    } else {
-      $orangAktaKematian = $this->aktakematianModel;
-    }
-
     helper(['form']);
     $data = [
       'title' => 'Pengecekan Status Akta Kematian || Disdukcapil Majalengka',
-      'pendaftaran_aktakematian' => $orangAktaKematian
+      'pendaftaran_aktakematian' => $this->aktakematianModel
     ];
     return view('pencarian_views/cekAktaKematian', $data);
+  }
+
+  public function cariAktaKematian()
+  {
+    $data = [
+      'title' => 'Hasil Status Akta Kematian || Disdukcapil Majalengka',
+      'pendaftaran_aktakematian' => $this->aktakematianModel
+    ];
+
+    $keyword = $this->request->getVar('keyword');
+    $pendaftaran_aktakematian = $this->aktakematianModel->search($keyword)->get()->getResultArray();
+
+    if (empty($pendaftaran_aktakematian)) {
+      return redirect()->back()->with('error', 'No results found for the provided NIK');
+    }
+
+    return view('pencarian_views/hasilAktaKematian', ['pendaftaran_aktakematian' => $pendaftaran_aktakematian], $data);
   }
 
 
@@ -270,19 +473,29 @@ class Searching extends BaseController
 
   public function cekKeabsahanAkla()
   {
-    $keyword = $this->request->getVar('keyword');
-    if ($keyword) {
-      $orangKeabsahanAkla = $this->keabsahanaklaModel->search($keyword);
-    } else {
-      $orangKeabsahanAkla = $this->keabsahanaklaModel;
-    }
-
     helper(['form']);
     $data = [
       'title' => 'Pengecekan Status Keabsahan Akla || Disdukcapil Majalengka',
-      'pendaftaran_keabsahanakla' => $orangKeabsahanAkla
+      'pendaftaran_keabsahanakla' => $this->keabsahanaklaModel
     ];
     return view('pencarian_views/cekKeabsahanAkla', $data);
+  }
+
+  public function cariKeabsahanAkla()
+  {
+    $data = [
+      'title' => 'Hasil Status Keabsahan Akta Kelahiran || Disdukcapil Majalengka',
+      'pendaftaran_keabsahanakla' => $this->keabsahanaklaModel
+    ];
+
+    $keyword = $this->request->getVar('keyword');
+    $pendaftaran_keabsahanakla = $this->keabsahanaklaModel->search($keyword)->get()->getResultArray();
+
+    if (empty($pendaftaran_keabsahanakla)) {
+      return redirect()->back()->with('error', 'No results found for the provided NIK');
+    }
+
+    return view('pencarian_views/hasilKeabsahanAkla', ['pendaftaran_keabsahanakla' => $pendaftaran_keabsahanakla], $data);
   }
 
 
@@ -295,19 +508,29 @@ class Searching extends BaseController
 
   public function cekPelayananData()
   {
-    $keyword = $this->request->getVar('keyword');
-    if ($keyword) {
-      $orangPelayananData = $this->pelayanandataModel->search($keyword);
-    } else {
-      $orangPelayananData = $this->pelayanandataModel;
-    }
-
     helper(['form']);
     $data = [
       'title' => 'Pengecekan Status Pelayanan Data || Disdukcapil Majalengka',
-      'pendaftaran_pelayanandata' => $orangPelayananData
+      'pendaftaran_pelayanandata' => $this->pelayanandataModel
     ];
     return view('pencarian_views/cekPelayananData', $data);
+  }
+
+  public function cariPelayananData()
+  {
+    $data = [
+      'title' => 'Hasil Status Pelayanan Data || Disdukcapil Majalengka',
+      'pendaftaran_pelayanandata' => $this->pelayanandataModel
+    ];
+
+    $keyword = $this->request->getVar('keyword');
+    $pendaftaran_pelayanandata = $this->pelayanandataModel->search($keyword)->get()->getResultArray();
+
+    if (empty($pendaftaran_pelayanandata)) {
+      return redirect()->back()->with('error', 'No results found for the provided NIK');
+    }
+
+    return view('pencarian_views/hasilPelayananData', ['pendaftaran_pelayanandata' => $pendaftaran_pelayanandata], $data);
   }
 
 
@@ -320,19 +543,29 @@ class Searching extends BaseController
 
   public function cekPerbaikanData()
   {
-    $keyword = $this->request->getVar('keyword');
-    if ($keyword) {
-      $orangPerbaikanData = $this->perbaikandataModel->search($keyword);
-    } else {
-      $orangPerbaikanData = $this->perbaikandataModel;
-    }
-
     helper(['form']);
     $data = [
       'title' => 'Pengecekan Status PerbaikanData || Disdukcapil Majalengka',
-      'perbaikan_data' => $orangPerbaikanData
+      'perbaikan_data' => $this->perbaikandataModel
     ];
     return view('pencarian_views/cekPerbaikanData', $data);
+  }
+
+  public function cariPerbaikanData()
+  {
+    $data = [
+      'title' => 'Hasil Status Perbaikan Data || Disdukcapil Majalengka',
+      'perbaikan_data' => $this->perbaikandataModel
+    ];
+
+    $keyword = $this->request->getVar('keyword');
+    $perbaikan_data = $this->perbaikandataModel->search($keyword)->get()->getResultArray();
+
+    if (empty($perbaikan_data)) {
+      return redirect()->back()->with('error', 'No results found for the provided NIK');
+    }
+
+    return view('pencarian_views/hasilPerbaikanData', ['perbaikan_data' => $perbaikan_data], $data);
   }
 
 
@@ -345,18 +578,28 @@ class Searching extends BaseController
 
   public function cekPengaduanUpdate()
   {
-    $keyword = $this->request->getVar('keyword');
-    if ($keyword) {
-      $orangPengaduanUpdate = $this->pengaduanupdateModel->search($keyword);
-    } else {
-      $orangPengaduanUpdate = $this->pengaduanupdateModel;
-    }
-
     helper(['form']);
     $data = [
       'title' => 'Pengecekan Status PengaduanUpdate || Disdukcapil Majalengka',
-      'pengaduan_update' => $orangPengaduanUpdate
+      'pengaduan_update' => $this->pengaduanupdateModel
     ];
     return view('pencarian_views/cekPengaduanUpdate', $data);
+  }
+
+  public function cariPengaduanUpdate()
+  {
+    $data = [
+      'title' => 'Hasil Status Pengaduan Update || Disdukcapil Majalengka',
+      'pengaduan_update' => $this->pengaduanupdateModel
+    ];
+
+    $keyword = $this->request->getVar('keyword');
+    $pengaduan_update = $this->pengaduanupdateModel->search($keyword)->get()->getResultArray();
+
+    if (empty($pengaduan_update)) {
+      return redirect()->back()->with('error', 'No results found for the provided NIK');
+    }
+
+    return view('pencarian_views/hasilKK', ['pengaduan_update' => $pengaduan_update], $data);
   }
 }

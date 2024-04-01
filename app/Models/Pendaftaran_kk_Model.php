@@ -24,23 +24,6 @@ class Pendaftaran_kk_Model extends Model
     return $this->table('pendaftaran_kk')->like('namapemohon', $keyword)->orLike('nik', $keyword);
   }
 
-  public function getDataByNIK($nik)
-  {
-    return $this->where('NIK', $nik)->first();
-  }
-
-  public function searchKK($nik, $keyword)
-  {
-    $query = $this->db->table('pendaftaran_kk')
-      ->like('nik', $nik)
-      ->like('namapemohon', $keyword);
-
-    // $result = $query->get();
-
-    // return $result->getRow();
-  }
-
-
   public function updateStatus($nama, $status)
   {
     return $this->db->table('pendaftaran_kk')

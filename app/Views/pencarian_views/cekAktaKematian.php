@@ -18,7 +18,7 @@
   <div class="row">
     <div class="col">
 
-      <form action="" method="post">
+      <form action="/Searching/cariAktaKematian" method="post">
 
         <?= csrf_field(); ?>
 

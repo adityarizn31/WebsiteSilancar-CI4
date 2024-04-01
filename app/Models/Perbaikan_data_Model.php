@@ -13,12 +13,10 @@ class Perbaikan_data_Model extends Model
 
   public function getPerbaikanData($nama = false)
   {
-    // Jika nama pemohon == false maka yang akan ditampilkan semua
     if ($nama == false) {
       return $this->findAll();
     }
 
-    // Namun jika nama pemohon == true makan akan ditampilkan nama tersebut saja
     return $this->where(['namapemohon' => $nama])->first();
   }
 
