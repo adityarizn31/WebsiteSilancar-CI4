@@ -98,7 +98,7 @@ $routes->get('admin/dataPelayananData', 'ExportExcel::exportPelayananData', ['fi
 $routes->get('admin/dataPerbaikanData', 'ExportExcel::exportPerbaikanData', ['filter' => 'role:admin']);
 $routes->get('admin/dataPengaduanUpdate', 'ExportExcel::exportPengaduanUpdate', ['filter' => 'role:admin']);
 
-// $routes->get('/Searching/modalKK/(:num)', 'Searching::modalKK/$1');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

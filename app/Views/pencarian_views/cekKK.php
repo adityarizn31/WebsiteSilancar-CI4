@@ -33,7 +33,7 @@
 
           <div class="form-floating mb-3">
             <input type="email" class="form-control" id="floatingInputDisabled" placeholder="Pendaftaran Kartu Keluarga" disabled>
-            <label for="floatingInputDisabled" class="fw-semibold text-black">Pendaftaran Kartu Keluarga</label>
+            <label for="floatingInputDisabled" class="fw-semibold text-black">Pendaftaran Kartu Keluarga Baru</label>
           </div>
 
           <div class="d-grid gap-2 col-6 mx-auto">

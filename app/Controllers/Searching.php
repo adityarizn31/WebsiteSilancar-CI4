@@ -106,37 +106,57 @@ class Searching extends BaseController
   public function cariKK()
   {
     $data = [
-      'title' => 'Hasil Status KK || Disdukcapil Majalengka',
-      'pendaftaran_kk' => $this->kkModel
+      'title' => 'Hasil Status KK || Disdukcapil Majalengka'
     ];
 
     $keyword = $this->request->getVar('keyword');
-    $pendaftaran_kk = $this->kkModel->search($keyword)->get()->getResultArray();
+    $pendaftaran_kk = $this->kkModel->search($keyword)->onlyDeleted()->get()->getResultArray();
 
-    if (empty($pendaftaran_kk)) {
-      return redirect()->back()->with('error', 'No results found for the provided NIK');
+    if ($pendaftaran_kk) {
+      $data['pendaftaran_kk'] = $pendaftaran_kk;
+      return view('pencarian_views/hasilKK', $data);
+    } else {
+      // throw new \CodeIgniter\Exceptions\PageNotFoundException('Data Kartu Keluarga tidak ditemukan.');
+      $data['error_message'] = 'Data Kartu Keluarga tidak ditemukan.';
+      return view('pencarian_views/cekError', $data);
     }
-
-    // return view('pencarian_views/hasilKK', ['pendaftaran_kk' => $pendaftaran_kk], $data);
-    return redirect()->to('/Searching/hasilKK');
   }
 
-  public function hasilKK()
-  {
-    $data = [
-      'title' => 'Hasil Status KK || Disdukcapil Majalengka',
-      'pendaftaran_kk' => $this->kkModel
-    ];
+  // public function cariKK()
+  // {
+  //   $data = [
+  //     'title' => 'Hasil Status KK || Disdukcapil Majalengka',
+  //     'pendaftaran_kk' => $this->kkModel
+  //   ];
 
-    $keyword = $this->request->getVar('keyword');
-    $pendaftaran_kk = $this->kkModel->search($keyword)->get()->getResultArray();
+  //   $keyword = $this->request->getVar('keyword');
+  //   $pendaftaran_kk = $this->kkModel->search($keyword)->get()->getResultArray();
 
-    if (empty($pendaftaran_kk)) {
-      return redirect()->back()->with('error', 'No results found for the provided NIK');
-    }
+  //   if (empty($pendaftaran_kk)) {
+  //     return redirect()->back()->with('error', 'No results found for the provided NIK');
+  //   }
 
-    return view('pencarian_views/hasilKK', ['pendaftaran_kk' => $pendaftaran_kk], $data);
-  }
+  //   return view('pencarian_views/hasilKK', ['pendaftaran_kk' => $pendaftaran_kk], $data);
+  // }
+
+  // return redirect()->to('/Searching/hasilKK');
+
+  // public function hasilKK()
+  // {
+  //   $data = [
+  //     'title' => 'Hasil Status KK || Disdukcapil Majalengka',
+  //     'pendaftaran_kk' => $this->kkModel
+  //   ];
+
+  //   $keyword = $this->request->getVar('keyword');
+  //   $pendaftaran_kk = $this->kkModel->search($keyword)->get()->getResultArray();
+
+  //   if (empty($pendaftaran_kk)) {
+  //     return redirect()->back()->with('error', 'No results found for the provided NIK');
+  //   }
+
+  //   return view('pencarian_views/hasilKK', ['pendaftaran_kk' => $pendaftaran_kk], $data);
+  // }
 
 
 
