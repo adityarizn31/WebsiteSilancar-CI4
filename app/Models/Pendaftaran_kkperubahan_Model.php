@@ -9,7 +9,7 @@ class Pendaftaran_kkperubahan_Model extends Model
   protected $table = 'pendaftaran_kk_perubahan';
   protected $useTimeStamps = true;
   protected $useSoftDeletes = true;
-  protected $allowedFields = ['nik', 'namapemohon', 'emailpemohon', 'nomorpemohon', 'alamatpemohon', 'kartukeluargalama', 'suratnikah', 'fileperubahan', 'status'];
+  protected $allowedFields = ['nik', 'namapemohon', 'emailpemohon', 'nomorpemohon', 'alamatpemohon', 'fotoktp', 'kartukeluargalama', 'suratnikah', 'fileperubahan', 'status'];
 
   public function getDataKKPerubahan($nama = false)
   {

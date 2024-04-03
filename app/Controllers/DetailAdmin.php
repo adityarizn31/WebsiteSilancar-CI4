@@ -209,15 +209,16 @@ class DetailAdmin extends BaseController
   {
     $this->kkModel->updateStatus($namaPemohonKK, 'Selesai Verifikasi');
     session()->setFlashdata('pesan', 'Pendaftaran Telah Selesai di Verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftarankk_admin/' . $namaPemohonKK);
+    return redirect()->to('/Admin/pendaftaran_kk_admin/' . $namaPemohonKK);
   }
 
   public function belumSelesaiKK($namaPemohonKK)
   {
     $this->kkModel->updateStatus($namaPemohonKK, 'Gagal Verifikasi');
     session()->setFlashdata('pesan', 'Pendaftaran Telah Gagal di Verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftarankk_admin/' . $namaPemohonKK);
+    return redirect()->to('/Admin/pendaftaran_kk_admin/' . $namaPemohonKK);
   }
+
 
 
 
@@ -245,14 +246,14 @@ class DetailAdmin extends BaseController
   {
     $this->kkpemisahanModel->updateStatus($namaPemohonKKPemisahan, 'Selesai Verifikasi');
     session()->setFlashdata('pesan', 'Pendaftaran Telah Selesai di Verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftarankkpemisahan_admin/' . $namaPemohonKKPemisahan);
+    return redirect()->to('/Admin/pendaftaran_kkpemisahan_admin/' . $namaPemohonKKPemisahan);
   }
 
   public function belumSelesaiKKPemisahan($namaPemohonKKPemisahan)
   {
     $this->kkpemisahanModel->updateStatus($namaPemohonKKPemisahan, 'Gagal Verifikasi');
     session()->setFlashdata('pesan', 'Pendaftaran Telah Gagal di Verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftarankkpemisahan_admin/' . $namaPemohonKKPemisahan);
+    return redirect()->to('/Admin/pendaftaran_kkpemisahan_admin/' . $namaPemohonKKPemisahan);
   }
 
 
@@ -282,14 +283,14 @@ class DetailAdmin extends BaseController
   {
     $this->kkpenambahanModel->updateStatus($namaPemohonKKPenambahan, 'Selesai Verifikasi');
     session()->setFlashdata('pesan', 'Pendaftaran Telah Selesai di Verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftarankkpenambahan_admin/' . $namaPemohonKKPenambahan);
+    return redirect()->to('/Admin/pendaftaran_kkpenambahan_admin/' . $namaPemohonKKPenambahan);
   }
 
   public function belumSelesaiKKPenambahan($namaPemohonKKPenambahan)
   {
     $this->kkpenambahanModel->updateStatus($namaPemohonKKPenambahan, 'Gagal Verifikasi');
     session()->setFlashdata('pesan', 'Pendaftaran Telah Gagal di Verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftarankkpenambahan_admin/' . $namaPemohonKKPenambahan);
+    return redirect()->to('/Admin/pendaftaran_kkpenambahan_admin/' . $namaPemohonKKPenambahan);
   }
 
 
@@ -320,14 +321,14 @@ class DetailAdmin extends BaseController
   {
     $this->kkpenguranganModel->updateStatus($namaPemohonKKPengurangan, 'Selesai Verifikasi');
     session()->setFlashdata('pesan', 'Pendaftaran Telah Selesai di Verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftarankkpengurangan_admin/' . $namaPemohonKKPengurangan);
+    return redirect()->to('/Admin/pendaftaran_kkpengurangan_admin/' . $namaPemohonKKPengurangan);
   }
 
   public function belumSelesaiKKPengurangan($namaPemohonKKPengurangan)
   {
     $this->kkpenguranganModel->updateStatus($namaPemohonKKPengurangan, 'Gagal Verifikasi');
     session()->setFlashdata('pesan', 'Pendaftaran Telah Gagal di Verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftarankkpengurangan_admin/' . $namaPemohonKKPengurangan);
+    return redirect()->to('/Admin/pendaftaran_kkpengurangan_admin/' . $namaPemohonKKPengurangan);
   }
 
 
@@ -359,14 +360,14 @@ class DetailAdmin extends BaseController
   {
     $this->kkperubahanModel->updateStatus($namaPemohonKKPerubahan, 'Selesai Verifikasi');
     session()->setFlashdata('pesan', 'Pendaftaran Telah Selesai di Verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftarankkperubahan_admin/' . $namaPemohonKKPerubahan);
+    return redirect()->to('/Admin/pendaftaran_kkperubahan_admin/' . $namaPemohonKKPerubahan);
   }
 
   public function belumSelesaiKKPerubahan($namaPemohonKKPerubahan)
   {
     $this->kkperubahanModel->updateStatus($namaPemohonKKPerubahan, 'Gagal Verifikasi');
     session()->setFlashdata('pesan', 'Pendaftaran Telah Gagal di Verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftarankkperubahan_admin/' . $namaPemohonKKPerubahan);
+    return redirect()->to('/Admin/pendaftaran_kkperubahan_admin/' . $namaPemohonKKPerubahan);
   }
 
 
@@ -396,21 +397,16 @@ class DetailAdmin extends BaseController
   {
     $this->kiaModel->updateStatus($namaPemohonKIA, 'Selesai Verifikasi');
     session()->setFlashdata('pesan', 'Pendaftaran Telah Selesai di Verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftarankia_admin/' . $namaPemohonKIA);
+    return redirect()->to('/Admin/pendaftaran_kia_admin/' . $namaPemohonKIA);
   }
 
   public function belumSelesaiKIA($namaPemohonKIA)
   {
     $this->kiaModel->updateStatus($namaPemohonKIA, 'Gagal Verifikasi');
     session()->setFlashdata('pesan', 'Pendaftaran Telah Gagal di Verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftarankia_admin/' . $namaPemohonKIA);
+    return redirect()->to('/Admin/pendaftaran_kia_admin/' . $namaPemohonKIA);
   }
 
-  public function trashSelesaiKIA($id = null)
-  {
-    $this->kiaModel->delete($id);
-    return view('admin/pendaftaran_kia_admin');
-  }
 
 
 
@@ -440,14 +436,14 @@ class DetailAdmin extends BaseController
   {
     $this->kkperceraianModel->updateStatus($namaPemohonKKPerceraian, 'Selesai Verifikasi');
     session()->setFlashdata('pesan', 'Pendaftaran Telah Selesai di Verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftarankkperceraian_admin/' . $namaPemohonKKPerceraian);
+    return redirect()->to('/Admin/pendaftaran_kkperceraian_admin/' . $namaPemohonKKPerceraian);
   }
 
   public function belumSelesaiKKPerceraian($namaPemohonKKPerceraian)
   {
     $this->kkperceraianModel->updateStatus($namaPemohonKKPerceraian, 'Gagal Verifikasi');
     session()->setFlashdata('pesan', 'Pendaftaran Telah Gagal di Verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftarankkperceraian_admin/' . $namaPemohonKKPerceraian);
+    return redirect()->to('/Admin/pendaftaran_kkperceraian_admin/' . $namaPemohonKKPerceraian);
   }
 
 
@@ -475,14 +471,14 @@ class DetailAdmin extends BaseController
   {
     $this->suratperpindahanModel->updateStatus($namaPemohonSuratPerpindahan, 'Selesai Verifikasi');
     session()->setFlashdata('pesan', 'Pendaftaran Telah Selesai di Verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftaransuratperpindahan_admin/' . $namaPemohonSuratPerpindahan);
+    return redirect()->to('/Admin/pendaftaran_suratperpindahan_admin/' . $namaPemohonSuratPerpindahan);
   }
 
   public function belumSelesaiSuratPerpindahan($namaPemohonSuratPerpindahan)
   {
     $this->suratperpindahanModel->updateStatus($namaPemohonSuratPerpindahan, 'Gagal Verifikasi');
     session()->setFlashdata('pesan', 'Pendaftaran Telah Gagal di Verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftaransuratperpindahan_admin/' . $namaPemohonSuratPerpindahan);
+    return redirect()->to('/Admin/pendaftaran_suratperpindahan_admin/' . $namaPemohonSuratPerpindahan);
   }
 
 
@@ -510,14 +506,14 @@ class DetailAdmin extends BaseController
   {
     $this->suratperpindahanluarModel->updateStatus($namaPemohonSuratPerpindahanLuar, 'Selesai Verifikasi');
     session()->setFlashdata('pesan', 'Pendaftaran Telah Selesai di Verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftaransuratperpindahanluar_admin/' . $namaPemohonSuratPerpindahanLuar);
+    return redirect()->to('/Admin/pendaftaran_suratperpindahanluar_admin/' . $namaPemohonSuratPerpindahanLuar);
   }
 
   public function belumSelesaiSuratPerpindahanLuar($namaPemohonSuratPerpindahanLuar)
   {
     $this->suratperpindahanluarModel->updateStatus($namaPemohonSuratPerpindahanLuar, 'Gagal Verifikasi');
     session()->setFlashdata('pesan', 'Pendaftaran Telah Gagal di Verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftaransuratperpindahanluar_admin/' . $namaPemohonSuratPerpindahanLuar);
+    return redirect()->to('/Admin/pendaftaran_suratperpindahanluar_admin/' . $namaPemohonSuratPerpindahanLuar);
   }
 
 
@@ -545,14 +541,14 @@ class DetailAdmin extends BaseController
   {
     $this->aktakelahiranModel->updateStatus($namaPemohonAktalahir, 'Selesai Verifikasi');
     session()->setFlashdata('pesan', 'Pendaftaran Telah Selesai di Verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftaranaktakelahiran_admin/' . $namaPemohonAktalahir);
+    return redirect()->to('/Admin/pendaftaran_aktakelahiran_admin/' . $namaPemohonAktalahir);
   }
 
   public function belumSelesaiAktaKelahiran($namaPemohonAktalahir)
   {
     $this->aktakelahiranModel->updateStatus($namaPemohonAktalahir, 'Gagal Verifikasi');
     session()->setFlashdata('pesan', 'Pendaftaran Telah Gagal di Verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftaranaktakelahiran_admin/' . $namaPemohonAktalahir);
+    return redirect()->to('/Admin/pendaftaran_aktakelahiran_admin/' . $namaPemohonAktalahir);
   }
 
 
@@ -580,14 +576,14 @@ class DetailAdmin extends BaseController
   {
     $this->aktakematianModel->updateStatus($namaPemohonAktakematian, 'Selesai Verifikasi');
     session()->setFlashdata('pesan', 'Pendaftaran Telah Selesai di Verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftaranaktakematian_admin/' . $namaPemohonAktakematian);
+    return redirect()->to('/Admin/pendaftaran_aktakematian_admin/' . $namaPemohonAktakematian);
   }
 
   public function belumSelesaiAktaKematian($namaPemohonAktakematian)
   {
     $this->aktakematianModel->updateStatus($namaPemohonAktakematian, 'Gagal Verifikasi');
     session()->setFlashdata('pesan', 'Pendaftaran Telah Gagal di Verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftaranaktakematian_admin/' . $namaPemohonAktakematian);
+    return redirect()->to('/Admin/pendaftaran_aktakematian_admin/' . $namaPemohonAktakematian);
   }
 
 
@@ -617,14 +613,14 @@ class DetailAdmin extends BaseController
   {
     $this->keabsahanaklaModel->updateStatus($namaPemohonKeabsahanAkla, 'Selesai Verifikasi');
     session()->setFlashdata('pesan', 'Pendaftaran Telah Selesai di Verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftarankeabsahanaklaa_admin/' . $namaPemohonKeabsahanAkla);
+    return redirect()->to('/Admin/pendaftaran_keabsahanakla_admin/' . $namaPemohonKeabsahanAkla);
   }
 
   public function belumSelesaiKeabsahanAkla($namaPemohonKeabsahanAkla)
   {
     $this->keabsahanaklaModel->updateStatus($namaPemohonKeabsahanAkla, 'Gagal Verifikasi');
     session()->setFlashdata('pesan', 'Pendaftaran telah gagal di verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftarankeabsahanaklaa_admin/' . $namaPemohonKeabsahanAkla);
+    return redirect()->to('/Admin/pendaftaran_keabsahanakla_admin/' . $namaPemohonKeabsahanAkla);
   }
 
 
@@ -653,14 +649,14 @@ class DetailAdmin extends BaseController
   {
     $this->pelayanandataModel->updateStatus($namaPemohonPelayananPemanfaatanData, 'Selesai Verifikasi');
     session()->setFlashdata('pesan', 'Pendaftaran Telah Selesai di Verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftaranpelayananpemanfaatandata_admin/' . $namaPemohonPelayananPemanfaatanData);
+    return redirect()->to('/Admin/pendaftaran_pelayanandata_admin/' . $namaPemohonPelayananPemanfaatanData);
   }
 
   public function belumSelesaiPelayananPemanfaatanData($namaPemohonPelayananPemanfaatanData)
   {
     $this->pelayanandataModel->updateStatus($namaPemohonPelayananPemanfaatanData, 'Gagal Verifikasi');
     session()->setFlashdata('pesan', 'Pendaftaran Telah Gagal di Verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftaranpelayananpemanfaatandata_admin/' . $namaPemohonPelayananPemanfaatanData);
+    return redirect()->to('/Admin/pendaftaran_pelayanandata_admin/' . $namaPemohonPelayananPemanfaatanData);
   }
 
 
@@ -689,14 +685,14 @@ class DetailAdmin extends BaseController
   {
     $this->perbaikandataModel->updateStatus($namaPemohonPerbaikan, 'Selesai Verifikasi');
     session()->setFlashdata('pesan', 'Pendaftaran Telah Selesai di Verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftaranperbaikandata_admin/' . $namaPemohonPerbaikan);
+    return redirect()->to('/Admin/perbaikan_data_admin/' . $namaPemohonPerbaikan);
   }
 
   public function belumSelesaiPerbaikanData($namaPemohonPerbaikan)
   {
     $this->perbaikandataModel->updateStatus($namaPemohonPerbaikan, 'Gagal Verifikasi');
     session()->setFlashdata('pesan', 'Pendaftaran Telah Gagal di Verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftaranperbaikandata_admin/' . $namaPemohonPerbaikan);
+    return redirect()->to('/Admin/perbaikan_data_admin/' . $namaPemohonPerbaikan);
   }
 
 
@@ -725,13 +721,13 @@ class DetailAdmin extends BaseController
   {
     $this->pengaduanupdateModel->updateStatus($namaPemohonPengaduan, 'Selesai Verifikasi');
     session()->setFlashdata('pesan', 'Pendaftaran Telah Selesai di Verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftaranpengaduanupdate_admin/' . $namaPemohonPengaduan);
+    return redirect()->to('/Admin/pendaftaran_pengaduanupdate_admin/' . $namaPemohonPengaduan);
   }
 
   public function belumSelesaiPengaduanUpdate($namaPemohonPengaduan)
   {
     $this->pengaduanupdateModel->updateStatus($namaPemohonPengaduan, 'Gagal Verifikasi');
     session()->setFlashdata('pesan', 'Pendaftaran telah gagal di verifikasi !!');
-    return redirect()->to('/DetailAdmin/detail_pendaftaranpengaduanupdate_admin/' . $namaPemohonPengaduan);
+    return redirect()->to('/Admin/pendaftaran_pengaduanupdate_admin/' . $namaPemohonPengaduan);
   }
 }

@@ -9,7 +9,7 @@ class Pendaftaran_kkperceraian_Model extends Model
   protected $table = 'pendaftaran_kk_perceraian';
   protected $useTimeStamps = true;
   protected $useSoftDeletes = true;
-  protected $allowedFields = ['nik', 'namapemohon', 'emailpemohon', 'nomorpemohon', 'alamatpemohon', 'kartukeluargalama', 'aktaperceraian', 'status'];
+  protected $allowedFields = ['nik', 'namapemohon', 'emailpemohon', 'nomorpemohon', 'fotoktp', 'alamatpemohon', 'kartukeluargalama', 'aktaperceraian', 'status'];
 
   public function getDataKKPerceraian($nama = false)
   {

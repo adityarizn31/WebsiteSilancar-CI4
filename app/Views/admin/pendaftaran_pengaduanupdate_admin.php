@@ -22,7 +22,6 @@
         <?php
         $pesan = session()->getFlashdata('pesan');
 
-        // Jika status = Selesai
         if ($pesan == 'Pendaftaran Telah Selesai di Verifikasi !!') {
           $class = 'alert-success';
         } else {
@@ -41,7 +40,6 @@
     <div class="card-body">
 
       <?php
-      // Custom sorting function based on the 'created_at' field
       usort($pengaduan_update, function ($a, $b) {
         return strtotime($b['created_at']) - strtotime($a['created_at']);
       });
@@ -53,7 +51,6 @@
             <th scope="col">No</th>
             <th scope="col">Nama Pemohon</th>
             <th scope="col">Email Pemohon</th>
-            <th scope="col">No Whatsapp</th>
             <th scope="col">Permohonan</th>
             <th scope="col">Waktu</th>
             <th scope="col">Status</th>
@@ -68,26 +65,43 @@
               <th scope="row"><?= $i++; ?></th>
               <td><?= $ngadu['namapemohon']; ?></td>
               <td><?= $ngadu['emailpemohon']; ?></td>
-              <td><?= $ngadu['nomorpemohon']; ?></td>
               <td>Pengaduan Update</td>
               <td><?= $ngadu['created_at']; ?></td>
               <td>
                 <?php
                 switch ($ngadu['status']) {
-                  case 'Selesai':
-                    echo '<span class="badge rounded-pill bg-success">Terverifikasi</span>';
+                  case 'Selesai Verifikasi':
+                    echo '<span class="badge bg-success"> Selesai Verifikasi </span>';
                     break;
                   case 'Belum di Proses':
-                    echo '<span class="badge rounded-pill bg-warning">Belum di Proses</span>';
+                    echo '<span class="badge bg-warning"> Belum di Proses </span>';
                     break;
-                  case 'Belum Selesai':
-                    echo '<span class="badge rounded-pill bg-danger">Ditolak</span>';
+                  case 'Gagal Verifikasi':
+                    echo '<span class="badge bg-danger"> Gagal Verifikasi </span>';
                     break;
                 }
                 ?>
               </td>
               <td>
-                <a href="/DetailAdmin/detail_pendaftaranpengaduanupdate_admin/<?= $ngadu['namapemohon']; ?>" class="btn btn-success btn-sm">Detail</a>
+
+                <form action="<?= base_url('/DetailAdmin/detail_pendaftaranpengaduanupdate_admin/' . $ngadu['namapemohon']); ?>" method="post" class="d-inline">
+                  <?= csrf_field(); ?>
+                  <button class="btn btn-primary btn-sm" data-placement="top" title="Tandai Selesai">
+                    <span class="bi bi-folder2-open me-2"></span>Detail
+                  </button>
+                </form>
+
+                <button class="btn btn-success btn-sm">
+                  <a href="https://api.whatsapp.com/send/?phone=<?= $ngadu['nomorpemohon'] ?>&text=Assalamu%27alaikum%2C+perkenalkan+nama+saya.....&type=phone_number&app_absent=0" class="bi bi-whatsapp text-white" data-placement="top" title="Kirim Whatsapp"> Kirim WA</a>
+                </button>
+
+                <form action="<?= base_url('DeleteAdmin/tandaiSelesaiPengaduanUpdate/' . $ngadu['id']); ?>" method="post" class="d-inline">
+                  <?= csrf_field(); ?>
+                  <button class="btn btn-danger btn-sm" data-placement="top" title="Tandai Selesai">
+                    <span class="bi bi-check-square-fill me-2"></span>Tandai Selesai
+                  </button>
+                </form>
+
               </td>
             </tr>
           <?php endforeach; ?>

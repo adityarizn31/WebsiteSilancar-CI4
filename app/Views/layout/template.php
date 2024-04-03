@@ -19,7 +19,7 @@
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
-
+  <title> <?= $title; ?> </title>
 
 </head>
 
@@ -89,7 +89,189 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script>
+    function previewImgPendaftaranKK() {
+      const pasKK = document.querySelector('#pasfoto');
+      const imgPreviewPasFoto = document.querySelector('.img-preview');
+
+      const filePasFoto = new FileReader();
+      filePasFoto.readAsDataURL(pasfoto.files[0]);
+
+      filePasFoto.onload = function(e) {
+        imgPreviewPasFoto.src = e.target.result;
+      }
+    }
+  </script>
+  <script>
+    function previewImgPendaftaranKKPemisah() {
+      const pasKKPemisahan = document.querySelector('#pasfoto');
+      const imgPreviewPasFoto = document.querySelector('.img-preview');
+
+      const filePasFoto = new FileReader();
+      filePasFoto.readAsDataURL(pasfoto.files[0]);
+
+      filePasFoto.onload = function(e) {
+        imgPreviewPasFoto.src = e.target.result;
+      }
+    }
+  </script>
+  <script>
+    function previewImgPendaftaranKKPenambahan() {
+      const pasKKPenambahan = document.querySelector('#pasfoto');
+      const imgPreviewPasFoto = document.querySelector('.img-preview');
+
+      const filePasFoto = new FileReader();
+      filePasFoto.readAsDataURL(pasfoto.files[0]);
+
+      filePasFoto.onload = function(e) {
+        imgPreviewPasFoto.src = e.target.result;
+      }
+    }
+  </script>
+  <script>
+    function previewImgPendaftaranKKPengurangan() {
+      const pasfoto = document.querySelector('#pasfoto');
+      const imgPreviewPasFoto = document.querySelector('.img-preview');
+
+      const filePasFoto = new FileReader();
+      filePasFoto.readAsDataURL(pasfoto.files[0]);
+
+      filePasFoto.onload = function(e) {
+        imgPreviewPasFoto.src = e.target.result;
+      }
+    }
+  </script>
+  <script>
+    function previewImgPendaftaranPerubahan() {
+      const pasfoto = document.querySelector('#pasfoto');
+      const imgPreviewPasFoto = document.querySelector('.img-preview');
+
+      const filePasFoto = new FileReader();
+      filePasFoto.readAsDataURL(pasfoto.files[0]);
+
+      filePasFoto.onload = function(e) {
+        imgPreviewPasFoto.src = e.target.result;
+      }
+    }
+  </script>
+  <script>
+    function previewImgPendaftaranKKPerceraian() {
+      const pasfoto = document.querySelector('#pasfoto');
+      const imgPreviewPasFoto = document.querySelector('.img-preview');
+
+      const filePasFoto = new FileReader();
+      filePasFoto.readAsDataURL(pasfoto.files[0]);
+
+      filePasFoto.onload = function(e) {
+        imgPreviewPasFoto.src = e.target.result;
+      }
+    }
+  </script>
+  <script>
     function previewImgPendaftaranKIA() {
+      const pasfoto = document.querySelector('#pasfoto');
+      const imgPreviewPasFoto = document.querySelector('.img-preview');
+
+      const filePasFoto = new FileReader();
+      filePasFoto.readAsDataURL(pasfoto.files[0]);
+
+      filePasFoto.onload = function(e) {
+        imgPreviewPasFoto.src = e.target.result;
+      }
+    }
+  </script>
+  <script>
+    function previewImgPendaftaranSuratPerpindahan() {
+      const pasfoto = document.querySelector('#pasfoto');
+      const imgPreviewPasFoto = document.querySelector('.img-preview');
+
+      const filePasFoto = new FileReader();
+      filePasFoto.readAsDataURL(pasfoto.files[0]);
+
+      filePasFoto.onload = function(e) {
+        imgPreviewPasFoto.src = e.target.result;
+      }
+    }
+  </script>
+  <script>
+    function previewImgPendaftaranSuratPerpindahanLuar() {
+      const pasfoto = document.querySelector('#pasfoto');
+      const imgPreviewPasFoto = document.querySelector('.img-preview');
+
+      const filePasFoto = new FileReader();
+      filePasFoto.readAsDataURL(pasfoto.files[0]);
+
+      filePasFoto.onload = function(e) {
+        imgPreviewPasFoto.src = e.target.result;
+      }
+    }
+  </script>
+  <script>
+    function previewImgPendaftaranAktaKelahiran() {
+      const pasfoto = document.querySelector('#pasfoto');
+      const imgPreviewPasFoto = document.querySelector('.img-preview');
+
+      const filePasFoto = new FileReader();
+      filePasFoto.readAsDataURL(pasfoto.files[0]);
+
+      filePasFoto.onload = function(e) {
+        imgPreviewPasFoto.src = e.target.result;
+      }
+    }
+  </script>
+  <script>
+    function previewImgPendaftaranAktaKematian() {
+      const pasfoto = document.querySelector('#pasfoto');
+      const imgPreviewPasFoto = document.querySelector('.img-preview');
+
+      const filePasFoto = new FileReader();
+      filePasFoto.readAsDataURL(pasfoto.files[0]);
+
+      filePasFoto.onload = function(e) {
+        imgPreviewPasFoto.src = e.target.result;
+      }
+    }
+  </script>
+  <script>
+    function previewImgPendaftaranKeabsahanAkla() {
+      const pasfoto = document.querySelector('#pasfoto');
+      const imgPreviewPasFoto = document.querySelector('.img-preview');
+
+      const filePasFoto = new FileReader();
+      filePasFoto.readAsDataURL(pasfoto.files[0]);
+
+      filePasFoto.onload = function(e) {
+        imgPreviewPasFoto.src = e.target.result;
+      }
+    }
+  </script>
+  <script>
+    function previewImgPendaftaranPelayananData() {
+      const pasfoto = document.querySelector('#pasfoto');
+      const imgPreviewPasFoto = document.querySelector('.img-preview');
+
+      const filePasFoto = new FileReader();
+      filePasFoto.readAsDataURL(pasfoto.files[0]);
+
+      filePasFoto.onload = function(e) {
+        imgPreviewPasFoto.src = e.target.result;
+      }
+    }
+  </script>
+  <script>
+    function previewImgPendaftaranPerbaikanData() {
+      const pasfoto = document.querySelector('#pasfoto');
+      const imgPreviewPasFoto = document.querySelector('.img-preview');
+
+      const filePasFoto = new FileReader();
+      filePasFoto.readAsDataURL(pasfoto.files[0]);
+
+      filePasFoto.onload = function(e) {
+        imgPreviewPasFoto.src = e.target.result;
+      }
+    }
+  </script>
+  <script>
+    function previewImgPendaftaranPengaduanUpdate() {
       const pasfoto = document.querySelector('#pasfoto');
       const imgPreviewPasFoto = document.querySelector('.img-preview');
 

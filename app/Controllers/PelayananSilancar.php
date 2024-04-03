@@ -118,10 +118,9 @@ class PelayananSilancar extends BaseController
         ],
       ],
       'nomorpemohon' => [
-        'rules' => 'required[pendaftaran_kk.nomorpemohon]|is_natural',
+        'rules' => 'required[pendaftaran_kk.nomorpemohon]',
         'errors' => [
           'required' => 'Nomor Pemohon Harus Diisi !!',
-          'is_natural' => 'Mohon menggunakan Format 082 !!',
         ],
       ],
       'alamatpemohon' => [

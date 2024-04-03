@@ -52,7 +52,6 @@
             <th scope="col">No</th>
             <th scope="col">Nama Pemohon</th>
             <th scope="col">Email Pemohon</th>
-            <th scope="col">No Whatsapp</th>
             <th scope="col">Permohonan</th>
             <th scope="col">Waktu</th>
             <th scope="col">Status</th>
@@ -67,7 +66,6 @@
               <th scope="row"><?= $i++; ?></th>
               <td><?= $kia['namapemohon']; ?></td>
               <td><?= $kia['emailpemohon']; ?></td>
-              <td><?= $kia['nomorpemohon']; ?></td>
               <td>Pendaftaran KIA</td>
               <td><?= $kia['created_at']; ?></td>
               <td>
@@ -86,7 +84,25 @@
                 ?>
               </td>
               <td>
-                <a href="/DetailAdmin/detail_pendaftarankia_admin/<?= $kia['namapemohon']; ?>" class="btn btn-success btn-sm">Detail</a>
+
+                <form action="<?= base_url('/DetailAdmin/detail_pendaftarankia_admin/' . $kia['namapemohon']); ?>" method="post" class="d-inline">
+                  <?= csrf_field(); ?>
+                  <button class="btn btn-primary btn-sm" data-placement="top" title="Tandai Selesai">
+                    <span class="bi bi-folder2-open me-2"></span>Detail
+                  </button>
+                </form>
+
+                <button class="btn btn-success btn-sm">
+                  <a href="https://api.whatsapp.com/send/?phone=<?= $kia['nomorpemohon'] ?>&text=Assalamu%27alaikum%2C+perkenalkan+nama+saya.....&type=phone_number&app_absent=0" class="bi bi-whatsapp text-white" data-placement="top" title="Kirim Whatsapp"> Kirim WA</a>
+                </button>
+
+                <form action="<?= base_url('DeleteAdmin/tandaiSelesaiKIA/' . $kia['id']); ?>" method="post" class="d-inline">
+                  <?= csrf_field(); ?>
+                  <button class="btn btn-danger btn-sm" data-placement="top" title="Tandai Selesai">
+                    <span class="bi bi-check-square-fill me-2"></span>Tandai Selesai
+                  </button>
+                </form>
+
               </td>
             </tr>
           <?php endforeach; ?>

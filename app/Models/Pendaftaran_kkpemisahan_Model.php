@@ -9,7 +9,7 @@ class Pendaftaran_kkpemisahan_Model extends Model
   protected $table = 'pendaftaran_kk_pemisahan';
   protected $useTimeStamps = true;
   protected $useSoftDeletes = true;
-  protected $allowedFields = ['nik', 'namapemohon', 'emailpemohon', 'nomorpemohon', 'alamatpemohon', 'kartukeluargalama', 'filepemisahan', 'status'];
+  protected $allowedFields = ['nik', 'namapemohon', 'emailpemohon', 'nomorpemohon', 'alamatpemohon', 'fotoktp', 'kartukeluargalama', 'filepemisahan', 'status'];
 
   public function getDataKKPemisahan($nama = false)
   {

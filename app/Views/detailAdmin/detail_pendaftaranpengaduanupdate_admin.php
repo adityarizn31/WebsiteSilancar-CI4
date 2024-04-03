@@ -161,20 +161,40 @@
             <tr>
               <th width="">Status</th>
               <th width="">:</th>
-              <td><?= $pengaduan_update['status']; ?></td>
+              <td>
+                <?php
+                switch ($pengaduan_update['status']) {
+                  case 'Selesai Verifikasi':
+                    echo '<span class="badge bg-success"> Selesai Verifikasi </span>';
+                    break;
+                  case 'Belum di Proses':
+                    echo '<span class="badge bg-warning"> Belum di Proses </span>';
+                    break;
+                  case 'Gagal Verifikasi':
+                    echo '<span class="badge bg-danger"> Gagal Verifikasi </span>';
+                    break;
+                }
+                ?>
+              </td>
             </tr>
 
           </table>
 
-          <div class="grid-container2 align-items-center justify-content-center">
+          <div class="grid-container align-items-center justify-content-center">
 
-            <div class="div">
-              <a href="<?= base_url('/DetailAdmin/selesaiPengaduanUpdate/' . $pengaduan_update['namapemohon']) ?>" class="btn btn-success" data-popup="tooltip" data-placement="top" title="Selesai"><i class="bi bi-check-square" aria-hidden="true"></i></a>
-            </div>
+            <form action="<?= base_url('/DetailAdmin/selesaiPengaduanUpdate/' . $pengaduan_update['namapemohon']) ?>" method="post">
+              <?= csrf_field(); ?>
+              <button class="btn btn-success btn-sm" data-popup="tooltip" data-placement="top" title="Selesai Verifikasi" style="margin-right: 3px;">
+                <i class="bi bi-check-square" aria-hidden="true"></i> Selesai Verifikasi
+              </button>
+            </form>
 
-            <div class="div">
-              <a href="<?= base_url('/DetailAdmin/belumSelesaiPengaduanUpdate/' . $pengaduan_update['namapemohon']) ?>" class="btn btn-danger" data-popup="tooltip" data-placement="top" title="Tidak Selesai"><i class="bi bi-x-square" aria-hidden="true"></i></a>
-            </div>
+            <form action="<?= base_url('/DetailAdmin/belumSelesaiPengaduanUpdate/' . $pengaduan_update['namapemohon']) ?>" method="post">
+              <?= csrf_field(); ?>
+              <button class="btn btn-danger btn-sm" data-popup="tooltip" data-placement="top" title="Selesai Verifikasi" style="margin-left: 3px;">
+                <i class="bi bi-x-square" aria-hidden="true"></i> Gagal Verifikasi
+              </button>
+            </form>
 
           </div>
 

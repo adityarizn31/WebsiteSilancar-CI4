@@ -18,7 +18,9 @@
       </div>
 
       <div class="d-sm-flex align-items-center justify-content-end mb-2">
-        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalHapusSeluruh"> Hapus Seluruh Data </button>
+        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalHapusSeluruh">
+          <span class="bi bi-trash me-1"></span> Hapus Seluruh Data
+        </button>
       </div>
 
       <div class="modal fade" id="modalHapusSeluruh" tabindex="-1" aria-labelledby="modalHapusLabel" aria-hidden="true">
@@ -34,11 +36,16 @@
               Dan apakah sudah mengirimkan email kepada setiap Pendaftar ??
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+
+              <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Batal</button>
+
               <form action="<?= base_url('DeleteAdmin/DeletePermanentKK/'); ?>" method="post">
                 <?= csrf_field(); ?>
-                <button type="submit" class="btn btn-danger">Hapus</button>
+                <button type="submit" class="btn btn-danger btn-sm">
+                  <span class="bi bi-trash me-1"></span> Hapus
+                </button>
               </form>
+
             </div>
           </div>
         </div>
@@ -49,7 +56,6 @@
         <?php
         $pesan = session()->getFlashdata('pesan');
 
-        // Jika status = Selesai
         if ($pesan == 'Pendaftaran Permohonan Kartu keluarga telah dihapus !!') {
           $class = 'alert-success';
         } else {
@@ -68,7 +74,6 @@
     <div class="card-body">
 
       <?php
-      // Custom sorting function based on the 'created_at' field
       usort($pendaftaran_kk, function ($a, $b) {
         return strtotime($b['deleted_at']) - strtotime($a['deleted_at']);
       });
@@ -102,21 +107,21 @@
               <td>
                 <?php
                 switch ($kk['status']) {
-                  case 'Selesai':
-                    echo '<span class="badge rounded-pill bg-success">Terverifikasi</span>';
+                  case 'Selesai Verifikasi':
+                    echo '<span class="badge bg-success"> Selesai Verifikasi </span>';
                     break;
                   case 'Belum di Proses':
-                    echo '<span class="badge rounded-pill bg-warning">Belum di Proses</span>';
+                    echo '<span class="badge bg-warning"> Belum di Proses </span>';
                     break;
-                  case 'Belum Selesai':
-                    echo '<span class="badge rounded-pill bg-danger">Ditolak</span>';
+                  case 'Gagal Verifikasi':
+                    echo '<span class="badge bg-danger"> Gagal Verifikasi </span>';
                     break;
                 }
                 ?>
               </td>
               <td>
                 <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalHapus<?= $kk['id']; ?>">
-                  Hapus
+                  <span class="bi bi-trash me-1"></span> Hapus
                 </button>
 
                 <div class="modal fade" id="modalHapus<?= $kk['id']; ?>" tabindex="-1" aria-labelledby="modalHapusLabel" aria-hidden="true">
@@ -124,17 +129,23 @@
                     <div class="modal-content">
                       <div class="modal-header">
                         <h5 class="modal-title" id="modalHapusLabel">Hapus Data KK</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
                         Apakah Anda yakin ingin menghapus data KK dengan nama pemohon <strong><?= $kk['namapemohon']; ?></strong>?
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Batal</button>
+
                         <form action="<?= base_url('DeleteAdmin/deletePermanentKK/' . $kk['id']); ?>" method="post">
                           <?= csrf_field(); ?>
-                          <button type="submit" class="btn btn-danger">Hapus</button>
+                          <button type="submit" class="btn btn-danger btn-sm">
+                            <span class="bi bi-trash me-1"></span> Hapus
+                          </button>
                         </form>
+
+
                       </div>
                     </div>
                   </div>

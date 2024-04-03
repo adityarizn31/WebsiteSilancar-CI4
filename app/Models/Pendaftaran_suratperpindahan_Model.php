@@ -9,7 +9,7 @@ class Pendaftaran_suratperpindahan_Model extends Model
   protected $table = 'pendaftaran_suratperpindahan';
   protected $useTimeStamps = true;
   protected $useSoftDeletes = true;
-  protected $allowedFields = ['nik', 'namapemohon', 'emailpemohon', 'nomorpemohon', 'alamatpemohon', 'kartukeluarga', 'kartutandapenduduk', 'status'];
+  protected $allowedFields = ['nik', 'namapemohon', 'emailpemohon', 'nomorpemohon', 'fotoktp', 'alamatpemohon', 'kartukeluarga', 'kartutandapenduduk', 'status'];
 
   public function getDataSuratPerpindahan($nama = false)
   {

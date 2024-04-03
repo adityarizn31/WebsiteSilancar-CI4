@@ -9,7 +9,7 @@ class Pendaftaran_pelayanandata_Model extends Model
   protected $table = 'pendaftaran_pelayanandata';
   protected $useTimeStamps = true;
   protected $useSoftDeletes = true;
-  protected $allowedFields = ['nik', 'namapemohon', 'emailpemohon', 'nomorpemohon', 'alamatpemohon', 'berkaspelayanan1', 'berkaspelayanan2', 'berkaspelayanan3', 'berkaspelayanan4', 'berkaspelayanan5', 'berkaspelayanan6', 'berkaspelayanan7', 'berkaspelayanan8', 'berkaspelayanan9', 'berkaspelayanan10', 'status'];
+  protected $allowedFields = ['nik', 'namapemohon', 'emailpemohon', 'nomorpemohon', 'alamatpemohon', 'fotoktp', 'berkaspelayanan1', 'berkaspelayanan2', 'berkaspelayanan3', 'berkaspelayanan4', 'berkaspelayanan5', 'berkaspelayanan6', 'berkaspelayanan7', 'berkaspelayanan8', 'berkaspelayanan9', 'berkaspelayanan10', 'status'];
 
   public function getDataPelayananData($nama = false)
   {

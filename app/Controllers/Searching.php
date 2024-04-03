@@ -117,6 +117,24 @@ class Searching extends BaseController
       return redirect()->back()->with('error', 'No results found for the provided NIK');
     }
 
+    // return view('pencarian_views/hasilKK', ['pendaftaran_kk' => $pendaftaran_kk], $data);
+    return redirect()->to('/Searching/hasilKK');
+  }
+
+  public function hasilKK()
+  {
+    $data = [
+      'title' => 'Hasil Status KK || Disdukcapil Majalengka',
+      'pendaftaran_kk' => $this->kkModel
+    ];
+
+    $keyword = $this->request->getVar('keyword');
+    $pendaftaran_kk = $this->kkModel->search($keyword)->get()->getResultArray();
+
+    if (empty($pendaftaran_kk)) {
+      return redirect()->back()->with('error', 'No results found for the provided NIK');
+    }
+
     return view('pencarian_views/hasilKK', ['pendaftaran_kk' => $pendaftaran_kk], $data);
   }
 

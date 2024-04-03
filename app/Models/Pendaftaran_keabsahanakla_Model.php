@@ -9,7 +9,7 @@ class Pendaftaran_keabsahanakla_Model extends Model
   protected $table = 'pendaftaran_keabsahanakla';
   protected $useTimeStamps = true;
   protected $useSoftDeletes = true;
-  protected $allowedFields = ['nik', 'namapemohon', 'emailpemohon', 'nomorpemohon', 'alamatpemohon', 'aktakelahiran', 'kartutandapenduduk', 'status'];
+  protected $allowedFields = ['nik', 'namapemohon', 'emailpemohon', 'nomorpemohon', 'alamatpemohon', 'fotoktp', 'aktakelahiran', 'kartutandapenduduk', 'status'];
 
   public function getDataKeabsahanakla($nama = false)
   {
