@@ -26,14 +26,14 @@
 
           <div class="col-md">
             <div class="form-floating">
-              <input type="text" name="nik" class="form-control" id="floatingInputGrid" placeholder="" autofocus>
-              <label for="floatingInputGrid" class="fw-semibold text-black">NIK </label>
+              <input type="text" name="keyword" class="form-control text-black" id="floatingInputGrid" placeholder="" autofocus>
+              <label for="floatingInputGrid" class="fw-semibold text-black">NIK / Nama Pemohon</label>
             </div>
           </div>
 
           <div class="form-floating mb-3">
             <input type="email" class="form-control" id="floatingInputDisabled" placeholder="Pendaftaran Kartu Keluarga" disabled>
-            <label for="floatingInputDisabled" class="fw-semibold text-black">Pendaftaran Kartu Identitas Anak</label>
+            <label for="floatingInputDisabled" class="fw-semibold text-black">Pendaftaran Kartu Keluarga Perceraian</label>
           </div>
 
           <div class="d-grid gap-2 col-6 mx-auto">

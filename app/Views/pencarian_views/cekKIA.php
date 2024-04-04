@@ -26,8 +26,8 @@
 
           <div class="col-md">
             <div class="form-floating">
-              <input type="text" name="nik" class="form-control" id="floatingInputGrid" placeholder="" autofocus>
-              <label for="floatingInputGrid" class="fw-semibold text-black">NIK </label>
+              <input type="text" name="keyword" class="form-control text-black" id="floatingInputGrid" placeholder="" autofocus>
+              <label for="floatingInputGrid" class="fw-semibold text-black">NIK / Nama Pemohon</label>
             </div>
           </div>
 

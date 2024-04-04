@@ -32,7 +32,7 @@
         <a href="/Searching/cekKKPemisahan">
           <img src="/img/silancar/Kartu Keluarga Pemisah.png" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title text-black text-center fw-bold">Cek Pendaftaran Kartu Keluarga</h5>
+            <h5 class="card-title text-black text-center fw-bold">Cek Pendaftaran Kartu Keluarga Pemisahan</h5>
           </div>
         </a>
       </div>
@@ -41,7 +41,7 @@
         <a href="/Searching/cekKKPenambahan">
           <img src="/img/silancar/Kartu Keluarga Tambah.png" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title text-black text-center fw-bold">Cek Pendaftaran Kartu Keluarga</h5>
+            <h5 class="card-title text-black text-center fw-bold">Cek Pendaftaran Kartu Keluarga Penambahan</h5>
           </div>
         </a>
       </div>
@@ -50,7 +50,7 @@
         <a href="/Searching/cekKKPengurangan">
           <img src="/img/silancar/Kartu Keluarga Kurang.png" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title text-black text-center fw-bold">Cek Pendaftaran Kartu Keluarga</h5>
+            <h5 class="card-title text-black text-center fw-bold">Cek Pendaftaran Kartu Keluarga Pengurangan</h5>
           </div>
         </a>
       </div>
@@ -59,7 +59,7 @@
         <a href="/Searching/cekKKPerubahan">
           <img src="/img/silancar/Kartu Keluarga Ubah.png" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title text-black text-center fw-bold">Cek Pendaftaran Kartu Keluarga</h5>
+            <h5 class="card-title text-black text-center fw-bold">Cek Pendaftaran Kartu Keluarga Perubahan</h5>
           </div>
         </a>
       </div>
