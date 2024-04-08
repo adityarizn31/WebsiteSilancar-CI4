@@ -19,7 +19,7 @@
   <div class="pelayanan">
     <div class="row">
 
-      <div class="card kartupelayanan">
+      <div class="card kartupelayanan shadow border-3" style="border-color: #007BFF;">
         <a href="/Searching/cekKK">
           <img src="/img/silancar/Kartu Keluarga.png" class="card-img-top" alt="...">
           <div class="card-body">
@@ -28,7 +28,7 @@
         </a>
       </div>
 
-      <div class="card kartupelayanan">
+      <div class="card kartupelayanan shadow border-3" style="border-color: #007BFF;">
         <a href="/Searching/cekKKPemisahan">
           <img src="/img/silancar/Kartu Keluarga Pemisah.png" class="card-img-top" alt="...">
           <div class="card-body">
@@ -37,7 +37,7 @@
         </a>
       </div>
 
-      <div class="card kartupelayanan">
+      <div class="card kartupelayanan shadow border-3" style="border-color: #007BFF;">
         <a href="/Searching/cekKKPenambahan">
           <img src="/img/silancar/Kartu Keluarga Tambah.png" class="card-img-top" alt="...">
           <div class="card-body">
@@ -46,7 +46,7 @@
         </a>
       </div>
 
-      <div class="card kartupelayanan">
+      <div class="card kartupelayanan shadow border-3" style="border-color: #007BFF;">
         <a href="/Searching/cekKKPengurangan">
           <img src="/img/silancar/Kartu Keluarga Kurang.png" class="card-img-top" alt="...">
           <div class="card-body">
@@ -55,7 +55,7 @@
         </a>
       </div>
 
-      <div class="card kartupelayanan">
+      <div class="card kartupelayanan shadow border-3" style="border-color: #007BFF;">
         <a href="/Searching/cekKKPerubahan">
           <img src="/img/silancar/Kartu Keluarga Ubah.png" class="card-img-top" alt="...">
           <div class="card-body">
@@ -64,7 +64,7 @@
         </a>
       </div>
 
-      <div class="card kartupelayanan">
+      <div class="card kartupelayanan shadow border-3" style="border-color: #007BFF;">
         <a href="/Searching/cekKKPerceraian">
           <img src="/img/silancar/Kartu Keluarga Perceraian.png" class="card-img-top" alt="...">
           <div class="card-body">
@@ -73,7 +73,7 @@
         </a>
       </div>
 
-      <div class="card kartupelayanan">
+      <div class="card kartupelayanan shadow border-3" style="border-color: #007BFF;">
         <a href="/Searching/cekKIA">
           <img src="/img/silancar/Kartu Identitas Anak.png" class="card-img-top" alt="...">
           <div class="card-body">
@@ -82,7 +82,7 @@
         </a>
       </div>
 
-      <div class="card kartupelayanan">
+      <div class="card kartupelayanan shadow border-3" style="border-color: #007BFF;">
         <a href="/Searching/cekSuratPerpindahan">
           <img src="/img/silancar/Kartu Surat Perpindahan.png" class="card-img-top" alt="...">
           <div class="card-body">
@@ -91,7 +91,7 @@
         </a>
       </div>
 
-      <div class="card kartupelayanan">
+      <div class="card kartupelayanan shadow border-3" style="border-color: #007BFF;">
         <a href="/Searching/cekSuratPerpindahanLuar">
           <img src="/img/silancar/Kartu Surat Perpindahan.png" class="card-img-top" alt="...">
           <div class="card-body">
@@ -100,7 +100,7 @@
         </a>
       </div>
 
-      <div class="card kartupelayanan">
+      <div class="card kartupelayanan shadow border-3" style="border-color: #007BFF;">
         <a href="/Searching/cekAktaKelahiran">
           <img src="/img/silancar/Kartu Akta Kelahiran.png" class="card-img-top" alt="...">
           <div class="card-body">
@@ -110,7 +110,7 @@
         </a>
       </div>
 
-      <div class="card kartupelayanan">
+      <div class="card kartupelayanan shadow border-3" style="border-color: #007BFF;">
         <a href="/Searching/cekAktaKematian">
           <img src="/img/silancar/Kartu Akta Kematian.png" class="card-img-top" alt="...">
           <div class="card-body">
@@ -119,7 +119,7 @@
         </a>
       </div>
 
-      <div class="card kartupelayanan">
+      <div class="card kartupelayanan shadow border-3" style="border-color: #007BFF;">
         <a href="/Searching/cekKeabsahanAkla">
           <img src="/img/silancar/Keabsahan Akta Kelahiran.png" class="card-img-top" alt="...">
           <div class="card-body">
@@ -128,7 +128,7 @@
         </a>
       </div>
 
-      <div class="card kartupelayanan">
+      <div class="card kartupelayanan shadow border-3" style="border-color: #007BFF;">
         <a href="/Searching/cekPelayananData">
           <img src="/img/silancar/Kartu Pelayanan Pemanfaatan Data.png" class="card-img-top" alt="...">
           <div class="card-body">
@@ -137,7 +137,7 @@
         </a>
       </div>
 
-      <div class="card kartupelayanan">
+      <div class="card kartupelayanan shadow border-3" style="border-color: #007BFF;">
         <a href="/Searching/cekPerbaikanData">
           <img src="/img/silancar/Kartu Perbaikan data.png" class="card-img-top" alt="...">
           <div class="card-body">
@@ -146,7 +146,7 @@
         </a>
       </div>
 
-      <div class="card kartupelayanan">
+      <div class="card kartupelayanan shadow border-3" style="border-color: #007BFF;">
         <a href="/Searching/cekPengaduanUpdate">
           <img src="/img/silancar/Kartu Pengaduan Update.png" class="card-img-top" alt="...">
           <div class="card-body">

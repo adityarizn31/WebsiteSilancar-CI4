@@ -1,4 +1,3 @@
-
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
@@ -28,7 +27,7 @@
           <div class="col-md">
             <div class="form-floating">
               <input type="text" name="keyword" class="form-control text-black" id="floatingInputGrid" autofocus>
-              <label for="floatingInputGrid" class="fw-semibold text-black">NIK / Nama Pemohon</label>
+              <label for="floatingInputGrid" class="fw-semibold text-black"> Nama Pemohon / NIK </label>
             </div>
           </div>
 

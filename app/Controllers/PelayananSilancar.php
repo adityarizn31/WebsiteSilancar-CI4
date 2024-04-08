@@ -83,7 +83,7 @@ class PelayananSilancar extends BaseController
 
 
 
-
+  // Pendaftaran Kartu Keluarga
   public function pendaftaranKK()
   {
     helper(['form']);
@@ -118,9 +118,10 @@ class PelayananSilancar extends BaseController
         ],
       ],
       'nomorpemohon' => [
-        'rules' => 'required[pendaftaran_kk.nomorpemohon]',
+        'rules' => 'required|regex_match[/^\+628\d{9,}$/]',
         'errors' => [
           'required' => 'Nomor Pemohon Harus Diisi !!',
+          'regex_match' => 'Nomor Pemohon harus dimulai dengan +628 dan terdiri dari 12 hingga 15 digit angka setelahnya.',
         ],
       ],
       'alamatpemohon' => [
@@ -224,7 +225,7 @@ class PelayananSilancar extends BaseController
 
 
 
-
+  // Pendaftaran Kartu Keluarga Pemisahan
   public function pendaftaranKKPemisahan()
   {
     helper(['form']);
@@ -259,10 +260,10 @@ class PelayananSilancar extends BaseController
         ],
       ],
       'nomorpemohon' => [
-        'rules' => 'required[pendaftaran_kk_pemisahan.nomorpemohon]|is_natural',
+        'rules' => 'required|regex_match[/^\+628\d{9,}$/]',
         'errors' => [
           'required' => 'Nomor Pemohon Harus Diisi !!',
-          'is_natural' => 'Mohon menggunakan Format 082 !!',
+          'regex_match' => 'Nomor Pemohon harus dimulai dengan +628 dan terdiri dari 12 hingga 15 digit angka setelahnya.',
         ],
       ],
       'alamatpemohon' => [
@@ -324,7 +325,7 @@ class PelayananSilancar extends BaseController
 
 
 
-
+  // Pendaftaran Kartu Keluarga Penambahan
   public function pendaftaranKKPenambahan()
   {
     helper(['form']);
@@ -359,10 +360,10 @@ class PelayananSilancar extends BaseController
         ],
       ],
       'nomorpemohon' => [
-        'rules' => 'required[pendaftaran_kk_penambahan.nomorpemohon]|is_natural',
+        'rules' => 'required|regex_match[/^\+628\d{9,}$/]',
         'errors' => [
           'required' => 'Nomor Pemohon Harus Diisi !!',
-          'is_natural' => 'Mohon menggunakan Format 082 !!',
+          'regex_match' => 'Nomor Pemohon harus dimulai dengan +628 dan terdiri dari 12 hingga 15 digit angka setelahnya.',
         ],
       ],
       'alamatpemohon' => [
@@ -439,6 +440,7 @@ class PelayananSilancar extends BaseController
 
 
 
+  // Pendaftaran Kartu Keluarga Pengurangan
   public function pendaftaranKKPengurangan()
   {
     helper(['form']);
@@ -473,10 +475,10 @@ class PelayananSilancar extends BaseController
         ],
       ],
       'nomorpemohon' => [
-        'rules' => 'required[pendaftaran_kk_pengurangan.nomorpemohon]|is_natural',
+        'rules' => 'required|regex_match[/^\+628\d{9,}$/]',
         'errors' => [
           'required' => 'Nomor Pemohon Harus Diisi !!',
-          'is_natural' => 'Mohon menggunakan Format 082 !!',
+          'regex_match' => 'Nomor Pemohon harus dimulai dengan +628 dan terdiri dari 12 hingga 15 digit angka setelahnya.',
         ],
       ],
       'alamatpemohon' => [
@@ -539,6 +541,7 @@ class PelayananSilancar extends BaseController
 
 
 
+  // Pendaftaran Kartu Keluarga Perubahan
   public function pendaftaranKKPerubahan()
   {
     helper(['form']);
@@ -573,10 +576,10 @@ class PelayananSilancar extends BaseController
         ],
       ],
       'nomorpemohon' => [
-        'rules' => 'required[pendaftaran_kk_perubahan.nomorpemohon]|is_natural',
+        'rules' => 'required|regex_match[/^\+628\d{9,}$/]',
         'errors' => [
           'required' => 'Nomor Pemohon Harus Diisi !!',
-          'is_natural' => 'Mohon menggunakan Format 082 !!',
+          'regex_match' => 'Nomor Pemohon harus dimulai dengan +628 dan terdiri dari 12 hingga 15 digit angka setelahnya.',
         ],
       ],
       'alamatpemohon' => [
@@ -654,6 +657,7 @@ class PelayananSilancar extends BaseController
 
 
 
+  // Pendaftaran Kartu Identitas Anak
   public function pendaftaranKIA()
   {
     helper(['form']);
@@ -664,27 +668,23 @@ class PelayananSilancar extends BaseController
     return view('pelayanan_views/pendaftaranKIA', $data);
   }
 
-  // Validasi Pendaftaran KIA
   public function saveKIA()
   {
 
     $validate = $this->validate([
 
-      // Form NIK Pemohon
       'nik' => [
         'rules' => 'required[pendaftaran_kia.nik]',
         'errors' => [
           'required' => 'NIK Pemohon Harus Diisi !!'
         ],
       ],
-      //Form Nama Pemohon
       'namapemohon' => [
         'rules' => 'required[pendaftaran_kia.namapemohon]',
         'errors' => [
           'required' => 'Nama Pemohon Harus diisi !!'
         ],
       ],
-      //Form Email Pemohon
       'emailpemohon' => [
         'rules' => 'required[pendaftaran_kia.emailpemohon]|valid_email',
         'errors' => [
@@ -692,22 +692,19 @@ class PelayananSilancar extends BaseController
           'valid_email' => 'Mohon cek kembali email anda, gunakan @ agar valid !!'
         ],
       ],
-      // Form Nomor Pemohon
       'nomorpemohon' => [
-        'rules' => 'required[pendaftaran_kia.nomorpemohon]|is_natural',
+        'rules' => 'required|regex_match[/^\+628\d{9,}$/]',
         'errors' => [
           'required' => 'Nomor Pemohon Harus Diisi !!',
-          'is_natural' => 'Mohon menggunakan Format 082 !!',
+          'regex_match' => 'Nomor Pemohon harus dimulai dengan +628 dan terdiri dari 12 hingga 15 digit angka setelahnya.',
         ],
       ],
-      //Form Alamat Pemohon
       'alamatpemohon' => [
         'rules' => 'required[pendaftaran_kia.alamatpemohon]',
         'errors' => [
           'required' => 'Alamat Pemohon Harus Diisi !!'
         ],
       ],
-      // Berkas Akta Kelahiran
       'aktakelahiran' => [
         'rules' => 'uploaded[aktakelahiran]|max_size[aktakelahiran,2048]|mime_in[aktakelahiran,application/pdf]|ext_in[aktakelahiran,pdf]',
         'errors' => [
@@ -717,7 +714,6 @@ class PelayananSilancar extends BaseController
           'ext_in' => ''
         ],
       ],
-      // Berkas Kartu Keluarga
       'kartukeluarga' => [
         'rules' => 'uploaded[kartukeluarga]|max_size[kartukeluarga,2048]|mime_in[kartukeluarga,application/pdf]|ext_in[kartukeluarga,pdf]',
         'errors' => [
@@ -727,7 +723,6 @@ class PelayananSilancar extends BaseController
           'ext_in' => ''
         ],
       ],
-      // Pas Foto
       'pasfoto' => [
         'rules' => 'max_size[pasfoto,2048]|is_image[pasfoto]|mime_in[pasfoto,image/jpg,image/jpeg,image/png]',
         'errors' => [
@@ -782,8 +777,8 @@ class PelayananSilancar extends BaseController
 
 
 
-  // Si Lancar 1
-  // Menampilkan Form Pendaftaran KK Perceraian
+
+  // Pendaftaran Kartu Keluarga Perceraian
   public function pendaftaranKKPerceraian()
   {
     helper(['form']);
@@ -798,21 +793,18 @@ class PelayananSilancar extends BaseController
   {
     $validate = $this->validate([
 
-      // Form NIK Pemohon
       'nik' => [
         'rules' => 'required[pendaftaran_kk_perceraian.nik]',
         'errors' => [
           'required' => 'NIK Pemohon Harus Diisi !!'
         ],
       ],
-      // Form Nama Pemohon
       'namapemohon' => [
         'rules' => 'required[pendaftaran_kk_perceraian.namapemohon]',
         'errors' => [
           'required' => 'Nama Pemohon Harus Diisi !!'
         ],
       ],
-      // Form Email Pemohon
       'emailpemohon' => [
         'rules' => 'required[pendaftaran_kk_perceraian.emailpemohon]|valid_email',
         'errors' => [
@@ -820,22 +812,19 @@ class PelayananSilancar extends BaseController
           'valid_email' => 'Mohon cek kembali email anda, gunakan @ agar valid !!'
         ],
       ],
-      // Form Nomor Pemohon
       'nomorpemohon' => [
-        'rules' => 'required[pendaftaran_kk_perceraian.nomorpemohon]|is_natural',
+        'rules' => 'required|regex_match[/^\+628\d{9,}$/]',
         'errors' => [
           'required' => 'Nomor Pemohon Harus Diisi !!',
-          'is_natural' => 'Mohon menggunakan Format 082 !!',
+          'regex_match' => 'Nomor Pemohon harus dimulai dengan +628 dan terdiri dari 12 hingga 15 digit angka setelahnya.',
         ],
       ],
-      // Form Alamat Pemohon
       'alamatpemohon' => [
         'rules' => 'required[pendaftaran_kk_perceraian.alamatpemohon]',
         'errors' => [
           'required' => 'Alamat Pemohon Harus Diisi !!'
         ],
       ],
-      // Berkas Kartu Keluarga Lama
       'kartukeluargalama' => [
         'rules' => 'uploaded[kartukeluargalama]|max_size[kartukeluargalama,2048]|mime_in[kartukeluargalama,application/pdf]|ext_in[kartukeluargalama,pdf]',
         'errors' => [
@@ -845,7 +834,6 @@ class PelayananSilancar extends BaseController
           'ext_in' => 'Format Kartu Keluarga Lama Harus PDF !!'
         ],
       ],
-      // Berkas Akta Perceraian
       'aktaperceraian' => [
         'rules' => 'uploaded[aktaperceraian]|max_size[aktaperceraian,2048]|mime_in[aktaperceraian,application/pdf]|ext_in[aktaperceraian,pdf]',
         'errors' => [
@@ -904,8 +892,8 @@ class PelayananSilancar extends BaseController
 
 
 
-  // Si Lancar 1
-  // Menampilkan Form Pendaftaran Surat Perpindahan dari Majalengka ke Luar
+
+  // Pendaftaran Surat Perpindahan dari Majalengka ke Luar
   public function pendaftaranSuratPerpindahan()
   {
     helper(['form']);
@@ -916,27 +904,23 @@ class PelayananSilancar extends BaseController
     return view('pelayanan_views/pendaftaranSuratPerpindahan', $data);
   }
 
-  // Menampilkan Form Pendaftaran Surat Perpindahan dari Majalengka ke Luar
   public function saveSuratPindah()
   {
 
     $validate = $this->validate([
 
-      // Form NIK Pemohon
       'nik' => [
         'rules' => 'required[pendaftaran_suratperpindahan.nik]',
         'errors' => [
           'required' => 'NIK Pemohon Harus Diisi !!'
         ],
       ],
-      //Form Nama Pemohon
       'namapemohon' => [
         'rules' => 'required[pendaftaran_suratperpindahan.namapemohon]',
         'errors' => [
           'required' => 'Nama Pemohon Harus Diisi !!'
         ],
       ],
-      //Form Email Pemohon
       'emailpemohon' => [
         'rules' => 'required[pendaftaran_suratperpindahan.emailpemohon]|valid_email',
         'errors' => [
@@ -944,22 +928,19 @@ class PelayananSilancar extends BaseController
           'valid_email' => 'Mohon cek kembali email anda, gunakan @ agar valid !!'
         ],
       ],
-      // Form Nomor Pemohon
       'nomorpemohon' => [
-        'rules' => 'required[pendaftaran_suratperpindahan.nomorpemohon]|is_natural',
+        'rules' => 'required|regex_match[/^\+628\d{9,}$/]',
         'errors' => [
           'required' => 'Nomor Pemohon Harus Diisi !!',
-          'is_natural' => 'Mohon menggunakan Format 082 !!',
+          'regex_match' => 'Nomor Pemohon harus dimulai dengan +628 dan terdiri dari 12 hingga 15 digit angka setelahnya.',
         ],
       ],
-      //Form Alamat Pemohon
       'alamatpemohon' => [
         'rules' => 'required[pendaftaran_suratperpindahan.alamatpemohon]',
         'errors' => [
           'required' => 'Alamat Pemohon Harus Diisi !!'
         ],
       ],
-      // Berkas Kartu Keluarga
       'kartukeluarga' => [
         'rules' => 'uploaded[kartukeluarga]|max_size[kartukeluarga,2048]|mime_in[kartukeluarga,application/pdf]|ext_in[kartukeluarga,pdf]',
         'errors' => [
@@ -969,7 +950,6 @@ class PelayananSilancar extends BaseController
           'ext_in' => 'Format Kartu Keluarga Harus PDF !!'
         ],
       ],
-      // Berkas Buku Nikah
       'kartutandapenduduk' => [
         'rules' => 'uploaded[kartutandapenduduk]|max_size[kartutandapenduduk,2048]|mime_in[kartutandapenduduk,application/pdf]|ext_in[kartutandapenduduk,pdf]',
         'errors' => [
@@ -1016,8 +996,7 @@ class PelayananSilancar extends BaseController
 
 
 
-  // Si Lancar 1
-  // Menampilkan Form Pendaftaran Surat Perpindahan dari Luar ke Majalengka
+  // Pendaftaran Surat Perpindahan dari Luar ke Majalengka
   public function pendaftaranSuratPerpindahanLuar()
   {
     helper(['form']);
@@ -1028,27 +1007,23 @@ class PelayananSilancar extends BaseController
     return view('pelayanan_views/pendaftaranSuratPerpindahanLuar', $data);
   }
 
-  // Validasi Pendaftaran Surat Perpindahan dari Luar ke Majalengka
   public function saveSuratPindahLuar()
   {
 
     $validate = $this->validate([
 
-      // Form NIK Pemohon
       'nik' => [
         'rules' => 'required[pendaftaran_suratperpindahanluar.nik]',
         'errors' => [
           'required' => 'NIK Pemohon Harus Diisi !!'
         ],
       ],
-      //Form Nama Pemohon
       'namapemohon' => [
         'rules' => 'required[pendaftaran_suratperpindahanluar.namapemohon]',
         'errors' => [
           'required' => 'Nama Pemohon Harus Diisi !!'
         ],
       ],
-      //Form Email Pemohon
       'emailpemohon' => [
         'rules' => 'required[pendaftaran_suratperpindahanluar.emailpemohon]|valid_email',
         'errors' => [
@@ -1056,22 +1031,19 @@ class PelayananSilancar extends BaseController
           'valid_email' => 'Mohon cek kembali email anda, gunakan @ agar valid !!'
         ],
       ],
-      // Form Nomor Pemohon
       'nomorpemohon' => [
-        'rules' => 'required[pendaftaran_suratperpindahanluar.nomorpemohon]|is_natural',
+        'rules' => 'required|regex_match[/^\+628\d{9,}$/]',
         'errors' => [
           'required' => 'Nomor Pemohon Harus Diisi !!',
-          'is_natural' => 'Mohon menggunakan Format 082 !!',
+          'regex_match' => 'Nomor Pemohon harus dimulai dengan +628 dan terdiri dari 12 hingga 15 digit angka setelahnya.',
         ],
       ],
-      //Form Alamat Pemohon
       'alamatpemohon' => [
         'rules' => 'required[pendaftaran_suratperpindahanluar.alamatpemohon]',
         'errors' => [
           'required' => 'Alamat Pemohon Harus Diisi !!'
         ],
       ],
-      // Berkas SKPWNI
       'skpwni' => [
         'rules' => 'uploaded[skpwni]|max_size[skpwni,2048]|mime_in[skpwni,application/pdf]|ext_in[skpwni,pdf]',
         'errors' => [
@@ -1081,7 +1053,6 @@ class PelayananSilancar extends BaseController
           'ext_in' => 'Format SKPWNI Harus PDF !!'
         ],
       ],
-      // Berkas KTP
       'kartutandapenduduk' => [
         'rules' => 'uploaded[kartutandapenduduk]|max_size[kartutandapenduduk,2048]|mime_in[kartutandapenduduk,application/pdf]|ext_in[kartutandapenduduk,pdf]',
         'errors' => [
@@ -1127,8 +1098,8 @@ class PelayananSilancar extends BaseController
 
 
 
-  // Si Lancar 2
-  // Menampilkan Form Pendaftaran Akta Kelahiran
+
+  // Pendaftaran Akta Kelahiran
   public function pendaftaranAktaKelahiran()
   {
     helper(['form']);
@@ -1139,27 +1110,23 @@ class PelayananSilancar extends BaseController
     return view('pelayanan_views/pendaftaranAktaKelahiran', $data);
   }
 
-  // Validasi Akta Kelahiran
   public function saveAktaKelahiran()
   {
 
     $validate = $this->validate([
 
-      // Form NIK Pemohon
       'nik' => [
         'rules' => 'required[pendaftaran_aktakelahiran.nik]',
         'errors' => [
           'required' => 'NIK Pemohon Harus Diisi !!'
         ],
       ],
-      // Form Nama Pemohon
       'namapemohon' => [
         'rules' => 'required[pendaftaran_aktakelahiran.namapemohon]',
         'errors' => [
           'required' => 'Nama Pemohon Harus Diisi !!'
         ],
       ],
-      // Form Email Pemohon
       'emailpemohon' => [
         'rules' => 'required[pendaftaran_aktakelahiran.emailpemohon]|valid_email',
         'errors' => [
@@ -1167,22 +1134,19 @@ class PelayananSilancar extends BaseController
           'valid_email' => 'Mohon cek kembali email anda, gunakan @ agar valid !!'
         ],
       ],
-      // Form Nomor Pemohon
       'nomorpemohon' => [
-        'rules' => 'required[pendaftaran_aktakelahiran.nomorpemohon]|is_natural',
+        'rules' => 'required|regex_match[/^\+628\d{9,}$/]',
         'errors' => [
           'required' => 'Nomor Pemohon Harus Diisi !!',
-          'is_natural' => 'Mohon menggunakan Format 082 !!',
+          'regex_match' => 'Nomor Pemohon harus dimulai dengan +628 dan terdiri dari 12 hingga 15 digit angka setelahnya.',
         ],
       ],
-      // Form Alamat Pemohon
       'alamatpemohon' => [
         'rules' => 'required[pendaftaran_aktakelahiran.alamatpemohon]',
         'errors' => [
           'required' => 'Alamat Pemohon Harus Diisi !!'
         ],
       ],
-      // Berkas F2.01 Akta
       'formulirf201akta' => [
         'rules' => 'uploaded[formulirf201akta]|max_size[formulirf201akta,2048]|mime_in[formulirf201akta,application/pdf]|ext_in[formulirf201akta,pdf]',
         'errors' => [
@@ -1192,7 +1156,6 @@ class PelayananSilancar extends BaseController
           'ext_in' => 'Format F201 Akta Kelahiran Harus PDF !!'
         ],
       ],
-      // Berkas Surat Keterangan Lahir
       'suratketeranganlahir' => [
         'rules' => 'uploaded[suratketeranganlahir]|max_size[suratketeranganlahir,2048]|mime_in[suratketeranganlahir,application/pdf]|ext_in[suratketeranganlahir,pdf]',
         'errors' => [
@@ -1202,7 +1165,6 @@ class PelayananSilancar extends BaseController
           'ext_in' => ''
         ],
       ],
-      // Berkas Kartu Keluarga
       'kartukeluarga' => [
         'rules' => 'uploaded[kartukeluarga]|max_size[kartukeluarga,2048]|mime_in[kartukeluarga,application/pdf]|ext_in[kartukeluarga,pdf]',
         'errors' => [
@@ -1212,7 +1174,6 @@ class PelayananSilancar extends BaseController
           'ext_in' => ''
         ],
       ],
-      // Berkas Buku Nikah
       'bukunikah' => [
         'rules' => 'uploaded[bukunikah]|max_size[bukunikah,2048]|mime_in[bukunikah,application/pdf]|ext_in[bukunikah,pdf]',
         'errors' => [
@@ -1222,7 +1183,6 @@ class PelayananSilancar extends BaseController
           'ext_in' => 'Format Buku Nikah Harus PDF !!'
         ],
       ],
-      // Berkas KTP Ayah
       'ktpayah' => [
         'rules' => 'uploaded[ktpayah]|max_size[ktpayah,2048]|mime_in[ktpayah,application/pdf]|ext_in[ktpayah,pdf]',
         'errors' => [
@@ -1232,7 +1192,6 @@ class PelayananSilancar extends BaseController
           'ext_in' => 'Format KTP Ayah Harus PDF !!'
         ],
       ],
-      // Berkas KTP Ibu
       'ktpibu' => [
         'rules' => 'uploaded[ktpibu]|max_size[ktpibu,2048]|mime_in[ktpibu,application/pdf]|ext_in[ktpibu,pdf]',
         'errors' => [
@@ -1310,8 +1269,9 @@ class PelayananSilancar extends BaseController
 
 
 
-  // Si Lancar 2
-  // Menampilkan Form Pendaftaran Akta Kematian
+
+
+  // Pendaftaran Akta Kematian
   public function pendaftaranAktaKematian()
   {
     helper(['form']);
@@ -1322,26 +1282,22 @@ class PelayananSilancar extends BaseController
     return view('pelayanan_views/pendaftaranAktaKematian', $data);
   }
 
-  // Validasi Pendaftaran Akta Kematian
   public function saveAktakematian()
   {
     $validate = $this->validate([
 
-      // Form NIK Pemohon
       'nik' => [
         'rules' => 'required[pendaftaran_aktakematian.nik]',
         'errors' => [
           'required' => 'NIK Pemohon Harus Diisi !!'
         ],
       ],
-      // Form Nama Pemohon
       'namapemohon' => [
         'rules' => 'required[pendaftaran_aktakematian.namapemohon]',
         'errors' => [
           'required' => 'Nama Pemohon Harus Diisi !!'
         ],
       ],
-      // Form Email Pemohon
       'emailpemohon' => [
         'rules' => 'required[pendaftaran_aktakematian.emailpemohon]|valid_email',
         'errors' => [
@@ -1349,15 +1305,13 @@ class PelayananSilancar extends BaseController
           'valid_email' => 'Mohon cek kembali email anda, gunakan @ agar valid !!'
         ],
       ],
-      // Form Nomor Pemohon
       'nomorpemohon' => [
-        'rules' => 'required[pendaftaran_aktakematian.nomorpemohon]|is_natural',
+        'rules' => 'required|regex_match[/^\+628\d{9,}$/]',
         'errors' => [
           'required' => 'Nomor Pemohon Harus Diisi !!',
-          'is_natural' => 'Mohon menggunakan Format 082 !!',
+          'regex_match' => 'Nomor Pemohon harus dimulai dengan +628 dan terdiri dari 12 hingga 15 digit angka setelahnya.',
         ],
       ],
-      // Form Alamat Pemohon
       'alamatpemohon' => [
         'rules' => 'required[pendaftaran_aktakematian.alamatpemohon]',
         'errors' => [
@@ -1374,7 +1328,6 @@ class PelayananSilancar extends BaseController
           'ext_in' => 'Format Kartu Keluarga Harus PDF !!'
         ],
       ],
-      // Berkas Surat Kematian
       'suratkematian' => [
         'rules' => 'uploaded[suratkematian]|max_size[suratkematian,2048]|mime_in[suratkematian,application/pdf]|ext_in[suratkematian,pdf]',
         'errors' => [
@@ -1427,8 +1380,8 @@ class PelayananSilancar extends BaseController
 
 
 
-  // Si Lancar 2
-  // Menampilkan Form Pendaftaran Keabsahan Akta Kelahiran
+
+  // Pendaftaran Keabsahan Akta Kelahiran
   public function pendaftaranKeabsahanAkla()
   {
     helper(['form']);
@@ -1439,26 +1392,22 @@ class PelayananSilancar extends BaseController
     return view('pelayanan_views/pendaftaranKeabsahanAkla', $data);
   }
 
-  // Validasi Keabsahan Akta Kelahiran
   public function saveKeabsahanAkla()
   {
     $validate = $this->validate([
 
-      // Form NIK Pemohon
       'nik' => [
         'rules' => 'required[pendaftaran_keabsahanakla.nik]',
         'errors' => [
           'required' => 'NIK Pemohon Harus Diisi !!'
         ],
       ],
-      // Form Nama Pemohon
       'namapemohon' => [
         'rules' => 'required[pendaftaran_keabsahanakla.namapemohon]',
         'errors' => [
           'required' => 'Nama Pemohon Harus Diisi !!'
         ],
       ],
-      // Form Email Pemohon
       'emailpemohon' => [
         'rules' => 'required[pendaftaran_keabsahanakla.emailpemohon]|valid_email',
         'errors' => [
@@ -1466,22 +1415,19 @@ class PelayananSilancar extends BaseController
           'valid_email' => 'Mohon cek kembali email anda, gunakan @ agar valid !!'
         ],
       ],
-      // Form Nomor Pemohon
       'nomorpemohon' => [
-        'rules' => 'required[pendaftaran_keabsahanakla.nomorpemohon]|is_natural',
+        'rules' => 'required|regex_match[/^\+628\d{9,}$/]',
         'errors' => [
           'required' => 'Nomor Pemohon Harus Diisi !!',
-          'is_natural' => 'Mohon menggunakan Format 082 !!',
+          'regex_match' => 'Nomor Pemohon harus dimulai dengan +628 dan terdiri dari 12 hingga 15 digit angka setelahnya.',
         ],
       ],
-      // Form Alamat Pemohon
       'alamatpemohon' => [
         'rules' => 'required[pendaftaran_keabsahanakla.alamatpemohon]',
         'errors' => [
           'required' => 'Alamat Pemohon Harus Diisi !!'
         ],
       ],
-      // Berkas Akta Kelahiran
       'aktakelahiran' => [
         'rules' => 'uploaded[aktakelahiran]|max_size[aktakelahiran,2048]|mime_in[aktakelahiran,application/pdf]|ext_in[aktakelahiran,pdf]',
         'errors' => [
@@ -1491,7 +1437,6 @@ class PelayananSilancar extends BaseController
           'ext_in' => 'Format Akta Kelahirans Harus PDF !!'
         ],
       ],
-      // Berkas Kartu Tanda Penduduk
       'kartutandapenduduk' => [
         'rules' => 'uploaded[kartutandapenduduk]|max_size[kartutandapenduduk,2048]|mime_in[kartutandapenduduk,application/pdf]|ext_in[kartutandapenduduk,pdf]',
         'errors' => [
@@ -1544,8 +1489,8 @@ class PelayananSilancar extends BaseController
 
 
 
-  // Si Lancar 3
-  // Menampilkan Halaman Pendaftaran Pelayanan Pemanfaatan Data
+
+  // Pendaftaran Pelayanan Pemanfaatan Data
   public function pendaftaranPelayananData()
   {
     helper(['form']);
@@ -1556,27 +1501,22 @@ class PelayananSilancar extends BaseController
     return view('pelayanan_views/pendaftaranPelayananData', $data);
   }
 
-
-  // Validasi Pendaftaran Pelayanan
   public function savePelayananData()
   {
     $rule = [
 
-      // Form NIK Pemohon
       'nik' => [
         'rules' => 'required[pendaftaran_pelayanandata.nik]',
         'errors' => [
           'required' => 'NIK Pemohon Harus Diisi !!'
         ],
       ],
-      // Form Nama Pemohon
       'namapemohon' => [
         'rules' => 'required[pendaftaran_pelayanandata.namapemohon]',
         'errors' => [
           'required' => 'Nama Pemohon Harus Diisi !!'
         ],
       ],
-      // Form Email Pemohon
       'emailpemohon' => [
         'rules' => 'required[pendaftaran_pelayanandata.emailpemohon]|valid_email',
         'errors' => [
@@ -1584,22 +1524,19 @@ class PelayananSilancar extends BaseController
           'valid_email' => 'Mohon cek kembali email anda, gunakan @ agar valid !!'
         ],
       ],
-      // Form Nomor Pemohon
       'nomorpemohon' => [
-        'rules' => 'required[pendaftaran_pelayanandata.nomorpemohon]|is_natural',
+        'rules' => 'required|regex_match[/^\+628\d{9,}$/]',
         'errors' => [
           'required' => 'Nomor Pemohon Harus Diisi !!',
-          'is_natural' => 'Mohon menggunakan Format 082 !!',
+          'regex_match' => 'Nomor Pemohon harus dimulai dengan +628 dan terdiri dari 12 hingga 15 digit angka setelahnya.',
         ],
       ],
-      // Form Alamat Pemohon
       'alamatpemohon' => [
         'rules' => 'required[pendaftaran_pelayanandata.alamatpemohon]',
         'errors' => [
           'required' => 'Alamat Pemohon Harus Diisi !!'
         ],
       ],
-      // Berkas Pelayanan 
       'berkaspelayanan' => [
         'rules' => 'uploaded[berkaspelayanan.0]|max_size[berkaspelayanan,2048]|mime_in[berkaspelayanan,application/pdf]|ext_in[berkaspelayanan,pdf]',
         'errors' => [
@@ -1677,8 +1614,8 @@ class PelayananSilancar extends BaseController
 
 
 
-  // Si Lancar 4
-  // Menampilkan Halaman Pendaftaran Perbaikan Data
+
+  // Pendaftaran Perbaikan Data
   public function pendaftaranPerbaikanData()
   {
     helper(['form']);
@@ -1689,12 +1626,9 @@ class PelayananSilancar extends BaseController
     return view('pelayanan_views/pendaftaranPerbaikanData', $data);
   }
 
-  // Validasi Form Perbaikan Data
   public function savePerbaikanData()
   {
     $rule = [
-      // Form Nama Pemohon
-      // Form NIK Pemohon
       'nik' => [
         'rules' => 'required[perbaikan_data.nik]',
         'errors' => [
@@ -1707,7 +1641,6 @@ class PelayananSilancar extends BaseController
           'required' => 'Nama Pemohon Harus Diisi !!'
         ],
       ],
-      // Form Email Pemohon
       'emailpemohon' => [
         'rules' => 'required[perbaikan_data.emailpemohon]|valid_email',
         'errors' => [
@@ -1715,36 +1648,31 @@ class PelayananSilancar extends BaseController
           'valid_email' => 'Mohon cek kembali email anda, gunakan @ agar valid !!'
         ],
       ],
-      // Form Nomor Pemohon
       'nomorpemohon' => [
-        'rules' => 'required[perbaikan_data.nomorpemohon]|is_natural',
+        'rules' => 'required|regex_match[/^\+628\d{9,}$/]',
         'errors' => [
           'required' => 'Nomor Pemohon Harus Diisi !!',
-          'is_natural' => 'Mohon menggunakan Format 082 !!',
+          'regex_match' => 'Nomor Pemohon harus dimulai dengan +628 dan terdiri dari 12 hingga 15 digit angka setelahnya.',
         ],
       ],
-      // Form Alamat Pemohon
       'alamatpemohon' => [
         'rules' => 'required[perbaikan_data.alamatpemohon]',
         'errors' => [
           'required' => 'Alamat Pemohon Harus Diisi !!'
         ],
       ],
-      // Judul Perbaikan
       'judulperbaikan' => [
         'rules' => 'required[perbaikan_data.judulperbaikan]',
         'errors' => [
           'required' => 'Judul Perbaikan Harus Diisi !!'
         ],
       ],
-      // Form Penjelasan Perbaikan
       'penjelasanperbaikan' => [
         'rules' => 'required[perbaikan_data.penjelasanperbaikan]',
         'errors' => [
           'required' => 'Penjelasan Perbaikan Harus Diisi !!'
         ],
       ],
-      // Berkas Perbaikan
       'berkasperbaikan' => [
         'rules' => 'uploaded[berkasperbaikan.0]|max_size[berkasperbaikan,2048]|mime_in[berkasperbaikan,application/pdf]|ext_in[berkasperbaikan,pdf]',
         'errors' => [
@@ -1817,8 +1745,8 @@ class PelayananSilancar extends BaseController
 
 
 
-  // Si Lancar 4
-  // Menampilkan Form Pengaduan Update
+
+  // Pendaftaran Pengaduan Update
   public function pendaftaranPengaduanUpdate()
   {
     helper(['form']);
@@ -1829,26 +1757,22 @@ class PelayananSilancar extends BaseController
     return view('pelayanan_views/pendaftaranPengaduanUpdate', $data);
   }
 
-  // Validasi Form Pengaduan Update
   public function savePengaduanUpdate()
   {
     $validate = $this->validate([
 
-      // Form NIK Pemohon
       'nik' => [
         'rules' => 'required[pengaduan_update.nik]',
         'errors' => [
           'required' => 'NIK Pemohon Harus Diisi !!'
         ],
       ],
-      // Form Nama Pemohon
       'namapemohon' => [
         'rules' => 'required[pengaduan_update.namapemohon]',
         'errors' => [
           'required' => 'Nama Pelapor Harus Diisi !!'
         ],
       ],
-      // Form Email Pemohon
       'emailpemohon' => [
         'rules' => 'required[pengaduan_update.emailpemohon]|valid_email',
         'errors' => [
@@ -1856,29 +1780,25 @@ class PelayananSilancar extends BaseController
           'valid_email' => 'Mohon cek kembali email anda, gunakan @ agar valid !!'
         ],
       ],
-      // Form Nomor Pemohon
       'nomorpemohon' => [
-        'rules' => 'required[pengaduan_update.nomorpemohon]|is_natural',
+        'rules' => 'required|regex_match[/^\+628\d{9,}$/]',
         'errors' => [
           'required' => 'Nomor Pemohon Harus Diisi !!',
-          'is_natural' => 'Mohon menggunakan Format 082 !!',
+          'regex_match' => 'Nomor Pemohon harus dimulai dengan +628 dan terdiri dari 12 hingga 15 digit angka setelahnya.',
         ],
       ],
-      // Form Alamat Pemohon
       'alamatpemohon' => [
         'rules' => 'required[pengaduan_update.alamatpemohon]',
         'errors' => [
           'required' => 'Alamat Pelapor Harus Diisi !!'
         ],
       ],
-      // Form Pengaduan Update
       'pengaduanupdate' => [
         'rules' => 'required[pengaduan_update.pengaduanupdate]',
         'errors' => [
           'required' => 'Pengaduan Harus Diisi !!'
         ],
       ],
-      // Berkas Kartu Tanda Penduduk
       'kartutandapenduduk' => [
         'rules' => 'uploaded[kartutandapenduduk]|mime_in[kartutandapenduduk,image/jpg,image/jpeg,image/png,application/pdf]',
         'errors' => [
@@ -1886,7 +1806,6 @@ class PelayananSilancar extends BaseController
           'mime_in' => 'Yang anda pilih bukan gambar'
         ],
       ],
-      // Berkas KK
       'kartukeluarga' => [
         'rules' => 'uploaded[kartukeluarga]|mime_in[kartukeluarga,image/jpg,image/jpeg,image/png,application/pdf]',
         'errors' => [
