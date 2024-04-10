@@ -109,6 +109,19 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           </div>
         </div>
 
+        <div class="row">
+          <div class="mb-3">
+            <label for="fotoktp" class="form-label fw-semibold">Foto KTP</label>
+            <input type="file" name="fotoktp" id="fotoktp" aria-describedby="fotoktp" class="form-control text-black <?= (session('errors.fotoktp')) ? 'is-invalid' : ''; ?>" value="<?= old('fotoktp'); ?>" onchange="previewImgPendaftaranKK()">
+            <div class="invalid-feedback">
+              <?= session('errors.fotoktp'); ?>
+            </div>
+            <div class="col-sm-2 my-4">
+              <img src="/pelayanan/user.png" class="img-thumbnail img-preview">
+            </div>
+          </div>
+        </div>
+
         <hr>
 
         <div class="row">

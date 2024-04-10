@@ -130,6 +130,15 @@ class PelayananSilancar extends BaseController
           'required' => 'Alamat Pemohon Harus Diisi !!'
         ],
       ],
+      'fotoktp' => [
+        'rules' => 'uploaded[fotoktp]|max_size[fotoktp,2048]|is_image[fotoktp]|mime_in[fotoktp,image/jpg,image/jpeg,image/png]',
+        'errors' => [
+          'uploaded' => 'Foto KTP Wajib diisi !!',
+          'max_size' => 'Ukuran Gambar terlalu besar !!',
+          'is_image' => 'Yang anda pilih bukan gambar !!',
+          'mime_in' => 'Mohon File yang di inputkan berformat JPG, JPEG atau PNG'
+        ],
+      ],
       'formulirdesa' => [
         'rules' => 'uploaded[formulirdesa]|max_size[formulirdesa,2048]|mime_in[formulirdesa,application/pdf]|ext_in[formulirdesa,pdf]',
         'errors' => [
@@ -181,6 +190,13 @@ class PelayananSilancar extends BaseController
       return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
 
+    $fileFotoKTP = $this->request->getFile('fotoktp');
+    if ($fileFotoKTP->getError() == 4) {
+    } else {
+      $namaFotoKTP_KK = $fileFotoKTP->getRandomName();
+      $fileFotoKTP->move('pelayanan/kk', $namaFotoKTP_KK);
+    }
+
     $berkasFormulirDesa_KK = $this->request->getFile('formulirdesa');
     $namaFormulirDesa_KK = $berkasFormulirDesa_KK->getName();
     $berkasFormulirDesa_KK->move('pelayanan/kk', $namaFormulirDesa_KK);
@@ -207,6 +223,7 @@ class PelayananSilancar extends BaseController
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
       'alamatpemohon' => $this->request->getVar('alamatpemohon'),
+      'fotoktp' => $namaFotoKTP_KK,
       'formulirdesa' => $namaFormulirDesa_KK,
       'kartukeluargasuami' => $namaKKSuami_KK,
       'kartukeluargaistri' => $namaKKIstri_KK,
@@ -272,6 +289,15 @@ class PelayananSilancar extends BaseController
           'required' => 'Alamat Pemohon Harus Diisi !!'
         ],
       ],
+      'fotoktp' => [
+        'rules' => 'uploaded[fotoktp]|max_size[fotoktp,2048]|is_image[fotoktp]|mime_in[fotoktp,image/jpg,image/jpeg,image/png]',
+        'errors' => [
+          'uploaded' => 'Foto KTP Wajib diisi !!',
+          'max_size' => 'Ukuran Gambar terlalu besar !!',
+          'is_image' => 'Yang anda pilih bukan gambar !!',
+          'mime_in' => 'Mohon File yang di inputkan berformat JPG, JPEG atau PNG'
+        ],
+      ],
       'kartukeluargalama' => [
         'rules' => 'uploaded[kartukeluargalama]|max_size[kartukeluargalama,2048]|mime_in[kartukeluargalama,application/pdf]|ext_in[kartukeluargalama,pdf]',
         'errors' => [
@@ -296,6 +322,13 @@ class PelayananSilancar extends BaseController
       return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
 
+    $fileFotoKTP = $this->request->getFile('fotoktp');
+    if ($fileFotoKTP->getError() == 4) {
+    } else {
+      $namaFotoKTP_KKPemisahan = $fileFotoKTP->getName();
+      $fileFotoKTP->move('pelayanan/kkpemisahan', $namaFotoKTP_KKPemisahan);
+    }
+
     $berkasKartuKeluargaLama_KKPemisahan = $this->request->getFile('kartukeluargalama');
     $namaKartuKeluargaLama_KKPemisahan = $berkasKartuKeluargaLama_KKPemisahan->getName();
     $berkasKartuKeluargaLama_KKPemisahan->move('pelayanan/kkpemisahan', $namaKartuKeluargaLama_KKPemisahan);
@@ -310,6 +343,7 @@ class PelayananSilancar extends BaseController
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
       'alamatpemohon' => $this->request->getVar('alamatpemohon'),
+      'fotoktp' => $namaFotoKTP_KKPemisahan,
       'kartukeluargalama' => $namaKartuKeluargaLama_KKPemisahan,
       'filepemisahan' => $namaFilePemisahan
     ]);
@@ -372,6 +406,15 @@ class PelayananSilancar extends BaseController
           'required' => 'Alamat Pemohon Harus Diisi !!'
         ],
       ],
+      'fotoktp' => [
+        'rules' => 'uploaded[fotoktp]|max_size[fotoktp,2048]|is_image[fotoktp]|mime_in[fotoktp,image/jpg,image/jpeg,image/png]',
+        'errors' => [
+          'uploaded' => 'Foto KTP Wajib diisi !!',
+          'max_size' => 'Ukuran Gambar terlalu besar !!',
+          'is_image' => 'Yang anda pilih bukan gambar !!',
+          'mime_in' => 'Mohon File yang di inputkan berformat JPG, JPEG atau PNG'
+        ],
+      ],
       'kartukeluargalama' => [
         'rules' => 'uploaded[kartukeluargalama]|max_size[kartukeluargalama,2048]|mime_in[kartukeluargalama,application/pdf]|ext_in[kartukeluargalama,pdf]',
         'errors' => [
@@ -405,6 +448,13 @@ class PelayananSilancar extends BaseController
       return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
 
+    $fileFotoKTP = $this->request->getFile('fotoktp');
+    if ($fileFotoKTP->getError() == 4) {
+    } else {
+      $namaFotoKTP_KKPenambahan = $fileFotoKTP->getName();
+      $fileFotoKTP->move('pelayanan/kkpenambahan', $namaFotoKTP_KKPenambahan);
+    }
+
     $berkasKartuKeluargaLama_KKPenambahan = $this->request->getFile('kartukeluargalama');
     $namaKartuKeluargaLama_KKPenambahan = $berkasKartuKeluargaLama_KKPenambahan->getName();
     $berkasKartuKeluargaLama_KKPenambahan->move('pelayanan/kkpenambahan', $namaKartuKeluargaLama_KKPenambahan);
@@ -423,6 +473,7 @@ class PelayananSilancar extends BaseController
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
       'alamatpemohon' => $this->request->getVar('alamatpemohon'),
+      'fotoktp' => $namaFotoKTP_KKPenambahan,
       'kartukeluargalama' => $namaKartuKeluargaLama_KKPenambahan,
       'suratnikah' => $namaSuratNikah_KKPenambahan,
       'suratketeranganlahir' => $namaSuratKeteranganLahir_KKPenambahan
@@ -487,6 +538,15 @@ class PelayananSilancar extends BaseController
           'required' => 'Alamat Pemohon Harus Diisi !!'
         ],
       ],
+      'fotoktp' => [
+        'rules' => 'uploaded[fotoktp]|max_size[fotoktp,2048]|is_image[fotoktp]|mime_in[fotoktp,image/jpg,image/jpeg,image/png]',
+        'errors' => [
+          'uploaded' => 'Foto KTP Wajib diisi !!',
+          'max_size' => 'Ukuran Gambar terlalu besar !!',
+          'is_image' => 'Yang anda pilih bukan gambar !!',
+          'mime_in' => 'Mohon File yang di inputkan berformat JPG, JPEG atau PNG'
+        ],
+      ],
       'kartukeluargalama' => [
         'rules' => 'uploaded[kartukeluargalama]|max_size[kartukeluargalama,2048]|mime_in[kartukeluargalama,application/pdf]|ext_in[kartukeluargalama,pdf]',
         'errors' => [
@@ -511,6 +571,13 @@ class PelayananSilancar extends BaseController
       return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
 
+    $fileFotoKTP = $this->request->getFile('fotoktp');
+    if ($fileFotoKTP->getError() == 4) {
+    } else {
+      $namaFotoKTP_KKPengurangan = $fileFotoKTP->getName();
+      $fileFotoKTP->move('pelayanan/kkpengurangan', $namaFotoKTP_KKPengurangan);
+    }
+
     $berkasKartuKeluargaLama_KKPengurangan = $this->request->getFile('kartukeluargalama');
     $namaKartuKeluargaLama_KKPengurangan = $berkasKartuKeluargaLama_KKPengurangan->getName();
     $berkasKartuKeluargaLama_KKPengurangan->move('pelayanan/kkpengurangan', $namaKartuKeluargaLama_KKPengurangan);
@@ -525,6 +592,7 @@ class PelayananSilancar extends BaseController
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
       'alamatpemohon' => $this->request->getVar('alamatpemohon'),
+      'fotoktp' => $namaFotoKTP_KKPengurangan,
       'kartukeluargalama' => $namaKartuKeluargaLama_KKPengurangan,
       'filepengurangan' => $namaFilePengurangan_KKPengurangan
     ]);
@@ -588,6 +656,15 @@ class PelayananSilancar extends BaseController
           'required' => 'Alamat Pemohon Harus Diisi !!'
         ],
       ],
+      'fotoktp' => [
+        'rules' => 'uploaded[fotoktp]|max_size[fotoktp,2048]|is_image[fotoktp]|mime_in[fotoktp,image/jpg,image/jpeg,image/png]',
+        'errors' => [
+          'uploaded' => 'Foto KTP Wajib diisi !!',
+          'max_size' => 'Ukuran Gambar terlalu besar !!',
+          'is_image' => 'Yang anda pilih bukan gambar !!',
+          'mime_in' => 'Mohon File yang di inputkan berformat JPG, JPEG atau PNG'
+        ],
+      ],
       'kartukeluargalama' => [
         'rules' => 'uploaded[kartukeluargalama]|max_size[kartukeluargalama,2048]|mime_in[kartukeluargalama,application/pdf]|ext_in[kartukeluargalama,pdf]',
         'errors' => [
@@ -621,6 +698,13 @@ class PelayananSilancar extends BaseController
       return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
 
+    $fileFotoKTP = $this->request->getFile('fotoktp');
+    if ($fileFotoKTP->getError() == 4) {
+    } else {
+      $namaFotoKTP_KKPerubahan = $fileFotoKTP->getName();
+      $fileFotoKTP->move('pelayanan/kkperubahan', $namaFotoKTP_KKPerubahan);
+    }
+
     $berkasKartuKeluargaLama_KKPerubahan = $this->request->getFile('kartukeluargalama');
     $namaKartuKeluargaLama_KKPerubahan = $berkasKartuKeluargaLama_KKPerubahan->getName();
     $berkasKartuKeluargaLama_KKPerubahan->move('pelayanan/kkperubahan', $namaKartuKeluargaLama_KKPerubahan);
@@ -639,6 +723,7 @@ class PelayananSilancar extends BaseController
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
       'alamatpemohon' => $this->request->getVar('alamatpemohon'),
+      'fotoktp' => $namaFotoKTP_KKPerubahan,
       'kartukeluargalama' => $namaKartuKeluargaLama_KKPerubahan,
       'suratnikah' => $namaSuratNikah_KKPerubahan,
       'fileperubahan' => $namaFilePerubahan_KKPerubahan
@@ -705,6 +790,15 @@ class PelayananSilancar extends BaseController
           'required' => 'Alamat Pemohon Harus Diisi !!'
         ],
       ],
+      'fotoktp' => [
+        'rules' => 'uploaded[fotoktp]|max_size[fotoktp,2048]|is_image[fotoktp]|mime_in[fotoktp,image/jpg,image/jpeg,image/png]',
+        'errors' => [
+          'uploaded' => 'Foto KTP Wajib diisi !!',
+          'max_size' => 'Ukuran Gambar terlalu besar !!',
+          'is_image' => 'Yang anda pilih bukan gambar !!',
+          'mime_in' => 'Mohon File yang di inputkan berformat JPG, JPEG atau PNG'
+        ],
+      ],
       'aktakelahiran' => [
         'rules' => 'uploaded[aktakelahiran]|max_size[aktakelahiran,2048]|mime_in[aktakelahiran,application/pdf]|ext_in[aktakelahiran,pdf]',
         'errors' => [
@@ -737,12 +831,17 @@ class PelayananSilancar extends BaseController
       return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
 
-    // Berkas Akta Kelahiran
+    $fileFotoKTP = $this->request->getFile('fotoktp');
+    if ($fileFotoKTP->getError() == 4) {
+    } else {
+      $namaFotoKTP_KIA = $fileFotoKTP->getName();
+      $fileFotoKTP->move('pelayanan/kia', $namaFotoKTP_KIA);
+    }
+
     $berkasAktaKelahiran_KIA = $this->request->getFile('aktakelahiran');
     $namaAktaKelahiran_KIA = $berkasAktaKelahiran_KIA->getName();
     $berkasAktaKelahiran_KIA->move('pelayanan/kia', $namaAktaKelahiran_KIA);
 
-    // Berkas Kartu Keluarga
     $berkasKartuKeluarga_KIA = $this->request->getFile('kartukeluarga');
     $namaKartuKeluarga_KIA = $berkasKartuKeluarga_KIA->getName();
     $berkasKartuKeluarga_KIA->move('pelayanan/kia', $namaKartuKeluarga_KIA);
@@ -753,7 +852,7 @@ class PelayananSilancar extends BaseController
       $namaPasFoto_KIA = 'user.PNG';
     } else {
       // Generate nama foto anak random
-      $namaPasFoto_KIA = $filePasFoto->getRandomName();
+      $namaPasFoto_KIA = $filePasFoto->getName();
       // Memindahkan File Gambar ke Folder Pelayanan / KIA
       $filePasFoto->move('pelayanan/kia', $namaPasFoto_KIA);
     }
@@ -764,6 +863,7 @@ class PelayananSilancar extends BaseController
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
       'alamatpemohon' => $this->request->getVar('alamatpemohon'),
+      'fotoktp' => $namaFotoKTP_KIA,
       'aktakelahiran' => $namaAktaKelahiran_KIA,
       'kartukeluarga' => $namaKartuKeluarga_KIA,
       'pasfoto' => $namaPasFoto_KIA
@@ -825,6 +925,15 @@ class PelayananSilancar extends BaseController
           'required' => 'Alamat Pemohon Harus Diisi !!'
         ],
       ],
+      'fotoktp' => [
+        'rules' => 'uploaded[fotoktp]|max_size[fotoktp,2048]|is_image[fotoktp]|mime_in[fotoktp,image/jpg,image/jpeg,image/png]',
+        'errors' => [
+          'uploaded' => 'Foto KTP Wajib diisi !!',
+          'max_size' => 'Ukuran Gambar terlalu besar !!',
+          'is_image' => 'Yang anda pilih bukan gambar !!',
+          'mime_in' => 'Mohon File yang di inputkan berformat JPG, JPEG atau PNG'
+        ],
+      ],
       'kartukeluargalama' => [
         'rules' => 'uploaded[kartukeluargalama]|max_size[kartukeluargalama,2048]|mime_in[kartukeluargalama,application/pdf]|ext_in[kartukeluargalama,pdf]',
         'errors' => [
@@ -849,12 +958,17 @@ class PelayananSilancar extends BaseController
       return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
 
-    // Berkas Kartu Keluarga Lama
+    $fileFotoKTP = $this->request->getFile('fotoktp');
+    if ($fileFotoKTP->getError() == 4) {
+    } else {
+      $namaFotoKTP_KKPerceraian = $fileFotoKTP->getName();
+      $fileFotoKTP->move('pelayanan/kkperceraian', $namaFotoKTP_KKPerceraian);
+    }
+
     $berkasKartuKeluargaLama_KKPerceraian = $this->request->getFile('kartukeluargalama');
     $namaKartuKeluargaLama_KKPerceraian = $berkasKartuKeluargaLama_KKPerceraian->getName();
     $berkasKartuKeluargaLama_KKPerceraian->move('pelayanan/kkperceraian', $namaKartuKeluargaLama_KKPerceraian);
 
-    // Berkas Akta Perceraian
     $berkasAktaPerceraian_KKPerceraian = $this->request->getFile('aktaperceraian');
     $namaAktaPerceraian_KKPerceraian = $berkasAktaPerceraian_KKPerceraian->getName();
     $berkasAktaPerceraian_KKPerceraian->move('pelayanan/kkperceraian', $namaAktaPerceraian_KKPerceraian);
@@ -941,6 +1055,15 @@ class PelayananSilancar extends BaseController
           'required' => 'Alamat Pemohon Harus Diisi !!'
         ],
       ],
+      'fotoktp' => [
+        'rules' => 'uploaded[fotoktp]|max_size[fotoktp,2048]|is_image[fotoktp]|mime_in[fotoktp,image/jpg,image/jpeg,image/png]',
+        'errors' => [
+          'uploaded' => 'Foto KTP Wajib diisi !!',
+          'max_size' => 'Ukuran Gambar terlalu besar !!',
+          'is_image' => 'Yang anda pilih bukan gambar !!',
+          'mime_in' => 'Mohon File yang di inputkan berformat JPG, JPEG atau PNG'
+        ],
+      ],
       'kartukeluarga' => [
         'rules' => 'uploaded[kartukeluarga]|max_size[kartukeluarga,2048]|mime_in[kartukeluarga,application/pdf]|ext_in[kartukeluarga,pdf]',
         'errors' => [
@@ -966,12 +1089,17 @@ class PelayananSilancar extends BaseController
       return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
 
-    // Berkas Kartu Keluarga
+    $fileFotoKTP = $this->request->getFile('fotoktp');
+    if ($fileFotoKTP->getError() == 4) {
+    } else {
+      $namaFotoKTP_SuratPindah = $fileFotoKTP->getName();
+      $fileFotoKTP->move('pelayanan/perpindahan', $namaFotoKTP_SuratPindah);
+    }
+
     $berkasKartuKeluarga_Perpindahan = $this->request->getFile('kartukeluarga');
     $namaKartuKeluarga_Perpindahan = $berkasKartuKeluarga_Perpindahan->getName();
     $berkasKartuKeluarga_Perpindahan->move('pelayanan/perpindahan', $namaKartuKeluarga_Perpindahan);
 
-    // Berkas Buku Nikah
     $berkasKartuTandaPenduduk_Perpindahan = $this->request->getFile('kartutandapenduduk');
     $namaKartuTandaPenduduk_Perpindahan = $berkasKartuTandaPenduduk_Perpindahan->getName();
     $berkasKartuTandaPenduduk_Perpindahan->move('pelayanan/perpindahan', $namaKartuTandaPenduduk_Perpindahan);
@@ -982,6 +1110,7 @@ class PelayananSilancar extends BaseController
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
       'alamatpemohon' => $this->request->getVar('alamatpemohon'),
+      'fotoktp' => $namaFotoKTP_SuratPindah,
       'kartukeluarga' => $namaKartuKeluarga_Perpindahan,
       'kartutandapenduduk' => $namaKartuTandaPenduduk_Perpindahan,
     ]);
@@ -1044,6 +1173,15 @@ class PelayananSilancar extends BaseController
           'required' => 'Alamat Pemohon Harus Diisi !!'
         ],
       ],
+      'fotoktp' => [
+        'rules' => 'uploaded[fotoktp]|max_size[fotoktp,2048]|is_image[fotoktp]|mime_in[fotoktp,image/jpg,image/jpeg,image/png]',
+        'errors' => [
+          'uploaded' => 'Foto KTP Wajib diisi !!',
+          'max_size' => 'Ukuran Gambar terlalu besar !!',
+          'is_image' => 'Yang anda pilih bukan gambar !!',
+          'mime_in' => 'Mohon File yang di inputkan berformat JPG, JPEG atau PNG'
+        ],
+      ],
       'skpwni' => [
         'rules' => 'uploaded[skpwni]|max_size[skpwni,2048]|mime_in[skpwni,application/pdf]|ext_in[skpwni,pdf]',
         'errors' => [
@@ -1069,12 +1207,17 @@ class PelayananSilancar extends BaseController
       return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
 
-    // Berkas SKPWNI
+    $fileFotoKTP = $this->request->getFile('fotoktp');
+    if ($fileFotoKTP->getError() == 4) {
+    } else {
+      $namaFotoKTP_Perpindahan = $fileFotoKTP->getName();
+      $fileFotoKTP->move('pelayanan/perpindahan_luar', $namaFotoKTP_Perpindahan);
+    }
+
     $berkasSKPWNI_Perpindahan = $this->request->getFile('skpwni');
     $namaSKWPNI_Perpindahan = $berkasSKPWNI_Perpindahan->getName();
     $berkasSKPWNI_Perpindahan->move('pelayanan/perpindahan_luar', $namaSKWPNI_Perpindahan);
 
-    // Berkas KTP
     $berkasKartuTandaPenduduk_Perpindahan = $this->request->getFile('kartutandapenduduk');
     $namaKartuTandaPenduduk_Perpindahan = $berkasKartuTandaPenduduk_Perpindahan->getName();
     $berkasKartuTandaPenduduk_Perpindahan->move('pelayanan/perpindahan_luar', $namaKartuTandaPenduduk_Perpindahan);
@@ -1085,6 +1228,7 @@ class PelayananSilancar extends BaseController
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
       'alamatpemohon' => $this->request->getVar('alamatpemohon'),
+      'fotoktp' => $namaFotoKTP_Perpindahan,
       'skpwni' => $namaSKWPNI_Perpindahan,
       'kartutandapenduduk' => $namaKartuTandaPenduduk_Perpindahan
     ]);
@@ -1147,6 +1291,15 @@ class PelayananSilancar extends BaseController
           'required' => 'Alamat Pemohon Harus Diisi !!'
         ],
       ],
+      'fotoktp' => [
+        'rules' => 'uploaded[fotoktp]|max_size[fotoktp,2048]|is_image[fotoktp]|mime_in[fotoktp,image/jpg,image/jpeg,image/png]',
+        'errors' => [
+          'uploaded' => 'Foto KTP Wajib diisi !!',
+          'max_size' => 'Ukuran Gambar terlalu besar !!',
+          'is_image' => 'Yang anda pilih bukan gambar !!',
+          'mime_in' => 'Mohon File yang di inputkan berformat JPG, JPEG atau PNG'
+        ],
+      ],
       'formulirf201akta' => [
         'rules' => 'uploaded[formulirf201akta]|max_size[formulirf201akta,2048]|mime_in[formulirf201akta,application/pdf]|ext_in[formulirf201akta,pdf]',
         'errors' => [
@@ -1207,32 +1360,33 @@ class PelayananSilancar extends BaseController
       return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
 
-    // Berkas Formulir F201 
+    $fileFotoKTP = $this->request->getFile('fotoktp');
+    if ($fileFotoKTP->getError() == 4) {
+    } else {
+      $namaFotoKTP_Akla = $fileFotoKTP->getName();
+      $fileFotoKTP->move('pelayanan/aktakelahiran', $namaFotoKTP_Akla);
+    }
+
     $berkasFormulirF201_Akla = $this->request->getFile('formulirf201akta');
     $namaFormulirF201_Akla = $berkasFormulirF201_Akla->getName();
     $berkasFormulirF201_Akla->move('pelayanan/aktakelahiran', $namaFormulirF201_Akla);
 
-    // Berkas Surat Keterangan Lahir
     $berkasSuratKeteranganLahir_Akla = $this->request->getFile('suratketeranganlahir');
     $namaSuratKeteranganLahir_Akla = $berkasSuratKeteranganLahir_Akla->getName();
     $berkasSuratKeteranganLahir_Akla->move('pelayanan/aktakelahiran', $namaSuratKeteranganLahir_Akla);
 
-    // Berkas Kartu Keluarga
     $berkasKartuKeluarga_Akla = $this->request->getFile('kartukeluarga');
     $namaKartuKeluarga_Akla = $berkasKartuKeluarga_Akla->getName('');
     $berkasKartuKeluarga_Akla->move('pelayanan/aktakelahiran', $namaKartuKeluarga_Akla);
 
-    // Berkas Buku Nikah
     $berkasBukuNikah_Akla = $this->request->getFile('bukunikah');
     $namaBukuNikah_Akla = $berkasBukuNikah_Akla->getName('');
     $berkasBukuNikah_Akla->move('pelayanan/aktakelahiran', $namaBukuNikah_Akla);
 
-    // Berkas KTP Ayah
     $berkasKTPAyah_Akla = $this->request->getFile('ktpayah');
     $namaKTPAyah_Akla = $berkasKTPAyah_Akla->getName();
     $berkasKTPAyah_Akla->move('pelayanan/aktakelahiran', $namaKTPAyah_Akla);
 
-    // Berkas KTP Ibu
     $berkasKTPIbu_Akla = $this->request->getFile('ktpibu');
     $namaKTPIbu_Akla = $berkasKTPIbu_Akla->getName();
     $berkasKTPIbu_Akla->move('pelayanan/aktakelahiran', $namaKTPIbu_Akla);
@@ -1318,7 +1472,15 @@ class PelayananSilancar extends BaseController
           'required' => 'Alamat Pemohon Harus Diisi !!'
         ],
       ],
-      // Berkas KK
+      'fotoktp' => [
+        'rules' => 'uploaded[fotoktp]|max_size[fotoktp,2048]|is_image[fotoktp]|mime_in[fotoktp,image/jpg,image/jpeg,image/png]',
+        'errors' => [
+          'uploaded' => 'Foto KTP Wajib diisi !!',
+          'max_size' => 'Ukuran Gambar terlalu besar !!',
+          'is_image' => 'Yang anda pilih bukan gambar !!',
+          'mime_in' => 'Mohon File yang di inputkan berformat JPG, JPEG atau PNG'
+        ],
+      ],
       'kartukeluarga' => [
         'rules' => 'uploaded[kartukeluarga]|max_size[kartukeluarga,2048]|mime_in[kartukeluarga,application/pdf]|ext_in[kartukeluarga,pdf]',
         'errors' => [
@@ -1343,12 +1505,17 @@ class PelayananSilancar extends BaseController
       return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
 
-    // Berkas KK
+    $fileFotoKTP = $this->request->getFile('fotoktp');
+    if ($fileFotoKTP->getError() == 4) {
+    } else {
+      $namaFotoKTP_Akket = $fileFotoKTP->getName();
+      $fileFotoKTP->move('pelayanan/aktakematian', $namaFotoKTP_Akket);
+    }
+
     $berkasKK_Akket = $this->request->getFile('kartukeluarga');
     $namaKK_Akket = $berkasKK_Akket->getName();
     $berkasKK_Akket->move('pelayanan/aktakematian', $namaKK_Akket);
 
-    // Berkas Surat Kematian
     $berkasSuratKematian_Akket = $this->request->getFile('suratkematian');
     $namaSuratKematian_Akket = $berkasSuratKematian_Akket->getName();
     $berkasSuratKematian_Akket->move('pelayanan/aktakematian', $namaSuratKematian_Akket);
@@ -1428,6 +1595,15 @@ class PelayananSilancar extends BaseController
           'required' => 'Alamat Pemohon Harus Diisi !!'
         ],
       ],
+      'fotoktp' => [
+        'rules' => 'uploaded[fotoktp]|max_size[fotoktp,2048]|is_image[fotoktp]|mime_in[fotoktp,image/jpg,image/jpeg,image/png]',
+        'errors' => [
+          'uploaded' => 'Foto KTP Wajib diisi !!',
+          'max_size' => 'Ukuran Gambar terlalu besar !!',
+          'is_image' => 'Yang anda pilih bukan gambar !!',
+          'mime_in' => 'Mohon File yang di inputkan berformat JPG, JPEG atau PNG'
+        ],
+      ],
       'aktakelahiran' => [
         'rules' => 'uploaded[aktakelahiran]|max_size[aktakelahiran,2048]|mime_in[aktakelahiran,application/pdf]|ext_in[aktakelahiran,pdf]',
         'errors' => [
@@ -1452,12 +1628,17 @@ class PelayananSilancar extends BaseController
       return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
 
-    // Berkas Akta Kelahiran 
+    $fileFotoKTP = $this->request->getFile('fotoktp');
+    if ($fileFotoKTP->getError() == 4) {
+    } else {
+      $namaFotoKTP_Akla = $fileFotoKTP->getName();
+      $fileFotoKTP->move('pelayanan/keabsahanaktakelahiran ', $namaFotoKTP_Akla);
+    }
+
     $berkasAktaKelahiran_Akla = $this->request->getFile('aktakelahiran');
     $namaAktaKelahiran_Akla = $berkasAktaKelahiran_Akla->getName();
     $berkasAktaKelahiran_Akla->move('pelayanan/keabsahanaktakelahiran', $namaAktaKelahiran_Akla);
 
-    // Berkas Kartu Tanda Penduduk
     $berkasKartuTandaPenduduk_Akla = $this->request->getFile('kartutandapenduduk');
     $namaKartuTandaPenduduk_Akla = $berkasKartuTandaPenduduk_Akla->getName();
     $berkasKartuTandaPenduduk_Akla->move('pelayanan/keabsahanaktakelahiran', $namaKartuTandaPenduduk_Akla);
@@ -1468,6 +1649,7 @@ class PelayananSilancar extends BaseController
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
       'alamatpemohon' => $this->request->getVar('alamatpemohon'),
+      'fotoktp' => $namaFotoKTP_Akla,
       'aktakelahiran' => $namaAktaKelahiran_Akla,
       'kartutandapenduduk' => $namaKartuTandaPenduduk_Akla,
     ]);
@@ -1537,6 +1719,15 @@ class PelayananSilancar extends BaseController
           'required' => 'Alamat Pemohon Harus Diisi !!'
         ],
       ],
+      'fotoktp' => [
+        'rules' => 'uploaded[fotoktp]|max_size[fotoktp,2048]|is_image[fotoktp]|mime_in[fotoktp,image/jpg,image/jpeg,image/png]',
+        'errors' => [
+          'uploaded' => 'Foto KTP Wajib diisi !!',
+          'max_size' => 'Ukuran Gambar terlalu besar !!',
+          'is_image' => 'Yang anda pilih bukan gambar !!',
+          'mime_in' => 'Mohon File yang di inputkan berformat JPG, JPEG atau PNG'
+        ],
+      ],
       'berkaspelayanan' => [
         'rules' => 'uploaded[berkaspelayanan.0]|max_size[berkaspelayanan,2048]|mime_in[berkaspelayanan,application/pdf]|ext_in[berkaspelayanan,pdf]',
         'errors' => [
@@ -1550,6 +1741,13 @@ class PelayananSilancar extends BaseController
 
     if (!$this->validate($rule)) {
       return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+    }
+
+    $fileFotoKTP = $this->request->getFile('fotoktp');
+    if ($fileFotoKTP->getError() == 4) {
+    } else {
+      $namaFotoKTP_PelayananData = $fileFotoKTP->getName();
+      $fileFotoKTP->move('pelayanan/pelayanan_data', $namaFotoKTP_PelayananData);
     }
 
     $berkaspelayanan = $this->request->getFileMultiple('berkaspelayanan');
@@ -1661,6 +1859,15 @@ class PelayananSilancar extends BaseController
           'required' => 'Alamat Pemohon Harus Diisi !!'
         ],
       ],
+      'fotoktp' => [
+        'rules' => 'uploaded[fotoktp]|max_size[fotoktp,2048]|is_image[fotoktp]|mime_in[fotoktp,image/jpg,image/jpeg,image/png]',
+        'errors' => [
+          'uploaded' => 'Foto KTP Wajib diisi !!',
+          'max_size' => 'Ukuran Gambar terlalu besar !!',
+          'is_image' => 'Yang anda pilih bukan gambar !!',
+          'mime_in' => 'Mohon File yang di inputkan berformat JPG, JPEG atau PNG'
+        ],
+      ],
       'judulperbaikan' => [
         'rules' => 'required[perbaikan_data.judulperbaikan]',
         'errors' => [
@@ -1686,6 +1893,13 @@ class PelayananSilancar extends BaseController
 
     if (!$this->validate($rule)) {
       return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+    }
+
+    $fileFotoKTP = $this->request->getFile('fotoktp');
+    if ($fileFotoKTP->getError() == 4) {
+    } else {
+      $namaFotoKTP_PerbaikanData = $fileFotoKTP->getName();
+      $fileFotoKTP->move('pelayanan/perbaikan_data', $namaFotoKTP_PerbaikanData);
     }
 
     $berkasperbaikan = $this->request->getFileMultiple('berkasperbaikan');
@@ -1714,6 +1928,7 @@ class PelayananSilancar extends BaseController
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
       'alamatpemohon' => $this->request->getVar('alamatpemohon'),
+      'fotoktp' => $namaFotoKTP_PerbaikanData,
       'judulperbaikan' => $this->request->getVar('judulperbaikan'),
       'berkasperbaikan_satu' => $files[0],
       'berkasperbaikan_dua' => $berkasperbaikan_dua,
@@ -1793,6 +2008,15 @@ class PelayananSilancar extends BaseController
           'required' => 'Alamat Pelapor Harus Diisi !!'
         ],
       ],
+      'fotoktp' => [
+        'rules' => 'uploaded[fotoktp]|max_size[fotoktp,2048]|is_image[fotoktp]|mime_in[fotoktp,image/jpg,image/jpeg,image/png]',
+        'errors' => [
+          'uploaded' => 'Foto KTP Wajib diisi !!',
+          'max_size' => 'Ukuran Gambar terlalu besar !!',
+          'is_image' => 'Yang anda pilih bukan gambar !!',
+          'mime_in' => 'Mohon File yang di inputkan berformat JPG, JPEG atau PNG'
+        ],
+      ],
       'pengaduanupdate' => [
         'rules' => 'required[pengaduan_update.pengaduanupdate]',
         'errors' => [
@@ -1819,12 +2043,17 @@ class PelayananSilancar extends BaseController
       return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
 
-    // Berkas KTP
+    $fileFotoKTP = $this->request->getFile('fotoktp');
+    if ($fileFotoKTP->getError() == 4) {
+    } else {
+      $namaFotoKTP_Pengup = $fileFotoKTP->getName();
+      $fileFotoKTP->move('pelayanan/pengaduan_update', $namaFotoKTP_Pengup);
+    }
+
     $berkasKTP_PengUp = $this->request->getFile('kartutandapenduduk');
     $namaKTP_PengUp = $berkasKTP_PengUp->getName();
     $berkasKTP_PengUp->move('pelayanan/pengaduan_update', $namaKTP_PengUp);
 
-    // Berkas KK
     $berkasKK_Pengup = $this->request->getFile('kartukeluarga');
     $namaKK_PengUp = $berkasKK_Pengup->getName();
     $berkasKK_Pengup->move('pelayanan/pengaduan_update', $namaKK_PengUp);
@@ -1835,6 +2064,7 @@ class PelayananSilancar extends BaseController
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
       'alamatpemohon' => $this->request->getVar('alamatpemohon'),
+      'fotoktp' => $namaFotoKTP_Pengup,
       'pengaduanupdate' => $this->request->getVar('pengaduanupdate'),
       'kartutandapenduduk' => $namaKTP_PengUp,
       'kartukeluarga' => $namaKK_PengUp

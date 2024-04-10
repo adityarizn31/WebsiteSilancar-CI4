@@ -4,7 +4,7 @@ $waktuSekarang = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
 $hariSekarang = $waktuSekarang->format('N');
 $jamSekarang = $waktuSekarang->format('G');
 
-if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekarang < 11) {
+if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekarang < 24) {
 
 ?>
 
@@ -103,6 +103,19 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
               <textarea name="alamatpemohon" id="alamatpemohon" class="form-control text-black text-area <?= (session('errors.alamatpemohon')) ? 'is-invalid' : null ?>"><?= old('alamatpemohon'); ?></textarea>
               <div class="invalid-feedback">
                 <?= session('errors.alamatpemohon') ?>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="mb-3">
+              <label for="fotoktp" class="form-label fw-semibold">Foto KTP</label>
+              <input type="file" name="fotoktp" id="fotoktp" aria-describedby="fotoktp" class="form-control text-black <?= (session('errors.fotoktp')) ? 'is-invalid' : ''; ?>" value="<?= old('fotoktp'); ?>" onchange="previewImgPendaftaranKK()">
+              <div class="invalid-feedback">
+                <?= session('errors.fotoktp'); ?>
+              </div>
+              <div class="col-sm-2 my-4">
+                <img src="/pelayanan/user.png" class="img-thumbnail img-preview">
               </div>
             </div>
           </div>
