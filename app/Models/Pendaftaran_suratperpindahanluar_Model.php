@@ -22,7 +22,7 @@ class Pendaftaran_suratperpindahanluar_Model extends Model
 
   public function search($keyword)
   {
-    return $this->table('pendaftaran_suratperpindahanluar')->like('namapemohon', $keyword)->orLike('nik', $keyword);
+    return $this->table('pendaftaran_suratperpindahanluar')->like('nik', $keyword)->orLike('namapemohon', $keyword);
   }
 
   public function updateStatus($nama, $status)

@@ -22,7 +22,7 @@ class Pendaftaran_aktakematian_Model extends Model
 
   public function search($keyword)
   {
-    return $this->table('pendaftaran_aktakematian')->like('namapemohon', $keyword)->orLike('nik', $keyword);
+    return $this->table('pendaftaran_aktakematian')->like('nik', $keyword)->orLike('namapemohon', $keyword);
   }
 
   public function updateStatus($nama, $status)

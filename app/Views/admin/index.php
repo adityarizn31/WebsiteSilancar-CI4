@@ -449,7 +449,7 @@
             <img src="/img/silancar/kartu Pelayanan Pemanfaatan Data.png" class="card-img-top">
 
             <div class="card-body">
-              <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Pelayanan Pemanfaatan Data</h5>
+              <h5 class="card-title text-black text-center font-weight-bold">Data Pendaftaran Pelayanan Pemanfaatan Data dan Inovasi antar Lembaga</h5>
             </div>
 
             <?php

@@ -80,7 +80,7 @@ class Searching extends BaseController
   public function index()
   {
     $data = [
-      'title' => 'Pencarian Data || Disdukcapil Majalengka'
+      'title' => 'Pengecekan Status || Disdukcapil Majalengka'
     ];
     return view('pencarian_views/index', $data);
   }

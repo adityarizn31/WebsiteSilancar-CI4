@@ -378,6 +378,7 @@ a {
   transform: rotate(-45deg);
 }
 
+/* Bagian Responsive Ukuran Mobile*/
 @media screen and (max-width: 576px) {
   .navbar {
     flex-direction: column;
@@ -440,6 +441,10 @@ a {
     width: 20%;
     height: auto;
     padding-top: 5%;
+  }
+
+  .footer {
+    display: flexbox;
   }
 
 

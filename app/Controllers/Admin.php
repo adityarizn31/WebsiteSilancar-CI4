@@ -69,18 +69,6 @@ class Admin extends BaseController
   protected $pelayananModel;
 
   protected $pelkkModel;
-  protected $pelkiaModel;
-  protected $pelsuratperpindahanModel;
-  protected $pelsuratperpindahanluarModel;
-
-  protected $pelaktakelahiranModel;
-  protected $pelaktakematianModel;
-  protected $pelkeabsahanaklaModel;
-
-  protected $pelpelayanandataModel;
-
-  protected $pelperbaikandataModel;
-  protected $pelpengaduanupdateModel;
 
 
   public function __construct()

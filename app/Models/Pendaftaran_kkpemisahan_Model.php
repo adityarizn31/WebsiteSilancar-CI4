@@ -21,7 +21,7 @@ class Pendaftaran_kkpemisahan_Model extends Model
 
   public function search($keyword)
   {
-    return $this->table('pendaftaran_kk_pemisahan')->like('namapemohon', $keyword)->orLike('nik', $keyword);
+    return $this->table('pendaftaran_kk_pemisahan')->like('nik', $keyword)->orLike('namapemohon', $keyword);
   }
 
   public function updateStatus($nama, $status)
