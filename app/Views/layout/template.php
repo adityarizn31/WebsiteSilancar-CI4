@@ -51,7 +51,7 @@
 
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">Jadwal Pelayanan</h5>
+                  <h5 class="card-title text-center">Jadwal Pelayanan</h5>
                   <div class="row">
                     <div class="col">
                       <div class="hari">
@@ -65,11 +65,11 @@
 
                     <div class="col">
                       <div class="waktu">
-                        <p>08: 00 - 14:30</p>
-                        <p>08: 00 - 14:30</p>
-                        <p>08: 00 - 14:30</p>
-                        <p>08: 00 - 14:30</p>
-                        <p>08: 00 - 14:30</p>
+                        <p>08:00 - 11:00</p>
+                        <p>08:00 - 11:00</p>
+                        <p>08:00 - 11:00</p>
+                        <p>08:00 - 11:00</p>
+                        <p>08:00 - 11:00</p>
                       </div>
                     </div>
                   </div>
