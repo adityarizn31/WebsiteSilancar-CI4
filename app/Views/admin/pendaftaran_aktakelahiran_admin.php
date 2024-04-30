@@ -97,9 +97,15 @@
 
                 <form action="<?= base_url('DeleteAdmin/tandaiSelesaiAktaKelahiran/' . $kela['id']); ?>" method="post" class="d-inline">
                   <?= csrf_field(); ?>
-                  <button class="btn btn-danger btn-sm" data-placement="top" title="Tandai Selesai">
-                    <span class="bi bi-check-square-fill me-2"></span>Tandai Selesai
-                  </button>
+                  <?php if ($kela['status'] === 'Belum di Proses') : ?>
+                    <button type="button" class="btn btn-danger btn-sm" data-placement="top" title="Tandai Selesai" disabled>
+                      <span class="bi bi-check-square-fill me-2"></span>Tandai Selesai
+                    </button>
+                  <?php elseif ($kela['status'] === 'Gagal Verifikasi' || $kela['status'] === 'Selesai Verifikasi') : ?>
+                    <button class="btn btn-danger btn-sm" data-placement="top" title="Tandai Selesai">
+                      <span class="bi bi-check-square-fill me-2"></span>Tandai Selesai
+                    </button>
+                  <?php endif; ?>
                 </form>
 
               </td>

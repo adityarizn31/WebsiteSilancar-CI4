@@ -98,9 +98,15 @@
 
                 <form action="<?= base_url('DeleteAdmin/tandaiSelesaiKKPenambahan/' . $kkpenambahan['id']); ?>" method="post" class="d-inline">
                   <?= csrf_field(); ?>
-                  <button class="btn btn-danger btn-sm" data-placement="top" title="Tandai Selesai">
-                    <span class="bi bi-check-square-fill me-2"></span>Tandai Selesai
-                  </button>
+                  <?php if ($kkpenambahan['status'] === 'Belum di Proses') : ?>
+                    <button type="button" class="btn btn-danger btn-sm" data-placement="top" title="Tandai Selesai" disabled>
+                      <span class="bi bi-check-square-fill me-2"></span>Tandai Selesai
+                    </button>
+                  <?php elseif ($kkpenambahan['status'] === 'Gagal Verifikasi' || $kkpenambahan['status'] === 'Selesai Verifikasi') : ?>
+                    <button class="btn btn-danger btn-sm" data-placement="top" title="Tandai Selesai">
+                      <span class="bi bi-check-square-fill me-2"></span>Tandai Selesai
+                    </button>
+                  <?php endif; ?>
                 </form>
 
               </td>

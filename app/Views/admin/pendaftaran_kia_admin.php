@@ -98,9 +98,15 @@
 
                 <form action="<?= base_url('DeleteAdmin/tandaiSelesaiKIA/' . $kia['id']); ?>" method="post" class="d-inline">
                   <?= csrf_field(); ?>
-                  <button class="btn btn-danger btn-sm" data-placement="top" title="Tandai Selesai">
-                    <span class="bi bi-check-square-fill me-2"></span>Tandai Selesai
-                  </button>
+                  <?php if ($kia['status'] === 'Belum di Proses') : ?>
+                    <button type="button" class="btn btn-danger btn-sm" data-placement="top" title="Tandai Selesai" disabled>
+                      <span class="bi bi-check-square-fill me-2"></span>Tandai Selesai
+                    </button>
+                  <?php elseif ($kia['status'] === 'Gagal Verifikasi' || $kia['status'] === 'Selesai Verifikasi') : ?>
+                    <button class="btn btn-danger btn-sm" data-placement="top" title="Tandai Selesai">
+                      <span class="bi bi-check-square-fill me-2"></span>Tandai Selesai
+                    </button>
+                  <?php endif; ?>
                 </form>
 
               </td>
