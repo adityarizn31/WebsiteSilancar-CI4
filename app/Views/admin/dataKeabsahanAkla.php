@@ -29,9 +29,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              Apakah Anda yakin ingin menghapus Keseluruhan data Keabsahan Akta Kelahiran ?
-              <br>
-              Dan apakah sudah mengirimkan email kepada setiap Pendaftar ??
+              Apakah anda yakin ingin menghapus keseluruhan data <b>Keabsahan Akta Kelahiran</b> yang telah selesai diproses ?
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -121,11 +119,11 @@
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="modalHapusLabel">Hapus Data Keabsahan Akla</h5>
+                        <h5 class="modal-title fw-semibold" id="modalHapusLabel">Hapus Data Keabsahan Akla</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        Apakah Anda yakin ingin menghapus data Keabsahan Akla dengan nama pemohon <strong><?= $keabsahanakla['namapemohon']; ?></strong>?
+                        Apakah Anda yakin ingin menghapus data <b>Keabsahan Akta Kelahiran</b> dengan nama pemohon <strong><?= $keabsahanakla['namapemohon']; ?></strong>?
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>

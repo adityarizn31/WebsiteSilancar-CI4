@@ -4,7 +4,7 @@ $waktuSekarang = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
 $hariSekarang = $waktuSekarang->format('N');
 $jamSekarang = $waktuSekarang->format('G');
 
-if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekarang < 11) {
+if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekarang < 24) {
 
 ?>
 
@@ -111,7 +111,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <div class="row">
             <div class="mb-3">
               <label for="fotoktp" class="form-label fw-semibold">Foto KTP</label>
-              <input type="file" name="fotoktp" id="fotoktp" aria-describedby="fotoktp" class="form-control text-black <?= (session('errors.fotoktp')) ? 'is-invalid' : ''; ?>" value="<?= old('fotoktp'); ?>" onchange="previewImgPendaftaranKK()">
+              <input type="file" name="fotoktp" id="fotoktp" aria-describedby="fotoktp" class="form-control text-black <?= (session('errors.fotoktp')) ? 'is-invalid' : ''; ?>" value="<?= old('fotoktp'); ?>" onchange="previewImgPendaftaranKIA()">
               <div class="invalid-feedback">
                 <?= session('errors.fotoktp'); ?>
               </div>
@@ -146,13 +146,13 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
           <div class="row">
             <div class="mb-3">
               <label for="pasfoto" class="form-label fw-semibold"> Berkas Pas Foto Berwarna 3x4 </label>
-              <input type="file" name="pasfoto" id="pasfoto" aria-describedby="pasfoto" class="form-control text-black <?= (session('errors.pasfoto')) ? 'is-invalid' : ''; ?>" value="<?= old('pasfoto'); ?>" onchange="previewImgPendaftaranKIA()">
+              <input type="file" name="pasfoto" id="pasfoto" aria-describedby="pasfoto" class="form-control text-black <?= (session('errors.pasfoto')) ? 'is-invalid' : ''; ?>" value="<?= old('pasfoto'); ?>" onchange="previewImgPendaftaranKIAPasFoto()">
               <div id="pasfoto" class="form-text">Anak dibawah 5 Tahun tidak perlu mengunggah Foto</div>
               <div class="invalid-feedback">
                 <?= session('errors.pasfoto'); ?>
               </div>
               <div class="col-sm-2 my-4">
-                <img src="/pelayanan/user.png" class="img-thumbnail img-preview">
+                <img src="/pelayanan/user.png" class="img-thumbnail img-previewpasfoto">
               </div>
             </div>
           </div>

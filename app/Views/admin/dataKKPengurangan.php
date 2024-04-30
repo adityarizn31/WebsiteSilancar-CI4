@@ -29,9 +29,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              Apakah Anda yakin ingin menghapus Keseluruhan data Kartu Keluarga ?
-              <br>
-              Dan apakah sudah mengirimkan email kepada setiap Pendaftar ??
+              Apakah anda yakin ingin menghapus keseluruhan data <b>Kartu Keluarga Pengurangan</b> yang telah selesai diproses ?
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -121,11 +119,11 @@
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="modalHapusLabel">Hapus Data KK Pengurangan</h5>
+                        <h5 class="modal-title fw-semibold" id="modalHapusLabel">Hapus Data Kartu Keluarga Pengurangan</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        Apakah Anda yakin ingin menghapus data KK Pengurangan dengan nama pemohon <strong><?= $kkpengurangan['namapemohon']; ?></strong>?
+                        Apakah anda yakin ingin menghapus data <b>Kartu Keluarga Pengurangan</b> dengan nama pemohon <strong><?= $kkpengurangan['namapemohon']; ?></strong>?
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>

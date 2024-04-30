@@ -13,7 +13,7 @@
     <div class="card-header py-3">
 
       <div class="d-sm-flex align-items-center justify-content-between mb-2">
-        <h4 class="m-0 font-weight-bold text-primary">Data Pendaftaran Selesai Permohonan Surat Perpindahan Majalengka Menuju Luar Kabupaten</h4>
+        <h4 class="m-0 font-weight-bold text-primary">Data Pendaftaran Selesai Permohonan Surat Perpindahan Domisili Majalengka menuju Luar Kabupaten</h4>
         <a href="<?= base_url('ExportExcel/exportSuratPerpindahan'); ?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mt-2"><i class="bi bi-download text-white"></i> Export Excel </a>
       </div>
 
@@ -25,13 +25,11 @@
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title fw-semibold" id="modalHapusLabel">Hapus Keseluruhan Data Surat Perpindahan Majalengka Menuju Luar</h5>
+              <h5 class="modal-title fw-semibold" id="modalHapusLabel">Hapus Keseluruhan Data Surat Perpindahan Domisili Majalengka menuju Luar Kabupaten</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              Apakah Anda yakin ingin menghapus Keseluruhan data Surat Perpindahan Majalengka Menuju Luar ?
-              <br>
-              Dan apakah sudah mengirimkan email kepada setiap Pendaftar ??
+              Apakah anda yakin ingin menghapus keseluruhan data <b>Surat Perpindahan Domisili Majalengka menuju Luar Kabupaten</b> yang telah selesai diproses ?
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -49,7 +47,6 @@
         <?php
         $pesan = session()->getFlashdata('pesan');
 
-        // Jika status = Selesai
         if ($pesan == 'Pendaftaran Permohonan Surat Perpindahan telah dihapus !!') {
           $class = 'alert-success';
         } else {
@@ -122,11 +119,11 @@
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="modalHapusLabel">Hapus Data Surat Perpindahan</h5>
+                        <h5 class="modal-title fw-semibold" id="modalHapusLabel">Hapus Data Surat Perpindahan Domsili Majalengka menuju Luar Kabupaten</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        Apakah Anda yakin ingin menghapus data Surat Perpindahan dengan nama pemohon <strong><?= $suratperpindahan['namapemohon']; ?></strong>?
+                        Apakah anda yakin ingin menghapus data <b>Surat Perpindahan Domsili Majalengka menuju Luar Kabupaten</b> dengan nama pemohon <strong><?= $suratperpindahan['namapemohon']; ?></strong>?
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>

@@ -192,4 +192,3 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
   header('Location: /PelayananSilancar/errorPage');
   exit;
 }
-// 

@@ -5,7 +5,7 @@ $hariSekarang = $waktuSekarang->format('N');
 $jamSekarang = $waktuSekarang->format('G');
 
 
-if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekarang < 11) {
+if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekarang < 24) {
 
 ?>
 

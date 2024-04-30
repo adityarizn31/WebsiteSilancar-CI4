@@ -25,13 +25,11 @@
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title fw-semibold" id="modalHapusLabel">Hapus Keseluruhan Data Pelayanan Data</h5>
+              <h5 class="modal-title fw-semibold" id="modalHapusLabel">Hapus Keseluruhan Data Pelayanan Pemanfaatan Data</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              Apakah Anda yakin ingin menghapus Keseluruhan data Pelayanan Data ?
-              <br>
-              Dan apakah sudah mengirimkan email kepada setiap Pendaftar ??
+              Apakah anda yakin ingin menghapus keseluruhan data <b>Pelayanan Pemanfaatan Data</b> yang telah selesai diproses ?
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -122,11 +120,11 @@
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="modalHapusLabel">Hapus Data Pelayanan Data</h5>
+                        <h5 class="modal-title fw-semibold" id="modalHapusLabel">Hapus Data Pelayanan Pemanfaatan Data</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        Apakah Anda yakin ingin menghapus data Pelayanan Data dengan nama pemohon <strong><?= $pelayanandata['namapemohon']; ?></strong>?
+                        Apakah anda yakin ingin menghapus data <b>Pelayanan Pemanfaatan Data</b> dengan nama pemohon <strong><?= $pelayanandata['namapemohon']; ?></strong>?
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>

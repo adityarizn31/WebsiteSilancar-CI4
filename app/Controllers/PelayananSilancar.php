@@ -979,6 +979,7 @@ class PelayananSilancar extends BaseController
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
       'alamatpemohon' => $this->request->getVar('alamatpemohon'),
+      'fotoktp' => $namaFotoKTP_KKPerceraian,
       'kartukeluargalama' => $namaKartuKeluargaLama_KKPerceraian,
       'aktaperceraian' => $namaAktaPerceraian_KKPerceraian
     ]);
@@ -1397,6 +1398,7 @@ class PelayananSilancar extends BaseController
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
       'alamatpemohon' => $this->request->getVar('alamatpemohon'),
+      'fotoktp' => $namaFotoKTP_Akla,
       'formulirf201akta' => $namaFormulirF201_Akla,
       'kartukeluarga' => $namaKartuKeluarga_Akla,
       'bukunikah' => $namaBukuNikah_Akla,
@@ -1526,6 +1528,7 @@ class PelayananSilancar extends BaseController
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
       'alamatpemohon' => $this->request->getVar('alamatpemohon'),
+      'fotoktp' => $namaFotoKTP_Akket,
       'kartukeluarga' => $namaKK_Akket,
       'suratkematian' => $namaSuratKematian_Akket
     ]);
@@ -1616,10 +1619,10 @@ class PelayananSilancar extends BaseController
       'kartutandapenduduk' => [
         'rules' => 'uploaded[kartutandapenduduk]|max_size[kartutandapenduduk,2048]|mime_in[kartutandapenduduk,application/pdf]|ext_in[kartutandapenduduk,pdf]',
         'errors' => [
-          'uploaded' => 'Formulir Akta Kelahiran Harus Diisi !!',
-          'max_size' => 'File Akta Kelahiran terlalu besar, Kompress terlebih dahulu !!',
-          'mime_in' => 'Format Akta Kelahirans Harus PDF !!',
-          'ext_in' => 'Format Akta Kelahirans Harus PDF !!'
+          'uploaded' => 'Formulir Kartu Tanda Penduduk Harus Diisi !!',
+          'max_size' => 'File Kartu Tanda Penduduk terlalu besar, Kompress terlebih dahulu !!',
+          'mime_in' => 'Format Kartu Tanda Penduduks Harus PDF !!',
+          'ext_in' => 'Format Kartu Tanda Penduduks Harus PDF !!'
         ],
       ],
     ]);
@@ -1631,17 +1634,17 @@ class PelayananSilancar extends BaseController
     $fileFotoKTP = $this->request->getFile('fotoktp');
     if ($fileFotoKTP->getError() == 4) {
     } else {
-      $namaFotoKTP_Akla = $fileFotoKTP->getName();
-      $fileFotoKTP->move('pelayanan/keabsahanaktakelahiran ', $namaFotoKTP_Akla);
+      $namaFotoKTP_KeabsahanAkla = $fileFotoKTP->getName();
+      $fileFotoKTP->move('pelayanan/keabsahanaktakelahiran ', $namaFotoKTP_KeabsahanAkla);
     }
 
     $berkasAktaKelahiran_Akla = $this->request->getFile('aktakelahiran');
-    $namaAktaKelahiran_Akla = $berkasAktaKelahiran_Akla->getName();
-    $berkasAktaKelahiran_Akla->move('pelayanan/keabsahanaktakelahiran', $namaAktaKelahiran_Akla);
+    $namaAktaKelahiran_KeabsahanAkla = $berkasAktaKelahiran_Akla->getName();
+    $berkasAktaKelahiran_Akla->move('pelayanan/keabsahanaktakelahiran', $namaAktaKelahiran_KeabsahanAkla);
 
     $berkasKartuTandaPenduduk_Akla = $this->request->getFile('kartutandapenduduk');
-    $namaKartuTandaPenduduk_Akla = $berkasKartuTandaPenduduk_Akla->getName();
-    $berkasKartuTandaPenduduk_Akla->move('pelayanan/keabsahanaktakelahiran', $namaKartuTandaPenduduk_Akla);
+    $namaKartuTandaPenduduk_KeabsahanAkla = $berkasKartuTandaPenduduk_Akla->getName();
+    $berkasKartuTandaPenduduk_Akla->move('pelayanan/keabsahanaktakelahiran', $namaKartuTandaPenduduk_KeabsahanAkla);
 
     $this->keabsahanaklaModel->save([
       'nik' => $this->request->getVar('nik'),
@@ -1649,9 +1652,9 @@ class PelayananSilancar extends BaseController
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
       'alamatpemohon' => $this->request->getVar('alamatpemohon'),
-      'fotoktp' => $namaFotoKTP_Akla,
-      'aktakelahiran' => $namaAktaKelahiran_Akla,
-      'kartutandapenduduk' => $namaKartuTandaPenduduk_Akla,
+      'fotoktp' => $namaFotoKTP_KeabsahanAkla,
+      'aktakelahiran' => $namaAktaKelahiran_KeabsahanAkla,
+      'kartutandapenduduk' => $namaKartuTandaPenduduk_KeabsahanAkla,
     ]);
     session()->setFlashdata('pesan', 'Selamat pendaftaran permohonan Keabsahan Akta Kelahiran Anda telah berhasil !!');
     return redirect()->to('/PelayananSilancar/pendaftaranKeabsahanAkla/');
@@ -1781,6 +1784,7 @@ class PelayananSilancar extends BaseController
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
       'alamatpemohon' => $this->request->getVar('alamatpemohon'),
+      'fotoktp' => $namaFotoKTP_PelayananData,
       'berkaspelayanan1' => $files[0],
       'berkaspelayanan2' => $berkasPelayanan2,
       'berkaspelayanan3' => $berkasPelayanan3,

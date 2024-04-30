@@ -39,6 +39,12 @@
 
       <div class="card-body">
 
+      <?php
+      usort($pendaftaran_pelayanandata, function ($a, $b) {
+        return strtotime($b['created_at']) - strtotime($a['created_at']);
+      });
+      ?>
+
         <table class="table table-fixed table-hover">
           <thead class="table-dark">
             <tr>

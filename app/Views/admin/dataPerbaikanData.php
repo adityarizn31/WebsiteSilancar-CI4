@@ -29,9 +29,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              Apakah Anda yakin ingin menghapus Keseluruhan data Perbaikan Data ?
-              <br>
-              Dan apakah sudah mengirimkan email kepada setiap Pendaftar ??
+              Apakah anda yakin ingin menghapus keseluruhan data <b>Perbaikan Data</b> yang telah selesai diproses ?
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -122,11 +120,11 @@
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="modalHapusLabel">Hapus Data Perbaikan Data</h5>
+                        <h5 class="modal-title fw-semibold" id="modalHapusLabel">Hapus Data Perbaikan Data</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        Apakah Anda yakin ingin menghapus data Perbaikan Data dengan nama pemohon <strong><?= $perbaikandata['namapemohon']; ?></strong>?
+                        Apakah anda yakin ingin menghapus data <b>Perbaikan Data</b> dengan nama pemohon <strong><?= $perbaikandata['namapemohon']; ?></strong>?
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>

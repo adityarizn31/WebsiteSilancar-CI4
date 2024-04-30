@@ -27,13 +27,11 @@
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title fw-semibold" id="modalHapusLabel">Hapus Keseluruhan Data Kartu Keluarga Penambahan</h5>
+              <h5 class="modal-title fw-semibold" id="modalHapusLabel">Hapus Keseluruhan Data Kartu Keluarga Baru</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              Apakah Anda yakin ingin menghapus Keseluruhan data Kartu Keluarga ?
-              <br>
-              Dan apakah sudah mengirimkan email kepada setiap Pendaftar ??
+              Apakah anda yakin ingin menghapus keseluruhan data <b>Kartu Keluarga Baru</b> yang telah selesai diproses ?
             </div>
             <div class="modal-footer">
 
@@ -128,11 +126,11 @@
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="modalHapusLabel">Hapus Data KK</h5>
+                        <h5 class="modal-title fw-semibold" id="modalHapusLabel">Hapus Data Kartu Keluarga Baru</h5>
                         <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        Apakah Anda yakin ingin menghapus data KK dengan nama pemohon <strong><?= $kk['namapemohon']; ?></strong>?
+                        Apakah anda yakin ingin menghapus data <b>Kartu Keluarga Baru</b> dengan Nama pemohon <strong><?= $kk['namapemohon']; ?></strong>?
                       </div>
                       <div class="modal-footer">
 

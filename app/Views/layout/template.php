@@ -168,11 +168,24 @@
   </script>
   <script>
     function previewImgPendaftaranKIA() {
+      const fotoktp = document.querySelector('#fotoktp');
+      const imgPreview = document.querySelector('.img-preview');
+
+      const fileFoto = new FileReader();
+      fileFoto.readAsDataURL(fotoktp.files[0]);
+
+      fileFoto.onload = function(e) {
+        imgPreview.src = e.target.result;
+      }
+    }
+  </script>
+  <script>
+    function previewImgPendaftaranKIAPasFoto() {
       const pasfoto = document.querySelector('#pasfoto');
-      const imgPreviewPasFoto = document.querySelector('.img-preview');
+      const imgPreviewPasFoto = document.querySelector('.img-previewpasfoto');
 
       const filePasFoto = new FileReader();
-      filePasFoto.readAsDataURL(fotoktp.files[0]);
+      filePasFoto.readAsDataURL(pasfoto.files[0]);
 
       filePasFoto.onload = function(e) {
         imgPreviewPasFoto.src = e.target.result;
