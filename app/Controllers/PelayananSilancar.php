@@ -348,7 +348,8 @@ class PelayananSilancar extends BaseController
       'filepemisahan' => $namaFilePemisahan
     ]);
     session()->setFlashdata('pesan', 'Selamat pendaftaran permohonan Kartu Keluarga Pemisahan Anda telah berhasil !!');
-    return redirect()->to('/PelayananSilancar/pendaftaranKKPemisahan');
+    // return redirect()->to('/PelayananSilancar/pendaftaranKKPemisahan');
+    return redirect()->back();
   }
 
 

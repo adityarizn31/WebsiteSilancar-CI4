@@ -103,11 +103,96 @@ class Searching extends BaseController
     return view('pencarian_views/cekKK', $data);
   }
 
+  // public function cariKK()
+  // {
+  //   $data = [
+  //     'title' => 'Hasil Status KK || Disdukcapil Majalengka'
+  //   ];
+
+  //   $keyword = $this->request->getVar('keyword');
+  //   $pendaftaran_kk = $this->kkModel->search($keyword)->onlyDeleted()->get()->getResultArray();
+
+  //   if ($pendaftaran_kk) {
+  //     $data['pendaftaran_kk'] = $pendaftaran_kk;
+  //     return view('pencarian_views/hasilKK', $data);
+  //   } else {
+  //     $data['error_message'] = 'Data Kartu Keluarga Baru tidak ditemukan.';
+  //     return view('pencarian_views/cekError', $data);
+  //   }
+  // }
+
+  // public function cariKK()
+  // {
+  //   $data = [
+  //     'title' => 'Hasil Status KK || Disdukcapil Majalengka',
+  //     'pendaftaran_kk' => $this->kkModel
+  //   ];
+
+  //   $validationRules = [
+  //     'keyword' => [
+  //       'rules' => 'required|exact_length[16]',
+  //       'errors' => [
+  //         'required' => 'NIK harus diisi !!',
+  //         'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+  //       ],
+  //     ]
+  //   ];
+
+  //   $validationMessages = [
+  //     'keyword' => [
+  //       'required' => 'NIK harus diisi !!',
+  //       'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+  //     ]
+  //   ];
+
+  //   $this->validate($validationRules, $validationMessages);
+
+  //   if ($this->validator->hasError('keyword')) {
+  //     $data['validation'] = $this->validator;
+  //     return view('pencarian_views/hasilKK', $data);
+  //   }
+
+  //   $keyword = $this->request->getVar('keyword');
+  //   $pendaftaran_kk = $this->kkModel->search($keyword)->onlyDeleted()->get()->getResultArray();
+
+  //   if ($pendaftaran_kk) {
+  //     $data['pendaftaran_kk'] = $pendaftaran_kk;
+  //     return view('pencarian_views/hasilKK', $data);
+  //   } else {
+  //     $data['error_message'] = 'Data Kartu Keluarga Baru tidak ditemukan.';
+  //     return view('pencarian_views/cekError', $data);
+  //   }
+  // }
+
   public function cariKK()
   {
     $data = [
       'title' => 'Hasil Status KK || Disdukcapil Majalengka'
     ];
+
+    $validationRules = [
+      'keyword' => [
+        'rules' => 'required|exact_length[16]',
+        'errors' => [
+          'required' => 'NIK harus diisi !!',
+          'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+        ],
+      ]
+    ];
+
+    $validationMessages = [
+      'keyword' => [
+        'required' => 'NIK harus diisi !!',
+        'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+      ]
+    ];
+
+    $this->validate($validationRules, $validationMessages);
+
+    if ($this->validator->hasError('keyword')) {
+      $data['validation'] = $this->validator;
+      return view('pencarian_views/cekKK', $data);
+    }
 
     $keyword = $this->request->getVar('keyword');
     $pendaftaran_kk = $this->kkModel->search($keyword)->onlyDeleted()->get()->getResultArray();
@@ -131,12 +216,15 @@ class Searching extends BaseController
 
 
 
+
+
   public function cekKKPemisahan()
   {
     helper(['form']);
     $data = [
       'title' => 'Pengecekan Status KK Pemisahan || Disdukcapil Majalengka',
-      'pendaftaran_kk_pemisahan' => $this->kkpemisahanModel
+      'pendaftaran_kk_pemisahan' => $this->kkpemisahanModel,
+      'validation' => \Config\Services::validation()
     ];
     return view('pencarian_views/cekKKPemisahan', $data);
   }
@@ -147,6 +235,30 @@ class Searching extends BaseController
       'title' => 'Hasil Status KK Pemisahan || Disdukcapil Majalengka'
     ];
 
+    $validationRules = [
+      'keyword' => [
+        'rules' => 'required|exact_length[16]',
+        'errors' => [
+          'required' => 'NIK harus diisi !!',
+          'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+        ],
+      ]
+    ];
+
+    $validationMessages = [
+      'keyword' => [
+        'required' => 'NIK harus diisi !!',
+        'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+      ]
+    ];
+
+    $this->validate($validationRules, $validationMessages);
+
+    if ($this->validator->hasError('keyword')) {
+      $data['validation'] = $this->validator;
+      return view('pencarian_views/cekKKPemisahan', $data);
+    }
+
     $keyword = $this->request->getVar('keyword');
     $pendaftaran_kk_pemisahan = $this->kkpemisahanModel->search($keyword)->onlyDeleted()->get()->getResultArray();
 
@@ -154,10 +266,13 @@ class Searching extends BaseController
       $data['pendaftaran_kk_pemisahan'] = $pendaftaran_kk_pemisahan;
       return view('pencarian_views/hasilKKPemisahan', $data);
     } else {
-      $data['error_message'] = 'Data Kartu Keluarga Pemisahan tidak ditemukan.';
+      $data['error_message'] = 'Data Kartu Keluarga Pemisahan tidak ditemukan';
       return view('pencarian_views/cekError', $data);
     }
   }
+
+
+
 
 
 
@@ -182,6 +297,30 @@ class Searching extends BaseController
     $data = [
       'title' => 'Hasil Status KK Penambahan || Disdukcapil Majalengka'
     ];
+
+    $validationRules = [
+      'keyword' => [
+        'rules' => 'required|exact_length[16]',
+        'errors' => [
+          'required' => 'NIK harus diisi !!',
+          'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+        ],
+      ]
+    ];
+
+    $validationMessages = [
+      'keyword' => [
+        'required' => 'NIK harus diisi !!',
+        'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+      ]
+    ];
+
+    $this->validate($validationRules, $validationMessages);
+
+    if ($this->validator->hasError('keyword')) {
+      $data['validation'] = $this->validator;
+      return view('pencarian_views/cekKKPenambahan', $data);
+    }
 
     $keyword = $this->request->getVar('keyword');
     $pendaftaran_kk_penambahan = $this->kkpenambahanModel->search($keyword)->onlyDeleted()->get()->getResultArray();
@@ -219,6 +358,30 @@ class Searching extends BaseController
       'title' => 'Hasil Status KK Pengurangan || Disdukcapil Majalengka'
     ];
 
+    $validationRules = [
+      'keyword' => [
+        'rules' => 'required|exact_length[16]',
+        'errors' => [
+          'required' => 'NIK harus diisi !!',
+          'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+        ],
+      ]
+    ];
+
+    $validationMessages = [
+      'keyword' => [
+        'required' => 'NIK harus diisi !!',
+        'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+      ]
+    ];
+
+    $this->validate($validationRules, $validationMessages);
+
+    if ($this->validator->hasError('keyword')) {
+      $data['validation'] = $this->validator;
+      return view('pencarian_views/cekKKPengurangan', $data);
+    }
+
     $keyword = $this->request->getVar('keyword');
     $pendaftaran_kk_pengurangan = $this->kkpenguranganModel->search($keyword)->onlyDeleted()->get()->getResultArray();
 
@@ -254,6 +417,30 @@ class Searching extends BaseController
     $data = [
       'title' => 'Hasil Status KK Perubahan || Disdukcapil Majalengka'
     ];
+
+    $validationRules = [
+      'keyword' => [
+        'rules' => 'required|exact_length[16]',
+        'errors' => [
+          'required' => 'NIK harus diisi !!',
+          'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+        ],
+      ]
+    ];
+
+    $validationMessages = [
+      'keyword' => [
+        'required' => 'NIK harus diisi !!',
+        'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+      ]
+    ];
+
+    $this->validate($validationRules, $validationMessages);
+
+    if ($this->validator->hasError('keyword')) {
+      $data['validation'] = $this->validator;
+      return view('pencarian_views/cekKKPerubahan', $data);
+    }
 
     $keyword = $this->request->getVar('keyword');
     $pendaftaran_kk_perubahan = $this->kkperubahanModel->search($keyword)->onlyDeleted()->get()->getResultArray();
@@ -291,6 +478,30 @@ class Searching extends BaseController
       'title' => 'Hasil Status KK Perceraian || Disdukcapil Majalengka'
     ];
 
+    $validationRules = [
+      'keyword' => [
+        'rules' => 'required|exact_length[16]',
+        'errors' => [
+          'required' => 'NIK harus diisi !!',
+          'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+        ],
+      ]
+    ];
+
+    $validationMessages = [
+      'keyword' => [
+        'required' => 'NIK harus diisi !!',
+        'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+      ]
+    ];
+
+    $this->validate($validationRules, $validationMessages);
+
+    if ($this->validator->hasError('keyword')) {
+      $data['validation'] = $this->validator;
+      return view('pencarian_views/cekKKPerceraian', $data);
+    }
+
     $keyword = $this->request->getVar('keyword');
     $pendaftaran_kk_perceraian = $this->kkperceraianModel->search($keyword)->onlyDeleted()->get()->getResultArray();
 
@@ -326,6 +537,30 @@ class Searching extends BaseController
     $data = [
       'title' => 'Hasil Status KIA || Disdukcapil Majalengka'
     ];
+
+    $validationRules = [
+      'keyword' => [
+        'rules' => 'required|exact_length[16]',
+        'errors' => [
+          'required' => 'NIK harus diisi !!',
+          'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+        ],
+      ]
+    ];
+
+    $validationMessages = [
+      'keyword' => [
+        'required' => 'NIK harus diisi !!',
+        'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+      ]
+    ];
+
+    $this->validate($validationRules, $validationMessages);
+
+    if ($this->validator->hasError('keyword')) {
+      $data['validation'] = $this->validator;
+      return view('pencarian_views/cekKIA', $data);
+    }
 
     $keyword = $this->request->getVar('keyword');
     $pendaftaran_kia = $this->kiaModel->search($keyword)->onlyDeleted()->get()->getResultArray();
@@ -364,6 +599,30 @@ class Searching extends BaseController
       'title' => 'Hasil Status Surat Perpindahan || Disdukcapil Majalengka'
     ];
 
+    $validationRules = [
+      'keyword' => [
+        'rules' => 'required|exact_length[16]',
+        'errors' => [
+          'required' => 'NIK harus diisi !!',
+          'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+        ],
+      ]
+    ];
+
+    $validationMessages = [
+      'keyword' => [
+        'required' => 'NIK harus diisi !!',
+        'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+      ]
+    ];
+
+    $this->validate($validationRules, $validationMessages);
+
+    if ($this->validator->hasError('keyword')) {
+      $data['validation'] = $this->validator;
+      return view('pencarian_views/cekSuratPerpindahan', $data);
+    }
+
     $keyword = $this->request->getVar('keyword');
     $pendaftaran_suratperpindahan = $this->suratperpindahanModel->search($keyword)->onlyDeleted()->get()->getResultArray();
 
@@ -399,6 +658,30 @@ class Searching extends BaseController
     $data = [
       'title' => 'Hasil Status Surat Perpindahan Luar || Disdukcapil Majalengka'
     ];
+
+    $validationRules = [
+      'keyword' => [
+        'rules' => 'required|exact_length[16]',
+        'errors' => [
+          'required' => 'NIK harus diisi !!',
+          'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+        ],
+      ]
+    ];
+
+    $validationMessages = [
+      'keyword' => [
+        'required' => 'NIK harus diisi !!',
+        'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+      ]
+    ];
+
+    $this->validate($validationRules, $validationMessages);
+
+    if ($this->validator->hasError('keyword')) {
+      $data['validation'] = $this->validator;
+      return view('pencarian_views/cekSuratPerpindahanLuar', $data);
+    }
 
     $keyword = $this->request->getVar('keyword');
     $pendaftaran_suratperpindahanluar = $this->suratperpindahanluarModel->search($keyword)->onlyDeleted()->get()->getResultArray();
@@ -436,6 +719,30 @@ class Searching extends BaseController
       'title' => 'Hasil Status Akta Kelahiran || Disdukcapil Majalengka'
     ];
 
+    $validationRules = [
+      'keyword' => [
+        'rules' => 'required|exact_length[16]',
+        'errors' => [
+          'required' => 'NIK harus diisi !!',
+          'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+        ],
+      ]
+    ];
+
+    $validationMessages = [
+      'keyword' => [
+        'required' => 'NIK harus diisi !!',
+        'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+      ]
+    ];
+
+    $this->validate($validationRules, $validationMessages);
+
+    if ($this->validator->hasError('keyword')) {
+      $data['validation'] = $this->validator;
+      return view('pencarian_views/cekAktaKelahiran', $data);
+    }
+
     $keyword = $this->request->getVar('keyword');
     $pendaftaran_aktakelahiran = $this->aktakelahiranModel->search($keyword)->onlyDeleted()->get()->getResultArray();
 
@@ -471,6 +778,30 @@ class Searching extends BaseController
     $data = [
       'title' => 'Hasil Status Akta Kematian || Disdukcapil Majalengka'
     ];
+
+    $validationRules = [
+      'keyword' => [
+        'rules' => 'required|exact_length[16]',
+        'errors' => [
+          'required' => 'NIK harus diisi !!',
+          'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+        ],
+      ]
+    ];
+
+    $validationMessages = [
+      'keyword' => [
+        'required' => 'NIK harus diisi !!',
+        'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+      ]
+    ];
+
+    $this->validate($validationRules, $validationMessages);
+
+    if ($this->validator->hasError('keyword')) {
+      $data['validation'] = $this->validator;
+      return view('pencarian_views/cekAktaKematian', $data);
+    }
 
     $keyword = $this->request->getVar('keyword');
     $pendaftaran_aktakematian = $this->aktakematianModel->search($keyword)->onlyDeleted()->get()->getResultArray();
@@ -508,6 +839,30 @@ class Searching extends BaseController
       'title' => 'Hasil Status Keabsahan Akla || Disdukcapil Majalengka'
     ];
 
+    $validationRules = [
+      'keyword' => [
+        'rules' => 'required|exact_length[16]',
+        'errors' => [
+          'required' => 'NIK harus diisi !!',
+          'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+        ],
+      ]
+    ];
+
+    $validationMessages = [
+      'keyword' => [
+        'required' => 'NIK harus diisi !!',
+        'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+      ]
+    ];
+
+    $this->validate($validationRules, $validationMessages);
+
+    if ($this->validator->hasError('keyword')) {
+      $data['validation'] = $this->validator;
+      return view('pencarian_views/cekKeabsahanAkla', $data);
+    }
+
     $keyword = $this->request->getVar('keyword');
     $pendaftaran_keabsahanakla = $this->keabsahanaklaModel->search($keyword)->onlyDeleted()->get()->getResultArray();
 
@@ -543,6 +898,30 @@ class Searching extends BaseController
     $data = [
       'title' => 'Hasil Status Pelayanan Data || Disdukcapil Majalengka'
     ];
+
+    $validationRules = [
+      'keyword' => [
+        'rules' => 'required|exact_length[16]',
+        'errors' => [
+          'required' => 'NIK harus diisi !!',
+          'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+        ],
+      ]
+    ];
+
+    $validationMessages = [
+      'keyword' => [
+        'required' => 'NIK harus diisi !!',
+        'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+      ]
+    ];
+
+    $this->validate($validationRules, $validationMessages);
+
+    if ($this->validator->hasError('keyword')) {
+      $data['validation'] = $this->validator;
+      return view('pencarian_views/cekPelayananData', $data);
+    }
 
     $keyword = $this->request->getVar('keyword');
     $pendaftaran_pelayanandata = $this->pelayanandataModel->search($keyword)->onlyDeleted()->get()->getResultArray();
@@ -580,6 +959,30 @@ class Searching extends BaseController
       'title' => 'Hasil Status Perbaikan Data || Disdukcapil Majalengka'
     ];
 
+    $validationRules = [
+      'keyword' => [
+        'rules' => 'required|exact_length[16]',
+        'errors' => [
+          'required' => 'NIK harus diisi !!',
+          'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+        ],
+      ]
+    ];
+
+    $validationMessages = [
+      'keyword' => [
+        'required' => 'NIK harus diisi !!',
+        'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+      ]
+    ];
+
+    $this->validate($validationRules, $validationMessages);
+
+    if ($this->validator->hasError('keyword')) {
+      $data['validation'] = $this->validator;
+      return view('pencarian_views/cekPerbaikanData', $data);
+    }
+
     $keyword = $this->request->getVar('keyword');
     $perbaikan_data = $this->perbaikandataModel->search($keyword)->onlyDeleted()->get()->getResultArray();
 
@@ -615,6 +1018,30 @@ class Searching extends BaseController
     $data = [
       'title' => 'Hasil Status Pengaduan Update || Disdukcapil Majalengka'
     ];
+
+    $validationRules = [
+      'keyword' => [
+        'rules' => 'required|exact_length[16]',
+        'errors' => [
+          'required' => 'NIK harus diisi !!',
+          'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+        ],
+      ]
+    ];
+
+    $validationMessages = [
+      'keyword' => [
+        'required' => 'NIK harus diisi !!',
+        'exact_length' => 'NIK harus terdiri dari 16 angka !!'
+      ]
+    ];
+
+    $this->validate($validationRules, $validationMessages);
+
+    if ($this->validator->hasError('keyword')) {
+      $data['validation'] = $this->validator;
+      return view('pencarian_views/cekPengaduanUpdate', $data);
+    }
 
     $keyword = $this->request->getVar('keyword');
     $pendaftaran_pengaduanupdate = $this->pengaduanupdateModel->search($keyword)->onlyDeleted()->get()->getResultArray();

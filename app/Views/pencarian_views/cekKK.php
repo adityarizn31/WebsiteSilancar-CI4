@@ -22,6 +22,11 @@
 
         <?= csrf_field(); ?>
 
+        <?php $validation = \Config\Services::validation(); ?>
+        <?php if (session()->has('validation')) : ?>
+          <?php $validation = session('validation'); ?>
+        <?php endif; ?>
+
         <div class="row g-2">
 
           <div class="col-md">
@@ -29,7 +34,22 @@
               <input type="text" name="keyword" class="form-control text-black" id="floatingInputGrid" autofocus>
               <label for="floatingInputGrid" class="fw-semibold text-black"> NIK </label>
             </div>
+            <div class="invalid-feedback">
+              <?= session('errors.nik') ?>
+            </div>
           </div>
+
+          <?php if (isset($validation)) : ?>
+            <?php if ($validation->getErrors()) : ?>
+              <div class="alert alert-danger mt-3" role="alert">
+                <ul>
+                  <?php foreach ($validation->getErrors() as $error) : ?>
+                    <li><?= esc($error) ?></li>
+                  <?php endforeach ?>
+                </ul>
+              </div>
+            <?php endif ?>
+          <?php endif ?>
 
           <div class="form-floating mb-3">
             <input type="email" class="form-control" id="floatingInputDisabled" placeholder="Pendaftaran Kartu Keluarga" disabled>
