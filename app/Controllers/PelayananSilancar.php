@@ -96,12 +96,18 @@ class PelayananSilancar extends BaseController
 
   public function saveKK()
   {
-    $validate = $this->validate([
+
+    $data = [
+      'title' => 'Pendaftaran KK || Disdukcapil Majalengka'
+    ];
+
+    $validation = $this->validate([
 
       'nik' => [
-        'rules' => 'required[pendaftaran_kk.nik]',
+        'rules' => 'required[pendaftaran_kk.nik]|exact_length[16]',
         'errors' => [
-          'required' => 'NIK Pemohon Harus Diisi !!'
+          'required' => 'NIK Pemohon Harus Diisi !!',
+          'exact_length' => 'NIK Pemohon Harus 16 Angka'
         ],
       ],
       'namapemohon' => [
@@ -186,9 +192,39 @@ class PelayananSilancar extends BaseController
       ],
     ]);
 
-    if (!$validate) {
-      return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+    // Jalankan validasi
+    $validated = $this->validator->getErrors();
+
+    // Periksa apakah validasi gagal
+    if (!$validated) {
+      // Jika validasi gagal, kirimkan pesan kesalahan ke halaman pendaftaran
+      $data['validation'] = $validation;
+      return view('pelayanan_views/pendaftaranKK', $data);
+    } else {
+      // Jika validasi berhasil, tampilkan halaman pendaftaran
+      return view('pelayanan_views/pendaftaranKK', $data);
     }
+
+    // if (!$validate) {
+    //   return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+    // }
+
+    // if ($this->validator->getErrors()) {
+    //   $data[$validation] = $this->validator;
+    //   return view('pelayanan_views/pendaftaranKK', $data);
+    // }
+
+    // if ($validate) {
+    //   return view('pelayanan_views/pendaftaranKK', $data);
+    // } else {
+    //   $data['validation'] = $this->validator;
+    //   return view('pelayanan_views/pendaftaranKK', $data);
+    // }
+
+    // Jalankan validasi
+
+
+
 
     $fileFotoKTP = $this->request->getFile('fotoktp');
     if ($fileFotoKTP->getError() == 4) {
@@ -258,9 +294,10 @@ class PelayananSilancar extends BaseController
     $validate = $this->validate([
 
       'nik' => [
-        'rules' => 'required[pendaftaran_kk_pemisahan.nik]',
+        'rules' => 'required[pendaftaran_kk_pemisahan.nik]|exact_length[16]',
         'errors' => [
-          'required' => 'NIK Pemohon Harus Diisi !!'
+          'required' => 'NIK Pemohon Harus Diisi !!',
+          'exact_length' => 'NIK Harus terdiri 16 Angka'
         ],
       ],
       'namapemohon' => [
@@ -348,8 +385,7 @@ class PelayananSilancar extends BaseController
       'filepemisahan' => $namaFilePemisahan
     ]);
     session()->setFlashdata('pesan', 'Selamat pendaftaran permohonan Kartu Keluarga Pemisahan Anda telah berhasil !!');
-    // return redirect()->to('/PelayananSilancar/pendaftaranKKPemisahan');
-    return redirect()->back();
+    return redirect()->to('/PelayananSilancar/pendaftaranKKPemisahan');
   }
 
 
@@ -376,9 +412,10 @@ class PelayananSilancar extends BaseController
     $validate = $this->validate([
 
       'nik' => [
-        'rules' => 'required[pendaftaran_kk_penambahan.nik]',
+        'rules' => 'required[pendaftaran_kk_penambahan.nik]|exact_length[16]',
         'errors' => [
-          'required' => 'NIK Pemohon Harus Diisi !!'
+          'required' => 'NIK Pemohon Harus Diisi !!',
+          'exact_length' => 'NIK Harus terdiri 16 Angka'
         ],
       ],
       'namapemohon' => [
@@ -508,9 +545,10 @@ class PelayananSilancar extends BaseController
     $validate = $this->validate([
 
       'nik' => [
-        'rules' => 'required[pendaftaran_kk_pengurangan.nik]',
+        'rules' => 'required[pendaftaran_kk_pengurangan.nik]|exact_length[16]',
         'errors' => [
-          'required' => 'NIK Pemohon Harus Diisi !!'
+          'required' => 'NIK Pemohon Harus Diisi !!',
+          'exact_length' => 'NIK Harus terdiri 16 Angka'
         ],
       ],
       'namapemohon' => [
@@ -626,9 +664,10 @@ class PelayananSilancar extends BaseController
     $validate = $this->validate([
 
       'nik' => [
-        'rules' => 'required[pendaftaran_kk_perubahan.nik]',
+        'rules' => 'required[pendaftaran_kk_perubahan.nik]|exact_length[16]',
         'errors' => [
-          'required' => 'NIK Pemohon Harus Diisi !!'
+          'required' => 'NIK Pemohon Harus Diisi !!',
+          'exact_length' => 'NIK Harus terdiri 16 Angka'
         ],
       ],
       'namapemohon' => [
@@ -760,9 +799,10 @@ class PelayananSilancar extends BaseController
     $validate = $this->validate([
 
       'nik' => [
-        'rules' => 'required[pendaftaran_kia.nik]',
+        'rules' => 'required[pendaftaran_kia.nik]|exact_length[16]',
         'errors' => [
-          'required' => 'NIK Pemohon Harus Diisi !!'
+          'required' => 'NIK Pemohon Harus Diisi !!',
+          'exact_length' => 'NIK Harus terdiri 16 Angka'
         ],
       ],
       'namapemohon' => [
@@ -895,9 +935,10 @@ class PelayananSilancar extends BaseController
     $validate = $this->validate([
 
       'nik' => [
-        'rules' => 'required[pendaftaran_kk_perceraian.nik]',
+        'rules' => 'required[pendaftaran_kk_perceraian.nik]|exact_length[16]',
         'errors' => [
-          'required' => 'NIK Pemohon Harus Diisi !!'
+          'required' => 'NIK Pemohon Harus Diisi !!',
+          'exact_length' => 'NIK Harus terdiri 16 Angka'
         ],
       ],
       'namapemohon' => [
@@ -1026,9 +1067,10 @@ class PelayananSilancar extends BaseController
     $validate = $this->validate([
 
       'nik' => [
-        'rules' => 'required[pendaftaran_suratperpindahan.nik]',
+        'rules' => 'required[pendaftaran_suratperpindahan.nik]|exact_length[16]',
         'errors' => [
-          'required' => 'NIK Pemohon Harus Diisi !!'
+          'required' => 'NIK Pemohon Harus Diisi !!',
+          'exact_length' => 'NIK Harus terdiri 16 Angka'
         ],
       ],
       'namapemohon' => [
@@ -1144,9 +1186,10 @@ class PelayananSilancar extends BaseController
     $validate = $this->validate([
 
       'nik' => [
-        'rules' => 'required[pendaftaran_suratperpindahanluar.nik]',
+        'rules' => 'required[pendaftaran_suratperpindahanluar.nik]|exact_length[16]',
         'errors' => [
-          'required' => 'NIK Pemohon Harus Diisi !!'
+          'required' => 'NIK Pemohon Harus Diisi !!',
+          'exact_length' => 'NIK Harus terdiri 16 Angka'
         ],
       ],
       'namapemohon' => [
@@ -1262,9 +1305,10 @@ class PelayananSilancar extends BaseController
     $validate = $this->validate([
 
       'nik' => [
-        'rules' => 'required[pendaftaran_aktakelahiran.nik]',
+        'rules' => 'required[pendaftaran_aktakelahiran.nik]|exact_length[16]',
         'errors' => [
-          'required' => 'NIK Pemohon Harus Diisi !!'
+          'required' => 'NIK Pemohon Harus Diisi !!',
+          'exact_length' => 'NIK Harus terdiri 16 Angka'
         ],
       ],
       'namapemohon' => [
@@ -1444,9 +1488,10 @@ class PelayananSilancar extends BaseController
     $validate = $this->validate([
 
       'nik' => [
-        'rules' => 'required[pendaftaran_aktakematian.nik]',
+        'rules' => 'required[pendaftaran_aktakematian.nik]|exact_length[16]',
         'errors' => [
-          'required' => 'NIK Pemohon Harus Diisi !!'
+          'required' => 'NIK Pemohon Harus Diisi !!',
+          'exact_length' => 'NIK Harus terdiri 16 Angka'
         ],
       ],
       'namapemohon' => [
@@ -1568,9 +1613,10 @@ class PelayananSilancar extends BaseController
     $validate = $this->validate([
 
       'nik' => [
-        'rules' => 'required[pendaftaran_keabsahanakla.nik]',
+        'rules' => 'required[pendaftaran_keabsahanakla.nik]|exact_length[16]',
         'errors' => [
-          'required' => 'NIK Pemohon Harus Diisi !!'
+          'required' => 'NIK Pemohon Harus Diisi !!',
+          'exact_length' => 'NIK Harus terdiri 16 Angka'
         ],
       ],
       'namapemohon' => [
@@ -1690,11 +1736,11 @@ class PelayananSilancar extends BaseController
   public function savePelayananData()
   {
     $rule = [
-
       'nik' => [
-        'rules' => 'required[pendaftaran_pelayanandata.nik]',
+        'rules' => 'required[pendaftaran_pelayanandata.nik]|exact_length[16]',
         'errors' => [
-          'required' => 'NIK Pemohon Harus Diisi !!'
+          'required' => 'NIK Pemohon Harus Diisi !!',
+          'exact_length' => 'NIK Harus terdiri 16 Angka'
         ],
       ],
       'namapemohon' => [
@@ -1833,9 +1879,10 @@ class PelayananSilancar extends BaseController
   {
     $rule = [
       'nik' => [
-        'rules' => 'required[perbaikan_data.nik]',
+        'rules' => 'required[perbaikan_data.nik]|exact_length[16]',
         'errors' => [
-          'required' => 'NIK Pemohon Harus Diisi !!'
+          'required' => 'NIK Pemohon Harus Diisi !!',
+          'exact_length' => 'NIK Harus terdiri 16 Angka'
         ],
       ],
       'namapemohon' => [
@@ -1982,9 +2029,10 @@ class PelayananSilancar extends BaseController
     $validate = $this->validate([
 
       'nik' => [
-        'rules' => 'required[pengaduan_update.nik]',
+        'rules' => 'required[pengaduan_update.nik]|exact_length[16]',
         'errors' => [
-          'required' => 'NIK Pemohon Harus Diisi !!'
+          'required' => 'NIK Pemohon Harus Diisi !!',
+          'exact_length' => 'NIK Harus terdiri 16 Angka'
         ],
       ],
       'namapemohon' => [

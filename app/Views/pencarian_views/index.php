@@ -17,7 +17,7 @@
 <div class="container">
   <h4 class="text-center text-black fw-bold">Pengecekan Status Pendaftaran</h4>
   <div class="pelayanan">
-    <div class="row">
+    <div class="row justify-content-center">
 
       <div class="card kartupelayanan shadow border-3" style="border-color: #007BFF;">
         <a href="/Searching/cekKK">

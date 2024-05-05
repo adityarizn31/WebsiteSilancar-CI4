@@ -18,7 +18,7 @@
   <div class="row">
     <div class="col">
 
-      <form action="/Searching/cariKKPerubahan" method="post">
+      <form action="/Searching/cariKKPerubahan" method="POST">
 
         <?= csrf_field(); ?>
 
@@ -38,7 +38,7 @@
 
           <?php if (isset($validation)) : ?>
             <?php if ($validation->getErrors()) : ?>
-              <div class="alert alert-danger mt-3" role="alert">
+              <div class="alert alert-danger" role="alert">
                 <ul>
                   <?php foreach ($validation->getErrors() as $error) : ?>
                     <li><?= esc($error) ?></li>
@@ -54,7 +54,7 @@
           </div>
 
           <div class="d-grid gap-2 col-6 mx-auto">
-            <button type="submit" value="submit" name="submit" id="submit" class="btn btn-primary"> Cek Pendaftaran </button>
+            <button type="submit" value="submit" name="submit" id="submit" class="btn btn-primary"> C E K </button>
           </div>
 
       </form>

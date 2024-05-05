@@ -103,67 +103,6 @@ class Searching extends BaseController
     return view('pencarian_views/cekKK', $data);
   }
 
-  // public function cariKK()
-  // {
-  //   $data = [
-  //     'title' => 'Hasil Status KK || Disdukcapil Majalengka'
-  //   ];
-
-  //   $keyword = $this->request->getVar('keyword');
-  //   $pendaftaran_kk = $this->kkModel->search($keyword)->onlyDeleted()->get()->getResultArray();
-
-  //   if ($pendaftaran_kk) {
-  //     $data['pendaftaran_kk'] = $pendaftaran_kk;
-  //     return view('pencarian_views/hasilKK', $data);
-  //   } else {
-  //     $data['error_message'] = 'Data Kartu Keluarga Baru tidak ditemukan.';
-  //     return view('pencarian_views/cekError', $data);
-  //   }
-  // }
-
-  // public function cariKK()
-  // {
-  //   $data = [
-  //     'title' => 'Hasil Status KK || Disdukcapil Majalengka',
-  //     'pendaftaran_kk' => $this->kkModel
-  //   ];
-
-  //   $validationRules = [
-  //     'keyword' => [
-  //       'rules' => 'required|exact_length[16]',
-  //       'errors' => [
-  //         'required' => 'NIK harus diisi !!',
-  //         'exact_length' => 'NIK harus terdiri dari 16 angka !!'
-  //       ],
-  //     ]
-  //   ];
-
-  //   $validationMessages = [
-  //     'keyword' => [
-  //       'required' => 'NIK harus diisi !!',
-  //       'exact_length' => 'NIK harus terdiri dari 16 angka !!'
-  //     ]
-  //   ];
-
-  //   $this->validate($validationRules, $validationMessages);
-
-  //   if ($this->validator->hasError('keyword')) {
-  //     $data['validation'] = $this->validator;
-  //     return view('pencarian_views/hasilKK', $data);
-  //   }
-
-  //   $keyword = $this->request->getVar('keyword');
-  //   $pendaftaran_kk = $this->kkModel->search($keyword)->onlyDeleted()->get()->getResultArray();
-
-  //   if ($pendaftaran_kk) {
-  //     $data['pendaftaran_kk'] = $pendaftaran_kk;
-  //     return view('pencarian_views/hasilKK', $data);
-  //   } else {
-  //     $data['error_message'] = 'Data Kartu Keluarga Baru tidak ditemukan.';
-  //     return view('pencarian_views/cekError', $data);
-  //   }
-  // }
-
   public function cariKK()
   {
     $data = [

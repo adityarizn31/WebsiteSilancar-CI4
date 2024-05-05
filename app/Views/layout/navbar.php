@@ -5,9 +5,12 @@
       <img class="logodisduknav" src="/img/header/HeaderDisduk.PNG">
     </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" style="outline: none; margin-right:10px;">
+      <span class="navbar-toggler-icon">
+        <i class="fas fa-bars text-white"></i>
+      </span>
     </button>
+
   </div>
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">

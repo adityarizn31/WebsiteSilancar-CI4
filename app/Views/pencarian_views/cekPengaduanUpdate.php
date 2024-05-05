@@ -18,7 +18,7 @@
     <div class="row">
       <div class="col">
 
-        <form action="/Searching/cariPengaduanUpdate" method="post">
+        <form action="/Searching/cariPengaduanUpdate" method="POST">
 
           <?= csrf_field(); ?>
 
@@ -29,7 +29,22 @@
                 <input type="text" name="keyword" class="form-control text-black" id="floatingInputGrid" autofocus>
                 <label for="floatingInputGrid" class="fw-semibold text-black"> NIK </label>
               </div>
+              <div class="invalid-feedback">
+                <?= session('errors.nik') ?>
+              </div>
             </div>
+
+            <?php if (isset($validation)) : ?>
+              <?php if ($validation->getErrors()) : ?>
+                <div class="alert alert-danger" role="alert">
+                  <ul>
+                    <?php foreach ($validation->getErrors() as $error) : ?>
+                      <li><?= esc($error) ?></li>
+                    <?php endforeach ?>
+                  </ul>
+                </div>
+              <?php endif ?>
+            <?php endif ?>
 
             <div class="form-floating mb-3">
               <input type="email" class="form-control" id="floatingInputDisabled" placeholder="Pendaftaran Kartu Keluarga" disabled>
@@ -37,7 +52,7 @@
             </div>
 
             <div class="d-grid gap-2 col-6 mx-auto">
-              <button type="submit" value="submit" name="submit" id="submit" class="btn btn-primary"> Cek Pendaftaran </button>
+              <button type="submit" value="submit" name="submit" id="submit" class="btn btn-primary"> C E K </button>
             </div>
 
         </form>

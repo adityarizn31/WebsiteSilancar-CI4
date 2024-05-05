@@ -115,7 +115,7 @@
         </tbody>
 
       </table>
-      <?= $pager->links('pendaftaran_kkpenambahan', 'kkpenambahan_pagination'); ?>
+      <?= $pager->links('pendaftaran_kk_penambahan', 'kkpenambahan_pagination'); ?>
     </div>
   </div>
 

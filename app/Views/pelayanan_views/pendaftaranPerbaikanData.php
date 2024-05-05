@@ -15,7 +15,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
   <div class="container" style="padding: 10px;">
     <div class="card shadow mb-4" style="padding: 20px;">
       <div class="container">
-        <h4 class="text-center text-black mt-2 mb-2 fw-bold"> Pendaftaran Perbaikan Data </h4>
+        <h4 class="text-center mt-2 mb-2 fw-bold"> Pendaftaran Perbaikan Data </h4>
       </div>
 
       <?php if (session()->getFlashdata('pesan')) : ?>
@@ -49,7 +49,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
 
       <?php endif; ?>
 
-      <form action="/PelayananSilancar/savePerbaikanData" method="post" enctype="multipart/form-data">
+      <form action="/PelayananSilancar/savePerbaikanData" method="POST" enctype="multipart/form-data">
 
         <?= csrf_field(); ?>
 

@@ -87,7 +87,7 @@
 
                 <form action="<?= base_url('/DetailAdmin/detail_pendaftarankk_admin/' . $kk['namapemohon']); ?>" method="post" class="d-inline">
                   <?= csrf_field(); ?>
-                  <button class="btn btn-primary btn-sm" data-placement="top" title="Tandai Selesai">
+                  <button class="btn btn-primary btn-sm" data-placement="top" title="Detail">
                     <span class="bi bi-folder2-open me-2"></span>Detail
                   </button>
                 </form>

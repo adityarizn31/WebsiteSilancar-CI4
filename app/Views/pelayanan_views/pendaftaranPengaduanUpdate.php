@@ -50,7 +50,7 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
 
       <?php endif; ?>
 
-      <form action="/PelayananSilancar/savePengaduanUpdate" method="post" enctype="multipart/form-data">
+      <form action="/PelayananSilancar/savePengaduanUpdate" method="POST" enctype="multipart/form-data">
 
         <?= csrf_field(); ?>
 

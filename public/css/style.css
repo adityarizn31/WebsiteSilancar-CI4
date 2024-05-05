@@ -141,15 +141,16 @@ body {
   width: 50%;
 }
 
-.pelayanan {
+/* .pelayanan {
   padding-left: 6%;
-}
+} */
 
 .kartupelayanan {
   padding: 2%;
   margin: 2%;
-  width: 18rem;
-  border-color: grey;
+  width: 15rem;
+  /* width: 40%; */
+  border-color: #890B0C;
   box-shadow: inset;
 }
 
@@ -401,9 +402,9 @@ a {
   }
 
   .pelayanan {
-    display: grid;
     width: 100%;
-    padding-left: 5.5%;
+    margin-right: auto;
+    margin-left: auto;
   }
 
   .fotovisimisi {
@@ -424,9 +425,9 @@ a {
     width: 90%;
   }
 
-  .pelayananrow {
+  /* .pelayananrow {
     width: 100%;
-  }
+  } */
 
   .menu-icon {
     display: flex;
