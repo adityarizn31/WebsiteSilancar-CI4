@@ -34,7 +34,7 @@
               <input type="text" name="keyword" class="form-control text-black" id="floatingInputGrid" autofocus>
               <label for="floatingInputGrid" class="fw-semibold text-black"> NIK </label>
             </div>
-            <div class="invalid-feedback">
+            <div class="is-invalid">
               <?= session('errors.nik') ?>
             </div>
           </div>
