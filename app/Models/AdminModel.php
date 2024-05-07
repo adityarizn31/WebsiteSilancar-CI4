@@ -7,9 +7,9 @@ use CodeIgniter\Model;
 class AdminModel extends Model
 {
   //Cara menghubungkan Model dengan Tabel
-  protected $table = 'admin';
+  protected $table = 'users';
   protected $useTimestamps = true; // Mengaktifkan Fitur Created_at & Updated_at
-  protected $allowedFields = ['nama', 'email', 'password', 'level'];
+  protected $allowedFields = ['nama', 'email', 'password', 'level', 'user_image'];
 
   public function getAkunAdmin($nama = false)
   {

@@ -10,6 +10,10 @@ use App\Models\InovasiModel;
 use App\Models\VisiMisiModel;
 use App\Models\PersyaratansilancarModel;
 
+use \Myth\Auth\Entities\User;
+use \Myth\Auth\Authorization\GroupModel;
+use \Myth\Auth\Config\Auth as AuthConfig;
+
 // Halaman Pendaftaran Si Lancar
 
 use App\Models\Pendaftaran_kk_Model;
@@ -70,6 +74,9 @@ class Admin extends BaseController
 
   protected $pelkkModel;
 
+  protected $auth;
+
+  protected $config;
 
   public function __construct()
   {
@@ -99,6 +106,9 @@ class Admin extends BaseController
 
     $this->perbaikandataModel = new Perbaikan_data_Model();
     $this->pengaduanupdateModel = new Pengaduan_update_Model();
+
+    $this->config = config('Auth');
+    $this->auth = service('authentication');
   }
 
 
@@ -111,6 +121,7 @@ class Admin extends BaseController
   // Halaman Utama / Dashboard
   public function index()
   {
+    $admin = $this->adminModel->findAll();
     $pendaftaran_kk = $this->kkModel->findAll();
     $pendaftaran_kk_pemisahan = $this->kkpemisahanModel->findAll();
     $pendaftaran_kk_penambahan = $this->kkpenambahanModel->findAll();
@@ -128,6 +139,7 @@ class Admin extends BaseController
     $pendaftaran_pengaduanupdate = $this->pengaduanupdateModel->findAll();
     $data = [
       'title' => 'Admin Disdukcapil',
+      'users' => $admin,
       'pendaftaran_kk' => $pendaftaran_kk,
       'pendaftaran_kk_pemisahan' => $pendaftaran_kk_pemisahan,
       'pendaftaran_kk_penambahan' => $pendaftaran_kk_penambahan,
@@ -156,11 +168,9 @@ class Admin extends BaseController
   // Menampilkan akun admin
   public function data_admin()
   {
-    // Menghubungkan Controller Admin dengan AdminModel
-    // $admin = $this->adminModel->findAll();
     $data = [
       'title' => 'Data Akun || Admin Disdukcapil',
-      'admin' => $this->adminModel->getAkunAdmin()
+      'users' => $this->adminModel->getAkunAdmin()
     ];
     return view('admin/data_admin', $data);
   }
@@ -269,9 +279,29 @@ class Admin extends BaseController
   {
     $data = [
       'title' => 'Login Admin || Admin Disdukcapil',
-      'config' => Services::config()
     ];
     return view('auth/login', $data);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  public function logout()
+  {
+
+    session()->remove('id');
+    return redirect()->to(site_url('login'));
   }
 
 

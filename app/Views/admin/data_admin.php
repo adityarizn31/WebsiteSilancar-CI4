@@ -15,7 +15,6 @@
       <div class="d-sm-flex align-items-center justify-content-between" style="padding-top: 10px;">
         <h6 class="m-0 font-weight-bold text-primary">Data Akun Disdukcapil Majalengka</h6>
 
-        <!-- Method create_akun_admin digunakan untuk Menampilkan Form Insert Data -->
         <a href="/createAdmin/create_akun_admin/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Tambah Admin</a>
       </div>
 
@@ -34,14 +33,14 @@
 
           <tbody>
             <?php $i = 1; ?>
-            <?php foreach ($admin as $adm) : ?>
+            <?php foreach ($users as $adm) : ?>
               <tr>
                 <th scope="row1"><?= $i++; ?></th>
-                <td><?= $adm['nama']; ?></td>
+                <td><?= $adm['username']; ?></td>
                 <td><?= $adm['email']; ?></td>
                 <td><?= $adm['created_at']; ?></td>
                 <td>
-                  <a href="/detailadmin/detail_akun_admin/<?= $adm['nama']; ?>" class="btn btn-success">Detail</a>
+                  <a href="/detailadmin/detail_akun_admin/<?= $adm['username']; ?>" class="btn btn-success btn-sm">Detail</a>
                 </td>
               </tr>
             <?php endforeach; ?>

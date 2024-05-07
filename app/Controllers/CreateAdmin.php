@@ -10,6 +10,10 @@ use App\Models\InovasiModel;
 use App\Models\VisiMisiModel;
 use App\Models\PersyaratansilancarModel;
 
+use \Myth\Auth\Entities\User;
+use \Myth\Auth\Authorization\GroupModel;
+use \Myth\Auth\Config\Auth as AuthConfig;
+
 // Halaman Pendaftaran Si Lancar
 
 use App\Models\Pendaftaran_kk_Model;
@@ -55,6 +59,10 @@ class CreateAdmin extends BaseController
 
   protected $pelayananModel;
 
+  protected $auth;
+
+  protected $config;
+
   public function __construct()
   {
     $this->adminModel = new AdminModel();
@@ -78,6 +86,9 @@ class CreateAdmin extends BaseController
 
     $this->perbaikandataModel = new Perbaikan_data_Model();
     $this->pengaduanupdateModel = new Pengaduan_update_Model();
+
+    $this->config = config('Auth');
+    $this->auth = service('authentication');
   }
 
 
@@ -241,77 +252,130 @@ class CreateAdmin extends BaseController
   {
     $data = [
       'title' => 'Form Tambah Akun Admin || Admin Disdukcapil',
+      'config' => $this->config,
       'validation' => \Config\Services::validation()
     ];
     return view('createAdmin/create_akun_admin', $data);
   }
 
-  public function saveAkun()
-  {
-    if (!$this->validate([
+  // public function saveAkun()
+  // {
+  //   if (!$this->validate([
 
-      // Nama
-      'nama' => [
-        'rules' => 'required[admin.nama]',
-        'errors' => [
-          'required' => 'Nama Harus Diisi !!'
-        ]
-      ],
-      // Email
-      'email' => [
-        'rules' => 'required[admin.email]|valid_email|is_unique[admin.email]',
-        'errors' => [
-          'required' => 'Email Harus Diisi !!',
-          'valid_email' => 'Mohon cek kembali format email yang digunakan !!'
-        ]
-      ],
-      // Password
-      'password' => [
-        'rules' => 'required[admin.password]|min_length[10]|max_length[100]|alpha_numeric_punct',
-        'errors' => [
-          'required' => 'Password Harus Diisi !!',
-          'min_length' => 'Password Karakter harus lebih dari 10 !!'
-        ]
-      ],
-      // Level Akun
-      'level' => [
-        'rules' => 'required[admin.level]',
-        'errors' => [
-          'required' => 'Dipilih sesuai dengan Kebutuhan !!'
-        ]
-      ],
-      // Foto Admin
-      'foto_admin' => [
-        'rules' => 'uploaded[admin.foto_admin]|is_image[foto_admin]|mime_in[foto_admin,image/jpg,image/jpeg,image/png]',
-        'errors' => [
-          'uploaded' => 'Foto Admin Harus Diisi !!',
-          'is_image' => 'Yang anda pilih bukan Gambar !!',
-          'mime_in' => 'Yang anda pilih bukan Gambar !!'
-        ]
-      ]
+  //     // Nama
+  //     'nama' => [
+  //       'rules' => 'required[admin.nama]',
+  //       'errors' => [
+  //         'required' => 'Nama Harus Diisi !!'
+  //       ]
+  //     ],
+  //     // Email
+  //     'email' => [
+  //       'rules' => 'required[admin.email]|valid_email|is_unique[admin.email]',
+  //       'errors' => [
+  //         'required' => 'Email Harus Diisi !!',
+  //         'valid_email' => 'Mohon cek kembali format email yang digunakan !!'
+  //       ]
+  //     ],
+  //     // Password
+  //     'password' => [
+  //       'rules' => 'required[admin.password]|min_length[10]|max_length[100]|alpha_numeric_punct',
+  //       'errors' => [
+  //         'required' => 'Password Harus Diisi !!',
+  //         'min_length' => 'Password Karakter harus lebih dari 10 !!'
+  //       ]
+  //     ],
+  //     // Level Akun
+  //     'level' => [
+  //       'rules' => 'required[admin.level]',
+  //       'errors' => [
+  //         'required' => 'Dipilih sesuai dengan Kebutuhan !!'
+  //       ]
+  //     ],
+  //     // Foto Admin
+  //     'foto_admin' => [
+  //       'rules' => 'uploaded[admin.foto_admin]|is_image[foto_admin]|mime_in[foto_admin,image/jpg,image/jpeg,image/png]',
+  //       'errors' => [
+  //         'uploaded' => 'Foto Admin Harus Diisi !!',
+  //         'is_image' => 'Yang anda pilih bukan Gambar !!',
+  //         'mime_in' => 'Yang anda pilih bukan Gambar !!'
+  //       ]
+  //     ]
 
-    ])) {
-      return redirect()->to(base_url() . '/createAdmin/create_akun_admin/')->withInput();
-    }
+  //   ])) {
+  //     return redirect()->to(base_url() . '/createAdmin/create_akun_admin/')->withInput();
+  //   }
 
-    $fotoAdmin = $this->request->getFile('foto_admin');
-    if ($fotoAdmin->getError() == 4) {
-      $namaFotoAdmin = 'img/akun.png';
-    } else {
-      $namaFotoAdmin = $fotoAdmin->getClientName();
-      $fotoAdmin->move('img/imgAkunAdmin', $namaFotoAdmin);
-    }
+  //   $fotoAdmin = $this->request->getFile('foto_admin');
+  //   if ($fotoAdmin->getError() == 4) {
+  //     $namaFotoAdmin = 'img/akun.png';
+  //   } else {
+  //     $namaFotoAdmin = $fotoAdmin->getClientName();
+  //     $fotoAdmin->move('img/imgAkunAdmin', $namaFotoAdmin);
+  //   }
 
-    $this->adminModel->save([
-      'nama' => $this->request->getVar('nama'),
-      'email' => $this->request->getVar('email'),
-      'password' => $this->request->getVar('password'),
-      'level' => $this->request->getVar('level'),
-    ]);
-    session()->setFlashdata('pesan', 'Selamat Anda Berhasil Melakukan Pendaftaran  !!');
-    return redirect()->to('/admin/data_admin');
-  }
+  //   $this->adminModel->save([
+  //     'nama' => $this->request->getVar('nama'),
+  //     'email' => $this->request->getVar('email'),
+  //     'password' => $this->request->getVar('password'),
+  //     'level' => $this->request->getVar('level'),
+  //   ]);
+  //   session()->setFlashdata('pesan', 'Selamat Anda Berhasil Melakukan Pendaftaran  !!');
+  //   return redirect()->to('/admin/data_admin');
+  // }
 
+  // public function save()
+  // {
+  //   $users = model(AdminModel::class);
+
+  //   $rules = [
+  //     'username' => 'required|alpha_numeric_space|min_length[3]|max_length[30]|is_unique[users.username]',
+  //     'email'    => 'required|valid_email|is_unique[users.email]',
+  //   ];
+
+  //   if (!$this->validate($rules)) {
+  //     return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+  //   }
+
+  //   $rules = [
+  //     'password'     => 'required|strong_password',
+  //     'pass_confirm' => 'required|matches[password]',
+  //   ];
+
+  //   if (!$this->validate($rules)) {
+  //     return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+  //   }
+
+  //   // Save the user
+  //   $allowedPostFields = array_merge(['password']);
+  //   $user = new User($this->request->getPost($allowedPostFields));
+
+  //   $this->config->requireActivation === null ? $user->activate() : $user->generateActivateHash();
+
+  //   // Ensure default group gets assigned if set
+  //   if (!empty($this->config->defaultUserGroup)) {
+  //     $users = $users->withGroup($this->config->defaultUserGroup);
+  //   }
+
+  //   if (!$users->save($user)) {
+  //     return redirect()->back()->withInput()->with('errors', $users->errors());
+  //   }
+
+  //   if ($this->config->requireActivation !== null) {
+  //     $activator = service('activator');
+  //     $sent = $activator->send($user);
+
+  //     if (!$sent) {
+  //       return redirect()->back()->withInput()->with('error', $activator->error() ?? lang('Auth.unknownError'));
+  //     }
+
+  //     // Success!
+  //     return redirect()->to(base_url('/users/index'));
+  //   }
+
+  //   // Success!
+  //   return redirect()->to(base_url('/users/index'));
+  // }
 
 
 

@@ -466,7 +466,9 @@ class PelayananSilancar extends BaseController
     ]);
 
     if (!$validate) {
-      return redirect()->to('pelayanan_views/pendaftaranKKPemisahan')->withInput()->with('errors', $this->validator->getErrors());
+      // return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());      
+      // return redirect()->to(base_url('/PelayananSilancar/pendaftaranKKPemisahan'))->withInput()->with('errors', $this->validator->getErrors());
+      return redirect()->to(base_url('pendaftaran_kk_pemisahan'))->withInput()->with('errors', $this->validator->getErrors());
     }
 
     $fileFotoKTP = $this->request->getFile('fotoktp');

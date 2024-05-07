@@ -50,7 +50,7 @@
                 <hr>
 
                 <div class="text-center">
-                  <p> <a class="small" href="<?= url_to('login') ?>"> <?= lang('Auth.alreadyRegistered') ?> <?= lang('Auth.signIn') ?></a></p>
+                  <p> <a class="small" href="<?= url_to('login') ?>"> <?= lang('Auth.alreadyRegistered') ?> <?= lang('Auth.signIn') ?></a> </p>
                 </div>
 
               </div>

@@ -10,9 +10,15 @@
 
   <div class="container-fluid">
 
-    <div class="d-sm-flex align-items-center justify-content-between mb-4" style="padding-top: 20px;">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4" style="padding-top: 5%;">
       <h1 class="h3 text-black fw-bold">Dashboard</h1>
-      <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+      <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i>
+
+        <?= user()->username; ?>
+        <img src="<?= base_url(); ?>/img/<?= user()->user_image; ?> " alt="Foto Admin" srcset="" style="width: 30px;">
+
+
+      </a>
     </div>
 
     <div class="card mt-3 shadow border-2">
