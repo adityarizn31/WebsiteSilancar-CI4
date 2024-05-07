@@ -184,7 +184,6 @@ if ($hariSekarang >= 1 && $hariSekarang <= 7 && $jamSekarang >= 8 && $jamSekaran
 
     </div>
   </div>
-  </div>
 
   <?= $this->endSection('content'); ?>
 

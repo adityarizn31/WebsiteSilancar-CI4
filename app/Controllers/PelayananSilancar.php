@@ -97,11 +97,7 @@ class PelayananSilancar extends BaseController
   public function saveKK()
   {
 
-    $data = [
-      'title' => 'Pendaftaran KK || Disdukcapil Majalengka'
-    ];
-
-    $validationRules = [
+    $validate = $this->validate([
       'nik' => [
         'rules' => 'required[pendaftaran_kk.nik]|exact_length[16]',
         'errors' => [
@@ -189,147 +185,11 @@ class PelayananSilancar extends BaseController
           'ext_in' => 'Format Surat Pindah Harus PDF !!'
         ],
       ],
-    ];
+    ]);
 
-    $validationMessages = [
-      'nik' => [
-        'rules' => 'required[pendaftaran_kk.nik]|exact_length[16]',
-        'errors' => [
-          'required' => 'NIK Pemohon Harus Diisi !!',
-          'exact_length' => 'NIK Pemohon Harus 16 Angka'
-        ],
-      ],
-      'namapemohon' => [
-        'rules' => 'required[pendaftaran_kk.namapemohon]',
-        'errors' => [
-          'required' => 'Nama Pemohon Harus Diisi !!'
-        ],
-      ],
-      'emailpemohon' => [
-        'rules' => 'required[pendaftaran_kk.emailpemohon]|valid_email',
-        'errors' => [
-          'required' => 'Email Pemohon Harus Diisi !!',
-          'valid_email' => 'Mohon cek kembali email anda, gunakan @ agar valid !!'
-        ],
-      ],
-      'nomorpemohon' => [
-        'rules' => 'required|regex_match[/^\+628\d{9,}$/]',
-        'errors' => [
-          'required' => 'Nomor Pemohon Harus Diisi !!',
-          'regex_match' => 'Nomor Pemohon harus dimulai dengan +628 dan terdiri dari 12 hingga 15 digit angka setelahnya.',
-        ],
-      ],
-      'alamatpemohon' => [
-        'rules' => 'required[pendaftaran_kk.alamatpemohon]',
-        'errors' => [
-          'required' => 'Alamat Pemohon Harus Diisi !!'
-        ],
-      ],
-      'fotoktp' => [
-        'rules' => 'uploaded[fotoktp]|max_size[fotoktp,2048]|is_image[fotoktp]|mime_in[fotoktp,image/jpg,image/jpeg,image/png]',
-        'errors' => [
-          'uploaded' => 'Foto KTP Wajib diisi !!',
-          'max_size' => 'Ukuran Gambar terlalu besar !!',
-          'is_image' => 'Yang anda pilih bukan gambar !!',
-          'mime_in' => 'Mohon File yang di inputkan berformat JPG, JPEG atau PNG'
-        ],
-      ],
-      'formulirdesa' => [
-        'rules' => 'uploaded[formulirdesa]|max_size[formulirdesa,2048]|mime_in[formulirdesa,application/pdf]|ext_in[formulirdesa,pdf]',
-        'errors' => [
-          'uploaded' => 'Formulir Desa Harus Diisi !!',
-          'max_size' => 'File Formulir Desa terlalu besar, Kompress terlebih dahulu !!',
-          'mime_in' => 'Format Formulir Desa Harus PDF !!',
-          'ext_in' => 'Format Formulir Desa Harus PDF !!'
-        ],
-      ],
-      'kartukeluargasuami' => [
-        'rules' => 'uploaded[kartukeluargasuami]|max_size[kartukeluargasuami,2048]|mime_in[kartukeluargasuami,application/pdf]|ext_in[kartukeluargasuami,pdf]',
-        'errors' => [
-          'uploaded' => 'Kartu Keluarga Suami Harus Diisi !!',
-          'max_size' => 'File anda terlalu besar, Kompress terlebih dahulu !!',
-          'mime_in' => 'Format File Harus PDF !!',
-          'ext_in' => ''
-        ],
-      ],
-      'kartukeluargaistri' => [
-        'rules' => 'uploaded[kartukeluargaistri]|max_size[kartukeluargaistri,2048]|mime_in[kartukeluargaistri,application/pdf]|ext_in[kartukeluargaistri,pdf]',
-        'errors' => [
-          'uploaded' => 'Kartu Keluarga Istri Harus Diisi !!',
-          'max_size' => 'File anda terlalu besar, Kompress terlebih dahulu !!',
-          'mime_in' => 'Format File Harus PDF !!',
-          'ext_in' => ''
-        ],
-      ],
-      'suratnikah' => [
-        'rules' => 'uploaded[suratnikah]|max_size[suratnikah,2048]|mime_in[suratnikah,application/pdf]|ext_in[suratnikah,pdf]',
-        'errors' => [
-          'uploaded' => 'Surat Nikah Harus Diisi !!',
-          'max_size' => 'File Surat Nikah terlalu besar, Kompress terlebih dahulu !!',
-          'mime_in' => 'Format Surat Nikah Harus PDF !!',
-          'ext_in' => 'Format Surat Nikah Harus PDF !!'
-        ],
-      ],
-      'suratpindah' => [
-        'rules' => 'uploaded[suratpindah]|max_size[suratpindah,2048]|mime_in[suratpindah,application/pdf]|ext_in[suratpindah,pdf]',
-        'errors' => [
-          'uploaded' => 'Surat Pindah Harus Diisi !!',
-          'max_size' => 'File Surat Pindah terlalu besar, Kompress terlebih dahulu !!',
-          'mime_in' => 'Format Surat Pindah Harus PDF !!',
-          'ext_in' => 'Format Surat Pindah Harus PDF !!'
-        ],
-      ],
-    ];
-
-    // $this->validate($validationRules, $validationMessages);
-
-    // if ($this->validator->hasError('namapemohon', 'nik')) {
-    //   $data['validation'] = $this->validator;
-    //   return view('pelayanan_views/pendaftaranKK', $data);
-    // }
-
-    $this->validate($validationRules, $validationMessages);
-
-    if ($this->validator->hasError('nik', 'namapemohon', 'alamatpemohon')) {
-      $data['validation'] = $this->validator;
-      return view('pelayanan_views/pendaftaranKK', $data);
-    } else {
-      // Lanjutkan proses penyimpanan data KK
-      // Jika validasi berhasil
+    if (!$validate) {
+      return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
     }
-
-    // $validation = $this->validate([]);
-
-    // // Jalankan validasi
-    // $validated = $this->validator->getErrors();
-
-    // // Periksa apakah validasi gagal
-    // if (!$validated) {
-    //   // Jika validasi gagal, kirimkan pesan kesalahan ke halaman pendaftaran
-    //   $data['validation'] = $validation;
-    //   return view('pelayanan_views/pendaftaranKK', $data);
-    // } else {
-    //   // Jika validasi berhasil, tampilkan halaman pendaftaran
-    //   return view('pelayanan_views/pendaftaranKK', $data);
-    // }
-
-    // if (!$validate) {
-    //   return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
-    // }
-
-    // if ($this->validator->getErrors()) {
-    //   $data[$validation] = $this->validator;
-    //   return view('pelayanan_views/pendaftaranKK', $data);
-    // }
-
-    // if ($validate) {
-    //   return view('pelayanan_views/pendaftaranKK', $data);
-    // } else {
-    //   $data['validation'] = $this->validator;
-    //   return view('pelayanan_views/pendaftaranKK', $data);
-    // }
-
-    // Jalankan validasi
 
     $fileFotoKTP = $this->request->getFile('fotoktp');
     if ($fileFotoKTP->getError() == 4) {
@@ -397,10 +257,6 @@ class PelayananSilancar extends BaseController
   public function saveKKPemisahan()
   {
 
-    $data = [
-      'title' => 'Pendaftaran KK Pemisahan Anggota Keluarga || Disdukcapil Majalengka'
-    ];
-
     $validate = $this->validate([
 
       'nik' => [
@@ -466,9 +322,7 @@ class PelayananSilancar extends BaseController
     ]);
 
     if (!$validate) {
-      // return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());      
-      // return redirect()->to(base_url('/PelayananSilancar/pendaftaranKKPemisahan'))->withInput()->with('errors', $this->validator->getErrors());
-      return redirect()->to(base_url('pendaftaran_kk_pemisahan'))->withInput()->with('errors', $this->validator->getErrors());
+      return redirect()->back(303)->withInput()->with('errors', $this->validator->getErrors());
     }
 
     $fileFotoKTP = $this->request->getFile('fotoktp');
@@ -629,7 +483,8 @@ class PelayananSilancar extends BaseController
       'suratketeranganlahir' => $namaSuratKeteranganLahir_KKPenambahan
     ]);
     session()->setFlashdata('pesan', 'Selamat pendaftaran permohonan Kartu Keluarga Penambahan Anda telah berhasil !!');
-    return redirect()->to('/PelayananSilancar/pendaftaranKKPenambahan');
+    // return redirect()->to('/PelayananSilancar/pendaftaranKKPenambahan');
+    return redirect()->route('pelayanansilancar/pendaftaranKKPenambahan');
   }
 
 
