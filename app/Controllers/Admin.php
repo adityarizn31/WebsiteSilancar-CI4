@@ -299,7 +299,6 @@ class Admin extends BaseController
 
   public function logout()
   {
-
     session()->remove('id');
     return redirect()->to(site_url('login'));
   }

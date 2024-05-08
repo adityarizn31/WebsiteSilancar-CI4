@@ -12,11 +12,17 @@
 
   <div class="card shadow mb-4 border-2" style="margin-top: 25px;">
     <div class="card-header py-3">
-      <div class="d-sm-flex align-items-center justify-content-between" style="padding-top: 10px;">
-        <h6 class="m-0 font-weight-bold text-primary">Data Akun Disdukcapil Majalengka</h6>
+      <div class="d-sm-flex align-items-center justify-content-between" style="padding-top: 10px; padding-bottom: 10px;">
+        <h4 class="m-0 font-weight-bold text-primary">Data Akun Disdukcapil Majalengka</h4>
 
         <a href="/createAdmin/create_akun_admin/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Tambah Admin</a>
       </div>
+
+      <?php if (session('success')) : ?>
+        <div class="alert alert-success">
+          <?= session('success') ?>
+        </div>
+      <?php endif; ?>
 
       <div class="card-body">
         <table class="table table-fixed table-hover">
@@ -40,7 +46,36 @@
                 <td><?= $adm['email']; ?></td>
                 <td><?= $adm['created_at']; ?></td>
                 <td>
-                  <a href="/detailadmin/detail_akun_admin/<?= $adm['username']; ?>" class="btn btn-success btn-sm">Detail</a>
+
+                  <div class="modal fade" id="deleteModal<?= $adm['id']; ?>" tabindex="-1" aria-labelledby="deleteModalLabel<?= $adm['id']; ?>" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="deleteModalLabel<?= $adm['id']; ?>">Konfirmasi Penghapusan</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          Apakah Anda yakin ingin menghapus akun <strong><?= $adm['username']; ?></strong>?
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                          <form action="<?= base_url('DeleteAdmin/deleteAkunAdmin/' . $adm['id']); ?>" method="post" class="d-inline">
+                            <?= csrf_field(); ?>
+                            <button type="submit" class="btn btn-danger">Ya, Hapus</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <form action="<?= base_url('DeleteAdmin/deleteAkunAdmin/' . $adm['id']); ?>" method="post" class="d-inline">
+                    <?= csrf_field(); ?>
+
+                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $adm['id']; ?>">
+                      <span class="bi bi-x-square me-2"></span> Hapus
+                    </button>
+
+                  </form>
                 </td>
               </tr>
             <?php endforeach; ?>

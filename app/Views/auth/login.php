@@ -73,10 +73,6 @@
 
                   <hr>
 
-                  <?php if ($config && property_exists($config, 'allowRegistration') && $config->allowRegistration) : ?>
-                    <p><a href="<?= url_to('register') ?>"><?= lang('Auth.needAnAccount') ?></a></p>
-                  <?php endif; ?>
-
                 </div>
               </div>
             </div>

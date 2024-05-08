@@ -2,17 +2,15 @@
 
 namespace App\Controllers;
 
-namespace App\Controllers;
+use \Myth\Auth\Entities\User;
+use \Myth\Auth\Authorization\GroupModel;
+use \Myth\Auth\Config\Auth as AuthConfig;
 
 use App\Models\AdminModel;
 use App\Models\BeritaModel;
 use App\Models\InovasiModel;
 use App\Models\VisiMisiModel;
 use App\Models\PersyaratansilancarModel;
-
-use \Myth\Auth\Entities\User;
-use \Myth\Auth\Authorization\GroupModel;
-use \Myth\Auth\Config\Auth as AuthConfig;
 
 // Halaman Pendaftaran Si Lancar
 
@@ -32,6 +30,9 @@ use App\Models\Pengaduan_update_Model;
 
 class CreateAdmin extends BaseController
 {
+  protected $auth;
+
+  protected $config;
 
   protected $adminModel;
   protected $beritaModel;
@@ -59,12 +60,12 @@ class CreateAdmin extends BaseController
 
   protected $pelayananModel;
 
-  protected $auth;
-
-  protected $config;
-
   public function __construct()
   {
+
+    $this->config = config('Auth');
+    $this->auth = service('authentication');
+
     $this->adminModel = new AdminModel();
     $this->beritaModel = new BeritaModel();
     $this->inovasiModel = new InovasiModel();
@@ -86,9 +87,6 @@ class CreateAdmin extends BaseController
 
     $this->perbaikandataModel = new Perbaikan_data_Model();
     $this->pengaduanupdateModel = new Pengaduan_update_Model();
-
-    $this->config = config('Auth');
-    $this->auth = service('authentication');
   }
 
 

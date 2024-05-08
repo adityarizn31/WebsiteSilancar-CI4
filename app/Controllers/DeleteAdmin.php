@@ -177,6 +177,23 @@ class DeleteAdmin extends BaseController
 
 
 
+  // Kodingan Delete Benar
+  // Halaman Persyaratan Si Lancar
+  // Digunakan untuk menghapus data Akun Admin
+  public function deleteAkunAdmin($id)
+  {
+    $this->adminModel->delete($id);
+    return redirect()->to('Admin/data_admin')->with('success', 'Akun berhasil dihapus !! ');
+  }
+
+
+
+
+
+
+
+
+
 
 
 
