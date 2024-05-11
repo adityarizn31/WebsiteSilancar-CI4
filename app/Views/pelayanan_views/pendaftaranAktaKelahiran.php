@@ -186,8 +186,69 @@ if ($hariSekarang >= 1 && $hariSekarang <= 5 && $jamSekarang >= 8 && $jamSekaran
         <hr>
 
         <div class="d-grid gap-2 col-6 mx-auto">
-          <button type="submit" value="submit" name="submit" id="submit" class="btn btn-primary"> D A F T A R </button>
+          <button type="button" value="submit" name="submit" id="submit" class="btn btn-primary" onclick="validasiData()"> D A F T A R </button>
         </div>
+
+        <div class="modal fade" id="modalPendaftaran" tabindex="-1" aria-labelledby="modalPendaftaranLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title fw-semibold" id="modalPendaftaranLabel">Data Pendaftaran Akta Kelahiran</h5>
+                <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+
+                <div id="dataPendaftaranSementara"></div>
+
+              </div>
+              <div class="modal-footer">
+                <p>Mohon cek kembali data Pendaftaran Akta Kelahiran Anda. <b>Apakah Anda sudah yakin dengan data di atas ??</b></p>
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Tutup</button>
+                <button type="submit" value="submit" name="submit" id="submitModal" class="btn btn-primary btn-sm">Daftar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script>
+          function validasiData() {
+            var nik = document.getElementById('nik').value;
+            var namaPemohon = document.getElementById('namapemohon').value;
+            var emailPemohon = document.getElementById('emailpemohon').value;
+            var nomorPemohon = document.getElementById('nomorpemohon').value;
+            var alamatPemohon = document.getElementById('alamatpemohon').value;
+            var fotoktp = document.getElementById('fotoktp').value;
+            var formulirf201akta = document.getElementById('formulirf201akta').value;
+            var suratketeranganlahir = document.getElementById('suratketeranganlahir').value;
+            var kartukeluarga = document.getElementById('kartukeluarga').value;
+            var bukunikah = document.getElementById('bukunikah').value;
+            var ktpayah = document.getElementById('ktpayah').value;
+            var ktpibu = document.getElementById('ktpibu').value;
+
+            if (nik === '' || namaPemohon === '' || emailPemohon === '' || nomorPemohon === '' || alamatPemohon === '' || fotoktp === '' || formulirf201akta === '' || suratketeranganlahir === '' || kartukeluarga === '' || bukunikah === '' || ktpayah === '' || ktpibu === '') {
+              alert('Mohon untuk melengkapi semua persyaratan pendaftaran !');
+            } else {
+              tampilkanDataPendaftaran();
+              $('#modalPendaftaran').modal('show');
+            }
+          }
+
+          function tampilkanDataPendaftaran() {
+            var nik = document.getElementById('nik').value;
+            var namaPemohon = document.getElementById('namapemohon').value;
+            var emailPemohon = document.getElementById('emailpemohon').value;
+            var nomorPemohon = document.getElementById('nomorpemohon').value;
+            var alamatPemohon = document.getElementById('alamatpemohon').value;
+
+            var html = '<p><b>NIK Pemohon:</b> ' + nik + '</p>' +
+              '<p><b>Nama Pemohon:</b> ' + namaPemohon + '</p>' +
+              '<p><b>Email Pemohon</b>: ' + emailPemohon + '</p>' +
+              '<p><b>Nomor WA Pemohon:</b> ' + nomorPemohon + '</p>' +
+              '<p><b>Alamat Pemohon:</b> ' + alamatPemohon + '</p>';
+
+            document.getElementById('dataPendaftaranSementara').innerHTML = html;
+          }
+        </script>
 
       </form>
 

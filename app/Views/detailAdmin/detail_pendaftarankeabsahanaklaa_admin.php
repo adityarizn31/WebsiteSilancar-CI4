@@ -198,16 +198,16 @@
           <div class="card card-outline card-primary">
             <div class="card-header">
               <div class="card-title fw-semibold"> Berkas Foto KTP </div>
-              <?php if (file_exists(FCPATH . '/pelayanan/keabsahanaktakelahiran/' . $pendaftaran_keabsahanakla['fotoktp'])) : ?>
+              <?php if (file_exists(FCPATH . '/pelayanan/keabsahanakla/' . $pendaftaran_keabsahanakla['fotoktp'])) : ?>
 
                 <form action="" method="post">
-                  <a href="<?= base_url('/pelayanan/keabsahanaktakelahiran/' . $pendaftaran_keabsahanakla['fotoktp']) ?>" download class="btn btn-success mx-2 mt-2 mb-2 mr-2 position-absolute top-0 end-0">
+                  <a href="<?= base_url('/pelayanan/keabsahanakla/' . $pendaftaran_keabsahanakla['fotoktp']) ?>" download class="btn btn-success mx-2 mt-2 mb-2 mr-2 position-absolute top-0 end-0">
                     <i class="bi bi-download"></i>
                   </a>
                 </form>
 
                 <div class="col-sm-12">
-                  <iframe class="mt-4" src="<?= base_url('/pelayanan/keabsahanaktakelahiran/' . $pendaftaran_keabsahanakla['fotoktp']) ?>" frameborder="0" height="500" width="100%"></iframe>
+                  <iframe class="mt-4" src="<?= base_url('/pelayanan/keabsahanakla/' . $pendaftaran_keabsahanakla['fotoktp']) ?>" frameborder="0" height="500" width="100%"></iframe>
                 </div>
               <?php else : ?>
                 <div class="alert alert-danger mt-5 mb-0" role="alert">
@@ -226,7 +226,7 @@
             </div>
 
             <div class="col-sm-12">
-              <iframe src="<?= base_url('/pelayanan/keabsahanaktakelahiran/' . $pendaftaran_keabsahanakla['aktakelahiran']) ?>" frameborder="0" height="500" width="100%"></iframe>
+              <iframe src="<?= base_url('/pelayanan/keabsahanakla/' . $pendaftaran_keabsahanakla['aktakelahiran']) ?>" frameborder="0" height="500" width="100%"></iframe>
             </div>
 
           </div>
@@ -240,7 +240,7 @@
             </div>
 
             <div class="col-sm-12">
-              <iframe src="<?= base_url('/pelayanan/keabsahanaktakelahiran/' . $pendaftaran_keabsahanakla['kartutandapenduduk']) ?>" frameborder="0" height="500" width="100%"></iframe>
+              <iframe src="<?= base_url('/pelayanan/keabsahanakla/' . $pendaftaran_keabsahanakla['kartutandapenduduk']) ?>" frameborder="0" height="500" width="100%"></iframe>
             </div>
 
           </div>

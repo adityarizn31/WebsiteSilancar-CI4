@@ -484,8 +484,7 @@ class PelayananSilancar extends BaseController
       'suratketeranganlahir' => $namaSuratKeteranganLahir_KKPenambahan
     ]);
     session()->setFlashdata('pesan', 'Selamat pendaftaran permohonan Kartu Keluarga Penambahan Anda telah berhasil !!');
-    // return redirect()->to('/PelayananSilancar/pendaftaranKKPenambahan');
-    return redirect()->route('pelayanansilancar/pendaftaranKKPenambahan');
+    return redirect()->to('/PelayananSilancar/pendaftaranKKPenambahan');
   }
 
 
@@ -1581,20 +1580,20 @@ class PelayananSilancar extends BaseController
     $validate = $this->validate([
 
       'nik' => [
-        'rules' => 'required[pendaftaran_keabsahanakla.nik]|exact_length[16]',
+        'rules' => 'required[pendaftaran_aktakematian.nik]|exact_length[16]',
         'errors' => [
           'required' => 'NIK Pemohon Harus Diisi !!',
           'exact_length' => 'NIK Harus terdiri 16 Angka'
         ],
       ],
       'namapemohon' => [
-        'rules' => 'required[pendaftaran_keabsahanakla.namapemohon]',
+        'rules' => 'required[pendaftaran_aktakematian.namapemohon]',
         'errors' => [
           'required' => 'Nama Pemohon Harus Diisi !!'
         ],
       ],
       'emailpemohon' => [
-        'rules' => 'required[pendaftaran_keabsahanakla.emailpemohon]|valid_email',
+        'rules' => 'required[pendaftaran_aktakematian.emailpemohon]|valid_email',
         'errors' => [
           'required' => 'Email Pemohon Harus Diisi !!',
           'valid_email' => 'Mohon cek kembali email anda, gunakan @ agar valid !!'
@@ -1608,7 +1607,7 @@ class PelayananSilancar extends BaseController
         ],
       ],
       'alamatpemohon' => [
-        'rules' => 'required[pendaftaran_keabsahanakla.alamatpemohon]',
+        'rules' => 'required[pendaftaran_aktakematian.alamatpemohon]',
         'errors' => [
           'required' => 'Alamat Pemohon Harus Diisi !!'
         ],
@@ -1625,19 +1624,19 @@ class PelayananSilancar extends BaseController
       'aktakelahiran' => [
         'rules' => 'uploaded[aktakelahiran]|max_size[aktakelahiran,2048]|mime_in[aktakelahiran,application/pdf]|ext_in[aktakelahiran,pdf]',
         'errors' => [
-          'uploaded' => 'Formulir Akta Kelahiran Harus Diisi !!',
-          'max_size' => 'File Akta Kelahiran terlalu besar, Kompress terlebih dahulu !!',
-          'mime_in' => 'Format Akta Kelahirans Harus PDF !!',
-          'ext_in' => 'Format Akta Kelahirans Harus PDF !!'
+          'uploaded' => 'Kartu Keluarga Harus Diisi !!',
+          'max_size' => 'File kartu Keluarga terlalu besar, Kompress terlebih dahulu !!',
+          'mime_in' => 'Format Kartu Keluarga Harus PDF !!',
+          'ext_in' => 'Format Kartu Keluarga Harus PDF !!'
         ],
       ],
       'kartutandapenduduk' => [
         'rules' => 'uploaded[kartutandapenduduk]|max_size[kartutandapenduduk,2048]|mime_in[kartutandapenduduk,application/pdf]|ext_in[kartutandapenduduk,pdf]',
         'errors' => [
-          'uploaded' => 'Formulir Kartu Tanda Penduduk Harus Diisi !!',
-          'max_size' => 'File Kartu Tanda Penduduk terlalu besar, Kompress terlebih dahulu !!',
-          'mime_in' => 'Format Kartu Tanda Penduduks Harus PDF !!',
-          'ext_in' => 'Format Kartu Tanda Penduduks Harus PDF !!'
+          'uploaded' => 'Surat Kematian Harus Diisi !!',
+          'max_size' => 'File Surat Kematian terlalu besar, Kompress terlebih dahulu !!',
+          'mime_in' => 'Format Surat Kematian Harus PDF !!',
+          'ext_in' => 'Format Surat Kematian Harus PDF !!'
         ],
       ],
     ]);
@@ -1649,17 +1648,17 @@ class PelayananSilancar extends BaseController
     $fileFotoKTP = $this->request->getFile('fotoktp');
     if ($fileFotoKTP->getError() == 4) {
     } else {
-      $namaFotoKTP_KeabsahanAkla = $fileFotoKTP->getName();
-      $fileFotoKTP->move('pelayanan/keabsahanaktakelahiran ', $namaFotoKTP_KeabsahanAkla);
+      $namaFotoKTP_Keabsahan = $fileFotoKTP->getName();
+      $fileFotoKTP->move('pelayanan/keabsahanakla', $namaFotoKTP_Keabsahan);
     }
 
-    $berkasAktaKelahiran_Akla = $this->request->getFile('aktakelahiran');
-    $namaAktaKelahiran_KeabsahanAkla = $berkasAktaKelahiran_Akla->getName();
-    $berkasAktaKelahiran_Akla->move('pelayanan/keabsahanaktakelahiran', $namaAktaKelahiran_KeabsahanAkla);
+    $berkasAktaKelahiran_Keabsahan = $this->request->getFile('aktakelahiran');
+    $namaAktaKelahiran_Keabsahan = $berkasAktaKelahiran_Keabsahan->getName();
+    $berkasAktaKelahiran_Keabsahan->move('pelayanan/keabsahanakla', $namaAktaKelahiran_Keabsahan);
 
-    $berkasKartuTandaPenduduk_Akla = $this->request->getFile('kartutandapenduduk');
-    $namaKartuTandaPenduduk_KeabsahanAkla = $berkasKartuTandaPenduduk_Akla->getName();
-    $berkasKartuTandaPenduduk_Akla->move('pelayanan/keabsahanaktakelahiran', $namaKartuTandaPenduduk_KeabsahanAkla);
+    $berkasKTP_Keabsahan = $this->request->getFile('kartutandapenduduk');
+    $namaKTP_Keabsahan = $berkasKTP_Keabsahan->getName();
+    $berkasKTP_Keabsahan->move('pelayanan/keabsahanakla', $namaKTP_Keabsahan);
 
     $this->keabsahanaklaModel->save([
       'nik' => $this->request->getVar('nik'),
@@ -1667,13 +1666,112 @@ class PelayananSilancar extends BaseController
       'emailpemohon' => $this->request->getVar('emailpemohon'),
       'nomorpemohon' => $this->request->getVar('nomorpemohon'),
       'alamatpemohon' => $this->request->getVar('alamatpemohon'),
-      'fotoktp' => $namaFotoKTP_KeabsahanAkla,
-      'aktakelahiran' => $namaAktaKelahiran_KeabsahanAkla,
-      'kartutandapenduduk' => $namaKartuTandaPenduduk_KeabsahanAkla,
+      'fotoktp' => $namaFotoKTP_Keabsahan,
+      'aktakelahiran' => $namaAktaKelahiran_Keabsahan,
+      'kartutandapenduduk' => $namaKTP_Keabsahan
     ]);
-    session()->setFlashdata('pesan', 'Selamat pendaftaran permohonan Keabsahan Akta Kelahiran Anda telah berhasil !!');
+    session()->setFlashdata('pesan', 'Selamat pendaftaran permohonan Akta Kematian Anda telah berhasil !!');
     return redirect()->to('/PelayananSilancar/pendaftaranKeabsahanAkla/');
   }
+
+  // public function saveKeabsahanAkla()
+  // {
+  //   $validate = $this->validate([
+
+  //     'nik' => [
+  //       'rules' => 'required[pendaftaran_keabsahanakla.nik]|exact_length[16]',
+  //       'errors' => [
+  //         'required' => 'NIK Pemohon Harus Diisi !!',
+  //         'exact_length' => 'NIK Harus terdiri 16 Angka'
+  //       ],
+  //     ],
+  //     'namapemohon' => [
+  //       'rules' => 'required[pendaftaran_keabsahanakla.namapemohon]',
+  //       'errors' => [
+  //         'required' => 'Nama Pemohon Harus Diisi !!'
+  //       ],
+  //     ],
+  //     'emailpemohon' => [
+  //       'rules' => 'required[pendaftaran_keabsahanakla.emailpemohon]|valid_email',
+  //       'errors' => [
+  //         'required' => 'Email Pemohon Harus Diisi !!',
+  //         'valid_email' => 'Mohon cek kembali email anda, gunakan @ agar valid !!'
+  //       ],
+  //     ],
+  //     'nomorpemohon' => [
+  //       'rules' => 'required|regex_match[/^\+628\d{9,}$/]',
+  //       'errors' => [
+  //         'required' => 'Nomor Pemohon Harus Diisi !!',
+  //         'regex_match' => 'Nomor Pemohon harus dimulai dengan +628 dan terdiri dari 12 hingga 15 digit angka setelahnya.',
+  //       ],
+  //     ],
+  //     'alamatpemohon' => [
+  //       'rules' => 'required[pendaftaran_keabsahanakla.alamatpemohon]',
+  //       'errors' => [
+  //         'required' => 'Alamat Pemohon Harus Diisi !!'
+  //       ],
+  //     ],
+  //     'fotoktp' => [
+  //       'rules' => 'uploaded[fotoktp]|max_size[fotoktp,2048]|is_image[fotoktp]|mime_in[fotoktp,image/jpg,image/jpeg,image/png]',
+  //       'errors' => [
+  //         'uploaded' => 'Foto KTP Wajib diisi !!',
+  //         'max_size' => 'Ukuran Gambar terlalu besar !!',
+  //         'is_image' => 'Yang anda pilih bukan gambar !!',
+  //         'mime_in' => 'Mohon File yang di inputkan berformat JPG, JPEG atau PNG'
+  //       ],
+  //     ],
+  //     'aktakelahiran' => [
+  //       'rules' => 'uploaded[aktakelahiran]|max_size[aktakelahiran,2048]|mime_in[aktakelahiran,application/pdf]|ext_in[aktakelahiran,pdf]',
+  //       'errors' => [
+  //         'uploaded' => 'Formulir Akta Kelahiran Harus Diisi !!',
+  //         'max_size' => 'File Akta Kelahiran terlalu besar, Kompress terlebih dahulu !!',
+  //         'mime_in' => 'Format Akta Kelahirans Harus PDF !!',
+  //         'ext_in' => 'Format Akta Kelahirans Harus PDF !!'
+  //       ],
+  //     ],
+  //     'kartutandapenduduk' => [
+  //       'rules' => 'uploaded[kartutandapenduduk]|max_size[kartutandapenduduk,2048]|mime_in[kartutandapenduduk,application/pdf]|ext_in[kartutandapenduduk,pdf]',
+  //       'errors' => [
+  //         'uploaded' => 'Formulir Kartu Tanda Penduduk Harus Diisi !!',
+  //         'max_size' => 'File Kartu Tanda Penduduk terlalu besar, Kompress terlebih dahulu !!',
+  //         'mime_in' => 'Format Kartu Tanda Penduduks Harus PDF !!',
+  //         'ext_in' => 'Format Kartu Tanda Penduduks Harus PDF !!'
+  //       ],
+  //     ],
+  //   ]);
+
+  //   if (!$validate) {
+  //     return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+  //   }
+
+  //   $fileFotoKTP = $this->request->getFile('fotoktp');
+  //   if ($fileFotoKTP->getError() == 4) {
+  //   } else {
+  //     $namaFotoKTP_KeabsahanAkla = $fileFotoKTP->getName();
+  //     $fileFotoKTP->move('pelayanan/keabsahanaktakelahiran ', $namaFotoKTP_KeabsahanAkla);
+  //   }
+
+  //   $berkasAktaKelahiran_Akla = $this->request->getFile('aktakelahiran');
+  //   $namaAktaKelahiran_KeabsahanAkla = $berkasAktaKelahiran_Akla->getName();
+  //   $berkasAktaKelahiran_Akla->move('pelayanan/keabsahanaktakelahiran', $namaAktaKelahiran_KeabsahanAkla);
+
+  //   $berkasKartuTandaPenduduk_Akla = $this->request->getFile('kartutandapenduduk');
+  //   $namaKartuTandaPenduduk_KeabsahanAkla = $berkasKartuTandaPenduduk_Akla->getName();
+  //   $berkasKartuTandaPenduduk_Akla->move('pelayanan/keabsahanaktakelahiran', $namaKartuTandaPenduduk_KeabsahanAkla);
+
+  //   $this->keabsahanaklaModel->save([
+  //     'nik' => $this->request->getVar('nik'),
+  //     'namapemohon' => $this->request->getVar('namapemohon'),
+  //     'emailpemohon' => $this->request->getVar('emailpemohon'),
+  //     'nomorpemohon' => $this->request->getVar('nomorpemohon'),
+  //     'alamatpemohon' => $this->request->getVar('alamatpemohon'),
+  //     'fotoktp' => $namaFotoKTP_KeabsahanAkla,
+  //     'aktakelahiran' => $namaAktaKelahiran_KeabsahanAkla,
+  //     'kartutandapenduduk' => $namaKartuTandaPenduduk_KeabsahanAkla,
+  //   ]);
+  //   session()->setFlashdata('pesan', 'Selamat pendaftaran permohonan Keabsahan Akta Kelahiran Anda telah berhasil !!');
+  //   return redirect()->to('/PelayananSilancar/pendaftaranKeabsahanAkla/');
+  // }
 
 
 
